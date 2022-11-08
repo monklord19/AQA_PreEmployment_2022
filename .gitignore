@@ -10,3 +10,4 @@ ENV/
 **/target
 .project
 *.idea
+build/
