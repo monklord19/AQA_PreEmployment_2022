@@ -36,7 +36,7 @@ Feature:testLogin
     When click login button
     Then Display <ErrorMessageUsernameIsRequired>
       | ErrorMessageUsernameIsRequired     |
-      | Epic sadface: Username is required |
+      | Epic sadface : Username is required |
 
   Scenario:CLick login button with the empty fields
     Given Have the username and password fields empty
