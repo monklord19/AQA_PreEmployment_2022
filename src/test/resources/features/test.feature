@@ -35,7 +35,7 @@ Feature:testLogin
       | secret_sauce  |
     When click login button
     Then Display <ErrorMessageUsernameIsRequired>
-      | ErrorMessageUsernameIsRequired     |
+      | ErrorMessageUsernameIsRequired      |
       | Epic sadface : Username is required |
 
   Scenario:CLick login button with the empty fields
@@ -43,3 +43,21 @@ Feature:testLogin
     When Click login button
     Then Display <ErrorMessageUsernameIsRequired>
 
+git branhc  Scenario: Error Locked out user
+    Given I enter <userName> and <password>
+      | userName        | password     |
+      | locked_out_user | secret_sauce |
+    When  I click the login button
+    Then This <error> should be displayed
+      | error                                               |
+      | Epic sadface: Sorry, this user has been locked out. |
+
+  Scenario:Logout test
+    Given I enter <userName> and <password>
+      | userName      | password     |
+      | standard_user | secret_sauce |
+    And I click the login button
+    When The product page is displayed
+    And I click on the menu button
+    And I clikc on logout link
+    Then Login page should be displayed
