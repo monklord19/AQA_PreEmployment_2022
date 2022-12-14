@@ -2,7 +2,7 @@ Feature: Login Page Test
   Background:
     Given user is on the login page "https://www.saucedemo.com/"
   Scenario Outline: Valid username and password
-    When user enters valid username and password
+    When user enters <username> in username field and <password> in password field
     And clicks on login button
     Then user should be able to login
     Examples:
