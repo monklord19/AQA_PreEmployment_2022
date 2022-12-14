@@ -1,7 +1,7 @@
 Feature: Logging in to https://www.saucedemo.com/
 
   Background:
-    Given I go to https://www.saucedemo.com/
+    Given I open https://www.saucedemo.com/
 
   Scenario: Log in with blank username and password
     When I click Login
@@ -42,7 +42,7 @@ Feature: Logging in to https://www.saucedemo.com/
     Then I am unable to log in
     And Error message is displayed "Epic sadface: Username and password do not match any user in this service"
 
-  Scenario: Log in using Tab to navigate between fields and Enter to log in
+  Scenario: Log in using 'Tab' key to navigate and 'Enter' to log in
     When I use Tab to move focus to username field
     And I enter valid username
     And I use Tab to move focus to password field
@@ -50,7 +50,8 @@ Feature: Logging in to https://www.saucedemo.com/
     And I use Enter
     Then I am able to log in
 
-  Scenario: Log in after using the 'Back' and 'Forward' button
+  Scenario: Log in w/o credentials by using the 'Back' and 'Forward' buttons
+    Given I am logged in to https://www.saucedemo.com/
     When I return to the login page via the ‘Back' button of the browser
     And I use the 'Forward' button
     Then I am able to log in without adding my credentials
