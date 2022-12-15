@@ -46,12 +46,13 @@ Feature: Logging in to https://www.saucedemo.com/
     When I use Tab to move focus to username field
     And I enter valid username
     And I use Tab to move focus to password field
-    And I enter a valid username
+    And I enter a valid password
     And I use Enter
     Then I am able to log in
 
   Scenario: Log in w/o credentials by using the 'Back' and 'Forward' buttons
-    When I return to the login page via the ‘Back' button of the browser
+    When I am logged in to https://www.saucedemo.com/
+    And I return to the login page via the ‘Back' button of the browser
     And I use the 'Forward' button
     Then I am able to log in without adding my credentials
 
