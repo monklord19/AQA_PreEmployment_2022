@@ -21,14 +21,14 @@ Feature: Logging in to https://www.saucedemo.com/
     And Error message is displayed "Epic sadface: Password is required"
 
   Scenario Outline: Log in with valid username and password
-    When I enter a valid username and password
+    When I enter a valid <userName> and <password>
     And I click Login
     Then I log in to Swag Labs
     Examples:
-      |username|password|
-      |standard_user          | secret_sauce |
-      |problem_user           | secret_sauce |
-      |performance_glitch_user| secret_sauce |
+      | userName                | password     |
+      | standard_user           | secret_sauce |
+      | problem_user            | secret_sauce |
+      | performance_glitch_user | secret_sauce |
 
   Scenario: Log in with invalid username and password
     When I enter the "standard_use" username and "secret_sauce" password
@@ -51,7 +51,6 @@ Feature: Logging in to https://www.saucedemo.com/
     Then I am able to log in
 
   Scenario: Log in w/o credentials by using the 'Back' and 'Forward' buttons
-    Given I am logged in to https://www.saucedemo.com/
     When I return to the login page via the ‘Back' button of the browser
     And I use the 'Forward' button
     Then I am able to log in without adding my credentials
