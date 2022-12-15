@@ -1,4 +1,10 @@
-Feature: Sign-in
+@Smoke
+Feature: Log-in
+
+  Background:
+    Given I open https://www.saucedemo.com/
+
+  @ValidLogin
   Scenario Outline: I try to sign-in with valid username and correct password
     Given I open https://www.saucedemo.com/
     When I enter <username> and <password>
@@ -8,11 +14,13 @@ Feature: Sign-in
     | problem_user            | secret_sauce |
     | performance_glitch_user | secret_sauce |
 
+  @ValidLogin
   Scenario: I try to sign-in with valid username and correct password
     Given I open https://www.saucedemo.com/
     When I enter username: locked_out_user and password: secret_sauce
     Then Failed sign-in with error msg: "Epic sadface: Sorry, this user has been locked out."
 
+  @NoPassword
   Scenario Outline: I try to sign-in with valid username and no password
     Given I open https://www.saucedemo.com/
     When I enter <username> and <password>
@@ -23,6 +31,7 @@ Feature: Sign-in
     | problem_user            |  |
     | performance_glitch_user |  |
 
+  @WrongPassword
   Scenario Outline: I try to sign-in with valid username and wrong password
     Given I open https://www.saucedemo.com/
     When I enter <username> and <password>
@@ -33,6 +42,7 @@ Feature: Sign-in
     | problem_user            | password1234 |
     | performance_glitch_user | password1234 |
 
+  @NoUsername
   Scenario Outline: I try to sign-in with no username and correct password
     Given I open https://www.saucedemo.com/
     When I enter <username> and <password>
