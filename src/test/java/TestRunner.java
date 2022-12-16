@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/"}
+        features = {"src/test/resources/featureFiles/"}
         //tags = "@RegressionTestsBAP"git
 )
 public class TestRunner {
