@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class MyStepdefs1 {
-    @Given("On sauce website")
+    @Given("User is on the login page")
     public void onSauceWebsite() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
