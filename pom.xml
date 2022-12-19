@@ -50,7 +50,12 @@
             <artifactId>cucumber-core</artifactId>
             <version>7.10.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>messages</artifactId>
+            <version>19.1.4</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>

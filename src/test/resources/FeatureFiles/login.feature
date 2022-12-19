@@ -4,6 +4,7 @@ Feature: Logging in to https://www.saucedemo.com/
     Given I open https://www.saucedemo.com/
 
   Scenario: Log in with blank username and password
+
     When I click Login
     Then I am unable to log in
     And Error message is displayed "Epic sadface: Username is required"
