@@ -53,7 +53,7 @@ public class LoginSteps {
     }
 
     @When("user clicks on login")
-    public void user_clicks_on_login() throws InterruptedException {
+    public void user_clicks_on_login() {
         loginPage.clickLogin();
     }
 
@@ -68,12 +68,12 @@ public class LoginSteps {
     }
 
     @When("user presses Enter key")
-    public void user_presses_enter_key() throws InterruptedException {
+    public void user_presses_enter_key() {
         loginPage.enterKeyLogin();
     }
 
     @Given("user is logged in")
-    public void user_is_logged_in() throws InterruptedException {
+    public void user_is_logged_in() {
         user_navigates_to("https://www.saucedemo.com/");
         user_enters_username_as_and_password_as("standard_user", "secret_sauce");
         user_clicks_on_login();

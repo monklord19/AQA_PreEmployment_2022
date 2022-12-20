@@ -22,27 +22,27 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "user-name")
+    @FindBy(id = LoginPageLocators.USERNAME_ID)
     @CacheLookup
     WebElement username;
 
-    @FindBy(id = "password")
+    @FindBy(id = LoginPageLocators.PASSWORD_ID)
     @CacheLookup
     WebElement password;
 
-    @FindBy(id = "login-button")
+    @FindBy(id = LoginPageLocators.LOGIN_ID)
     @CacheLookup
     WebElement loginButton;
 
-    @FindBy(xpath = "//h3[@data-test = 'error']")
+    @FindBy(xpath = LoginPageLocators.ERROR_XPATH)
     @CacheLookup
     WebElement errorMessage;
 
-    @FindBy(className = "bm-burger-button")
+    @FindBy(className = LoginPageLocators.HAMBURGER_BUTTON_CLS)
     @CacheLookup
     WebElement hamburgerButton;
 
-    @FindBy(xpath = "//a[@id = 'logout_sidebar_link']")
+    @FindBy(xpath = LoginPageLocators.LOGOUT_BUTTON_XPATH)
     @CacheLookup
     WebElement logoutButton;
 
@@ -56,12 +56,13 @@ public class LoginPage {
         password.sendKeys(psw);
     }
 
-    public void clickLogin() throws InterruptedException {
+    public void clickLogin() {
         loginButton.click();
-        Thread.sleep(3000);
     }
 
     public void checkHomePageOpened() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(hamburgerButton));
         Assert.assertTrue(hamburgerButton.isDisplayed());
     }
 
@@ -69,24 +70,23 @@ public class LoginPage {
         Assert.assertEquals(errorMessage.getText(), eMessage);
     }
 
-    public void enterKeyLogin() throws InterruptedException {
+    public void enterKeyLogin() {
         loginButton.sendKeys(Keys.ENTER);
-        Thread.sleep(3000);
     }
 
     public void clickHamburgerBtn() {
         hamburgerButton.click();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(logoutButton));
     }
 
     public void clickLogoutButton() {
+        wait.until(ExpectedConditions.visibilityOf(logoutButton));
         logoutButton.click();
-        PageFactory.initElements(driver, this);
-        wait.until(ExpectedConditions.visibilityOf(loginButton));
+
     }
 
     public void checkLoginPageOpened() {
+        PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.visibilityOf(loginButton));
         Assert.assertTrue(username.isDisplayed());
     }
 }
