@@ -36,12 +36,22 @@ public class MyStepdefs1 {
 
     @Then("user should be able to login")
     public void userShouldBeAbleToLogin() {
-        String actualUrl = "https://www.saucedemo.com/inventory.html";
-        String expectedUrl = driver.getCurrentUrl();
+        String actualUrl = driver.getCurrentUrl();
+        String expectedUrl = "https://www.saucedemo.com/inventory.html";
         Assert.assertEquals(expectedUrl, actualUrl);
         System.out.println("User logged in successfully");
     }
 
+    @Then("error is displayed")
+    public void errorIsDisplayed() {
+        WebElement errorMessageElement = driver.findElement(By.xpath("//h3[@data-test='error']"));
+        Assert.assertTrue(errorMessageElement.isDisplayed());
+    }
+    @And("message is: {string}")
+    public void messageIs(String message) {
+        WebElement errorMessageElement = driver.findElement(By.xpath("//h3[@data-test='error']"));
+        Assert.assertEquals(message, errorMessageElement.getText());
+    }
 
 }
 

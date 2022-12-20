@@ -18,9 +18,8 @@ Feature: Login Page Test
     When user enters '' in username field
     And user enters '' in password field
     And user clicks on login button
-    Then user gets message "Epic sadface: Username is required"
-    And user should not be able to login
-
+    Then error is displayed
+    And message is: 'Epic sadface: Username is required'
 
 #  Scenario: Invalid username and password
 #    When user enters invalid username and password
