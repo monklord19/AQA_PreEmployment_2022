@@ -38,27 +38,44 @@ Feature: Login Page Test
     Then message is: 'Epic sadface: Username and password do not match any user in this service'
 
 
-#  Scenario: Valid username and invalid password
-#    When user enters valid username and invalid password
-#    And clicks on login button
-#    Then user gets this message "Epic sadface: Username and password do not match any user in this service"
-#    And user should not be able to login
-#
-#  Scenario: Invalid username and valid password
-#    When user enters invalid username and valid password
-#    And clicks on login button
-#    Then user gets this message "Epic sadface: Username and password do not match any user in this service"
-#    And user should not be able to login
-#
-#  Scenario: Valid username and blank password
-#    When user enters valid username and no password
-#    And clicks on login button
-#    Then user gets this message "Epic sadface: Password is required"
-#    And user should not be able to login
-#
-#  Scenario: Blank username and valid password
-#    When user enters blank username and valid password
-#    And clicks on login button
-#    Then user gets this message "Epic sadface: Username is required"
-#    And user should not be able to login
-#
+  Scenario Outline: Valid username and invalid password
+    When user enters '<username>' in username field
+    And user enters invalid password
+    And user clicks on login button
+    Then message is: 'Epic sadface: Username and password do not match any user in this service'
+    Examples:
+      | username                |
+      | standard_user           |
+      | problem_user            |
+      | performance_glitch_user |
+
+  Scenario Outline: Invalid username and valid password
+    When user enters invalid username
+    And user enters '<password>' in password field
+    And user clicks on login button
+    Then message is: 'Epic sadface: Username and password do not match any user in this service'
+    Examples:
+      | password     |
+      | secret_sauce |
+
+  Scenario Outline: Valid username and blank password
+    When user enters '<username>' in username field
+    And user enters '' in password field
+    And user clicks on login button
+    Then message is: 'Epic sadface: Password is required'
+    Examples:
+      | username                |
+      | standard_user           |
+      | problem_user            |
+      | performance_glitch_user |
+
+  Scenario Outline: Blank username and valid password
+    When user enters '' in username field
+    And user enters '<password>' in password field
+    And user clicks on login button
+    Then message is: 'Epic sadface: Username is required'
+    Examples:
+      | password |
+      | secret_sauce |
+
+
