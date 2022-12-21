@@ -1,42 +1,56 @@
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.And;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyStepdefs1 {
-   WebDriver driver;
+    WebDriver driver;
+    WebElement textBoxUserName;
+    WebElement textBoxPassword;
+    WebElement submitButton;
 
-    @Given("On sauce website")
-    public void onSauceWebsite() {
-        driver = new ChromeDriver();
-        driver.get("https://www.saucedemo.com/");
-    }
-
-    @When("User enters valid credentials")
-    public void userEntersValidCredentials() {
-    }
-
-    @Then("User should be logged in")
-    public void userShouldBeLoggedIn() {
-        driver.quit();
-    }
-
-    @Given("I open https:\\/\\/www.saucedemo.com\\/")
+    @Given("I open https://www.saucedemo.com/")
     public void i_open_https_www_saucedemo_com() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
     }
-    @When("I click Login")
-    public void i_click_login() {
+    @When("I enter valid username in the username field")
+    public void IEnterValidUsernameInTheUsernameField() {
+        textBoxUserName = driver.findElement(By.name("user-name"));
+        textBoxUserName.sendKeys("standard_user");
+            }
 
+    @And("I enter valid password in the password field")
+    public void IEnterValidPasswordInThePasswordField() {
+        textBoxPassword = driver.findElement(By.name("password"));
+        textBoxPassword.sendKeys("secret_sauce");
     }
-    @Then("I am unable to log in")
-    public void i_am_unable_to_log_in() {
 
+    @And("I click the Login button")
+    public void IClickTheLoginButton() {
+        submitButton = driver.findElement(By.name("login-button"));
+        submitButton.click();
     }
-    @Then("Error message is displayed {string}")
-    public void error_message_is_displayed(String string) {
+    @Then("I should be logged in")
+    public void IShouldBeLoggedIn() {
+        assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
+        driver.quit();
+    }
+
+    @When("I enter valid username and password")
+    public void IEnterValidUsernameAndPassword() {
+        textBoxUserName = driver.findElement(By.name("user-name"));
+        String userNameValue = textBoxUserName.getAttribute("value");
+        textBoxPassword = driver.findElement(By.name("password"));
+        String passwordValue = textBoxPassword.getAttribute("value");
+        assertEquals ("secret_sauce", passwordValue);
+        assertTrue (userNameValue.equals("standard_user") || userNameValue.equals("problem_user") || userNameValue.equals("performance_glitch_user"));
 
     }
 }
