@@ -53,6 +53,18 @@ public class MyStepdefs1 {
         Assert.assertEquals(message, errorMessageElement.getText());
     }
 
+    @When("user enters invalid username")
+    public void userEntersInvalidUsername() {
+        WebElement usernameField = driver.findElement(By.id("user-name"));
+        usernameField.sendKeys("invalid_user");
+    }
+
+    @And("user enters invalid password")
+    public void userEntersInvalidPassword() {
+        WebElement passwordField = driver.findElement(By.id("password"));
+        passwordField.sendKeys("123456");
+    }
+
 }
 
 

@@ -21,12 +21,23 @@ Feature: Login Page Test
     Then error is displayed
     And message is: 'Epic sadface: Username is required'
 
-#  Scenario: Invalid username and password
-#    When user enters invalid username and password
-#    And clicks on login button
-#    Then user gets this message "Epic sadface: Username and password do not match any user in this service"
-#    And user should not be able to login
-#
+  Scenario Outline: Locked username and password
+    When user enters '<username>' in username field
+    And user enters '<password>' in password field
+    And user clicks on login button
+    Then error is displayed
+    And message is: 'Epic sadface: Sorry, this user has been locked out.'
+    Examples:
+      | username        | password     |
+      | locked_out_user | secret_sauce |
+
+  Scenario: Invalid username and password
+    When user enters invalid username
+    And user enters invalid password
+    And user clicks on login button
+    Then message is: 'Epic sadface: Username and password do not match any user in this service'
+
+
 #  Scenario: Valid username and invalid password
 #    When user enters valid username and invalid password
 #    And clicks on login button
