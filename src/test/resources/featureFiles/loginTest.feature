@@ -32,15 +32,15 @@ Feature: Login Page Test
       | locked_out_user | secret_sauce |
 
   Scenario: Invalid username and password
-    When user enters invalid username
-    And user enters invalid password
+    When user enters 'invalid_user' in username field
+    And user enters '123456' in password field
     And user clicks on login button
     Then message is: 'Epic sadface: Username and password do not match any user in this service'
 
 
   Scenario Outline: Valid username and invalid password
     When user enters '<username>' in username field
-    And user enters invalid password
+    And user enters '123456' in password field
     And user clicks on login button
     Then message is: 'Epic sadface: Username and password do not match any user in this service'
     Examples:
@@ -50,7 +50,7 @@ Feature: Login Page Test
       | performance_glitch_user |
 
   Scenario Outline: Invalid username and valid password
-    When user enters invalid username
+    When user enters 'invalid_user' in username field
     And user enters '<password>' in password field
     And user clicks on login button
     Then message is: 'Epic sadface: Username and password do not match any user in this service'

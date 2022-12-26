@@ -7,13 +7,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class MyStepdefs1 {
+
     WebDriver driver = new ChromeDriver();
 
     @Given("User is on the login page")
     public void onSauceWebsite() {
         driver.get("https://www.saucedemo.com/");
+        driver.manage().window().maximize();
     }
 
     @When("user enters {string} in username field")
@@ -51,18 +54,6 @@ public class MyStepdefs1 {
     public void messageIs(String message) {
         WebElement errorMessageElement = driver.findElement(By.xpath("//h3[@data-test='error']"));
         Assert.assertEquals(message, errorMessageElement.getText());
-    }
-
-    @When("user enters invalid username")
-    public void userEntersInvalidUsername() {
-        WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("invalid_user");
-    }
-
-    @And("user enters invalid password")
-    public void userEntersInvalidPassword() {
-        WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys("123456");
     }
 
 }
