@@ -7,6 +7,10 @@ Feature: Test login functionality
     And User types password
     And User clicks on login button
     Then User should be logged in
+    And User should be loged out
+    And If user types incorrect credentials
+    And User clicks on login
+    And User should receive an error message
 
 #    Scenario Outline: Check login is sucessful with valid credentials
 #      Given User open https://www.saucedemo.com/
