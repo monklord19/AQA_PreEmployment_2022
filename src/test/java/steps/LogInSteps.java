@@ -21,6 +21,7 @@ public class LogInSteps {
 
     }
 
+
     @Given("entering valid credentials")
     public void iEnterUserNameAndPassword() {
         logInPage = new LogInPage(driver);
@@ -37,6 +38,25 @@ public class LogInSteps {
     public void theProductPageIsDisplayed() {
         productsPage = new ProductsPage(driver);
         productsPage.LogoIsDisplayed();
+
+    }
+    //scenario 2
+    @Given("input {string} and {string}")
+    public void inputInvalidUsernameAndInvalidPassword(String InvalidUsername, String InvalidPassword) {
+        logInPage = new LogInPage(driver);
+        logInPage.enterUsernameField(InvalidUsername);
+        logInPage.enterPasswordField(InvalidPassword);
+    }
+
+
+    @When("click on login button")
+    public void clickOnLoginButton() {
+        logInPage.clickLoginButton();
+    }
+
+    @Then("display {string}")
+    public void displayErrorMessage(String errorMessage) {
+        logInPage.usernameAndPassWrongError(errorMessage);
 
     }
 

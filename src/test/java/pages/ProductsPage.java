@@ -17,8 +17,7 @@ public class ProductsPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-
+    
     public void LogoIsDisplayed() {
         Assert.assertTrue(productsPageLogo.isDisplayed());
         if (productsPageLogo.isDisplayed()) {

@@ -9,14 +9,14 @@ Feature:testLogin
     When  I click the login button
     Then  The product page is displayed
 
-#
-#  Scenario Outline:Invalid username and password
-#    Given input <InvalidUsername> and <InvalidPassword>
-#    When  click on login button
-#    Then  display <ErrorMessage>
-#    Examples:
-#      | InvalidUsername | InvalidPassword       | ErrorMessage                                                              |
-#      | Invalid         | InvalidButThePassword | Epic sadface: Username and password do not match any user in this service |
+
+  Scenario Outline:Invalid username and password
+    Given input "<invalidUsername>" and "<invalidPassword>"
+    When  click on login button
+    Then  display "<errorMessage>"
+    Examples:
+      | invalidUsername | invalidPassword       | errorMessage                                                              |
+      | Invalid         | InvalidButThePassword | Epic sadface: Username and password do not match any user in this service |
 #
 #  Scenario : Empty password field
 #    Given input <ValidUsername>  and empty password field
