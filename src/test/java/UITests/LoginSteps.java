@@ -1,30 +1,37 @@
 package UITests;
 
 import io.cucumber.java.en.*;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginSteps {
-    @Given("I enter the username")
-    public void i_enter_the_username() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
-    @When("I type <standard_ user\"> in \"name\"")
-    public void i_type_standard_user_in_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+    WebDriver driver = new ChromeDriver();
 
-    @When("I type password")
-    public void i_type_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Given("I go to {string}")
+    public void i_go_to(String url) {
+        driver.get(url);
+
+    }
+    @When("I type username as {string} and I type password  as {string}")
+    public void i_type_username_as_and_i_type_password_as(String usern, String pass) {
+        WebElement username= driver.findElement(By.id("user-name"));
+        username.clear();
+        username.sendKeys(usern);
+        WebElement password = driver.findElement(By.id("password"));
+        password.clear();
+        password.sendKeys(pass);
+
     }
 
     @Then("I should be logged in")
     public void i_should_be_logged_in() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+         WebElement element= driver.findElement(By.className("bm-burger-button"));
+
+        Assert.assertTrue(element.isDisplayed());
     }
 
     @When("i click on refresh button")
@@ -39,28 +46,14 @@ public class LoginSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-    @Given("I enter numbers on the username")
-    public void i_enter_numbers_on_the_username() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
-    @Given("I let password as white space")
-    public void i_let_password_as_white_space() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("I press the login button")
-    public void i_press_the_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
     @Then("login shouldn't work")
     public void login_shouldn_t_work() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        WebElement errortext= driver.findElement(By.xpath("/html/body/div/div/div[2]/div[1]/div[1]/div/form/div[3]/h3"));
+        Assert.assertEquals(errortext.getText(),"Epic sadface: Password is required");
+
+
     }
 
     @Given("I don't enter anything on username")
@@ -100,9 +93,10 @@ public class LoginSteps {
     }
 
     @When("I click on login")
-    public void i_click_on_login() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void i_click_on_login() throws InterruptedException {
+         WebElement logButton = driver.findElement(By.id("login-button"));
+         logButton.click();
+         Thread.sleep(3000);
     }
 
     @Then("error message is displayed {string}")
