@@ -7,5 +7,6 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/FeatureFiles/"}
         //tags = "@RegressionTestsBAP"
 )
+
 public class TestRunner {
 }

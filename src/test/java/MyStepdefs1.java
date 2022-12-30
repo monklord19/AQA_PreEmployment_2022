@@ -12,10 +12,12 @@ public class MyStepdefs1 {
     }
 
     @When("User enters valid credentials")
-    public void userEntersValidCredentials() {
+    public void userEntersValidCredentials(){
+
     }
 
     @Then("User should be logged in")
-    public void userShouldBeLoggedIn() {
+    public void userShouldBeLoggedIn(){
+
     }
 }
