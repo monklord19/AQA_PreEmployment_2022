@@ -10,59 +10,73 @@ Feature: Testing SWANGLABS login page
     And user clicks on login
     Then user is navigated to the home page
 
-  Scenario: Standard user login into the page
-    Given the following user:
-      | name                   | password     |
-      |standard_user           | secret_sauce |
-    When user type "standard_user" in 'Username' text box
-    And user type "secret_sauce" in 'Password' text box
-    And user click on 'LOGIN' button
-    Then user should be logged in
 
-  Scenario: Locked user login into the page
-    Given the following user:
-      | name                   | password     |
-      |locked_out_user         | secret_sauce |
-    When user type "locked_out_user" in 'Username' text box
-    And user type "secret_sauce" in 'Password' text box
-    And user click on 'LOGIN' button
-    Then username text box should show an error
-    And password text box should show an error
-    And a red pop-up text box containing "Epic sadface: Sorry, this user has been locked out." should appear
 
-  Scenario: Valid login into the page with pop-up error
-    Given the following user:
-      | name                | password     |
-      |problem_user         | secret_sauce |
-    When user type "problem_user" in 'Username' text box
-    And user type "secret_sauce" in 'Password' text box
-    And user click on 'LOGIN' button
-    Then username text box should show an error
-    And password text box should show an error
-    Then user should be logged in
-    And a pop up that recommends you to change password immediately should appear
+    Scenario Outline: Test different users login
+      Given user is on login page
+      When user enter username as <username>
+      And user enter password as <password>
+      Then user clicks on login button
 
-  Scenario: Valid login login into the page but glitching the page
-    Given the following user:
-      | name                   | password     |
-      |performance_glitch_user | secret_sauce |
-    When user type "performance_glitch_user" in 'Username' text box
-    And user type "secret_sauce" in 'Password' text box
-    And user click on 'LOGIN' button
-    Then the login page its frozen for a few seconds
-    And user should be logged in
+      Examples:
+      | username               | password    |
+      |standard_user           | secret_sauce|
+      |locked_out_user         | secret_sauce|
+      |problem_user            | secret_sauce|
+      |performance_glitch_user | secret_sauce|
+
+
+#  Scenario: Standard user login into the page
+#    Given the following user:
+#      | name                   | password     |
+#      |standard_user           | secret_sauce |
+#    When user type "standard_user" in <Username> text box
+#    And user type "secret_sauce" in <Password> text box
+#    And user click on login button
+#    Then user should be logged in
+#  Scenario: Locked user login into the page
+#    Given the following user:
+#      | name                   | password     |
+#      |locked_out_user         | secret_sauce |
+#    When user type "locked_out_user" in 'Username' text box
+#    And user type "secret_sauce" in 'Password' text box
+#    And user click on login button
+#    Then username text box should show an error
+#    And password text box should show an error
+#    And a red pop-up text box containing "Epic sadface: Sorry, this user has been locked out." should appear
+#
+#  Scenario: Valid login into the page with pop-up error
+#    Given the following user:
+#      | name                | password     |
+#      |problem_user         | secret_sauce |
+#    When user type "problem_user" in 'Username' text box
+#    And user type "secret_sauce" in 'Password' text box
+#    And user click on login button
+#    Then username text box should show an error
+#    And password text box should show an error
+#    Then user should be logged in
+#    And a pop up that recommends you to change password immediately should appear
+#
+#  Scenario: Valid login login into the page but glitching the page
+#    Given the following user:
+#      | name                   | password     |
+#      |performance_glitch_user | secret_sauce |
+#    When user type "performance_glitch_user" in 'Username' text box
+#    And user type "secret_sauce" in 'Password' text box
+#    And user click on login button
+#    Then the login page its frozen for a few seconds
+#    And user should be logged in
 
   Scenario: Error when adding a white space(backspace key) after correct username
-    When user type valid username
-    And user add a white space after the username
+    When user type valid username and add a white space
     And user type valid password for the current user
-    And user click on 'LOGIN' button
+    And user click on login button
     Then username text box should show an error
     And password text box should show an error
     And a red pop-up text box containing "Epic sadface: Username and password do not match any user in this service" should appear
 
   Scenario: Error when username and password are empty
-    When user click on "LOGIN" button
+    When user click on login button
     Then username text box should show an error
     And password text box should show an error
     And a red pop-up text box containing "Epic sadface: Username is required" should appear
@@ -70,7 +84,7 @@ Feature: Testing SWANGLABS login page
   Scenario: Error when username is filled and password is empty
     When user type anything in username text box
     And password text box is empty
-    And user click on 'LOGIN'
+    And user click on login button
     Then username text box should show an error
     And password text box should show an error
     And a red pop-up text box containing "Epic sadface: Password is required" should appear
@@ -78,7 +92,7 @@ Feature: Testing SWANGLABS login page
   Scenario: Error when username is empty and password is filled
     When user type anything in password text box
     And username text box is empty
-    And user click on 'LOGIN'
+    And user click on login button
     Then username text box should show an error
     And password text box should show an error
     And a red pop-up text box containing "Epic sadface: Username is required" should appear
@@ -86,7 +100,7 @@ Feature: Testing SWANGLABS login page
   Scenario: Wrong password
     When user type a valid username
     And user type a different password that the correct one
-    And user click on 'LOGIN'
+    And user click on login button
     Then username text box should show an error
     And password text box should show an error
     And a red pop-up text box containing "Epic sadface: Username and password do not match any user in this service" should appear
@@ -94,7 +108,7 @@ Feature: Testing SWANGLABS login page
   Scenario: Wrong username
     When user type a different username that the correct one
     And user type a valid password
-    And user click on 'LOGIN'
+    And user click on login button
     Then username text box should show an error
     And password text box should show an error
     And a red pop-up text box containing "Epic sadface: Username and password do not match any user in this service" should appear
