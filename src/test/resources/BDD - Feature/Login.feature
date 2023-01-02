@@ -2,12 +2,14 @@ Feature: Homework week 2 ~Tuesday~
   Background: Open the Login page "https://www.saucedemo.com/"
 
   Scenario: Login with valid credentials
-    Given I type a valid username
-    And I enter a valid password
-      | username | password |
-      | problem_user | secret_sauce|
-    When I press the login button
+    Given On sauce website
+    And User type a valid username
+    And User enter a valid password
+    When User press the login button
     Then The login was successful
+    Example:
+    | username        | password     |
+    | standard_user   | secret_sauce |
 
   Scenario: Login with invalid credentials
     Given I enter numbers as username
