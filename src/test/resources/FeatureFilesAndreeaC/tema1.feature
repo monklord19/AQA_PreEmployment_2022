@@ -1,7 +1,6 @@
 Feature: Testing login page
-#  Background: I open login page at https://www.saucedemo.com/
 
-  Scenario Outline: Valid credentials login
+  Scenario Outline: Verify login
     Given I open login page
     When I enter <user> and <pass>
     And Click login button
@@ -9,9 +8,24 @@ Feature: Testing login page
     Examples:
     | user | pass |
     | standard_user|   secret_sauce  |
-    | standard    |  sauce        |
-    |             |  secret_sauce          |
-    |  standard_user  |               |
+    | problem_user|  secret_sauce |
+    | performance_glitch_user| secret_sauce |
 
+  Scenario Outline: Verify invalid login
+    Given I open login page
+    When I enter <user> and <pass>
+    And Click login button
+    Then Error message displayed
+    Examples:
+      | user | pass |
+      | standard|sauce  |
+      |         |       |
+      |          |  secret_sauce |
+      | performance_glitch_user|  |
 
+  Scenario: Verify if the ‘Enter’ key of the keyboard is working
+    Given  I open login page
+    When  I enter standard_user and secret_sauce
+    And   Press enter key on keyboard
+    Then   Login successful, home page displayed
 
