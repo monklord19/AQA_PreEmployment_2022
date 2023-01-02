@@ -18,7 +18,6 @@ public class StepsDef {
 
                     driver.manage().window().maximize();
                     driver.get(test_url);
-                    Thread.sleep(1000);
                 }
 
                 @When("^I enter (.*) and (.*)$")
@@ -26,7 +25,6 @@ public class StepsDef {
 
                     driver.findElement(By.id("user-name")).sendKeys(user);
                     driver.findElement(By.id("password")).sendKeys(pass);
-                    Thread.sleep(1000);
                 }
 
                 @When("Click login button")
@@ -38,8 +36,6 @@ public class StepsDef {
                 @Then("Login successful, home page displayed")
                 public void login_successful_home_page_displayed() throws InterruptedException {
                    if ( driver.findElement(By.id("shopping_cart_container")).isDisplayed()) {
-                        Thread.sleep(2000);
-                        //driver.close();
                         driver.quit();
                    }
                     }
@@ -47,7 +43,6 @@ public class StepsDef {
     @Then("Error message displayed")
     public void errorMessageDisplayed() throws InterruptedException {
         if (driver.findElement(By.className("error-button")).isDisplayed()){
-                       Thread.sleep(2000);
                         driver.quit();
                     }
     }
