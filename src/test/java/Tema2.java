@@ -58,40 +58,59 @@ public class Tema2 {
          Assert.assertTrue(errordiv.isDisplayed());
 
     }
-
-   /* @Given("user doesn't enters username and password")
+     @Given("user doesn't enters username and password")
     public void userDoesnTEntersUsernameAndPassword() {
+        driver.findElement(By.id("user-name")).sendKeys("");
+        driver.findElement(By.id("password")).sendKeys("");
     }
 
     @Then("product page doesn't open")
     public void productPageDoesnTOpen() {
+        String url = driver.getCurrentUrl();
+        Assert.assertTrue(url.equals("https://www.saucedemo.com/"));
     }
 
     @Given("user enters valid username and invalid password")
     public void userEntersValidUsernameAndInvalidPassword() {
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secretsauce");
     }
 
     @Given("user enters invalid username and valid password")
     public void userEntersInvalidUsernameAndValidPassword() {
+        driver.findElement(By.id("user-name")).sendKeys("standarduser");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
     }
 
     @Given("user enters valid username and empty password")
     public void userEntersValidUsernameAndEmptyPassword() {
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("");
     }
 
     @Given("user enters empty username and valid password")
     public void userEntersEmptyUsernameAndValidPassword() {
+        driver.findElement(By.id("user-name")).sendKeys("");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
     }
 
     @Given("user enters valid username as locked_out_user")
     public void userEntersValidUsernameAsLocked_out_user() {
+        driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
     }
 
     @And("user enters valid password as secret_sauce")
     public void userEntersValidPasswordAsSecret_sauce() {
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
     }
 
-    @Given("user wants to retype username")
+    @Then("the product page shouldn't open")
+    public void theProductPageShouldnTOpen() {
+        String url = driver.getCurrentUrl();
+        Assert.assertTrue(url.equals("https://www.saucedemo.com/"));
+    }
+
+   /* @Given("user wants to retype username")
     public void userWantsToRetypeUsername() {
     }
 
@@ -106,4 +125,4 @@ public class Tema2 {
     @But("doesn't work to delete the username")
     public void doesnTWorkToDeleteTheUsername() {
     }*/
-
+}
