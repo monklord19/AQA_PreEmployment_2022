@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/features/test.feature"}
+        features = {"src/test/resources/features/"}
         //tags = "@RegressionTestsBAP"
 )
 

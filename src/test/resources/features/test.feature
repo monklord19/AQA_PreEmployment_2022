@@ -17,17 +17,16 @@ Feature:testLogin
     Examples:
       | invalidUsername | invalidPassword       | errorMessage                                                              |
       | Invalid         | InvalidButThePassword | Epic sadface: Username and password do not match any user in this service |
-#
-#  Scenario : Empty password field
-#    Given input <ValidUsername>  and empty password field
-#      | ValidUsername |
-#      | standard_user |
-#    When click login button
-#    Then display <ErrorMessage>
-#      | ErrorMessage                       |
-#      | Epic sadface: Password is required |
-#
-#  Scenario : Empty username field
+
+  Scenario Outline:Empty password field
+    Given input "<ValidUsername>"  and empty password field
+    When click login button
+    Then display the "<ErrorMessage>"
+    Examples:
+      | ValidUsername | ErrorMessage                       |
+      | standard_user | Epic sadface: Password is required |
+
+#  Scenario:Empty username field
 #    Given empty username and <validPassword>
 #      | validPassword |
 #      | secret_sauce  |
@@ -41,7 +40,7 @@ Feature:testLogin
 #    When Click login button
 #    Then Display <ErrorMessageUsernameIsRequired>
 #
-#  Scenario: Error Locked out user
+#  Scenario:Error Locked out user
 #    Given I enter <userName> and <password>
 #      | userName        | password     |
 #      | locked_out_user | secret_sauce |

@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -40,6 +41,7 @@ public class LogInSteps {
         productsPage.LogoIsDisplayed();
 
     }
+
     //scenario 2
     @Given("input {string} and {string}")
     public void inputInvalidUsernameAndInvalidPassword(String InvalidUsername, String InvalidPassword) {
@@ -61,4 +63,23 @@ public class LogInSteps {
     }
 
 
+//Scenario 3
+
+    @Given("input {string}  and empty password field")
+    public void inputAndEmptyPasswordField(String username) {
+        logInPage = new LogInPage(driver);
+        logInPage.enterUsernameField(username);
+
+    }
+
+    @When("click login button")
+    public void clickLoginButton() {
+        logInPage.clickLoginButton();
+    }
+
+
+    @Then("display the {string}")
+    public void displayThe(String arg0) {
+        logInPage.passwordIsRequiredError(arg0);
+    }
 }
