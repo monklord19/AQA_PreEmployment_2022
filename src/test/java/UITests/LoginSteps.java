@@ -96,7 +96,7 @@ public class LoginSteps {
     public void i_click_on_login() throws InterruptedException {
          WebElement logButton = driver.findElement(By.id("login-button"));
          logButton.click();
-         Thread.sleep(3000);
+         wait(1000);
     }
 
     @Then("error message is displayed {string}")

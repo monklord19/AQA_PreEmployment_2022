@@ -21,10 +21,10 @@ Feature: Testing login page
     Then login shouldn't work
 
   Scenario: Invalid login with white spaces
-    Given I don't enter anything on username
-    And i don't enter anything on password
-    When I press the login button
-    Then an error pop-up is displayed
+    Given I go to "https://www.saucedemo.com/"
+    When I type username as "" and I type password  as ""
+    And I click on login
+    Then an error pop-up is displayed "Epic sadface: Username is required"
 
   Scenario: Invalid login with wrong credentials
     Given I write wrong credentials
@@ -35,3 +35,4 @@ Feature: Testing login page
     Given valid username as standard user and blank password
     When I click on login
     Then error message is displayed "Password required"
+
