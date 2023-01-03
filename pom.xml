@@ -50,9 +50,5 @@
             <artifactId>cucumber-core</artifactId>
             <version>7.10.0</version>
         </dependency>
-
-
-
     </dependencies>
-
 </project>
