@@ -1,5 +1,6 @@
 package page.objects;
 
+import locators.LoginPageLocators;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,7 +19,6 @@ public class LoginPage {
         this.driver = driver;
         loginLocators = new LoginPageLocators(driver);
     }
-
 
     public void setUsername(String uname) {
         loginLocators.getUsername().clear();
@@ -63,4 +63,6 @@ public class LoginPage {
         wait.until(ExpectedConditions.visibilityOf(loginLocators.getLoginButton()));
         Assert.assertTrue(loginLocators.getUsername().isDisplayed());
     }
+
+
 }

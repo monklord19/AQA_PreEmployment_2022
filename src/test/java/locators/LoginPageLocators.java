@@ -1,4 +1,4 @@
-package page.objects;
+package locators;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -75,6 +75,7 @@ public class LoginPageLocators {
     public WebElement getLogoutButton() {
         return logoutButton;
     }
+
 
     public void resetElement() {
         PageFactory.initElements(driver, this);

@@ -1,44 +1,14 @@
 package step.definitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import page.objects.LoginPage;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
-public class LoginSteps {
-    WebDriver driver;
+public class LoginSteps extends BaseClass {
     LoginPage loginPage;
-    public Properties configProperties;
 
-    @Before
-    public void setup() throws IOException {
-        //reading properties
-        configProperties = new Properties();
-        FileInputStream configPropFile = new FileInputStream("config.properties");
-        configProperties.load(configPropFile);
-
-        String browser = configProperties.getProperty("browser");
-        if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", configProperties.getProperty("chromepath"));
-            driver = new ChromeDriver();
-        } else if (browser.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", configProperties.getProperty("firefoxpath"));
-            driver = new FirefoxDriver();
-        }
+    public LoginSteps(TestContext context) {
+        this.driver = context.driver;
         loginPage = new LoginPage(driver);
-    }
-
-
-    @After
-    public void close_browser() {
-        driver.close();
     }
 
     @Given("user navigates to {string}")
@@ -110,4 +80,5 @@ public class LoginSteps {
     public void user_remains_on_login_page() {
         loginPage.checkLoginPageOpened();
     }
+
 }

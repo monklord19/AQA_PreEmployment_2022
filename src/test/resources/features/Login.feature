@@ -64,7 +64,10 @@ Feature: Login
     But error message is displayed "Epic sadface: You can only access '/inventory.html' when you are logged in."
 
 
-
+  Scenario: User successfully navigates to About page
+    Given user is logged in
+    When user clicks on About button
+    Then About page opens
 
 
 
