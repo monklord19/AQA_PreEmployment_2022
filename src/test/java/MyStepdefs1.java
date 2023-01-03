@@ -1,10 +1,11 @@
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class MyStepdefs1 {
+
+
+    
     @Given("On sauce website")
     public void onSauceWebsite() {
         WebDriver driver = new ChromeDriver();
@@ -18,4 +19,6 @@ public class MyStepdefs1 {
     @Then("User should be logged in")
     public void userShouldBeLoggedIn() {
     }
+
+
 }
