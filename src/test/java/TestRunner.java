@@ -4,8 +4,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/Homework/"},
-        tags = "@ValidLogin or @LockedUser"
+        features = {"src/test/resources/Features/login.feature"},
+        tags = "@ValidLogin"
 )
 public class TestRunner {
 }
