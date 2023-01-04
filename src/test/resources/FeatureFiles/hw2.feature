@@ -16,3 +16,10 @@ Feature: Login testing
     And Wrong password
     And Clicks the login button2
     Then User should not be logged in
+
+  @Product
+  Scenario: Adding a product to cart
+    Given I am already logged in
+    When I click on the ADD TO CART button corresponding to the Sauce Labs Bike Light
+    And I check the cart
+    Then The item should be there

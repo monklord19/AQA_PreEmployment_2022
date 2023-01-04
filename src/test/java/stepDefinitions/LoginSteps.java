@@ -62,5 +62,29 @@ public class LoginSteps {
     public void userShouldNotBeLoggedIn2() {
 //        driver.findElement(By.id("shopping_cart_container")).click();
     }
+
+    //3rd scenario Adding a product to cart
+    @Given("I am already logged in")
+    public void alreadyLoggedIn() {
+        driver.get("https://www.saucedemo.com/");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+
+    }
+
+    @When("I click on the ADD TO CART button corresponding to the Sauce Labs Bike Light")
+    public void addToCartBikeLight() {
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+    }
+
+    @And("I check the cart")
+    public void openCart() {
+        driver.findElement(By.id("shopping_cart_container")).click();
+    }
+
+    @Then("The item should be there")
+    public void win() {
+    }
 }
 
