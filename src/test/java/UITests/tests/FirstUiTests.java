@@ -1,4 +1,4 @@
-package UITests;
+package UITests.tests;
 
 public class FirstUiTests {
 }
