@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.After;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -58,7 +59,13 @@ public class MyStepdefs1 {
     public void addProductToCart(String productName) {
         productsPage.addProductToCart(productName);
     }
+
+    @And("check if the product is added")
+    public void checkIfTheProductIsAdded() {
+        Assert.assertTrue(productsPage.checkProductIsAdded());
+    }
 }
+
 
 
 

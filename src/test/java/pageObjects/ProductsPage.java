@@ -10,6 +10,7 @@ public class ProductsPage {
     WebDriver driver;
 
     By inventoryList = By.className("inventory_list");
+    By shoppingCartBadge = By.className("shopping_cart_badge");
 
 
     public ProductsPage(WebDriver driver) {
@@ -27,6 +28,10 @@ public class ProductsPage {
                 break;
             }
         }
+    }
+    public boolean checkProductIsAdded(){
+        WebElement shoppingCartElement = driver.findElement(shoppingCartBadge);
+        return shoppingCartElement.isDisplayed();
     }
 
 }

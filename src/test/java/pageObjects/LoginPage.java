@@ -30,13 +30,11 @@ public class LoginPage {
         WebElement loginElement = driver.findElement(loginButton);
         loginElement.click();
     }
-
-    public boolean isErrorDisplayed() {
+    public boolean isErrorDisplayed(){
         WebElement errorElement = driver.findElement(errorMessageElement);
         return errorElement.isDisplayed();
     }
-
-    public String getErrorMessage() {
+    public String getErrorMessage(){
         WebElement errorElement = driver.findElement(errorMessageElement);
         return errorElement.getText();
     }

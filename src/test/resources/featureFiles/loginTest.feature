@@ -83,4 +83,5 @@ Feature: Login Page Test
     And user enters 'secret_sauce' in password field
     And user clicks on login button
     When add product to cart: 'Sauce Labs Onesie'
+    And check if the product is added
   
