@@ -33,18 +33,14 @@ public class LoginPageStepDefs1 extends BaseClass {
 
     @When("user clicks on the login button")
     public void userClicksOnTheLoginButton() {
+
         LoginPage.clickLogin();
     }
 
+
     @Then("user is logged in successfully")
     public void userIsLoggedInSuccessfully() {
-        if(driver.getCurrentUrl().equalsIgnoreCase(
-                "https://www.saucedemo.com/")){
-            System.out.println("Login successful");
-        } else {
-            System.out.println("Login unsuccessful");
-        }
-        driver.close();
+
     }
 }
 

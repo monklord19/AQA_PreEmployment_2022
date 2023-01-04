@@ -1,5 +1,11 @@
 Feature: Homework Week 2
 
+  Scenario: Successful Login with valid credentials
+    Given user enters valid username in the email field
+    And user enters valid password in the password field
+    When user clicks on the login button
+    Then user is logged in successfully
+
   Scenario Outline:
     Given I open the https://www.saucedemo.com/ website
     When I enter the <userName> and <password>
