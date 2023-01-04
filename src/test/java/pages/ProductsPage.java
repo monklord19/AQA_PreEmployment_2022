@@ -11,20 +11,28 @@ public class ProductsPage {
 
     @FindBy(css = ".peek")
     private WebElement productsPageLogo;
+
+    @FindBy(css = "#shopping_cart_container")
+    private WebElement cartLink;
+
+    @FindBy(css = "button#add-to-cart-sauce-labs-backpack")
+    private WebElement bagAddToCardButton;
     WebDriver driver;
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    
+
     public void LogoIsDisplayed() {
         Assert.assertTrue(productsPageLogo.isDisplayed());
-        if (productsPageLogo.isDisplayed()) {
-            driver.quit();
-        }
-
     }
 
+    public void clickCartLink() {
+        cartLink.click();
+    }
 
+    public void addBagToCart() {
+        bagAddToCardButton.click();
+    }
 }

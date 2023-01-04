@@ -1,24 +1,40 @@
 package steps;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import pages.CartPage;
 import pages.LogInPage;
 import pages.ProductsPage;
+import utils.TestRunner;
 
 public class LogInSteps {
     WebDriver driver = new ChromeDriver();
     LogInPage logInPage;
     ProductsPage productsPage;
+    CartPage cartPage;
+    @Before
+    public void beforeTests() {
+       driver.manage().window().maximize();
+    }
+
+    @After
+    public void afterTests() {
+
+        driver.quit();
+    }
+
 
     @Given("You are on the login page")
     public void youAreOnTheLoginPage() {
         driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
+
 
     }
 
@@ -65,7 +81,7 @@ public class LogInSteps {
 
 //Scenario 3
 
-    @Given("input {string}  and empty password field")
+    @Given("input valid username {string}  and empty password field")
     public void inputAndEmptyPasswordField(String username) {
         logInPage = new LogInPage(driver);
         logInPage.enterUsernameField(username);
@@ -78,8 +94,9 @@ public class LogInSteps {
     }
 
 
-    @Then("display the {string}")
+    @Then("display the error {string}")
     public void displayThe(String arg0) {
         logInPage.passwordIsRequiredError(arg0);
     }
+
 }

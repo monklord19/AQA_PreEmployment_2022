@@ -17,10 +17,9 @@ public class LogInPage {
     private WebElement logInButton;
     @FindBy(css = "h3")
     private WebElement wrongUsernameAndPassError;
-    WebDriver driver;
     @FindBy(css = "h3")
     private WebElement passIsRequiredError;
-
+    WebDriver driver;
 
     public LogInPage(WebDriver driver) {
         this.driver = driver;
@@ -41,13 +40,13 @@ public class LogInPage {
 
     public void usernameAndPassWrongError(String errorMessage) {
         Assert.assertEquals(wrongUsernameAndPassError.getText(), errorMessage);
-        driver.quit();
+
 
     }
 
     public void passwordIsRequiredError(String errorPassRequired){
         Assert.assertEquals(passIsRequiredError.getText(),errorPassRequired);
-        driver.quit();
+
     }
 }
 

@@ -1,3 +1,5 @@
+package utils;
+
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.junit.Cucumber;
@@ -9,11 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/features/"}
-        //tags = "@RegressionTestsBAP"
+        features = {"src/test/resources/features/"},
+        tags = "@Selenium"
 )
 
 public class TestRunner {
-
-
 }

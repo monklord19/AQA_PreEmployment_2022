@@ -2,7 +2,7 @@ Feature:testLogin
 
 
   Background:
-    Given You are on the login page
+   Given You are on the login page
 
   Scenario:Successful login
     Given entering valid credentials
@@ -18,23 +18,22 @@ Feature:testLogin
       | invalidUsername | invalidPassword       | errorMessage                                                              |
       | Invalid         | InvalidButThePassword | Epic sadface: Username and password do not match any user in this service |
 
-  Scenario Outline:Empty password field
-    Given input "<ValidUsername>"  and empty password field
+  Scenario:Empty password field
+    Given input valid username "standard_user"  and empty password field
     When click login button
-    Then display the "<ErrorMessage>"
-    Examples:
-      | ValidUsername | ErrorMessage                       |
-      | standard_user | Epic sadface: Password is required |
+    Then display the error "Epic sadface: Password is required"
 
-#  Scenario:Empty username field
-#    Given empty username and <validPassword>
-#      | validPassword |
-#      | secret_sauce  |
-#    When click login button
-#    Then Display <ErrorMessageUsernameIsRequired>
-#      | ErrorMessageUsernameIsRequired      |
-#      | Epic sadface : Username is required |
+
+  Scenario:
+
+
 #
+#  Scenario:Empty username field
+#    Given empty username and validPassword "secret_sauce"
+#    When click login button
+#    Then Display Error Message Username Is Required "Epic sadface : Username is required"
+
+
 #  Scenario:CLick login button with the empty fields
 #    Given Have the username and password fields empty
 #    When Click login button
