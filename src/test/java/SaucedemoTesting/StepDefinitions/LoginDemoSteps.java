@@ -1,62 +1,44 @@
 package SaucedemoTesting.StepDefinitions;
 
-import SaucedemoTesting.pageobjects.LoginPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.SaucedemoTesting.pageobjects.LoginPage;
+import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.PageFactory;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.concurrent.TimeUnit;
-
-
-public class LoginDemoSteps  {
-    WebDriver driver;
-    LoginPage login;
-    @Before
-    public void browserSetup() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-    }
-    @After
-    public void teardown() {
-        driver.quit();
-    }
-    @Given("User opens login page")
-    public void userOpensLoginPage() {
-        driver.navigate().to("https://www.saucedemo.com/");
-    }
-
+public class LoginDemoSteps extends TestBase {
+    private LoginPage login = PageFactory.initElements(driver, LoginPage.class);
     @When("User input {string} and {string}")
     public void userInputAnd(String username, String password) {
-        login = new LoginPage(driver);
-        login.enterUsername(username);
-        login.enterPassword(password);
+        login.getTxt_username().sendKeys(username);
+        login.getTxt_password().sendKeys(password);
     }
-
     @And("User click on Login button")
     public void userClickOnLoginButton() {
-        login.clickLogin();
+        login.getBtn_login().click();
     }
 
     @Then("User is successfully logged in")
-    public void userIsSuccessfullyLoggedIn() {
-        login.checkHamburgerButtonIsDisplayed();
+    public void userIsSuccessfullyLoggedIn() throws InterruptedException {
+       driver.wait(5);
+       Assert.assertTrue(login.getBtn_hamburger().isDisplayed());
     }
-
     @And("Press Enter key")
     public void pressEnterKey() {
-        login.pressEnter();
+        login.getBtn_login().sendKeys(Keys.ENTER);
     }
 
+    @When("User input valid username as {string} and blank password")
+    public void userInputValidUsernameAsAndBlankPassword(String usr) {
+        login.getTxt_username().sendKeys(usr);
+    }
+
+
+    @Then("User should not be logged and should see a popup as {string}")
+    public void userShouldNotBeLoggedAndShouldSeeAPopupAs(String pop1) {
+        Assert.assertEquals(login.getErrorMessage().getText(),pop1);
+    }
 }
    

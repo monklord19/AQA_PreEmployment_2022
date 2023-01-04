@@ -29,7 +29,7 @@ Feature: Login feature
   Scenario: Valid username and empty password
     When User input valid username as "standard_user" and blank password
     And User click on Login button
-    Then User should not be logged and shougit ld see a popup "Epic sadface: Password is required"
+    Then User should not be logged and should see a popup as "Epic sadface: Password is required"
 
 
 #
