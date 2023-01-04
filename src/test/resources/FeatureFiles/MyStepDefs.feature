@@ -1,4 +1,4 @@
-Feature: Homework Week2 - Tuesday
+Feature: Homework
 
   Scenario: Valid username and password standard_user
     Given On sauce website
@@ -46,3 +46,9 @@ Feature: Homework Week2 - Tuesday
     When User enters valid credential "standard_user" and "secret_sauce"
     Then User should be logged with success "true"
     And Loading takes less then or equal to 2 seconds
+
+  Scenario: Add product to cart
+    Given On sauce website
+    When User enters valid credential "problem_user" and "secret_sauce"
+    And  User adds all products
+    Then User goes to cart and has all products
