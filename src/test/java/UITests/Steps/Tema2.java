@@ -1,3 +1,6 @@
+package UITests.Steps;
+
+import UITests.PageObjects.LoginPage;
 import io.cucumber.java.en.*;
 import org.junit.After;
 import org.junit.Assert;
@@ -12,23 +15,26 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Tema2 {
-    WebDriver driver = new ChromeDriver();
+    LoginPage loginpage;
+    WebDriver driver;
+    String x;
     @Given("user opens website")
     public void userOpensWebsite() {
-
-        driver.get("https://www.saucedemo.com/");
+        loginpage = new LoginPage();
+        driver = LoginPage.driver;
     }
     @Given("user enters a valid username as standard_user")
     public void userEntersAValidUsernameAsStandard_user() {
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        loginpage.put_user_name("standard_user");
     }
     @And("user enters a valid password")
     public void userEntersAValidPassword() {
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        loginpage.put_password("secret_sauce");
     }
     @When("user clicks on login")
     public void userClicksOnLogin() {
-        driver.findElement(By.id("login-button")).click();
+
+        loginpage.click_login();
     }
 
     @Then("the product page should open")
@@ -41,8 +47,7 @@ public class Tema2 {
 
     @Given("user enters invalid username and invalid password")
     public void userEntersInvalidUsernameAndInvalidPassword() {
-        driver.findElement(By.id("user-name")).sendKeys("username");
-        driver.findElement(By.id("password")).sendKeys("secretsauce");
+     loginpage.put_credentials("username", "password");
     }
 
     @Then("product page shouldn't open")
@@ -60,8 +65,7 @@ public class Tema2 {
     }
      @Given("user doesn't enters username and password")
     public void userDoesnTEntersUsernameAndPassword() {
-        driver.findElement(By.id("user-name")).sendKeys("");
-        driver.findElement(By.id("password")).sendKeys("");
+      loginpage.put_credentials("","");
     }
 
     @Then("product page doesn't open")
@@ -72,36 +76,32 @@ public class Tema2 {
 
     @Given("user enters valid username and invalid password")
     public void userEntersValidUsernameAndInvalidPassword() {
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secretsauce");
+        loginpage.put_credentials("standard_user","password");
     }
 
     @Given("user enters invalid username and valid password")
     public void userEntersInvalidUsernameAndValidPassword() {
-        driver.findElement(By.id("user-name")).sendKeys("standarduser");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        loginpage.put_credentials("standarduser","secret_sauce");
     }
 
     @Given("user enters valid username and empty password")
     public void userEntersValidUsernameAndEmptyPassword() {
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("");
+        loginpage.put_credentials("standard_user","");
     }
 
     @Given("user enters empty username and valid password")
     public void userEntersEmptyUsernameAndValidPassword() {
-        driver.findElement(By.id("user-name")).sendKeys("");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        loginpage.put_credentials("","secret_sauce");
     }
 
     @Given("user enters valid username as locked_out_user")
     public void userEntersValidUsernameAsLocked_out_user() {
-        driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
+        loginpage.put_user_name("locked_out_user");
     }
 
     @And("user enters valid password as secret_sauce")
     public void userEntersValidPasswordAsSecret_sauce() {
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        loginpage.put_password("secret_sauce");
     }
 
     @Then("the product page shouldn't open")
@@ -109,6 +109,31 @@ public class Tema2 {
         String url = driver.getCurrentUrl();
         Assert.assertTrue(url.equals("https://www.saucedemo.com/"));
     }
+
+    @Given("user enters the product page")
+    public void userEntersTheProductPage() {
+        driver.findElement(By.name("user-name")).sendKeys("standard_user");
+        driver.findElement(By.name("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+    }
+
+    @When("the user clicks the {string} button")
+    public void theUserClicksTheButton(String arg0) {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        x = driver.findElement(By.id("item_4_title_link")).getText();
+    }
+
+    @Then("user checks if the product is added to cart")
+    public void userChecksIfTheProductIsAddedToCart() {
+        driver.findElement(By.id("shopping_cart_container")).click();
+        String y = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText();
+        System.out.println(x);
+        System.out.println(y);
+        Assert.assertTrue(x.equals(y));
+
+    }
+
+
 
    /* @Given("user wants to retype username")
     public void userWantsToRetypeUsername() {

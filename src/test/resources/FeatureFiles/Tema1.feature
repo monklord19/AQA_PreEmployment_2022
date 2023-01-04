@@ -50,8 +50,16 @@ Feature: Homework1
     Then the product page shouldn't open
     But error message is displayed "Epic sadface: Sorry, this user has been locked out."
 
+  Scenario: Add a product to cart
+    Given user enters the product page
+    When the user clicks the "add to cart" button
+    Then user checks if the product is added to cart
+
 #  Scenario: Login with wrong username
 #    Given user wants to retype username
 #    When user wants to press the x icon to delete
 #    Then username should be deleted so that the user can rewrite
 #    But doesn't work to delete the username
+
+
+
