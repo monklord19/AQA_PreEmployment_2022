@@ -18,4 +18,9 @@ public class MyStepdefs1 {
     @Then("User should be logged in")
     public void userShouldBeLoggedIn() {
     }
+
+    @Given("I open the website")
+    public void iOpenTheWebsite() {
+
+    }
 }
