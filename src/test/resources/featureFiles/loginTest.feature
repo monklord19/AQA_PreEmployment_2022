@@ -7,7 +7,7 @@ Feature: Login Page Test
     When user enters '<username>' in username field
     And user enters '<password>' in password field
     And user clicks on login button
-    Then user should be able to login
+    Then current URL is: "https://www.saucedemo.com/inventory.html"
     Examples:
       | username                | password     |
       | standard_user           | secret_sauce |
@@ -78,4 +78,9 @@ Feature: Login Page Test
       | password |
       | secret_sauce |
 
-
+  Scenario: Add product to cart
+    Given user enters 'standard_user' in username field
+    And user enters 'secret_sauce' in password field
+    And user clicks on login button
+    When add product to cart: 'Sauce Labs Onesie'
+  
