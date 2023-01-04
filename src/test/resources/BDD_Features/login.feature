@@ -1,114 +1,77 @@
+@Smoke
 Feature: Testing SWANGLABS login page
-  Background:
-    Given user open the login page
-    And the Username text box is empty
-    And the Password text box is empty
 
-  Scenario: Check login is successfully with valid credintials
-    Given user is on login page
-    When user enters username and password
+  @ValidLogin
+  Scenario Outline: Login successful with valid credentials
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "<username>" and password as "<password>"
     And user clicks on login
-    Then user is navigated to the home page
+    Then Home page opens
 
+    Examples:
+      | username                | password     |
+      | standard_user           | secret_sauce |
+      | problem_user            | secret_sauce |
+      | performance_glitch_user | secret_sauce |
 
+  @InvalidLogin
+  Scenario: Login with invalid credentials
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "standard_user9" and password as "secret_sauceeee"
+    And user clicks on login button
+    Then error message is displayed "Epic sadface: Username and password do not match any user in this
 
-    Scenario Outline: Test different users login
-      Given user is on login page
-      When user enter username as <username>
-      And user enter password as <password>
-      Then user clicks on login button
-
-      Examples:
-      | username               | password    |
-      |standard_user           | secret_sauce|
-      |locked_out_user         | secret_sauce|
-      |problem_user            | secret_sauce|
-      |performance_glitch_user | secret_sauce|
-
-
-#  Scenario: Standard user login into the page
-#    Given the following user:
-#      | name                   | password     |
-#      |standard_user           | secret_sauce |
-#    When user type "standard_user" in <Username> text box
-#    And user type "secret_sauce" in <Password> text box
-#    And user click on login button
-#    Then user should be logged in
-#  Scenario: Locked user login into the page
-#    Given the following user:
-#      | name                   | password     |
-#      |locked_out_user         | secret_sauce |
-#    When user type "locked_out_user" in 'Username' text box
-#    And user type "secret_sauce" in 'Password' text box
-#    And user click on login button
-#    Then username text box should show an error
-#    And password text box should show an error
-#    And a red pop-up text box containing "Epic sadface: Sorry, this user has been locked out." should appear
-#
-#  Scenario: Valid login into the page with pop-up error
-#    Given the following user:
-#      | name                | password     |
-#      |problem_user         | secret_sauce |
-#    When user type "problem_user" in 'Username' text box
-#    And user type "secret_sauce" in 'Password' text box
-#    And user click on login button
-#    Then username text box should show an error
-#    And password text box should show an error
-#    Then user should be logged in
-#    And a pop up that recommends you to change password immediately should appear
-#
-#  Scenario: Valid login login into the page but glitching the page
-#    Given the following user:
-#      | name                   | password     |
-#      |performance_glitch_user | secret_sauce |
-#    When user type "performance_glitch_user" in 'Username' text box
-#    And user type "secret_sauce" in 'Password' text box
-#    And user click on login button
-#    Then the login page its frozen for a few seconds
-#    And user should be logged in
-
-  Scenario: Error when adding a white space(backspace key) after correct username
-    When user type valid username and add a white space
-    And user type valid password for the current user
-    And user click on login button
-    Then username text box should show an error
-    And password text box should show an error
-    And a red pop-up text box containing "Epic sadface: Username and password do not match any user in this service" should appear
-
-  Scenario: Error when username and password are empty
-    When user click on login button
-    Then username text box should show an error
-    And password text box should show an error
+  @InvalidLogin
+  Scenario: Login with blank credintials
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "" and password as ""
+    And user clicks on login button
     And a red pop-up text box containing "Epic sadface: Username is required" should appear
 
-  Scenario: Error when username is filled and password is empty
-    When user type anything in username text box
-    And password text box is empty
-    And user click on login button
-    Then username text box should show an error
-    And password text box should show an error
-    And a red pop-up text box containing "Epic sadface: Password is required" should appear
+  @InvalidLogin
+  Scenario: Login with valid username and password empty
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "standard_user" and password as ""
+    And user clicks on login button
+    Then a red pop-up text box containing "Epic sadface: Password is required" should appear
 
-  Scenario: Error when username is empty and password is filled
-    When user type anything in password text box
-    And username text box is empty
-    And user click on login button
-    Then username text box should show an error
-    And password text box should show an error
+  @InvalidLogin
+  Scenario: Login with username empty and valid password
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "" and password as "secret_sauce"
+    And user clicks on login button
     And a red pop-up text box containing "Epic sadface: Username is required" should appear
 
+  @InvalidLogin
   Scenario: Wrong password
-    When user type a valid username
-    And user type a different password that the correct one
-    And user click on login button
-    Then username text box should show an error
-    And password text box should show an error
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "standard_user" and password as "secret"
+    And user clicks on login
     And a red pop-up text box containing "Epic sadface: Username and password do not match any user in this service" should appear
 
+  @InvalidLogin
   Scenario: Wrong username
-    When user type a different username that the correct one
-    And user type a valid password
-    And user click on login button
-    Then username text box should show an error
-    And password text box should show an error
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "standard" and password as "secret_sauce"
+    And user clicks on login
     And a red pop-up text box containing "Epic sadface: Username and password do not match any user in this service" should appear
+
+  @ValidLogin
+  Scenario: Login by pressing Enter key
+    Given user navigates to "https://www.saucedemo.com/"
+    When user enters username as "standard_user" and password as "secret_sauce"
+    And user presses Enter key
+    Then Home page opens
+
+  Scenario: User successfully logged out
+    Given user is logged in
+    When user clicks on hamburger button
+    And user clicks on logout button
+    Then Login page should reopens
+
+  Scenario: User add product to cart
+    Given user is logged in
+    When user click on add to cart button
+    Then cart page opens
+    And product should appear in cart
+

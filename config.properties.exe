@@ -1,0 +1,2 @@
+browser=chrome
+chromepath=.\\chromedriver.exe
