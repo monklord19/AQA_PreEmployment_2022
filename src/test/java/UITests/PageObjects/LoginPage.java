@@ -63,6 +63,11 @@ public class LoginPage {
     public void click_login(){
         login_button.click();
     }
+
+    public void login_page(String User_name, String Password) {
+        user_name_input.sendKeys(User_name);
+        password_input.sendKeys(Password);
+        login_button.click();
 }
 
 

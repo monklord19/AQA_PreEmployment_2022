@@ -55,6 +55,7 @@ Feature: Homework1
     When the user clicks the "add to cart" button
     Then user checks if the product is added to cart
 
+
 #  Scenario: Login with wrong username
 #    Given user wants to retype username
 #    When user wants to press the x icon to delete

@@ -1,6 +1,8 @@
 package UITests.Steps;
 
+import UITests.PageObjects.CartPage;
 import UITests.PageObjects.LoginPage;
+import UITests.PageObjects.ProductsPage;
 import io.cucumber.java.en.*;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,12 +18,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Tema2 {
     LoginPage loginpage;
+    CartPage cartpage;
+    ProductsPage productspage;
     WebDriver driver;
     String x;
     @Given("user opens website")
     public void userOpensWebsite() {
         loginpage = new LoginPage();
+        cartpage = new CartPage();
+        productspage = new ProductsPage();
         driver = LoginPage.driver;
+        cartpage.setDriver(driver);
+        productspage.setDriver(driver);
     }
     @Given("user enters a valid username as standard_user")
     public void userEntersAValidUsernameAsStandard_user() {
@@ -112,24 +120,21 @@ public class Tema2 {
 
     @Given("user enters the product page")
     public void userEntersTheProductPage() {
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.name("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        loginpage.login_page("standard_user","secret_sauce");
     }
 
     @When("the user clicks the {string} button")
     public void theUserClicksTheButton(String arg0) {
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-        x = driver.findElement(By.id("item_4_title_link")).getText();
+        productspage.click_addtocart_button();
     }
 
     @Then("user checks if the product is added to cart")
     public void userChecksIfTheProductIsAddedToCart() {
-        driver.findElement(By.id("shopping_cart_container")).click();
-        String y = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText();
+        productspage.setShopping_cart_container_button();
+        String y = cartpage.getCustomByXPath("//*[@id=\"item_4_title_link\"]/div").getText();
         System.out.println(x);
         System.out.println(y);
-        Assert.assertTrue(x.equals(y));
+        Assert.assertTrue(productspage.getProduct_title().getText().equals(y));
 
     }
 
