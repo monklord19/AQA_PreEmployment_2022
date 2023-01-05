@@ -1,6 +1,10 @@
-Feature: Test logout functionality
-  This feature deals with the logout functionality of the application
-  Scenario: Check if a user is already logged in and loging out a user
-    Given User is already loggin on site
-    When  User clicks on log out button
-    Then  User should be redirected to home page
+Feature: Logout
+  This feature deals with logout functionality
+
+  @Logout
+  Scenario: Logout successfully
+    Given User is logged in "https://www.saucedemo.com/"
+    When User navigates to side menu
+    And User click on logout button
+    Then User is redirected to login page
+
