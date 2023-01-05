@@ -1,10 +1,11 @@
 package steps;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.After;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,11 +18,16 @@ public class MyStepdefs1 {
     LoginPage loginPage = new LoginPage(driver);
     ProductsPage productsPage = new ProductsPage(driver);
 
+    @Before
+    public void windowMaximized() {
+        driver.manage().window().maximize();
+    }
+
     @Given("User is on the login page")
     public void onSauceWebsite() {
         driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
     }
+
 
     @When("user enters {string} in username field")
     public void setUsername(String username) {
@@ -63,6 +69,21 @@ public class MyStepdefs1 {
     @And("check if the product is added")
     public void checkIfTheProductIsAdded() {
         Assert.assertTrue(productsPage.checkProductIsAdded());
+    }
+
+    @After
+    public void closeBrowser() {
+        driver.close();
+    }
+
+    @When("user clicks on burger meniu button")
+    public void userClicksOnBurgerMeniuButton() {
+        productsPage.clickOnMeniuButton();
+    }
+
+    @And("check if the meniu is opened")
+    public void checkIfTheMeniuIsOpened() {
+        Assert.assertTrue(productsPage.checkBurgerMeniuIsOpened());
     }
 }
 

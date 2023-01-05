@@ -16,6 +16,7 @@ public class LoginPage {
     By loginButton = By.id("login-button");
     By errorMessageElement = By.xpath("//h3[@data-test='error']");
 
+
     public void setUsernameField(String username) {
         WebElement usernameElement = driver.findElement(usernameField);
         usernameElement.sendKeys(username);
@@ -38,4 +39,5 @@ public class LoginPage {
         WebElement errorElement = driver.findElement(errorMessageElement);
         return errorElement.getText();
     }
+
 }

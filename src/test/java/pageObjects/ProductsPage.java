@@ -11,6 +11,8 @@ public class ProductsPage {
 
     By inventoryList = By.className("inventory_list");
     By shoppingCartBadge = By.className("shopping_cart_badge");
+    By burgerMButton = By.className("bm-burger-button");
+    By burgerM = By.className("bm-meniu");
 
 
     public ProductsPage(WebDriver driver) {
@@ -32,6 +34,14 @@ public class ProductsPage {
     public boolean checkProductIsAdded(){
         WebElement shoppingCartElement = driver.findElement(shoppingCartBadge);
         return shoppingCartElement.isDisplayed();
+    }
+    public void clickOnMeniuButton(){
+        WebElement burgerMeniuButtonElement = driver.findElement(burgerMButton);
+        burgerMeniuButtonElement.click();
+    }
+    public boolean checkBurgerMeniuIsOpened(){
+        WebElement burgermeniuElement = driver.findElement(burgerM);
+        return burgermeniuElement.isDisplayed();
     }
 
 }
