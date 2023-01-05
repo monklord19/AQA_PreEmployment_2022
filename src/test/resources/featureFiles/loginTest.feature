@@ -75,7 +75,7 @@ Feature: Login Page Test
     And user clicks on login button
     Then message is: 'Epic sadface: Username is required'
     Examples:
-      | password |
+      | password     |
       | secret_sauce |
 
   Scenario: Add product to cart
@@ -85,16 +85,12 @@ Feature: Login Page Test
     When add product to cart: 'Sauce Labs Onesie'
     And check if the product is added
 
-  Scenario: Add product to cart
-    Given user enters 'standard_user' in username field
-    And user enters 'secret_sauce' in password field
-    And user clicks on login button
-    When add product to cart: 'Sauce Labs Onesie'
-    And check if the product is added
 
-  Scenario: Open burger meniu
+  Scenario: Open burger-meniu
     Given user enters 'standard_user' in username field
     And user enters 'secret_sauce' in password field
     And user clicks on login button
     When user clicks on burger meniu button
     And check if the meniu is opened
+
+

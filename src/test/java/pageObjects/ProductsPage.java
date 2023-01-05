@@ -12,7 +12,8 @@ public class ProductsPage {
     By inventoryList = By.className("inventory_list");
     By shoppingCartBadge = By.className("shopping_cart_badge");
     By burgerMButton = By.className("bm-burger-button");
-    By burgerM = By.className("bm-meniu");
+    By addToCartBtn = By.xpath("./div/div/button");
+    By burgerM = By.className("bm-menu-wrap");
 
 
     public ProductsPage(WebDriver driver) {
@@ -25,23 +26,26 @@ public class ProductsPage {
                 By.xpath("./div[@class='inventory_item']"));
         for (WebElement product : productsList) {
             if (product.getText().contains(productName)) {
-                WebElement addToCartButton = product.findElement(By.xpath("./div/div/button"));
-                addToCartButton.click();
+                WebElement addToCartButtonElement = product.findElement(addToCartBtn);
+                addToCartButtonElement.click();
                 break;
             }
         }
     }
-    public boolean checkProductIsAdded(){
+
+    public boolean checkProductIsAdded() {
         WebElement shoppingCartElement = driver.findElement(shoppingCartBadge);
         return shoppingCartElement.isDisplayed();
     }
-    public void clickOnMeniuButton(){
+
+    public void clickOnMeniuButton() {
         WebElement burgerMeniuButtonElement = driver.findElement(burgerMButton);
         burgerMeniuButtonElement.click();
     }
-    public boolean checkBurgerMeniuIsOpened(){
-        WebElement burgermeniuElement = driver.findElement(burgerM);
-        return burgermeniuElement.isDisplayed();
+
+    public String checkBurgerMeniuIsOpened() {
+        WebElement burgerMeniuElement = driver.findElement(burgerM);
+        return burgerMeniuElement.getAttribute("aria-hidden");
     }
 
 }
