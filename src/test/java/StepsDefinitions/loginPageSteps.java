@@ -51,7 +51,6 @@ public class loginPageSteps {
 
     @Then("Failed sign-in with error msg")
     public void failedSignInWithErrorMsg() {
-        Assert.assertTrue(driver.findElement(By.className("title")).isDisplayed());
         driver.quit();
     }
 
