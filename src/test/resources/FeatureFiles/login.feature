@@ -38,7 +38,7 @@ Feature: Log-in
     Given User is on URL
     When User enters <username> and <password>
     And User clicks on login button
-    Then Failed sign-in with error. Wrong password
+    Then Failed sign-in. Wrong password
     Examples:
     | username                | password     |
     | standard_user           | password1234 |
@@ -51,7 +51,7 @@ Feature: Log-in
     Given User is on URL
     When User enters <username> and <password>
     And User clicks on login button
-    Then Failed sign-in with error. Username is required
+    Then Failed sign-in. Username is required
     Examples:
     | username | password     |
     |          | secret_sauce |
@@ -59,4 +59,3 @@ Feature: Log-in
     |          | secret_sauce |
     |          | secret_sauce |
 
-  @addToCart
