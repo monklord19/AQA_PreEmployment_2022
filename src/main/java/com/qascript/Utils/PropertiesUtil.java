@@ -14,7 +14,7 @@ public class PropertiesUtil {
     public static java.util.Properties loadApplicationProperties(){
 
         try {
-            fis = new FileInputStream("src/test/resources/config/application.properties");
+            fis = new FileInputStream("application.properties");
             properties.load(fis);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

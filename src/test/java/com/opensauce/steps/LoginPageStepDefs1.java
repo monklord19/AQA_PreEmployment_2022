@@ -12,20 +12,18 @@ import java.util.Properties;
 
 public class LoginPageStepDefs1 extends BaseClass {
 
-    Properties properties;
+    Properties properties = PropertiesUtil.loadApplicationProperties();
 
     //Scenario 1 - Successful Login with valid credentials
 
     @Given("user enters valid username in the email field")
     public void userEntersValidUsernameInTheEmailField() {
-        properties = PropertiesUtil.loadApplicationProperties();
         String username = properties.getProperty("username");
         LoginPage.enterUsername(username);
     }
 
     @And("user enters valid username in the password field")
     public void userEntersValidUsernameInThePasswordField() {
-        properties = PropertiesUtil.loadApplicationProperties();
         String password = properties.getProperty("password");
         LoginPage.enterPassword(password);
     }

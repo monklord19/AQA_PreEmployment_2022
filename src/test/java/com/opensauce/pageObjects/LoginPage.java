@@ -2,7 +2,6 @@ package com.opensauce.pageObjects;
 
 import com.qascript.BaseClass;
 import com.qascript.Utils.BrowserUtils;
-import org.openqa.selenium.By;
 
 public class LoginPage extends BaseClass {
 
@@ -11,12 +10,12 @@ public class LoginPage extends BaseClass {
     private static String txtLogin = "//*[@id=\"login-button\"]";
 
     public static void enterUsername(String username) {
-        driver.findElement(By.xpath(txtUsername)).sendKeys(username);
+        BrowserUtils.enterText(txtUsername,username);
 
     }
 
     public static void enterPassword(String password) {
-        driver.findElement(By.xpath(txtPassword)).sendKeys(password);
+        BrowserUtils.enterText(txtPassword,password);
 
     }
 
