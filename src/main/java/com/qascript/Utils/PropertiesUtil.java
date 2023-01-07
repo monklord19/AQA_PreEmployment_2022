@@ -27,7 +27,7 @@ public class PropertiesUtil {
     public static Properties loadFrameworkProperties(){
 
         try {
-            fis = new FileInputStream("src/test/resources/config/framework.properties");
+            fis = new FileInputStream("framework.properties");
             properties.load(fis);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class PropertiesUtil {
 
 
         try {
-            fis = new FileInputStream("src/test/resources/config/user.properties");
+            fis = new FileInputStream("user.properties");
             properties.load(fis);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
