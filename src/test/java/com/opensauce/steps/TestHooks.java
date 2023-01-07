@@ -17,6 +17,7 @@ public class TestHooks extends BaseClass {
 
    @After
     public void close(){
+
        closeDriver();
    }
 }
