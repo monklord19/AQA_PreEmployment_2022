@@ -15,4 +15,4 @@ Feature: Login on Spotify
     When user enters 'anspotifyaccount' in Spotify username field
     And user enters 'password' in Spotify password field
     And user clicks on Spotify login button
-    Then message is displayed: 'Incorrect username or password.'
+    Then inccorect username and password message is displayed

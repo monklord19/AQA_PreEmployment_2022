@@ -71,4 +71,9 @@ public class SpotifyLoginSteps {
     public void clickLoginButton() {
         spotifyLoginPage.clickSpotifyLoginButton();
     }
+
+    @Then("inccorect username and password message is displayed")
+    public void messageIsDisplayedIncorrectUsernameOrPassword() {
+        Assert.assertTrue(spotifyLoginPage.errorMessageIsDisplayed());
+    }
 }
