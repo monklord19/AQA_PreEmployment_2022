@@ -14,7 +14,6 @@ public class GmailLoginPage {
 
     By gmailUsernameField = By.xpath("//input[@type='email']");
     By gmailLoginButton = By.xpath("//div[@class='qhFLie']/div/div/button");
-
     By messageAccountNotFound = By.xpath("//div[contains(text(),'Contul Google nu a fost găsit')]");
 
     public GmailLoginPage(WebDriver driver) {

@@ -26,17 +26,19 @@ public class SpotifyLoginSteps {
     public void onSpotifyPage() {
         driver.get("https://www.spotify.com/");
     }
+
     @And("user closes cookie")
     public void userClosesCookie() {
         spotifyMainPage.closeCookie();
     }
+
     @And("user goes to login page")
     public void userGoesToLoginPage() {
         spotifyMainPage.clickLogin();
     }
 
     @When("user clicks continue with Google")
-    public void clickContinueWithGoogle(){
+    public void clickContinueWithGoogle() {
         spotifyLoginPage.continueWithGoogle();
     }
 
@@ -55,5 +57,18 @@ public class SpotifyLoginSteps {
         Assert.assertTrue(gmailLoginPage.messageAccountNotFoundDisplayed());
     }
 
+    @When("user enters {string} in Spotify username field")
+    public void userEntersSpotifyUsername(String username) {
+        spotifyLoginPage.setSpotifyUsername(username);
+    }
 
+    @And("user enters {string} in Spotify password field")
+    public void userEntersSpotifyPassword(String password) {
+        spotifyLoginPage.setSpotifyPassword(password);
+    }
+
+    @And("user clicks on Spotify login button")
+    public void clickLoginButton() {
+        spotifyLoginPage.clickSpotifyLoginButton();
+    }
 }

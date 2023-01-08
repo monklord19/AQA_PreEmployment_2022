@@ -12,6 +12,9 @@ public class SpotifyLoginPage {
     WebDriver driver;
     WebDriverWait wait;
     By continueWithGoogleButton = By.xpath("//button[@data-testid='google-login']");
+    By spotifyUsernameField = By.xpath("//input[@id='login-username']");
+    By spotifyPasswordField = By.xpath("//input[@id='login-password']");
+    By spotifyLoginButton = By.xpath("//button[@id='login-button']");
 
     public SpotifyLoginPage(WebDriver driver) {
         this.driver = driver;
@@ -24,5 +27,20 @@ public class SpotifyLoginPage {
         continueWithGoogleElement.click();
     }
 
+    public void setSpotifyUsername(String username) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(spotifyUsernameField));
+        WebElement spotifyUsernameFieldElement = driver.findElement(spotifyUsernameField);
+        spotifyUsernameFieldElement.sendKeys(username);
+    }
+
+    public void setSpotifyPassword(String password) {
+        WebElement spotifyPasswordFieldElement = driver.findElement(spotifyPasswordField);
+        spotifyPasswordFieldElement.sendKeys(password);
+    }
+
+    public void clickSpotifyLoginButton(){
+        WebElement spotifyLoginButtonElement = driver.findElement(spotifyLoginButton);
+        spotifyLoginButtonElement.click();
+    }
 
 }
