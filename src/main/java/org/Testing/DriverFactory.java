@@ -1,10 +1,9 @@
-package org.SaucedemoTesting;
+package org.Testing;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.SaucedemoTesting.AppConfig;
 
 import java.time.Duration;
 

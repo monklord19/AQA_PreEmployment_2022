@@ -1,9 +1,9 @@
-package SaucedemoTesting.StepDefinitions;
+package Testing.StepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.SaucedemoTesting.pageobjects.LoginPage;
+import Testing.pageobjects.LoginPage;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
@@ -22,7 +22,6 @@ public class LoginDemoSteps extends TestBase {
 
     @Then("User is successfully logged in")
     public void userIsSuccessfullyLoggedIn() throws InterruptedException {
-       driver.wait(5);
        Assert.assertTrue(login.getBtn_hamburger().isDisplayed());
     }
     @And("Press Enter key")

@@ -1,9 +1,9 @@
-package SaucedemoTesting.StepDefinitions;
+package Testing.StepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.SaucedemoTesting.pageobjects.CartPage;
+import Testing.pageobjects.CartPage;
 import org.junit.Assert;
 import org.openqa.selenium.support.PageFactory;
 
@@ -26,4 +26,12 @@ public class CartSteps extends TestBase {
         Assert.assertEquals(cart.getItemNameContainer().getText(), productName);
     }
 
+    @And("User click on Remove button")
+    public void userClickOnRemoveButton() {
+        cart.getBtn_removeFromCart_SLBTSH().click();
+    }
+    @Then("The product is removed from the cart")
+    public void theProductIsRemovedFromTheCart() {
+      cart.getBtn_continueShopping().isDisplayed();
+    }
 }

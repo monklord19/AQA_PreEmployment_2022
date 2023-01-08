@@ -1,4 +1,4 @@
-package org.SaucedemoTesting.pageobjects;
+package Testing.pageobjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +8,12 @@ public class CartPage {
     private WebElement btn_addToCart_SLBTSH;
     @FindBy(xpath = "//button[@id='remove-sauce-labs-bolt-t-shirt']")
     private WebElement btn_removeFromCart_SLBTSH;
-
     @FindBy(xpath = "//a[@class='shopping_cart_link']")
     private WebElement cartIcon;
     @FindBy(xpath = "//div[@class='inventory_item_name']")
     private WebElement itemNameContainer;
+    @FindBy(xpath = "//button[@id='continue-shopping']")
+    private WebElement btn_continueShopping;
 
     public WebElement getBtn_addToCart_SLBTSH() {
         return btn_addToCart_SLBTSH;
@@ -28,5 +29,9 @@ public class CartPage {
 
     public WebElement getItemNameContainer() {
         return itemNameContainer;
+    }
+
+    public WebElement getBtn_continueShopping() {
+        return btn_continueShopping;
     }
 }

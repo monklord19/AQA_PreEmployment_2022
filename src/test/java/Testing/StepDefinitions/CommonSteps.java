@@ -1,9 +1,9 @@
-package SaucedemoTesting.StepDefinitions;
+package Testing.StepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import org.SaucedemoTesting.AppConfig;
-import org.SaucedemoTesting.pageobjects.LoginPage;
+import org.Testing.AppConfig;
+import Testing.pageobjects.LoginPage;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonSteps extends TestBase{

@@ -1,7 +1,9 @@
-package org.SaucedemoTesting.pageobjects;
+package Testing.pageobjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+
 
 public class LoginPage {
   @FindBy(id = "user-name")
@@ -16,7 +18,6 @@ public class LoginPage {
    private WebElement errorMessage;
    @FindBy(xpath = "//a[@id = 'logout_sidebar_link']")
    private WebElement btn_logout;
-
     public WebElement getTxt_username() {
         return txt_username;
     }
@@ -32,7 +33,6 @@ public class LoginPage {
     public WebElement getErrorMessage() {
         return errorMessage;
     }
-
     public WebElement getBtn_hamburger() {
         return btn_hamburger;
 

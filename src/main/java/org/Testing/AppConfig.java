@@ -1,4 +1,4 @@
-package org.SaucedemoTesting;
+package org.Testing;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ public class AppConfig {
     private static Properties properties = new Properties();
 
     static {
-        InputStream inputStream = org.SaucedemoTesting.AppConfig.class.getClassLoader().getResourceAsStream("configuration.properties");
+        InputStream inputStream = org.Testing.AppConfig.class.getClassLoader().getResourceAsStream("configuration.properties");
         try {
             properties.load(inputStream);
         } catch (IOException e) {
