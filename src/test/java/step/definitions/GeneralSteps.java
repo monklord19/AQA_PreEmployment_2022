@@ -9,7 +9,7 @@ public class GeneralSteps extends BaseClass {
     }
 
     @After
-    public void close_browser() {
+    public void closeBrowser() {
         super.close_browser();
     }
 }

@@ -68,6 +68,3 @@ Feature: Login
     Given user is logged in
     When user clicks on About button
     Then About page opens
-
-
-

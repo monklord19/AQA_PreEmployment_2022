@@ -15,14 +15,14 @@ public class AboutSteps extends BaseClass {
     }
 
     @When("user clicks on About button")
-    public void user_clicks_on_about_button() {
+    public void userClicksOnAboutButton() {
         loginPage = new LoginPage(driver);
         loginPage.clickHamburgerBtn();
         aboutPage.clickAboutButton();
     }
 
     @Then("About page opens")
-    public void about_page_opens() {
+    public void aboutPageOpens() {
         aboutPage.checkAboutPageOpened();
     }
 
