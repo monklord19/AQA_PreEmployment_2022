@@ -24,7 +24,7 @@ Feature:testLogin
     Then display the error "Epic sadface: Password is required"
 
 
-  Scenario:
+
 
 
 #

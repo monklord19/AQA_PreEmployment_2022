@@ -8,40 +8,34 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
-import pages.CartPage;
-import pages.LogInPage;
-import pages.ProductsPage;
+import pages.*;
 import utils.TestRunner;
 
 public class LogInSteps {
     WebDriver driver = new ChromeDriver();
-    LogInPage logInPage;
-    ProductsPage productsPage;
-    CartPage cartPage;
-    @Before
-    public void beforeTests() {
-       driver.manage().window().maximize();
-    }
+    LogInPage logInPage = new LogInPage(driver);
+    CartPage cartPage = new CartPage(driver);
+    ProductsPage productsPage = new ProductsPage(driver);
 
-    @After
-    public void afterTests() {
 
-        driver.quit();
-    }
-
+//    @Before
+//    public void beforeTests() {
+//        driver.manage().window().maximize();
+//    }
+//
+//    @After
+//    public void afterTests() {
+//        driver.quit();
+//    }
 
     @Given("You are on the login page")
     public void youAreOnTheLoginPage() {
         driver.get("https://www.saucedemo.com/");
-
-
     }
 
 
     @Given("entering valid credentials")
     public void iEnterUserNameAndPassword() {
-        logInPage = new LogInPage(driver);
         logInPage.enterUsernameField("standard_user");
         logInPage.enterPasswordField("secret_sauce");
     }
@@ -53,15 +47,12 @@ public class LogInSteps {
 
     @Then("The product page is displayed")
     public void theProductPageIsDisplayed() {
-        productsPage = new ProductsPage(driver);
         productsPage.LogoIsDisplayed();
-
     }
 
     //scenario 2
     @Given("input {string} and {string}")
     public void inputInvalidUsernameAndInvalidPassword(String InvalidUsername, String InvalidPassword) {
-        logInPage = new LogInPage(driver);
         logInPage.enterUsernameField(InvalidUsername);
         logInPage.enterPasswordField(InvalidPassword);
     }
@@ -83,9 +74,7 @@ public class LogInSteps {
 
     @Given("input valid username {string}  and empty password field")
     public void inputAndEmptyPasswordField(String username) {
-        logInPage = new LogInPage(driver);
         logInPage.enterUsernameField(username);
-
     }
 
     @When("click login button")
@@ -99,4 +88,6 @@ public class LogInSteps {
         logInPage.passwordIsRequiredError(arg0);
     }
 
-}
+
+
+ }
