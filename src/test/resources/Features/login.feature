@@ -51,9 +51,12 @@ Feature:Login attempt
     Then I should be logged successfully
     And I should see the dog picture on each product
 
-    @VerifyLogOut
-    Scenario: Verify if logout works
-      When I enter the "standard_user" and "secret_sauce"
-      And I'm successfully login
-      And From menu I press logout button
-      Then I should be logged out successfully
+  @VerifyLogOut
+  Scenario: Verify if logout works
+    When I enter the "standard_user" and "secret_sauce"
+    And I'm successfully login
+    And I click hamburger button
+    And I should see the menu and press logout button
+    Then I should be logged out successfully
+    And I should see the login page again
+
