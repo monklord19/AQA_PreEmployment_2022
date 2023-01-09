@@ -15,24 +15,28 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.assertTrue;
+import Steps.SingletonClass;
 
 public class MyStepDefs {
-    WebDriver driver;
+//    WebDriver driver;
     LoginPage loginObjects;
     InventoryPage inventoryObjects;
     CartPage cartPage;
+    SingletonClass singleton = SingletonClass.getInstance();
+    WebDriver driver = singleton.getDriver();
+
     private long duration = 0;
 
     @Before
-    public void setUp() {
-        driver = new ChromeDriver();
+    public void myStepDefsSetUp() {
         loginObjects = new LoginPage(driver);
         inventoryObjects = new InventoryPage(driver);
         cartPage = new CartPage(driver);
     }
 
     @After
-    public void tearDown() {
+    public void myStepDefsTearDown() {
         driver.quit();
     }
 
@@ -56,7 +60,7 @@ public class MyStepDefs {
     public void userShouldBeLoggedIn(String success) {
         boolean isPresent = !driver.findElements(By.id("logout_sidebar_link")).isEmpty();
         if (Boolean.parseBoolean(success)) {
-            Assert.assertTrue(isPresent);
+            assertTrue(isPresent);
         } else {
             Assert.assertFalse(isPresent);
         }
@@ -65,28 +69,25 @@ public class MyStepDefs {
     @Then("Loading takes less then or equal to {int} seconds")
     public void loadTakesLessThen(int seconds) {
         int durationSeconds = (int) ((duration / 1000) % 60);
-        Assert.assertTrue(durationSeconds <= seconds);
+        assertTrue(durationSeconds <= seconds);
     }
 
     @Then("Loading takes more then or equal to {int} seconds")
     public void loadTakesMoreThen(int seconds) {
         int durationSeconds = (int) ((duration / 1000) % 60);
-        Assert.assertTrue(durationSeconds >= seconds);
+        assertTrue(durationSeconds >= seconds);
     }
 
     @And("User adds all products")
     public void userAddsFirstNumberOfProducts() {
-        // all add to cart buttons
         List<WebElement> inventoryList = inventoryObjects.getInventoryItemsBuyButtons();
         for (WebElement item : inventoryList) {
-            // click on button
             inventoryObjects.addItemToCart(item);
         }
     }
 
     @Then("User goes to cart and has all products")
     public void userGoesToCartAndHasAllProducts() {
-        // keep all names of products of inventory
         List<WebElement> inventoryList = inventoryObjects.getInventoryItemsNamesElements();
         List<String> inventoryNames = new ArrayList<>();
         for (WebElement item : inventoryList) {
@@ -108,7 +109,7 @@ public class MyStepDefs {
                     found = true;
                 }
             }
-            Assert.assertTrue(found);
+            assertTrue(found);
         }
 
         for (String inventoryName : inventoryNames) {
@@ -118,7 +119,25 @@ public class MyStepDefs {
                     found = true;
                 }
             }
-            Assert.assertTrue(found);
+            assertTrue(found);
+        }
+    }
+    @Given("On demo website")
+    public void onDemoWebsite() {
+        driver.get("https://demoqa.com/radio-button");
+    }
+
+    @When("User selects impressive radio button")
+    public void userSelectsImpressiveRadioButton (){
+        driver.findElement(By.xpath("//label[text()='Impressive']")).click();
+    }
+
+    @Then("Check label is displayed correctly")
+    public void checkLabelIsDisplayedCorrectly () {
+        WebElement radioElement = driver.findElement(By.xpath("//label[text()='Impressive']"));
+        boolean selectState = radioElement.isEnabled();
+        if (selectState == false) {
+            radioElement.click();
         }
     }
 }

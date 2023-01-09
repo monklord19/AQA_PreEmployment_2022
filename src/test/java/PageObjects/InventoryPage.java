@@ -25,5 +25,4 @@ public class InventoryPage {
     public void addItemToCart(WebElement item) {
         item.click();
     }
-
 }

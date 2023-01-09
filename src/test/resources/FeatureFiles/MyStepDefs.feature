@@ -52,3 +52,19 @@ Feature: Homework
     When User enters valid credential "problem_user" and "secret_sauce"
     And  User adds all products
     Then User goes to cart and has all products
+
+  Scenario: Test Impressive Radio Button on DemoQa
+    Given On demo website
+    When User selects impressive radio button
+    Then Check label is displayed correctly
+
+  Scenario: Log in in Spotify website
+    Given On spotify website
+    When User enters credentials "email-test@gmail.com" and "password-test"
+    Then User need to be logged in with success "false"
+
+  Scenario: Log in in Spotify website via google
+    Given On spotify website
+    When User goes to login with google
+    And User enter valid google an email "google-test@gmail.com"
+    Then User should allowed to enter password "false"
