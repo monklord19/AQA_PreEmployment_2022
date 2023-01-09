@@ -4,11 +4,12 @@ import Objects.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-
+import org.testng.Assert;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -16,27 +17,7 @@ import java.util.Properties;
 public class LoginSteps {
 
     WebDriver driver = new ChromeDriver();
-    LoginPage loginPage;
-    public Properties configProperties;
-
-    @Before
-    public void setup() throws IOException {
-        configProperties = new Properties();
-        FileInputStream configPropFile = new FileInputStream("config.properties");
-        configProperties.load(configPropFile);
-
-        String browser = configProperties.getProperty("browser");
-        if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", configProperties.getProperty("chromepath"));
-            driver = new ChromeDriver();
-        } else
-        loginPage = new LoginPage(driver);
-    }
-
-    @After
-    public void close_browser() {
-        driver.close();
-    }
+    LoginPage loginPage = new LoginPage(driver);
 
     @Given("user navigates to {string}")
     public void user_navigates_to(String url) {
@@ -115,5 +96,27 @@ public class LoginSteps {
     @And("cart page opens")
     public void cartPageOpens() {
         driver.navigate().to("https://www.saucedemo.com/cart.html");
+    }
+
+    @Given("user is on demo site")
+    public void userIsOnDemoSite() {
+       // driver.get("https://demoqa.com/radio-button");
+        String url = "https://demoqa.com/radio-button";
+        driver.manage().window().maximize();
+        driver.get(url);
+    }
+
+    @When("User selects Impresive radio button")
+    public void userSelectsImpresiveRadioButton() {
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/label")).click();
+    }
+
+
+    @Then("check label is displayed correctly")
+    public void checkLabelIsDisplayedCorrectly() {
+        WebElement element = driver.findElement(By.className("text-success"));
+        String strg = element.getText();
+        System.out.println(strg);
+        Assert.assertEquals("Impressive", strg);
     }
 }

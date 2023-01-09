@@ -38,20 +38,16 @@ public class LoginPage {
     public void checkErrorMessage(String eMessage) {
         Assert.assertEquals(loginLocators.getErrorMessage().getText(), eMessage);
     }
-
     public void enterKeyLogin() {
         loginLocators.getLoginButton().sendKeys(Keys.ENTER);
     }
-
     public void clickHamburgerBtn() {
         loginLocators.getHamburgerButton().click();
     }
-
     public void clickLogoutButton() {
         wait.until(ExpectedConditions.visibilityOf(loginLocators.getLogoutButton()));
         loginLocators.getLogoutButton().click();
     }
-
     public void checkLoginPageOpened() {
         loginLocators.resetElement();
         wait.until(ExpectedConditions.visibilityOf(loginLocators.getLoginButton()));
@@ -59,6 +55,4 @@ public class LoginPage {
     }
 
     public void clickAddToCartButton(){loginLocators.getAddToCartButton1().click();}
-
-
 }

@@ -42,12 +42,10 @@ public class GoogleSearchSteps {
     @When("user enters a text in google search box")
     public void user_enters_a_text_in_google_search_box() {
         driver.findElement(By.name("q")).sendKeys("Swag Labs");
-        //throw new io.cucumber.java.PendingException();
     }
     @And("hits Enter")
     public void hits_enter() {
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-        //throw new io.cucumber.java.PendingException();
     }
     @Then("user is navigated to the Search Result page")
     public void user_is_navigated_to_the_search_result_page() {
@@ -56,6 +54,5 @@ public class GoogleSearchSteps {
 
         driver.close();
         driver.quit();
-        //throw new io.cucumber.java.PendingException();
     }
 }

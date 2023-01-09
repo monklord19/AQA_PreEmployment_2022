@@ -17,7 +17,7 @@ Feature: Testing SWANGLABS login page
   @InvalidLogin
   Scenario: Login with invalid credentials
     Given user navigates to "https://www.saucedemo.com/"
-    When user enters username as "standard_user9" and password as "secret_sauceeee"
+    When user enters username as "user" and password as "secret"
     And user clicks on login button
     Then error message is displayed "Epic sadface: Username and password do not match any user in this
 
@@ -74,4 +74,11 @@ Feature: Testing SWANGLABS login page
     When user click on add to cart button
     Then cart page opens
     And product should appear in cart
+
+  Scenario: Radio Button
+    Given user is on demo site
+    When User selects Impresive radio button
+    Then check label is displayed correctly
+
+
 
