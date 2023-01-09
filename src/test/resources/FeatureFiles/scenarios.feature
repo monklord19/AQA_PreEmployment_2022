@@ -9,12 +9,12 @@ Scenario: Invalid login with numbers characters on the username
 
 Scenario: Valid login into the page
   Given On sauce website
-  Given I enter the username "standard_user"
-  And  I enter the password "secret_sauce"
-  When I press the login button
-  Then  I should be logged in
+  When I enter the username "standard_user"
+  And I enter the password "secret_sauce"
+  And I press the login button
+  Then I should be logged in
 
-
+# @Given("I enter the username {username}")
 
 #  Scenario: Invalid login with numbers characters on the username
 #  Given I enter the username "2312313"
