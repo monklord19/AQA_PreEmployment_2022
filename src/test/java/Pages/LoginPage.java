@@ -9,10 +9,8 @@ public class LoginPage {
     WebDriver driver = new ChromeDriver();
 
     public void URL(String url) {
-
         driver.get(url);
         driver.manage().window().maximize();
-
 
     }
 
