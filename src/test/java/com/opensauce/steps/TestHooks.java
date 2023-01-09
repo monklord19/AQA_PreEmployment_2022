@@ -1,6 +1,6 @@
 package com.opensauce.steps;
 
-import com.qascript.BaseClass;
+import selenium.BaseClass;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 

@@ -1,6 +1,6 @@
-package com.qascript;
+package selenium;
 
-import com.qascript.Utils.PropertiesUtil;
+import selenium.Utils.PropertiesUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

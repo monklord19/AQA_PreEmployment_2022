@@ -12,6 +12,8 @@ public class LoginPageSpotify {
 
     WebDriver driver = new ChromeDriver();
 
+//SCENARIO 1
+
     @Given("User enters valid username in the username field")
     public void userEntersValidUsernameInTheUsernameField() {
 
@@ -42,5 +44,26 @@ public class LoginPageSpotify {
 
         else{
             System.out.println(("Test Failed"));}
+    }
+
+
+
+    //SCENARIO 2
+
+
+    @Given("User clicks the button {string} on the Login page")
+    public void userClicksTheButtonOnTheLoginPage(String arg0) {
+    }
+
+    @And("User selects the option {string}")
+    public void userSelectsTheOption(String arg0) {
+    }
+
+    @When("User enters valid email address in the {string} field")
+    public void userEntersValidEmailAddressInTheEmailOrPhoneField() {
+    }
+
+    @And("User enters invalid password in the {string} field")
+    public void userEntersInvalidPasswordInTheEnterYourPasswordField() {
     }
 }

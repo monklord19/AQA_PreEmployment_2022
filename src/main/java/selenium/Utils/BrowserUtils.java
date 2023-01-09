@@ -1,6 +1,6 @@
-package com.qascript.Utils;
+package selenium.Utils;
 
-import com.qascript.BaseClass;
+import selenium.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;

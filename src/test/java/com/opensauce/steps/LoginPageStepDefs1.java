@@ -1,8 +1,8 @@
 package com.opensauce.steps;
 
 import com.opensauce.pageObjects.LoginPage;
-import com.qascript.BaseClass;
-import com.qascript.Utils.PropertiesUtil;
+import selenium.BaseClass;
+import selenium.Utils.PropertiesUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

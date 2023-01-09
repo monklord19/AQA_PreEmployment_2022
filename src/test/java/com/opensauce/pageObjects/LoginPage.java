@@ -1,7 +1,7 @@
 package com.opensauce.pageObjects;
 
-import com.qascript.BaseClass;
-import com.qascript.Utils.BrowserUtils;
+import selenium.BaseClass;
+import selenium.Utils.BrowserUtils;
 
 public class LoginPage extends BaseClass {
 

@@ -1,4 +1,4 @@
-package com.qascript.Utils;
+package selenium.Utils;
 
 import java.util.Properties;
 
