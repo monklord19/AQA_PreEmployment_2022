@@ -10,32 +10,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import page.objects.LogOutFlow;
 import page.objects.LoginFlow;
+import page.objects.SpotifyFlow;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class LogoutSteps {
+public class LogoutSteps{
     LogOutFlow logoutFlow;
     WebDriver driver;
-    public Properties configProperties;
-    @Before
-    public void setup() throws IOException {
-        //reading properties
-        configProperties = new Properties();
-        FileInputStream configPropFile = new FileInputStream("config.properties");
-        configProperties.load(configPropFile);
-
-        String browser = configProperties.getProperty("browser");
-        if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", configProperties.getProperty("chromepath"));
-            driver = new ChromeDriver();
-        } else if (browser.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", configProperties.getProperty("firefoxpath"));
-            driver = new FirefoxDriver();
-        }
+    public LogoutSteps(BrowserReadear readear){
+        this.driver= readear.driver;
         logoutFlow = new LogOutFlow(driver);
+
     }
+
 
     @Given("User is logged in {string}")
     public void userIsLoggedIn(String url) {

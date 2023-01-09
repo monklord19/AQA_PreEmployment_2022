@@ -1,5 +1,6 @@
 package page.objects;
 
+import Locators.PageLocators;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;

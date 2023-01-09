@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import page.objects.LoginFlow;
 import page.objects.NavigateToFlow;
+import page.objects.SpotifyFlow;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -17,25 +19,12 @@ import java.util.Properties;
 public class NavigateToSteps {
     NavigateToFlow navigateToFlow;
     WebDriver driver;
-    public Properties configProperties;
-    LoginFlow loginFlow;
-    @Before
-    public void setup() throws IOException {
-        //reading properties
-        configProperties = new Properties();
-        FileInputStream configPropFile = new FileInputStream("config.properties");
-        configProperties.load(configPropFile);
-
-        String browser = configProperties.getProperty("browser");
-        if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", configProperties.getProperty("chromepath"));
-            driver = new ChromeDriver();
-        } else if (browser.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", configProperties.getProperty("firefoxpath"));
-            driver = new FirefoxDriver();
-        }
+    public NavigateToSteps(BrowserReadear readear){
+        this.driver= readear.driver;
         navigateToFlow = new NavigateToFlow(driver);
+
     }
+
     @Given("User logged in {string}")
     public void userLoggedIn(String url) {
         navigateToFlow.Login(

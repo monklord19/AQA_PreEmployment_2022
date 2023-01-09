@@ -9,33 +9,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import page.objects.LoginFlow;
+import page.objects.SpotifyFlow;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class LoginSteps {
+public class LoginSteps{
     WebDriver driver;
     LoginFlow loginFlow;
-    public Properties configProperties;
+    public LoginSteps(BrowserReadear readear){
+        this.driver= readear.driver;
+        loginFlow = new LoginFlow(driver);
 
-    @Before
-    public void setup() throws IOException {
-        //reading properties
-        configProperties = new Properties();
-        FileInputStream configPropFile = new FileInputStream("config.properties");
-        configProperties.load(configPropFile);
-
-        String browser = configProperties.getProperty("browser");
-        if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", configProperties.getProperty("chromepath"));
-            driver = new ChromeDriver();
-        } else if (browser.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", configProperties.getProperty("firefoxpath"));
-            driver = new FirefoxDriver();
-        }
-       loginFlow = new LoginFlow(driver);
     }
+
     @Given("user navigates to {string}")
     public void userNavigatesTo(String url) {
         driver.get(url);
@@ -50,7 +38,7 @@ public class LoginSteps {
     @And("user clicks on login")
     public void userClicksOnLogin() {
         loginFlow.clickLogin();
-        
+
     }
 
     @Then("Home page opens")
