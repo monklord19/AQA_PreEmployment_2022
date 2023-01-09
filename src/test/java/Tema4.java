@@ -3,6 +3,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.After;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,10 @@ public class Tema4 {
     public void init()
     {
         driver.get("https://open.spotify.com/");
+    }
+    @After
+    public void close(){
+        driver.quit();
     }
     @Given("user enters e-mail address and invalid password")
     public void userEntersEMailAddressAndInvalidPassword() {
@@ -72,3 +77,4 @@ public class Tema4 {
     }
 
 }
+
