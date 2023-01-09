@@ -49,7 +49,6 @@ public class Tema2 {
     public void theProductPageShouldOpen() {
         String url = driver.getCurrentUrl();
         Assert.assertTrue(url.equals("https://www.saucedemo.com/inventory.html"));
-
     }
 
 
@@ -130,11 +129,13 @@ public class Tema2 {
 
     @Then("user checks if the product is added to cart")
     public void userChecksIfTheProductIsAddedToCart() {
-        productspage.setShopping_cart_container_button();
+
+        productspage.setShopping_cart_container_button(driver.findElement(By.id("shopping_cart_container")));
+        productspage.click_shopping_cart_container();
         String y = cartpage.getCustomByXPath("//*[@id=\"item_4_title_link\"]/div").getText();
-        System.out.println(x);
-        System.out.println(y);
-        Assert.assertTrue(productspage.getProduct_title().getText().equals(y));
+
+        System.out.println(productspage.getProduct_title());
+        Assert.assertTrue(productspage.getProduct_title().equals(y));
 
     }
 

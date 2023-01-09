@@ -11,7 +11,8 @@ public class LoginPage {
     private WebElement password_input;
     private WebElement login_button;
     private WebElement error_message;
-    public LoginPage(){
+
+    public LoginPage() {
         driver.get("https://www.saucedemo.com/");
         setUser_name_input(driver.findElement(By.id("user-name")));
         setPassword_input(driver.findElement(By.id("password")));
@@ -50,17 +51,21 @@ public class LoginPage {
     public WebElement getUser_name_input() {
         return user_name_input;
     }
+
     public void put_credentials(String User_name, String Password) {
         user_name_input.sendKeys(User_name);
         password_input.sendKeys(Password);
     }
-    public void put_user_name(String User_name){
+
+    public void put_user_name(String User_name) {
         user_name_input.sendKeys(User_name);
     }
-    public void put_password(String Password){
+
+    public void put_password(String Password) {
         password_input.sendKeys(Password);
     }
-    public void click_login(){
+
+    public void click_login() {
         login_button.click();
     }
 
@@ -68,6 +73,7 @@ public class LoginPage {
         user_name_input.sendKeys(User_name);
         password_input.sendKeys(Password);
         login_button.click();
+    }
 }
 
 

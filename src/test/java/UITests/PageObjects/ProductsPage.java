@@ -10,7 +10,7 @@ public class ProductsPage {
     private WebElement addtocart_button;
     private  WebElement shopping_cart_container_button;
 
-    private WebElement product_title;
+    private String product_title;
 
     public void setAddtocart_button(WebElement addtocart_button) {
         this.addtocart_button = addtocart_button;
@@ -19,7 +19,7 @@ public class ProductsPage {
     public void setShopping_cart_container_button(WebElement shopping_cart_container_button){
         this.shopping_cart_container_button = shopping_cart_container_button;
     }
-    public void setProduct_title(WebElement product_title){
+    public void setProduct_title(String product_title){
         this.product_title = product_title;
     }
     public void setDriver(WebDriver driver) {
@@ -29,7 +29,7 @@ public class ProductsPage {
     public WebElement getAddtocart_button() {
         return addtocart_button;
     }
-    public WebElement getProduct_title(){
+    public String getProduct_title(){
         return product_title;
     }
 
@@ -40,7 +40,7 @@ public class ProductsPage {
     public void click_addtocart_button()
     {
         setAddtocart_button(driver.findElement(By.id("add-to-cart-sauce-labs-backpack")));
-        setProduct_title(driver.findElement(By.id("item_4_title_link")));
+        setProduct_title(driver.findElement(By.id("item_4_title_link")).getText());
         addtocart_button.click();
 
     }
