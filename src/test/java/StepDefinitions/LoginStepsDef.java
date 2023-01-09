@@ -1,10 +1,6 @@
 package StepDefinitions;
-
-import Pages.Homepage;
 import Pages.LoginPage;
-import Pages.ProductCard;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,20 +10,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginStepsDef {
 
-    @Before
+   /* @Before
     public void LaunchBrowser() {
-        System.setProperty("webdriver.chrome.driver", "C://Users//franc//drivers//chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C://Users//franc//drivers//chromedriver.exe");
         driver.manage().window().maximize();
     }
 
+    */
+
     WebDriver driver = new ChromeDriver();
     LoginPage loginPage = new LoginPage(driver);
-    Homepage homepage;
 
 
     @After
     public void closeBrowser() {
-        driver.close();
+        driver.quit();
     }
 
     @Given("User navigates to website {string}")
@@ -42,8 +39,7 @@ public class LoginStepsDef {
     }
 
     @When("User clicks on Login button")
-    public void user_clicks_on_login_button() throws InterruptedException {
-        Thread.sleep(3000);
+    public void user_clicks_on_login_button() {
         loginPage.clickOnLoginButton();
     }
 

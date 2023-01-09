@@ -14,10 +14,12 @@ public class CartStepsDef {
 
     WebDriver driver = new ChromeDriver();
     LoginPage loginPage = new LoginPage(driver);
+    ProductCard productCard = new ProductCard(driver);
+    Homepage homepage = new Homepage(driver);
 
     @After
     public void closeBrowser() {
-        driver.close();
+        driver.quit();
     }
     @Given("User is logged in on website {string} with username {string} and password {string}")
     public void userIsLoggedInOnWebsiteWithUsernameAndPassword(String url, String username, String password) {
@@ -29,13 +31,11 @@ public class CartStepsDef {
 
     @When("User clicks on add to cart on product Sauce Labs Backpack")
     public void userClicksOnAddToCartOnProductSauceLabsBackpack() {
-        ProductCard productCard = new ProductCard(driver);
         productCard.addProductToCart();
     }
 
     @Then("Product is added to cart")
     public void productIsAddedToCart() {
-        Homepage homepage = new Homepage(driver);
         homepage.getCartIcon().click();
     }
 }
