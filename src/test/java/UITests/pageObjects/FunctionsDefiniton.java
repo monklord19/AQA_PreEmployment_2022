@@ -1,7 +1,9 @@
 package UITests.pageObjects;
 
+import io.cucumber.java.ro.Datăfiind;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,16 +22,29 @@ public class FunctionsDefiniton {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "user-name")
+    @FindAll({
+            @FindBy( id = "user-name"),
+            @FindBy(id = "login-username")
+    })
     @CacheLookup
     WebElement username;
-    @FindBy(id = "password")
+
+    @FindAll({
+            @FindBy(id = "password"),
+            @FindBy(id = "login-password")
+    })
     @CacheLookup
     WebElement password;
     @FindBy(id = "login-button")
     @CacheLookup
     WebElement loginButton;
-    @FindBy(xpath = "//h3[@data-test = 'error']")
+
+    @FindAll({
+            @FindBy(xpath = "//h3[@data-test = 'error']"),
+            @FindBy(xpath = "//span[@class = 'Message-sc-15vkh7g-0 jHItEP']"),
+            @FindBy(xpath = "//div[@class ='o6cuMc']")
+
+    })
     @CacheLookup
     WebElement errorMessage;
 
@@ -53,8 +68,34 @@ public class FunctionsDefiniton {
     @CacheLookup
     WebElement logoutButton;
 
+    @FindBy(id="impressiveRadio")
+    @CacheLookup
+    WebElement radioButton;
+
+    @FindBy(className = "text-success")
+    @CacheLookup
+    WebElement labelText;
+
+    @FindBy(xpath = "//button[@data-testid='google-login']")
+    @CacheLookup
+    WebElement googleLoginButton;
+
+    @FindBy(xpath = "//input[@type='email']")
+    @CacheLookup
+    WebElement email;
+
+    //@FindBy(xpath = "//div[@jscontroller='Xq93uf']")
+    @FindBy(id= "identifierNext")
+    @CacheLookup
+    WebElement buttonNext;
+
+    @FindBy(id = "headingText")
+    @CacheLookup
+    WebElement mainText;
+
     public void setUsername(String usernameValue)
     {
+
         username.clear();
         username.sendKeys(usernameValue);
     }
@@ -67,8 +108,9 @@ public class FunctionsDefiniton {
         loginButton.click();
         Thread.sleep(3000);
     }
-    public void errorMessage(String message)
+    public void errorMessage(String message) throws InterruptedException
     {
+        Thread.sleep(3000);
         Assert.assertEquals(errorMessage.getText(), message);
     }
     public void refreshPage()
@@ -96,13 +138,10 @@ public class FunctionsDefiniton {
     {
         menuButton.click();
         Thread.sleep(1000);
-
     }
 
     public void clickLogout()throws InterruptedException
     {
-
-
         logoutButton.click();
         Thread.sleep(3000);
     }
@@ -112,6 +151,39 @@ public class FunctionsDefiniton {
         Thread.sleep(6000);
         Assert.assertEquals(username.getText(), "");
         Assert.assertEquals(password.getText(),"");
+
+    }
+
+    public void clickRadioButton()
+    {
+        radioButton.click();
+    }
+
+    public void checkLabelText(String text)
+    {
+        Assert.assertEquals(labelText.getText(), "Impressive");
+    }
+
+    public void clickGoogleLogin() throws InterruptedException
+    {
+        Thread.sleep(1000);
+        googleLoginButton.click();
+    }
+
+    public void setEmail(String emailAddress)
+    {
+        email.sendKeys(emailAddress);
+    }
+    public void clickNext() throws InterruptedException
+    {
+        Thread.sleep(1000);
+        buttonNext.click();
+    }
+    public void checkText(String text) throws InterruptedException{
+
+        Thread.sleep(3000);
+        Assert.assertEquals(mainText.getText(), text);
+
 
     }
 }
