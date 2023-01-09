@@ -39,31 +39,61 @@ public class LoginPageSpotify {
         String ActualUrl = driver.getCurrentUrl();
         String ExpectedUrl = "https://open.spotify.com/?nd=1";
 
-        if (ActualUrl.equals(ExpectedUrl)){
-            System.out.println("Test Passed");}
-
-        else{
-            System.out.println(("Test Failed"));}
+        if (ActualUrl.equals(ExpectedUrl)) {
+            System.out.println("Test Passed");
+        } else {
+            System.out.println(("Test Failed"));
+        }
     }
-
+}
 
 
     //SCENARIO 2
 
+    @Given("User clicks the button CONTINUE WITH GOOGLE on the Login page")
+    public void userClicksTheButtonCONTINUEWITHGOOGLEOnTheLoginPage() {
 
-    @Given("User clicks the button {string} on the Login page")
-    public void userClicksTheButtonOnTheLoginPage(String arg0) {
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[3]/button/span")).click();
+
     }
 
-    @And("User selects the option {string}")
-    public void userSelectsTheOption(String arg0) {
+    @And("User selects the option USE ANOTHER ACCOUNT")
+    public void userSelectsTheOptionUSEANOTHERACCOUNT() {
+
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[3]/button/span")).click();
+
     }
 
-    @When("User enters valid email address in the {string} field")
-    public void userEntersValidEmailAddressInTheEmailOrPhoneField() {
+    @When("User enters valid email address in the EMAIL OR PHONE field")
+    public void userEntersValidEmailAddressInTheEMAILORPHONEField() {
+
+        driver.findElement(By.id("identifierId")).sendKeys("maniu.calinaclaudia@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span")).click();
     }
 
-    @And("User enters invalid password in the {string} field")
-    public void userEntersInvalidPasswordInTheEnterYourPasswordField() {
+    @And("User enters invalid password in the ENTER YOUR PASSWORD field")
+    public void userEntersInvalidPasswordInTheENTERYOURPASSWORDField() {
+
+        driver.findElement(By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input");
+        driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span")).click();
     }
+
+    @Then("User is not logged in")
+    public void userIsNotLoggedIn() {
+
+        String ActualUrl = driver.getCurrentUrl();
+        String ExpectedUrl = "https://open.spotify.com/?nd=1";
+
+        if (ActualUrl.equals(ExpectedUrl)) {
+            System.out.println("Test Passed");
+        } else {
+            System.out.println(("Test Failed"));
+        }
+    }
+
 }
+
+
+
+
+
