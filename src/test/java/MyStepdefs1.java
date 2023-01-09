@@ -15,11 +15,12 @@ public class MyStepdefs1 {
     WebElement textBoxPassword;
     WebElement submitButton;
 
-    @Given("I open https://www.saucedemo.com/")
-    public void i_open_https_www_saucedemo_com() {
-        WebDriver driver = new ChromeDriver();
+    @Given("I open saucedemo site")
+    public void iOpenSaucedemoSite() {
+        driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
     }
+
     @When("I enter valid username in the username field")
     public void IEnterValidUsernameInTheUsernameField() {
         textBoxUserName = driver.findElement(By.name("user-name"));
@@ -53,4 +54,7 @@ public class MyStepdefs1 {
         assertTrue (userNameValue.equals("standard_user") || userNameValue.equals("problem_user") || userNameValue.equals("performance_glitch_user"));
 
     }
+
+
+
 }
