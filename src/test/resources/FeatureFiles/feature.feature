@@ -1,52 +1,40 @@
+@Smoke
 Feature: Homework week 2 ~Tuesday~
-  Background: Open the Login page "https://www.saucedemo.com/"
 
-  Scenario: Login with valid credentials
-    Given On sauce website
-    And User type a valid username
-    And User enter a valid password
+  @ValidLogin
+  Scenario Outline: Login with valid credentials
+    Given User go to "https://www.saucedemo.com/"
+    And User type a valid username as "<username>"
+    And User enter a valid password as "<password>"
     When User press the login button
-    Then The login was successful
-  Example:
-  | username        | password     |
-  | standard_user   | secret_sauce |
+    Then The home page appears
+    Examples:
+      | username      | password     |
+      | standard_user | secret_sauce |
 
-  Scenario: Login with invalid credentials
-    Given Open the page
-    And User enter numbers as username
-    And User enter numbers as password
-    When User click the login button
-    Then An error pop-up appears
-  Example:
-  | username | password |
-  | 1234     | 0987     |
+  @InvalidLogin
+  Scenario Outline: Login with invalid credentials
+    Given User log in the Sauce site "https://www.saucedemo.com/"
+    And User enter invalid username as "<username>"
+    And User enter invalid password as "<password>"
+    When User press the login button
+    Then Error message is displayed "Epic sadface: Username and password do not match any user in this service"
 
-  Scenario: Login with a different password
-    Given Open the sauce page
-    And I enter a valid username
-    And I enter a different password
-    When Click on login button
-    Then An error message appears
-    Example:
-      | username | password |
+    Examples:
+      | username     | password     |
+      | 1234         | 0987         |
       | problem_user | secret_santa |
-
-   Scenario:  Login with capital letters
-    Given Open the web page
-    Given I enter the username with capital letters
-    And I enter the password with capital letters
-    When Click the login button
-    Then Error pop-up appears
-    Example:
-      | username | password |
       | PROBLEM_USER | SECRET_SAUCE |
+      | *^$#         | *^%$#        |
 
-  Scenario: Login with special characters in the fields
-    Given User open the sauce page
-    And User enter special characters as username
-    And User enter special characters as password
-    When User click on login button
-    Then Error message appears
-    Example:
-      | username | password |
-      | *^$# | *^%$# |
+  Scenario: User logged out from website
+    Given User is logged in Sauce site
+    When User click on hamburger button
+    And User click on logout button
+    Then User is back on Login page
+
+  Scenario: Verify the cart functionality
+    Given User is logged in Sauce site
+    When User add an item pressing the cart button
+    Then The item should appear in cart
+    And  The cart page opens
