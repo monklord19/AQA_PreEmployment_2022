@@ -13,7 +13,7 @@ public class SpotifyHomepage {
         this.driver = driver;
     }
 
-    public WebElement acceptAllCookie() {
+    public WebElement acceptAllCookies() {
         return driver.findElement(allCookies);
     }
 
