@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFilesAndreeaC/*.feature", "src/test/resources/FeatureFiles/*.feature"},
-        glue = {"StepsDefinitions","Pages"}
+        features = {"src/test/resources/FeatureFiles/*.feature"},
+        glue = {"src/test/java/StepsDefinitions"},
+        tags = "@LoginwithGoogle or @LoginwithSpotify or @LoginwithApple"
 
         //tags = "@RegressionTestsBAP"
 )

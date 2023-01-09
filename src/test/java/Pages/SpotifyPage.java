@@ -14,9 +14,9 @@ public class SpotifyPage {
     protected WebDriverWait wait;
     private final By btn_CookieButton = By.id("onetrust-accept-btn-handler");
     private final By btn_connect = By.xpath("//button[@data-testid='login-button']");
-    private final By btn_continueGoogle = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[3]/button");
+    private final By btn_continueGoogle = By.cssSelector(".sc-hBUSln [class='Button-y0gtbx-0 hpTULc']");
     private final By txt_googleAccount = By.id("identifierId");
-    private final By btn_clicknextG = By.xpath("//*[@id=\"identifierNext\"]/div/button");
+    private final By btn_clicknextG = By.cssSelector("#identifierNext [jscontroller]");
     private final By btn_TryAgainG =By.xpath("//*[@id=\"next\"]/div/button");
     private final By txt_spotifyname = By.id("login-username");
     private final By txt_spotifypassword = By.id("login-password");
