@@ -12,7 +12,7 @@ public class SpotifyLoginPage {
     private WebElement usernameField;
     @FindBy(id = "login-password")
     private WebElement passwordField;
-    @FindBy(className = "Type__TypeElement-goli3j-0 dmuHFl sc-hKwDye fXzRSj")
+    @FindBy(css = "[class='Type__TypeElement-goli3j-0 dmuHFl sc-hKwDye fXzRSj']")
     private WebElement connectButton;
     @FindBy(css = "div[role='alert']")
     private WebElement wrongCredentialsAlert;

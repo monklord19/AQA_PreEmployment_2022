@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class SpotifyHomePage {
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElement acceptCookiesButton;
-    @FindBy(className = "ButtonInner-sc-14ud5tc-0 kuwYvr encore-inverted-light-set")
+    @FindBy(css = "[class='ButtonInner-sc-14ud5tc-0 kuwYvr encore-inverted-light-set']")
     private WebElement loginButton;
 
 

@@ -2,7 +2,7 @@ Feature:testLogin
 
 
   Background:
-   Given You are on the login page
+    Given You are on the login page
 
   Scenario:Successful login
     Given entering valid credentials

@@ -17,7 +17,7 @@ public class LogInSteps {
     CartPage cartPage = new CartPage(driver);
     ProductsPage productsPage = new ProductsPage(driver);
 
-
+//
 //    @Before
 //    public void beforeTests() {
 //        driver.manage().window().maximize();

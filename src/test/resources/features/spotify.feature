@@ -20,4 +20,4 @@ Feature: spotify login
     When Enter wrong Apple id "user" and click continue
     And enter invalid password "password" and click continue
     Then the error is displayed "Acest ID Apple a fost blocat din motive de securitate"
-    
+
