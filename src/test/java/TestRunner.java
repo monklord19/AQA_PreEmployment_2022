@@ -4,8 +4,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/hw2.feature"}
-        //tags = "@RegressionTestsBAP"
+        features = {"src/test/resources/FeatureFiles/spotify.feature"},
+        tags = "@LoginUsingSpotifyAcc"
+        //tags = "@LoginUsingAppleAcc"
 )
 public class TestRunner {
 }

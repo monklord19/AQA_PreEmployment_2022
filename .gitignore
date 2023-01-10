@@ -11,3 +11,6 @@ ENV/
 .project
 *.idea
 build/
+driver
+*.iml
+LoginSteps.java
