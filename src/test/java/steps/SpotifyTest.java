@@ -85,4 +85,48 @@ public class SpotifyTest {
         SpotifyPage.getErrorAppleAuthentification(errorMessage);
     }
 
+    @And("I chose to login with Google Account")
+    public void iChoseToLoginWithGoogleAccount(){
+        SpotifyPage.GoogleLoginButtonClick();
+    }
+
+    @Then("I enter email {string} and press next button")
+    public void iEnterEmailAndPressNextButton(String email){
+        SpotifyPage.insertGoogleEmail(email);
+        SpotifyPage.enterGoogleEmail();
+    }
+
+    @And("I enter password {string} and press next button")
+    public void iEnterPasswordAndPressNextButton(String arg0){
+
+    }
+
+    @And("I should see an error")
+    public void iShouldSeeAnError(){
+    }
+
+    @And("I chose to login with Facebook Account")
+    public void iChoseToLoginWithFacebookAccount(){
+        SpotifyPage.LoginWithFacebook();
+    }
+
+    @And("I accept facebook cookies")
+    public void iAcceptFacebookCookies(){
+        SpotifyPage.AcceptFacebookCookies();
+    }
+
+    @When("I insert email {string} and password {string}")
+    public void iInsertEmailAndPassword(String email, String password){
+        SpotifyPage.insertFacebookEmailandPassword(email, password);
+    }
+
+    @And("I press Login Button")
+    public void iPressLoginButton(){
+        SpotifyPage.EnterFacebookLoginButton();
+    }
+
+    @Then("I should see the error {string}")
+    public void iShouldSeeTheError(String error){
+        SpotifyPage.FacebookErrorMessage(error);
+    }
 }
