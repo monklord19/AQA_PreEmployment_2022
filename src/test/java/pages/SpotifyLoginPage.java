@@ -18,6 +18,8 @@ public class SpotifyLoginPage {
     private WebElement wrongCredentialsAlert;
     @FindBy(css = ".Button-y0gtbx-0.hpTULc.lxEME.sc-dlVxhl")
     private WebElement continueWithAppleButton;
+    @FindBy(css = "[class='Button-y0gtbx-0 hpTULc sc-dJjYzT dQmJFP'] span")
+    private WebElement continueWithFacebookButton;
 
     WebDriver driver;
 
@@ -34,13 +36,21 @@ public class SpotifyLoginPage {
         passwordField.sendKeys(password);
 
     }
-    public void clickConnectButton(){
+
+    public void clickConnectButton() {
         connectButton.click();
     }
-    public void assertError (String error){
+
+    public void assertError(String error) {
         Assert.assertEquals(error, wrongCredentialsAlert.getText());
     }
-    public void clickAppleButton(){
+
+    public void clickAppleLoginButton() {
         continueWithAppleButton.click();
+    }
+
+
+    public void clickFbLoginButton(){
+        continueWithFacebookButton.click();
     }
 }
