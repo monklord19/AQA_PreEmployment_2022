@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.beans.IntrospectionException;
+
 
 public class MyStepdefs1 {
     WebDriver driver = new ChromeDriver();
@@ -33,7 +35,6 @@ public class MyStepdefs1 {
     public void iClickOnLogin() throws InterruptedException {
         loginPage.pressLoginButton();
     }
-
     @Then("I should be logged in")
     public void iShouldBeLoggedIn() {
         driver.navigate().to("https://www.saucedemo.com/inventory.html");
@@ -84,53 +85,57 @@ public class MyStepdefs1 {
     public void iPressLogout() throws InterruptedException {
         loginPage.clickLogout();
     }
-
     @Then("The username and password fields should be empty")
     public void theUsernameAndPasswordFieldsShouldBeEmpty() throws InterruptedException{
 
         loginPage.checkEmptyUsernameAndPassword();
     }
-
     @Given("On demo site")
     public void onDemoSite() {
         driver.get("https://demoqa.com/radio-button");
     }
-
     @When("User selects Impressive radio button")
     public void userSelectsImpressiveRadioButton() {
         loginPage.clickRadioButton();
     }
-
     @Then("check label is displayed correctly")
     public void checkLabelIsDisplayedCorrectly() {
         loginPage.checkLabelText("Impressive");
     }
-
     @Given("on spotify website")
     public void onSpotifyWebsite() {
         driver.get("https://accounts.spotify.com/en/login?continue=https");
     }
-
-
     @When("I click the login with google option")
     public void iClickTheLoginWithGoogleOption() throws InterruptedException {
         loginPage.clickGoogleLogin();
     }
-
-    @And("I am on the google accounts page")
-    public void iAmOnTheGoogleAccountsPage() {
-        driver.get("https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=1046568431490-ij1gi5shcp2gtorls09frkc56d4mjbe2.apps.googleusercontent.com&state=AQDa0d8ucMNRzTJRz2AWGCfjGJXyzRAP9OU%2F2Vz808ZG2d0035wLTGON6hvd4C5jMzKehNlqHewnDuUncdqjiKiMxN3sP5J8m1CBplN1AaXw3%2BliUfgsRLjRRsS3%2BNDOyie3Lp3wMq8ZsWEzoGwP6rzpLKemN3hTpsXmre9q5EldJ2c68TEWjeY2UIq%2FnNTq0KLWt0%2FWSuq%2B7eT3kwayUsJQdRMo%2B4R2OHYa64bAuBSXe7IA4g%3D%3D&scope=profile%20email%20openid&redirect_uri=https%3A%2F%2Faccounts.spotify.com%2Flogin%2Fgoogle%2Fredirect&service=lso&o2v=2&flowName=GeneralOAuthFlow");
-    }
-
-
-    @And("I type in the email {string} and press Next")
-    public void iTypeInTheEmailAndPressNext(String emailAccount) throws InterruptedException{
-        loginPage.setEmail(emailAccount);
-        loginPage.clickNext();
-    }
-
     @Then("A new page opens up, where the text {string} should appear")
     public void aNewPageOpensUpWhereTheTextShouldAppear(String text) throws InterruptedException{
         loginPage.checkText(text);
+    }
+    @And("I type in the email or username {string} and press Next")
+    public void iTypeInTheEmailOrUsernameAndPressNext(String text) throws InterruptedException{
+        loginPage.setEmailOrUsername(text);
+        loginPage.clickNext();
+    }
+    @When("I click the login with apple option")
+    public void iClickTheLoginWithAppleOption() throws InterruptedException {
+        loginPage.clickAppleLogin();
+
+    }
+    @And("I try to login with the Id {string} and password {string}")
+    public void iTryToLoginWithTheIdAndPassword(String text1, String text2) throws InterruptedException {
+        loginPage.appleSetIdAndPassword(text1, text2);
+    }
+
+    @When("I click the login with facebook option")
+    public void iClickTheLoginWithFacebookOption() throws InterruptedException{
+        loginPage.clickFacebookLogin();
+    }
+
+    @And("I click on allow cookies")
+    public void iClickOnAllowCookies() throws InterruptedException{
+        loginPage.clickCookie();
     }
 }
