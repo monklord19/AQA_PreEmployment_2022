@@ -10,11 +10,9 @@ import io.cucumber.java.en.When;
 
 import java.util.Properties;
 
-public class LoginPageStepDefs1 extends BaseClass {
+public class LoginPageSaucedemo extends BaseClass {
 
     Properties properties = PropertiesUtil.loadUserProperties();
-
-    //Scenario 1 - Successful Login with valid credentials
 
     @Given("user enters valid username in the email field")
     public void userEntersValidUsernameInTheEmailField() {

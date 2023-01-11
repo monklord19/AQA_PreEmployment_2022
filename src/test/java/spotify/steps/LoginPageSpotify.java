@@ -52,7 +52,7 @@ public class LoginPageSpotify {
 
     @Given("User clicks the button CONTINUE WITH GOOGLE on the Login page")
     public void userClicksTheButtonCONTINUEWITHGOOGLEOnTheLoginPage() {
-        driver.get("https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F__noul__%3Fl2l%3D1%26nd%3D1&_locale=ro-RO");
+        driver.get("https://accounts.spotify.com/en/login");
 //Select the option "Continue with Google"
         driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[3]/button/span")).click();
     }
@@ -60,13 +60,13 @@ public class LoginPageSpotify {
     @And("User selects the option USE ANOTHER ACCOUNT")
     public void userSelectsTheOptionUSEANOTHERACCOUNT() {
 //Select the option "Use another account"
-        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[3]/button/span")).click();
+        driver.findElement(By.cssSelector("#identifierNext > div > button > span")).click();
     }
 
     @When("User enters valid email address in the EMAIL OR PHONE field")
     public void userEntersValidEmailAddressInTheEMAILORPHONEField() {
-//Enter the valid emial
-        driver.findElement(By.id("identifierId")).sendKeys("maniu.calinaclaudia@gmail.com");
+//Enter the valid email
+        driver.findElement(By.id("#identifierId")).sendKeys("maniu.calinaclaudia@gmail.com");
 //Click the button "Next"
         driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span")).click();
     }
@@ -81,6 +81,33 @@ public class LoginPageSpotify {
 
     @Then("Login is unsuccessfully")
     public void loginIsUnsuccessfully() {
+    }
+
+
+
+
+
+    @Given("User clicks the button CONTINUE WITH APPLE on the Login page")
+    public void userClicksTheButtonCONTINUEWITHAPPLEOnTheLoginPage() {
+
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]/button/span")).click();
+    }
+
+    @When("User enters valid Apple ID in the Apple ID field")
+    public void userEntersValidAppleIDInTheAppleIDField() {
+
+        driver.findElement(By.xpath("//*[@id=\"account_name_text_field\"]")).sendKeys("calina.c.maniu@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"sign-in\"]/i")).click();
+    }
+
+    @And("User enters invalid password in the PASSWORD field")
+    public void userEntersInvalidPasswordInThePASSWORDField() {
+        driver.findElement(By.xpath("//*[@id=\"password_text_field\"]")).sendKeys("testpass");
+        driver.findElement(By.xpath("//*[@id=\"sign-in\"]/i")).click();
+    }
+
+    @Then("User cannot login on Spotify")
+    public void userCannotLoginOnSpotify() {
     }
 }
 
