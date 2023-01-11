@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class GmailLoginPage {
+public class GmailLoginPage{
     WebDriver driver;
     WebDriverWait wait;
 

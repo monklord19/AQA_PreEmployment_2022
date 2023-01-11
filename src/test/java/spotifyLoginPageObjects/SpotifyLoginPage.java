@@ -16,6 +16,7 @@ public class SpotifyLoginPage {
     By spotifyPasswordField = By.xpath("//input[@id='login-password']");
     By spotifyLoginButton = By.xpath("//button[@id='login-button']");
 
+    By continueWithFacebookButton = By.xpath("//button[@data-testid='facebook-login']");
     By errorMessage = By.xpath("//span[contains(text(),'Incorrect username or password.')]");
 
     public SpotifyLoginPage(WebDriver driver) {
@@ -40,15 +41,21 @@ public class SpotifyLoginPage {
         spotifyPasswordFieldElement.sendKeys(password);
     }
 
-    public void clickSpotifyLoginButton(){
+    public void clickSpotifyLoginButton() {
         WebElement spotifyLoginButtonElement = driver.findElement(spotifyLoginButton);
         spotifyLoginButtonElement.click();
     }
 
-    public boolean errorMessageIsDisplayed(){
+    public boolean errorMessageIsDisplayed() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
         WebElement errorMessageElement = driver.findElement(errorMessage);
         return errorMessageElement.isDisplayed();
+    }
+
+    public void continueWithFacebook() {
+        wait.until(ExpectedConditions.elementToBeClickable(continueWithFacebookButton));
+        WebElement continueWithFacebookElement = driver.findElement(continueWithFacebookButton);
+        continueWithFacebookElement.click();
     }
 
 }

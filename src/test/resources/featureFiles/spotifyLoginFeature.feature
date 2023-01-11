@@ -16,3 +16,18 @@ Feature: Login on Spotify
     And user enters 'password' in Spotify password field
     And user clicks on Spotify login button
     Then inccorect username and password message is displayed
+
+  Scenario: user tries to login on Spotify with Facebook account
+    When user click continue with Facebook
+    And user accept cookies
+    And user enters 'username' in Facebook username field
+    And user enters 'password' in Facebook password field
+    And user clicks on Facebook login button
+    Then not account message is displayed
+
+  Scenario: user tries to login on Spotify with Apple account
+    When user click continue with Apple
+    And user enters 'appleusername' in Apple Facebook username field
+    And user enters 'applepassword' in Apple Facebook password field
+    And user clicks on Apple login button
+    Then not account message is displayed

@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import spotifyLoginPageObjects.FacebookLoginPage;
 import spotifyLoginPageObjects.GmailLoginPage;
 import spotifyLoginPageObjects.SpotifyLoginPage;
 import spotifyLoginPageObjects.SpotifyMainPage;
@@ -21,6 +22,8 @@ public class SpotifyLoginSteps {
     SpotifyLoginPage spotifyLoginPage = new SpotifyLoginPage(driver);
 
     GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
+
+    FacebookLoginPage facebookLoginPage = new FacebookLoginPage(driver);
 
     @Given("user is on the main page")
     public void onSpotifyPage() {
@@ -75,5 +78,35 @@ public class SpotifyLoginSteps {
     @Then("inccorect username and password message is displayed")
     public void messageIsDisplayedIncorrectUsernameOrPassword() {
         Assert.assertTrue(spotifyLoginPage.errorMessageIsDisplayed());
+    }
+
+    @When("user click continue with Facebook")
+    public void userClickContinueWithFacebook() {
+        spotifyLoginPage.continueWithFacebook();
+    }
+
+    @And("user accept cookies")
+    public void userAcceptCookies() {
+        facebookLoginPage.acceptCookie();
+    }
+
+    @And("user enters {string} in Facebook username field")
+    public void userEntersFacebookUsername(String username) {
+        facebookLoginPage.setFacebookUsername(username);
+    }
+
+    @And("user enters {string} in Facebook password field")
+    public void userEntersFacebookPassword(String password) {
+        facebookLoginPage.setFacebookPassword(password);
+    }
+
+    @And("user clicks on Facebook login button")
+    public void userClicksOnFacebookLoginButton() {
+        facebookLoginPage.clickLogin();
+    }
+
+    @Then("not account message is displayed")
+    public void notAccountMessageIsDisplayed() {
+        Assert.assertTrue(facebookLoginPage.notAccountMessageIsDisplayed());
     }
 }
