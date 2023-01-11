@@ -1,5 +1,5 @@
-Tema1
 
-- Sa creati un Feature file in Java->Resources->FeatureFiles->ceva.feature - Vedeti exemplul creat de Andrei: https://github.com/monklord19/AQA_PreEmployment_2022/pull/4 
+Tema1
+- Sa creati un Feature file in Java->Resources->FeatureFiles->ceva.feature - Vedeti exemplul creat de Andrei: https://github.com/monklord19/AQA_PreEmployment_2022/pull/4
 - In feature file sa treceti test case-urile ce le-am facut la sedinta de azi si mai adugati ca sa fie intre 7-10 TCD
 - Sa creati un pull request si sa ne adugati pe Andrei sau pe mine ca si reviewer.
