@@ -15,8 +15,8 @@ public class SpotifyLoginPage {
     By spotifyUsernameField = By.xpath("//input[@id='login-username']");
     By spotifyPasswordField = By.xpath("//input[@id='login-password']");
     By spotifyLoginButton = By.xpath("//button[@id='login-button']");
-
     By continueWithFacebookButton = By.xpath("//button[@data-testid='facebook-login']");
+    By continueWithAppleButton = By.xpath("//button[@data-testid='apple-login']");
     By errorMessage = By.xpath("//span[contains(text(),'Incorrect username or password.')]");
 
     public SpotifyLoginPage(WebDriver driver) {
@@ -58,4 +58,9 @@ public class SpotifyLoginPage {
         continueWithFacebookElement.click();
     }
 
+   public void continueWithApple(){
+       wait.until(ExpectedConditions.elementToBeClickable(continueWithAppleButton));
+       WebElement continueWithAppleButtonElement = driver.findElement(continueWithAppleButton);
+       continueWithAppleButtonElement.click();
+   }
 }

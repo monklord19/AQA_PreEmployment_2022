@@ -8,10 +8,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import spotifyLoginPageObjects.FacebookLoginPage;
-import spotifyLoginPageObjects.GmailLoginPage;
-import spotifyLoginPageObjects.SpotifyLoginPage;
-import spotifyLoginPageObjects.SpotifyMainPage;
+import spotifyLoginPageObjects.*;
 
 public class SpotifyLoginSteps {
 
@@ -24,6 +21,8 @@ public class SpotifyLoginSteps {
     GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
 
     FacebookLoginPage facebookLoginPage = new FacebookLoginPage(driver);
+
+    AppleLoginPage appleLoginPage = new AppleLoginPage(driver);
 
     @Given("user is on the main page")
     public void onSpotifyPage() {
@@ -108,5 +107,35 @@ public class SpotifyLoginSteps {
     @Then("not account message is displayed")
     public void notAccountMessageIsDisplayed() {
         Assert.assertTrue(facebookLoginPage.notAccountMessageIsDisplayed());
+    }
+
+    @When("user click continue with Apple")
+    public void userClickContinueWithApple() {
+        spotifyLoginPage.continueWithApple();
+    }
+
+    @And("user enters {string} in Apple username field")
+    public void userEntersAppleUsername(String username) {
+        appleLoginPage.setAppleUsername(username);
+    }
+
+    @And("user clicks submit button")
+    public void userClicksUsernameSubmitButton() {
+        appleLoginPage.clicksSigninButton();
+    }
+
+    @And("user enters {string} in Apple password field")
+    public void userEntersApplePassword(String password) {
+        appleLoginPage.setApplePassword(password);
+    }
+
+    @And("user get alert message")
+    public void userGetErrorMessage() {
+        Assert.assertTrue(appleLoginPage.alertMessageIsDisplayed());
+    }
+
+    @And("error message is: {string}")
+    public void errorMessageIsThisAppleIDHasBeenLockedForSecurityReasons(String message) {
+        Assert.assertEquals(message,appleLoginPage.getTextMessage());
     }
 }
