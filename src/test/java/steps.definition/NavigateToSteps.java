@@ -1,25 +1,18 @@
 package steps.definition;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import page.objects.LoginFlow;
 import page.objects.NavigateToFlow;
-import page.objects.SpotifyFlow;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import utils.BaseClass;
+import utils.BrowserReader;
 
 
 public class NavigateToSteps {
     NavigateToFlow navigateToFlow;
     WebDriver driver;
-    public NavigateToSteps(BrowserReadear readear){
+    public NavigateToSteps(BrowserReader readear){
         this.driver= readear.driver;
         navigateToFlow = new NavigateToFlow(driver);
 

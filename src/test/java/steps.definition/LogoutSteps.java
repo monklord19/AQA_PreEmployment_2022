@@ -1,25 +1,18 @@
 package steps.definition;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import page.objects.LogOutFlow;
-import page.objects.LoginFlow;
-import page.objects.SpotifyFlow;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import utils.BaseClass;
+import utils.BrowserReader;
 
 public class LogoutSteps{
     LogOutFlow logoutFlow;
     WebDriver driver;
-    public LogoutSteps(BrowserReadear readear){
+    public LogoutSteps(BrowserReader readear){
         this.driver= readear.driver;
         logoutFlow = new LogOutFlow(driver);
 

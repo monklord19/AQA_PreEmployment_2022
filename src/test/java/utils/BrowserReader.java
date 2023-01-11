@@ -1,5 +1,4 @@
-package steps.definition;
-
+package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,12 +8,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class BrowserReadear {
+public class BrowserReader {
 
     public Properties configProperties;
     public WebDriver driver;
 
-    public BrowserReadear() throws IOException {
+    public BrowserReader() throws IOException {
         // reads config.properties
         configProperties = new Properties();
         FileInputStream configPropFile = new FileInputStream("/Users/pitiriciuiulian/Documents/preemployment/AQA_PreEmployment_2022/src/main/config.properties");

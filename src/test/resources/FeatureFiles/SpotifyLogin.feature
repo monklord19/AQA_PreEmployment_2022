@@ -1,4 +1,4 @@
-Feature: Login with google and spotify account
+Feature: Login with google,facebook and spotify account
   This feature deals with 3 login functionalities of Spotify webpage
   Background: I open Spotify webpage https://open.spotify.com/
 
@@ -18,7 +18,7 @@ Feature: Login with google and spotify account
       And User accepts cookies
       And User click on Log in button
       When User clicks on Continue with Google
-      And User types emailAdress as "test123" and password as "password"
+      And User types emailAdress as "test123@gmail.com" and password as "password"
       And User clicks on Login with google
       Then Error message pops up as "The password is wrong. Try again or click Forgot your password? to reset it."
 
@@ -32,6 +32,18 @@ Feature: Login with google and spotify account
       And User enters username as "test123" and password as "password123"
       And User click on Log in
       Then Error an error message is displayed as "Sorry, something went wrong."
+
+
+    @InvalidLogin
+    Scenario: Login with invalid Apple credentials
+     Given User navigates to Spotify "https://open.spotify.com/"
+     And User accepts cookies
+     And  User click on Log in button
+     When User click on Continue with Apple
+     And User enters appleId as "test123@gmail.com" and password as "password123"
+     Then An error message is displayed as "This Apple ID has been locked for security reasons."
+
+
 
 
 

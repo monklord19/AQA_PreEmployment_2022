@@ -1,16 +1,20 @@
 package steps.definition;
 
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import page.objects.SpotifyFlow;
 import io.cucumber.java.en.*;
+import utils.BrowserReader;
+import utils.DataUtil;
 
 
-public class SpotifyLoginSteps {
+public class SpotifyLoginSteps{
 
     SpotifyFlow spotifyFlow;
     WebDriver driver;
 
-    public SpotifyLoginSteps(BrowserReadear readear) {
+
+    public SpotifyLoginSteps(BrowserReader readear) {
         this.driver = readear.driver;
         spotifyFlow = new SpotifyFlow(driver);
 
@@ -102,6 +106,25 @@ public class SpotifyLoginSteps {
     @Then("Error an error message is displayed as {string}")
     public void errorAnErrorMessageIsDisplayedAs(String facebookError) {
         spotifyFlow.throwFacebookErrorMsg(facebookError);
+    }
+
+
+    @When("User click on Continue with Apple")
+    public void userClickOnContinueWithApple() {
+        spotifyFlow.continueWithApple();
+        
+    }
+    @And("User enters appleId as {string} and password as {string}")
+    public void userEntersAppleIdAsAndPasswordAs(String appleId, String applePassword) {
+        spotifyFlow.userTypesAppleId(appleId);
+        spotifyFlow.proccedToPasswordField();
+        spotifyFlow.userTypesApplePassword(applePassword);
+
+    }
+
+    @Then("An error message is displayed as {string}")
+    public void anErrorMessageIsDisplayedAs(String appleError) {
+        spotifyFlow.throwAppleErrorMsg(appleError);
     }
 
 

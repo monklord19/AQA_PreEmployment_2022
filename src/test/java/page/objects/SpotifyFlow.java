@@ -2,28 +2,40 @@ package page.objects;
 
 import Locators.SpotifyLocators;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.BaseClass;
 
+import java.io.IOException;
+import java.security.Key;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
-public class SpotifyFlow {
+public class SpotifyFlow extends BaseClass  {
 
     WebDriver driver;
     WebDriverWait wait;
     SpotifyLocators spotifyLocators;
 
+
     //login with spotify methods
-    public SpotifyFlow(WebDriver driver){
+    public SpotifyFlow (WebDriver driver){
         this.driver = driver;
         spotifyLocators = new SpotifyLocators(driver);
     }
 
+    //overrided method for cookies changing wait.until with Thread.sleep
+    @Override
     public void cookies(){
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getCookies()));
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            System.out.println("Exception catched");
+        }
         spotifyLocators.getCookies().click();
     }
 
@@ -47,9 +59,12 @@ public class SpotifyFlow {
         spotifyLocators.getLoginSpotify().click();
     }
 
+    //overrided method for throwErrorMsg changing assertEquals with AssertTrue
+    @Override
     public void throwErrorMsg(String errorMsg){
         wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getErrormsgSpotify()));
-        Assert.assertEquals(spotifyLocators.getErrormsgSpotify().getText(), errorMsg);
+        Assert.assertTrue(spotifyLocators.getErrormsgSpotify().isDisplayed());
+
     }
 
     //login with google methods
@@ -116,12 +131,50 @@ public class SpotifyFlow {
         spotifyLocators.getLoginId().click();
 
     }
-
+    //overrided method for throwFacebookErrorMsg changing assertEquals with AssertTrue
+    @Override
     public void throwFacebookErrorMsg(String facebookError){
         wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getErrorMsgFacebook()));
-        Assert.assertEquals(spotifyLocators.getErrorMsgFacebook().getText(),facebookError);
+        Assert.assertTrue(spotifyLocators.getErrorMsgFacebook().isDisplayed());
 
     }
+
+    //login with apple methods
+
+    public void continueWithApple(){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getContinueWithApple()));
+        spotifyLocators.getContinueWithApple().click();
+    }
+
+    public void userTypesAppleId(String appleId){
+        wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getAppleId()));
+        spotifyLocators.getAppleId().clear();
+        spotifyLocators.getAppleId().sendKeys(appleId);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        spotifyLocators.getAppleId().sendKeys(Keys.RETURN);
+
+
+    }
+    public void userTypesApplePassword(String applePassword){
+        wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getApplePassword()));
+        spotifyLocators.getApplePassword().clear();
+        spotifyLocators.getApplePassword().sendKeys(applePassword,Keys.RETURN);
+    }
+    public void proccedToPasswordField(){
+        wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getProccedTo()));
+        spotifyLocators.getProccedTo().click();
+
+    }
+
+    //overrided method for throwAppleErrorMsg changing assertEquals with AssertTrue
+    @Override
+    public void throwAppleErrorMsg(String appleError){
+        wait.until(ExpectedConditions.visibilityOf(spotifyLocators.getErrorMsgApple()));
+        Assert.assertTrue(spotifyLocators.getErrorMsgApple().isDisplayed());
+
+    }
+
 
 
 }

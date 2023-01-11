@@ -40,6 +40,14 @@ public class SpotifyLocators {
     public static final String LOG_IN_ID = "loginbutton";
     public static final String FACEBOOK_ERRORMSG_XPATH = "//*[@id=\"facebook\"]/body/div[2]/h1";
 
+    //locators for login with apple
+
+    public static final String CONTINUE_WITH_APPLE_XPATH = "//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]/button/span";
+    public static final String APPLE_ID = "account_name_text_field";
+    public static final String PROCCED_TO_XPATH = "//*[@id=\"sign-in\"]/i";
+    public static final String APPLE_PASSWORD_ID = "password_text_field";
+    public static final String APPLE_ERRORMSG_ID = "alertInfo";
+
 
     // spotify accounts
 
@@ -110,9 +118,31 @@ public class SpotifyLocators {
     @CacheLookup
     private WebElement loginId;
 
-    @FindBy(xpath = FACEBOOK_ERRORMSG_XPATH)
+    @FindBy(xpath = SpotifyLocators.FACEBOOK_ERRORMSG_XPATH)
     @CacheLookup
     private WebElement errorMsgFacebook;
+
+    //apple accounts
+    @FindBy(xpath = SpotifyLocators.CONTINUE_WITH_APPLE_XPATH)
+    @CacheLookup
+    private WebElement continueWithApple;
+
+    @FindBy(id = SpotifyLocators.APPLE_ID)
+    @CacheLookup
+    private WebElement appleId;
+
+    @FindBy(xpath = SpotifyLocators.PROCCED_TO_XPATH)
+    @CacheLookup
+    private WebElement proccedTo;
+
+    @FindBy(id = SpotifyLocators.APPLE_PASSWORD_ID)
+    @CacheLookup
+    private WebElement applePassword;
+
+
+    @FindBy(id = SpotifyLocators.APPLE_ERRORMSG_ID)
+    @CacheLookup
+    private WebElement errorMsgApple;
 
     //getters for spotify
     public  WebElement getCookies(){
@@ -188,6 +218,26 @@ public class SpotifyLocators {
     public  WebElement getErrorMsgFacebook(){
         return errorMsgFacebook;
     }
+
+    // getters for apple
+
+    public WebElement getContinueWithApple(){
+        return continueWithApple;
+    }
+    public WebElement getAppleId(){
+        return appleId;
+    }
+    public WebElement getProccedTo(){
+        return proccedTo;
+    }
+    public WebElement getApplePassword(){
+        return applePassword;
+    }
+
+    public WebElement getErrorMsgApple(){
+        return errorMsgApple;
+    }
+
 
 }
 
