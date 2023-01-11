@@ -12,7 +12,7 @@ public class BaseClass {
 
 public static void initializeDriver (){
     Properties properties = PropertiesUtil.loadApplicationProperties();
-    String url = properties.getProperty("application.url");
+    String url = properties.getProperty("application.url").toString();
     WebDriverManager.chromedriver().setup();
     driver = new ChromeDriver();
     driver.get(url);

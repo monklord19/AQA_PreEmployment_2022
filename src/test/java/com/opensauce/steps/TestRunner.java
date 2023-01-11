@@ -7,7 +7,6 @@ import io.cucumber.junit.CucumberOptions;
         //path of feature file
         features = {"src/test/resources/Feature Files"},
         //path of step definition file
-        glue = {"src/test/java/com/opensauce/steps"},
         plugin = {
                 "pretty",
                 "html:target/cucumber.html",

@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class LoginPageStepDefs1 extends BaseClass {
 
-    Properties properties = PropertiesUtil.loadApplicationProperties();
+    Properties properties = PropertiesUtil.loadUserProperties();
 
     //Scenario 1 - Successful Login with valid credentials
 
