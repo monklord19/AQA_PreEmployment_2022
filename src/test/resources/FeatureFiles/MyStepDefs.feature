@@ -63,8 +63,31 @@ Feature: Homework
     When User enters credentials "email-test@gmail.com" and "password-test"
     Then User need to be logged in with success "false"
 
-  Scenario: Log in in Spotify website via google
+  Scenario: Log in Spotify website via google
     Given On spotify website
     When User goes to login with google
     And User enter valid google an email "google-test@gmail.com"
     Then User should allowed to enter password "false"
+
+
+  Scenario: Log in Spotify website via apple
+    Given On spotify website
+    When User goes to login with apple
+    And User enter apple id "9999@yahoo.ro"
+    And User enter apple password "bbbb"
+    Then User should be logged in with apple account "false"
+
+  Scenario: Log in Spotify website via facebook
+    Given On spotify website
+    When User goes to login with facebook
+    And Allow cookies
+    And User enter facebook credentials "facebook-test@gmail.com" and "facebook-password-test"
+    Then User should be logged in with facebook account "false"
+    And Refresh page to try another password
+    And Enter another facebook password "facebook-second-password-test"
+    Then User should be logged in with facebook account "false"
+
+
+
+
+

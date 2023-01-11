@@ -4,12 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 
-public class CartPage {
+public class CartPage extends  BasePage{
     public WebDriver driver;
     By cartList = By.className("cart_list");
     By cartButton = By.className("shopping_cart_link");
 
     public CartPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

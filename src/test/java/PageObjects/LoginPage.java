@@ -3,13 +3,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
     public WebDriver driver;
     By usernameInput = By.id("user-name");
     By passwordInput = By.id("password");
     By loginButton = By.id("login-button");
 
     public LoginPage (WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

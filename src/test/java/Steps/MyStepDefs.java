@@ -25,7 +25,6 @@ public class MyStepDefs {
     CartPage cartPage;
     SingletonClass singleton = SingletonClass.getInstance();
     WebDriver driver = singleton.getDriver();
-
     private long duration = 0;
 
     @Before
@@ -35,14 +34,14 @@ public class MyStepDefs {
         cartPage = new CartPage(driver);
     }
 
-    @After
-    public void myStepDefsTearDown() {
-        driver.quit();
-    }
+//    @After
+//    public void myStepDefsTearDown() {
+//        driver.quit();
+//    }
 
     @Given("On sauce website")
     public void onSauceWebsite() {
-        driver.get("https://www.saucedemo.com/");
+        loginObjects.openBrowser("https://www.saucedemo.com/");
     }
 
     @When("User enters valid credential {string} and {string}")
@@ -51,7 +50,6 @@ public class MyStepDefs {
         loginObjects.getUserNameLabel().sendKeys(userName);
         loginObjects.getPasswordLabel().sendKeys(password);
         loginObjects.getLoginButton().click();
-
         long startTime = System.currentTimeMillis();
         duration = System.currentTimeMillis() - startTime;
     }

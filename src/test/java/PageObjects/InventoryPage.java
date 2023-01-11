@@ -4,11 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 
-public class InventoryPage {
+public class InventoryPage extends BasePage{
     public WebDriver driver;
     By inventoryList = By.id("inventory_container");
 
     public InventoryPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
