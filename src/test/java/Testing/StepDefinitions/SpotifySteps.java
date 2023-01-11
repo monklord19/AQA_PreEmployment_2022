@@ -1,22 +1,23 @@
 package Testing.StepDefinitions;
 
-import Testing.pageobjects.SpotifyLoginPage;
+import Testing.Locators.SpotifyLocators;
+import Testing.pageobjects.SpotifyPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.Testing.AppConfig;
-import org.junit.Assert;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class SpotifySteps extends TestBase {
-    private SpotifyLoginPage spotify = PageFactory.initElements(driver, SpotifyLoginPage.class);
+    private SpotifyPage spotifyPage = PageFactory.initElements(driver, SpotifyPage.class);
+    private SpotifyLocators spotifyLocators = PageFactory.initElements(driver, SpotifyLocators.class);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+    //Background
     @Given("User opens spotify site")
     public void userOpensSpotifySite() {
         driver.get(AppConfig.getSiteUrl());
@@ -24,63 +25,97 @@ public class SpotifySteps extends TestBase {
 
     @And("User click on spotify LogIn button")
     public void userClickOnSpotifyLogInButton() {
-        wait.until(ExpectedConditions.visibilityOf(spotify.getBtn_spotifyAcceptCookies()));
-        spotify.getBtn_spotifyAcceptCookies().click();
-        spotify.getBtn_SpotifyLogin().click();
+        spotifyPage.acceptSpotifyCookies();
+        spotifyPage.clickSpotifyLogin();
     }
+
+    //Login with facebook
     @When("User click on continue with facebook button")
     public void userClickOnContinueWithFacebookButton() {
-        spotify.getBtn_continueWithFB().click();
-        wait.until(ExpectedConditions.visibilityOf(spotify.getBtn_fb_allowCookies()));
-        spotify.getBtn_fb_allowCookies().click();
-    }
-    @And("User enters a valid email as {string} and invalid password as {string}")
-    public void userEntersAValidEmailAsMada_linaYahooComAndInvalidPasswordAsTest(String email, String pwd) {
-        spotify.getTxt_fb_emailField().sendKeys(email);
-        spotify.getTxt_fb_passField().sendKeys(pwd);
-        spotify.getBtn_fb_Login().click();
-    }
-    @Then("The error message is displayed {string}")
-    public void errorMessage(String errMsg) {
-        Assert.assertEquals(spotify.getFb_errMsg().getText(), errMsg);
+        spotifyPage.continueWithFacebook();
     }
 
+    @And("User enters a valid email and invalid password")
+    public void validEmailInvalidPassword() {
+        spotifyPage.setFacebookEmail();
+        spotifyPage.setFacebookPassword();
+        spotifyPage.clickFbLoginBtn();
+    }
+
+    @Then("An error message is displayed")
+    public void errorMessage() {
+        spotifyPage.errorMsgFb();
+    }
+
+    //Login with Google
     @When("User click on continue with google button")
     public void userClickOnContinueWithGoogleButton() {
-        spotify.getBtn_continueWithGoogle().click();
+        spotifyPage.continueWithGoogle();
     }
 
-    @And("User enters valid email as {string}")
-    public void userEntersValidEmailAsMada_linaYahooCom(String email) {
-        spotify.getTxt_GoogleEmail().sendKeys(email);
+    @And("User enters valid email")
+    public void userEntersValidEmail() {
+        spotifyPage.setGoogleEmail();
     }
 
     @And("user click on next button")
     public void userClickOnNextButton() {
-        spotify.getBtn_GoogleNextEmail().click();
+        spotifyPage.nextBtnGoogle();
     }
 
-    @And("User enters invalid password as {string}")
-    public void userEntersInvalidPasswordAsTestAndClickOnNextButton(String pwd) {
-        spotify.getTxt_GooglePassword().sendKeys(pwd);
+    @And("User enters invalid password")
+    public void userEntersInvalidPassword() {
+        spotifyPage.setGooglePassword();
     }
 
-    @Then("error message is displayed {string}")
-    public void errorMessageIsDisplayed(String googleErr) {
-        Assert.assertEquals(spotify.getGoogle_errMsg().getText(),googleErr);
+    @Then("error message is displayed")
+    public void errorMessageIsDisplayed() {
+        spotifyPage.errorMsgGoogle();
+    }
+//invalid login with spotify
+    @When("User enters valid email and invalid password")
+    public void userEntersValidEmailAndPassword() {
+        spotifyPage.setSpotifyEmail();
+        spotifyPage.setSpotifyPassword();
     }
 
-    @When("User enters valid email as {string} and invalid password as {string}")
-    public void userEntersValidEmailAndPassword(String email, String pwd) {
-        spotify.getTxt_spotifyEmail().sendKeys(email);
-        spotify.getGetTxt_spotifyPasword().sendKeys(pwd);
-    }
     @And("user click on Login button")
     public void userClickOnLoginButton() {
-        spotify.getBtn_SpotifyLogin().click();
+        spotifyPage.spotifyLoginBtn();
     }
-    @Then("error message appears {string}")
-    public void errorMessageIsDisplayedOnSpotify(String spotifyErr) {
-        Assert.assertEquals(spotify.getSpotify_errMsg().getText(),spotifyErr);
+
+    @Then("error message appears")
+    public void errorMessageIsDisplayedOnSpotify() {
+        spotifyPage.errorMsgSpotify();
     }
+
+    //Invalid login with Apple account
+    @When("User click on continue with apple")
+    public void userClickOnContinueWithApple() {
+        spotifyPage.continueWithApple();
+    }
+
+    @And("User fill in the Apple ID")
+    public void userFillInTheAppleID() {
+        spotifyPage.setAppleID();
+    }
+
+    @And("User click next arrow")
+    public void userClickNextArrow() {
+        spotifyPage.clickSignInAppleBtn();
+    }
+
+    @And("User fill in the password field")
+    public void userFillInThePasswordField() {
+        spotifyPage.setApplePassword();
+    }
+
+    @Then("User is not logged and error is displayed")
+    public void userIsNotLoggedAndErrorIsDisplayed() {
+       // spotifyPage.errorMsgApple();
+        Object expected = AppConfig.getErrorApple();
+        Object actual=spotifyLocators.getAppleError();
+        spotifyPage.assertErrorMessage(expected, actual);
+    }
+
 }
