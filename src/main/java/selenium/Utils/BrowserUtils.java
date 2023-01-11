@@ -1,12 +1,13 @@
 package selenium.Utils;
 
-import selenium.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.BaseClass;
+
+import java.time.Duration;
 import java.util.Properties;
-import static java.lang.Long.parseLong;
 
 public class BrowserUtils extends BaseClass {
 
@@ -27,7 +28,7 @@ public class BrowserUtils extends BaseClass {
         String timeout = properties.getProperty("timeout.maximum");
         WebElement element = null;
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(timeout));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))));
 
         } catch (Exception e){
@@ -35,5 +36,7 @@ public class BrowserUtils extends BaseClass {
         }
         return element;
     }
+
+
 
 }
