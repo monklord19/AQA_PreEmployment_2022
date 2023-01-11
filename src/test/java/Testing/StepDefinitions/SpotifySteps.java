@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.Testing.AppConfig;
+import org.junit.Assert;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -116,6 +117,9 @@ public class SpotifySteps extends TestBase {
         Object expected = AppConfig.getErrorApple();
         Object actual=spotifyLocators.getAppleError();
         spotifyPage.assertErrorMessage(expected, actual);
+    }
+    public void assertErrorMessage(Object expected,Object actual){
+        Assert.assertEquals(expected,actual);
     }
 
 }

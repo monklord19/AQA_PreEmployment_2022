@@ -111,11 +111,7 @@ public class SpotifyPage extends TestBase {
     }
 
 
-    public void assertErrorMessage(Object expected,Object actual){
-        expected=spotifyLocators.getAppleError().getText();
-        actual=AppConfig.getErrorApple();
-        Assert.assertEquals(expected,actual);
-    }
+
 
 
 
