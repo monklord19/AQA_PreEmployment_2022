@@ -1,4 +1,4 @@
-package com.spotify.steps;
+package spotify.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -80,7 +80,7 @@ public class LoginPageSpotify {
     }
 
     @Then("User is not logged in")
-    public void userIsNotLoggedIn() {
+    public void userIsNotLoggedonthesite() {
 
         String ActualUrl = driver.getCurrentUrl();
         String ExpectedUrl = "https://open.spotify.com/?nd=1";

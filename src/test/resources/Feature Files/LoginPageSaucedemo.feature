@@ -1,6 +1,6 @@
 Feature: Homework Week 2
 
-  Scenario: Successful Login with valid credentials
+  Scenario Outline: Successful Login with valid credentials
     Given user enters valid username in the email field
     And user enters valid password in the password field
     When user clicks on the login button

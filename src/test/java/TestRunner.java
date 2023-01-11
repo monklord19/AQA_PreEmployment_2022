@@ -1,4 +1,3 @@
-package com.opensauce.steps;
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -6,8 +5,6 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         //path of feature file
         features = {"src/test/resources/Feature Files"},
-        //path of step definition file
-        glue = {"src/test/java/com/opensauce/steps"},
         plugin = {
                 "pretty",
                 "html:target/cucumber.html",

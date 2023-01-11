@@ -1,4 +1,4 @@
-package com.opensauce.steps;
+package opensauce.steps;
 
 import selenium.BaseClass;
 import io.cucumber.java.After;

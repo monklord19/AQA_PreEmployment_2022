@@ -1,6 +1,6 @@
-package com.opensauce.steps;
+package opensauce.steps;
 
-import com.opensauce.pageObjects.LoginPage;
+import opensauce.pageObjects.LoginPage;
 import selenium.BaseClass;
 import selenium.Utils.PropertiesUtil;
 import io.cucumber.java.en.And;

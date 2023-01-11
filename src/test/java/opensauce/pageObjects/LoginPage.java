@@ -1,4 +1,4 @@
-package com.opensauce.pageObjects;
+package opensauce.pageObjects;
 
 import selenium.BaseClass;
 import selenium.Utils.BrowserUtils;
