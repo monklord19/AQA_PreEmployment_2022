@@ -26,6 +26,6 @@ Feature: Test cases for the spotify website
     Scenario: I try to log in with an invalid facebook username or invalid password
       When I click the login with facebook option
       And I click on allow cookies
-      And I type the username "user" and the password "password"
+      And I type the username "useraa" and the password "password"
       And I click on login
       Then A pop-up saying "The password that you've entered is incorrect. Forgotten password?" should appear

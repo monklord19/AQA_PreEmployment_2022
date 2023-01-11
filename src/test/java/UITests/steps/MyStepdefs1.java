@@ -11,24 +11,26 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.beans.IntrospectionException;
-
-
-public class MyStepdefs1 {
+public class MyStepdefs1 extends BaseStepDefClass {
     WebDriver driver = new ChromeDriver();
     FunctionsDefiniton loginPage=new FunctionsDefiniton(driver);
-
     @Given("open the loginPage")
     public void onSauceWebsite() {
 
         driver.get("https://www.saucedemo.com/");
 
     }
-
     @When("I type the username {string} and the password {string}")
     public void iTypeTheUsernameAndThePassword(String username, String password)  {
-        loginPage.setUsername(username);
-        loginPage.setPassword(password);
+       // loginPage.setUsername(username);
+        //loginPage.setPassword(password);
+        loginPage.setCredentials(username,password);
+
+    }
+
+    @After
+    public void close_browser() {
+        driver.close();
     }
 
     @And("I click on login")
@@ -44,18 +46,16 @@ public class MyStepdefs1 {
     public void iPressTheRefreshButtonOfTheWebpage() {
         loginPage.refreshPage();
     }
-    @And("A pop-up saying {string} should appear")
-    public void aPopUpSayingShouldAppear(String errorMessages) throws InterruptedException {
-        loginPage.errorMessage(errorMessages);
-    }
-    @After
-    public void close_browser() {
-        driver.close();
-    }
     @When("I add a backpack to cart")
     public void iAddABackpackToCart() {
         loginPage.addBackpackToCart();
     }
+    @And("A pop-up saying {string} should appear")
+    public void aPopUpSayingShouldAppear(String errorMessages) throws InterruptedException {
+        loginPage.errorMessage(errorMessages);
+    }
+
+
     @And("I open the shopping cart")
     public void iOpenTheShoppingCart() throws InterruptedException {
         loginPage.openShoppingCart();
@@ -102,10 +102,7 @@ public class MyStepdefs1 {
     public void checkLabelIsDisplayedCorrectly() {
         loginPage.checkLabelText("Impressive");
     }
-    @Given("on spotify website")
-    public void onSpotifyWebsite() {
-        driver.get("https://accounts.spotify.com/en/login?continue=https");
-    }
+
     @When("I click the login with google option")
     public void iClickTheLoginWithGoogleOption() throws InterruptedException {
         loginPage.clickGoogleLogin();
@@ -138,4 +135,10 @@ public class MyStepdefs1 {
     public void iClickOnAllowCookies() throws InterruptedException{
         loginPage.clickCookie();
     }
+
+    @Given("on spotify website")
+    public void onSpotifyWebsite() {
+        driver.get("https://accounts.spotify.com/en/login?continue=https");
+    }
+
 }
