@@ -22,6 +22,7 @@ public class SpotifyLogIn {
     @FindBy(className = "Wrapper-sc-62m9tu-0 dupjdh encore-negative-set sc-ksdxgE gmnGJa")
     public WebElement ErrorMessage;
 
+
     public void setUser(String username) {
         user.sendKeys(username);
     }
@@ -36,4 +37,6 @@ public class SpotifyLogIn {
     public void Error (String error){
         Assert.assertEquals(error, ErrorMessage.getText());
     }
+
+
 }

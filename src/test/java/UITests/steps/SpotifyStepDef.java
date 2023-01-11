@@ -1,7 +1,9 @@
 package UITests.steps;
 
+import UITests.pageObjects.SpotifyHome;
 import UITests.pageObjects.SpotifyLogIn;
 import UITests.pageObjects.SpotifyLoginApple;
+import UITests.pageObjects.SpotifyLoginGmail;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,11 +15,15 @@ import java.util.concurrent.TimeUnit;
 
 public class SpotifyStepDef {
     WebDriver driver = new ChromeDriver();
+    SpotifyHome spotifyhome = new SpotifyHome(driver);
     SpotifyLogIn spotifylogpage = new SpotifyLogIn(driver);
     SpotifyLoginApple spotifylogApplepage = new SpotifyLoginApple(driver);
+    SpotifyLoginGmail spotifyloggmail = new SpotifyLoginGmail(driver);
     @Given("user navigates to login Spotify webpage")
     public void userNavigatesToLoginSpotifyWebpage() {
-       driver.get("https://accounts.spotify.com");
+       driver.get("https://open.spotify.com/");
+       spotifyhome.clickLogInSpotify();
+
     }
 
     //Login with Apple
@@ -55,9 +61,23 @@ public class SpotifyStepDef {
         spotifylogpage.Error(error);
     }
 
+//Login with Gmail
+    @When("user clicks on login with Gmail")
+    public void userClicksOnLoginWithGmail() {
+        spotifyloggmail.clickGoogleButton();
+    }
 
+    @And("user enters gmail as {string} and password as {string}")
+    public void userEntersGmailAsAndPasswordAs(String user, String pass) {
+        spotifyloggmail.setGmailUser(user);
+        spotifyloggmail.clickInainteButton();
+        spotifyloggmail.setGmailPass(pass);
+        spotifyloggmail.clickInainteButton();
+    }
 
-
-
+    @Then("error message  {string}")
+    public void errorMessage(String error) {
+        spotifyloggmail.GoogleError(error);
+    }
 }
 

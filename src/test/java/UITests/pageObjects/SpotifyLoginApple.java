@@ -24,6 +24,7 @@ public class SpotifyLoginApple {
     public WebElement errorApple;
 
 
+
     public void clickAppleButton(){
         AppleButton.click();
     }
@@ -42,5 +43,6 @@ public class SpotifyLoginApple {
     public void AppleError(String error){
         Assert.assertEquals(error, errorApple.getText());
     }
+
 
 }
