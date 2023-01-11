@@ -9,16 +9,15 @@ import pageObjects.LoginPage;
 import pageObjects.ProductsPage;
 
 public class MyStepdefs1 extends BaseClass {
-//    WebDriver driver;
+
     LoginPage loginPage = new LoginPage(driver);
     ProductsPage productsPage = new ProductsPage(driver);
 
 
-    @Given("User is on the login page")
-    public void onSauceWebsite() {
-
+    @Given("User is on {string} page")
+    public void onSauceWebsite(String url) {
+        driver.get(url);
     }
-
 
     @When("user enters {string} in username field")
     public void setUsername(String username) {
@@ -39,7 +38,6 @@ public class MyStepdefs1 extends BaseClass {
     public void userShouldBeAbleToLogin(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assert.assertEquals(expectedUrl, actualUrl);
-        System.out.println("User logged in successfully");
     }
 
     @Then("error is displayed")

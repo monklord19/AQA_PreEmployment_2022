@@ -6,18 +6,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.time.Duration;
 
 public class SpotifyLoginPage {
     WebDriver driver;
     WebDriverWait wait;
-    By continueWithGoogleButton = By.xpath("//button[@data-testid='google-login']");
-    By spotifyUsernameField = By.xpath("//input[@id='login-username']");
-    By spotifyPasswordField = By.xpath("//input[@id='login-password']");
-    By spotifyLoginButton = By.xpath("//button[@id='login-button']");
-    By continueWithFacebookButton = By.xpath("//button[@data-testid='facebook-login']");
-    By continueWithAppleButton = By.xpath("//button[@data-testid='apple-login']");
-    By errorMessage = By.xpath("//span[contains(text(),'Incorrect username or password.')]");
+    private final By continueWithGoogleButton = By.xpath("//button[@data-testid='google-login']");
+    private final By spotifyUsernameField = By.xpath("//input[@id='login-username']");
+    private final By spotifyPasswordField = By.xpath("//input[@id='login-password']");
+    private final  By spotifyLoginButton = By.xpath("//button[@id='login-button']");
+    private final By continueWithFacebookButton = By.xpath("//button[@data-testid='facebook-login']");
+    private final By continueWithAppleButton = By.xpath("//button[@data-testid='apple-login']");
+    private final By errorMessage = By.xpath("//span[contains(text(),'Incorrect username or password.')]");
+
 
     public SpotifyLoginPage(WebDriver driver) {
         this.driver = driver;

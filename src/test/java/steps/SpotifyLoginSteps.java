@@ -10,9 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import spotifyLoginPageObjects.*;
 
-public class SpotifyLoginSteps {
-
-    WebDriver driver = new ChromeDriver();
+public class SpotifyLoginSteps extends BaseClass {
 
     SpotifyMainPage spotifyMainPage = new SpotifyMainPage(driver);
 

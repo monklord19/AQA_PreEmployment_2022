@@ -12,9 +12,9 @@ public class GmailLoginPage{
     WebDriver driver;
     WebDriverWait wait;
 
-    By gmailUsernameField = By.xpath("//input[@type='email']");
-    By gmailLoginButton = By.xpath("//div[@class='qhFLie']/div/div/button");
-    By messageAccountNotFound = By.xpath("//div[contains(text(),'Contul Google nu a fost găsit')]");
+    private final By gmailUsernameField = By.xpath("//input[@type='email']");
+    private final By gmailLoginButton = By.xpath("//div[@class='qhFLie']/div/div/button");
+    private final By messageAccountNotFound = By.xpath("//div[contains(text(),'Contul Google nu a fost găsit')]");
 
     public GmailLoginPage(WebDriver driver) {
         this.driver = driver;

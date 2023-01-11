@@ -11,10 +11,10 @@ import java.time.Duration;
 public class AppleLoginPage {
     WebDriver driver;
     WebDriverWait wait;
-    By usernameField = By.xpath("//input[@can-field='accountName']");
-    By usernameSigninButton = By.xpath("//button[@id='sign-in']");
-    By passwordField = By.xpath("//input[@can-field='password']");
-    By alertMessage = By.xpath("//h2[@id='alertInfo']");
+    private final By usernameField = By.xpath("//input[@can-field='accountName']");
+    private final By usernameSigninButton = By.xpath("//button[@id='sign-in']");
+    private final By passwordField = By.xpath("//input[@can-field='password']");
+    private final By alertMessage = By.xpath("//h2[@id='alertInfo']");
 
     public AppleLoginPage(WebDriver driver) {
         this.driver = driver;

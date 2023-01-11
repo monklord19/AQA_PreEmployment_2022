@@ -9,11 +9,11 @@ import java.util.List;
 public class ProductsPage {
     WebDriver driver;
 
-    By inventoryList = By.className("inventory_list");
-    By shoppingCartBadge = By.className("shopping_cart_badge");
-    By burgerMButton = By.className("bm-burger-button");
-    By addToCartBtn = By.xpath("./div/div/button");
-    By burgerM = By.className("bm-menu-wrap");
+    private final By inventoryList = By.className("inventory_list");
+    private final By shoppingCartBadge = By.className("shopping_cart_badge");
+    private final By burgerMButton = By.className("bm-burger-button");
+    private final By addToCartBtn = By.xpath("./div/div/button");
+    private final By burgerM = By.className("bm-menu-wrap");
 
 
     public ProductsPage(WebDriver driver) {

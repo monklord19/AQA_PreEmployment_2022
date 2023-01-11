@@ -12,19 +12,20 @@ public class SpotifyMainPage {
     WebDriver driver;
 
     WebDriverWait wait;
-    By loginButton = By.xpath("//button[@data-testid='login-button']");
-
-    By closeCookieButton = By.id("onetrust-accept-btn-handler");
-
-
+    private final By loginButton = By.xpath("//button[@data-testid='login-button']");
+    private final By closeCookieButton = By.id("onetrust-accept-btn-handler");
 
     public SpotifyMainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        }
+
+    public void waitVisibility(By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void closeCookie(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(closeCookieButton));
+    public void closeCookie() {
+        waitVisibility(closeCookieButton);
         WebElement closeCookieButtonElement = driver.findElement(closeCookieButton);
         closeCookieButtonElement.click();
     }

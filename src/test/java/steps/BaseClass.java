@@ -1,27 +1,24 @@
 package steps;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-
 public class BaseClass {
 
-    public static WebDriver driver;
+    static WebDriver driver = new ChromeDriver();
 
-    @BeforeClass
-    public static void openBrowser() {
-        driver = new ChromeDriver();
+    @Before
+    public void openBrowser() {
         driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com/");
-
     }
 
-    @AfterClass
-    public static void closeBrowser() {
+    @After
+    public void closeBrowser() {
         driver.quit();
     }
+
 
 }

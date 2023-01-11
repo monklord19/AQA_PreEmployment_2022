@@ -11,11 +11,11 @@ import java.time.Duration;
 public class FacebookLoginPage {
     WebDriver driver;
     WebDriverWait wait;
-    By facebookAcceptCookieButton = By.xpath("//button[@data-cookiebanner='accept_button']");
-    By facebookUsernameField = By.xpath("//input[@type='text']");
-    By facebookPasswordField = By.xpath("//input[@type='password']");
-    By facebookLoginButton = By.xpath("//button[@name='login']");
-    By notAccountMessage = By.xpath("//div[@role='alert']");
+    private final By facebookAcceptCookieButton = By.xpath("//button[@data-cookiebanner='accept_button']");
+    private final By facebookUsernameField = By.xpath("//input[@type='text']");
+    private final By facebookPasswordField = By.xpath("//input[@type='password']");
+    private final By facebookLoginButton = By.xpath("//button[@name='login']");
+    private final By notAccountMessage = By.xpath("//div[@role='alert']");
 
 
     public FacebookLoginPage(WebDriver driver) {

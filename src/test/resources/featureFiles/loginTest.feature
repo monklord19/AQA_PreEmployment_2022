@@ -1,7 +1,7 @@
 Feature: Login Page Test
 
   Background:
-    Given User is on the login page
+    Given User is on 'https://www.saucedemo.com/' page
 
   Scenario Outline: Valid username and password
     When user enters '<username>' in username field
