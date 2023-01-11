@@ -1,6 +1,5 @@
 Feature: User Login
 
-
   Scenario: User is not able to login on Spotify with Email address or username
     Given User enters valid username in the username field
     And User enters invalid password in the password field

@@ -1,4 +1,4 @@
-package spotify.steps;
+package com.spotify.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -33,8 +33,8 @@ public class LoginPageSpotify {
         driver.findElement(By.xpath("//*[@id=\"login-button\"]/div[1]/span")).click();
     }
 
-    @Then("User is not logged in")
-    public void userIsNotLoggedIn() {
+    @Then("Login can't log in")
+    public void loginCanTLogIn() {
 
         String ActualUrl = driver.getCurrentUrl();
         String ExpectedUrl = "https://open.spotify.com/?nd=1";
@@ -79,23 +79,22 @@ public class LoginPageSpotify {
         driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span")).click();
     }
 
-    @Then("Login is unsuccessfully")
-    public void loginIsUnsuccessfully() {
+    @Then("user is not logged in")
+    public void userIsNotLoggedIn() {
     }
 
 
 
 
-
+//Scenario 3
     @Given("User clicks the button CONTINUE WITH APPLE on the Login page")
     public void userClicksTheButtonCONTINUEWITHAPPLEOnTheLoginPage() {
-
+        driver.get("https://accounts.spotify.com/en/login");
         driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]/button/span")).click();
     }
 
-    @When("User enters valid Apple ID in the Apple ID field")
-    public void userEntersValidAppleIDInTheAppleIDField() {
-
+    @When("User enters valid Appple ID in the Apple ID field")
+    public void userEntersValidApppleIDInTheAppleIDField() {
         driver.findElement(By.xpath("//*[@id=\"account_name_text_field\"]")).sendKeys("calina.c.maniu@gmail.com");
         driver.findElement(By.xpath("//*[@id=\"sign-in\"]/i")).click();
     }
