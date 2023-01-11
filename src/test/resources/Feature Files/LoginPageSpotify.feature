@@ -4,7 +4,7 @@ Feature: User Login
     Given User enters valid username in the username field
     And User enters invalid password in the password field
     When User clicks on the login button
-    Then User is not logged in
+    Then Login is unsuccessfully
 
 
   Scenario: User is not able to login on Spotify using the button "Continue with Google"
@@ -12,4 +12,4 @@ Feature: User Login
     And User selects the option USE ANOTHER ACCOUNT
     When User enters valid email address in the EMAIL OR PHONE field
     And User enters invalid password in the ENTER YOUR PASSWORD field
-    Then User is not logged in
+gv

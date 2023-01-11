@@ -79,20 +79,12 @@ public class LoginPageSpotify {
         driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span")).click();
     }
 
-    @Then("User is not logged in")
-    public void userIsNotLoggedonthesite() {
-
-        String ActualUrl = driver.getCurrentUrl();
-        String ExpectedUrl = "https://open.spotify.com/?nd=1";
-
-        if (ActualUrl.equals(ExpectedUrl)) {
-            System.out.println("Test Passed");
-        } else {
-            System.out.println(("Test Failed"));
-        }
+    @Then("Login is unsuccessfully")
+    public void loginIsUnsuccessfully() {
     }
-
 }
+
+
 
 
 
