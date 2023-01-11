@@ -1,3 +1,6 @@
+import UITests.PageObjects.AppleLoginPage;
+import UITests.PageObjects.FacebookLoginPage;
+import UITests.PageObjects.SpotifyPage;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -17,38 +20,33 @@ import java.time.Duration;
 public class Tema4 {
     WebDriver driver = new ChromeDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-
+    SpotifyPage spotifyPage = new SpotifyPage(driver);
+    FacebookLoginPage facebookLoginPage;
+    AppleLoginPage appleLoginPage;
 
     @Before
     public void init()
     {
-        driver.get("https://open.spotify.com/");
+        SpotifyPage.driver.get("https://open.spotify.com/");
     }
-    @After
-    public void close(){
-        driver.quit();
-    }
+
     @Given("user enters e-mail address and invalid password")
     public void userEntersEMailAddressAndInvalidPassword() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("onetrust-accept-btn-handler")));
-        driver.findElement(By.id("onetrust-accept-btn-handler")).click();
-        driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/header/div[5]/button[2]/span")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-username")));
-        driver.findElement(By.id("login-username")).sendKeys("stefanaa29@yahoo.com");
-        driver.findElement((By.id("login-password"))).sendKeys("parolagresita");
+        spotifyPage.acceptCookies();
+        spotifyPage.clickFirstLoginButton();
+        spotifyPage.putCredentials("stefanaa29@yahoo.com","parolagresita");
 
     }
 
-    @When("user clicks on login buttton")
+    @When("user clicks on login button")
     public void userClicksOnLoginButtton() {
-        driver.findElement(By.id("login-button")).click();
+        spotifyPage.clickSpotifyLogin();
     }
 
     @Then("the error message is displayed {string}")
     public void theErrorMessageIsDisplayed(String arg0) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[1]/span")));
-        WebElement errormessage = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[1]/span"));
-        Assert.assertTrue(errormessage.isDisplayed());
+        spotifyPage.checkIfErrorMessageDisplay();
+        spotifyPage.checkErrorMessage("Nume utilizator sau parolă incorectă.");
     }
 
     @Given("user enters google account")
@@ -76,5 +74,51 @@ public class Tema4 {
         Assert.assertTrue(message.isDisplayed());
     }
 
+    @Given("user enters invalid facebook account")
+    public void userEntersInvalidFacebookAccount() {
+        spotifyPage.acceptCookies();
+        spotifyPage.clickFirstLoginButton();
+        spotifyPage.clickLoginWithFacebook();
+        facebookLoginPage = new FacebookLoginPage(driver);
+        facebookLoginPage.acceptCookies();
+        facebookLoginPage.putCredentials("stef@yahoo.com", "parolagresita");
+    }
+
+    @When("user clicks on facebook login button")
+    public void userClicksOnFacebookLoginButton() {
+       facebookLoginPage.clickLoginButton();
+    }
+
+    @Then("message is displayed {string}")
+    public void messageIsDisplayed(String arg0) {
+        facebookLoginPage.checkErrorMessage();
+
+    }
+
+    @Given("user enters invalid id apple and invalid password")
+    public void userEntersInvalidIdAppleAndInvalidPassword() {
+        spotifyPage.acceptCookies();
+        spotifyPage.clickFirstLoginButton();
+        spotifyPage.clickLoginWithApple();
+        appleLoginPage = new AppleLoginPage(driver);
+        appleLoginPage.putUsername("cd");
+        appleLoginPage.clickNext();
+        appleLoginPage.putPassword("cd");
+
+    }
+
+    @When("user clicks on apple next button")
+    public void userClicksOnAppleNextButton() {
+        appleLoginPage.clickNext();
+    }
+
+    @Then("the message displayed is that the user is blocked")
+    public void theMessageDisplayedIsThatTheUserIsBlocked() {
+        appleLoginPage.checkErrorMessage();
+    }
+    @After
+    public void close(){
+        driver.quit();
+    }
 }
 
