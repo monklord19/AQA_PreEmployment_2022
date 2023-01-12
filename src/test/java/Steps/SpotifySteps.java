@@ -17,6 +17,10 @@ public class SpotifySteps {
 
         driver.get(url);
     }
+    @And("User click on login spotify from homepage")
+    public void userClickOnLoginSpotifyFromHomepage(){
+        spotifyLogin.clickLoginSpotify();
+    }
 
     @And("User enter an invalid username as {string}")
     public void userEnterAnInvalidUsernameAs(String username) {
@@ -39,5 +43,13 @@ public class SpotifySteps {
     public void anErrorMessageAppears(String errorspotify){
         spotifyLogin.checkErrorPop_up(errorspotify);
     }
+
+
+
+    @Given("User open the login webpage of Spotify")
+    public void userOpenTheLoginWebpageOfSpotify(){
+        userOpenTheLoginPageOfSpotify("https://open.spotify.com/");
+    }
+
 
 }
