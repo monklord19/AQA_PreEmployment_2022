@@ -12,11 +12,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SpotifyDefinitions {
     WebDriver driver;
-    LoginSpotifyPage loginPage = new LoginSpotifyPage();
+    LoginSpotifyPage loginPage;
 
     @Given("Open spotify login page")
-    public void openSpotifyLoginPage() {
+    public void openSpotifyLoginPage() throws InterruptedException {
         driver = new ChromeDriver();
+        loginPage = new LoginSpotifyPage(driver);
         driver.get(loginPage.url);
     }
 
@@ -62,5 +63,10 @@ public class SpotifyDefinitions {
         Assert.assertTrue(element.isDisplayed());
         // check if the message exists
         Assert.assertFalse(element.getText().isEmpty());
+    }
+
+    @When("User clicks Continue with Facebook button")
+    public void userClicksOnContinueWithFacebook() {
+        loginPage.clickContinueWithFacebookButton();
     }
 }
