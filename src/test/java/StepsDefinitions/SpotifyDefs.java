@@ -2,11 +2,11 @@ package StepsDefinitions;
 
 import Pages.SpotifyAppleLogin;
 import Pages.SpotifyPage;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -15,8 +15,7 @@ import java.io.IOException;
 import static Pages.ConfigReader.*;
 
 
-public class SpotifyDefs //extends BasePage
-{
+public class SpotifyDefs extends BasePage {
     WebDriver driver = new ChromeDriver();
 
     SpotifyPage spage = new SpotifyPage(driver);
@@ -30,7 +29,7 @@ public class SpotifyDefs //extends BasePage
         driver.manage().window().maximize();
         driver.get(test_url);
 
-        //spage.closeCookie();
+        spage.closeCookie();
         System.out.println("completed");
     }
 
@@ -54,9 +53,9 @@ public class SpotifyDefs //extends BasePage
     }
 
     @Given("Click Connect")
-    public void clickConnect()  {
+    public void clickConnect() throws IOException {
         //IAmOnLoginPageAndAcceptCoockies();
-        spage.closeCookie();
+       // spage.closeCookie();
         spage.Connect();
     }
     @When("^I enter (.*) and (.*)$")
