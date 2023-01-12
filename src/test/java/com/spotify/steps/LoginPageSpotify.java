@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
+
 public class LoginPageSpotify {
 
     WebDriver driver = new ChromeDriver();
@@ -96,17 +98,29 @@ public class LoginPageSpotify {
     @When("User enters valid Appple ID in the Apple ID field")
     public void userEntersValidApppleIDInTheAppleIDField() {
         driver.findElement(By.xpath("//*[@id=\"account_name_text_field\"]")).sendKeys("calina.c.maniu@gmail.com");
+//Click the button "Next"
         driver.findElement(By.xpath("//*[@id=\"sign-in\"]/i")).click();
     }
 
     @And("User enters invalid password in the PASSWORD field")
     public void userEntersInvalidPasswordInThePASSWORDField() {
         driver.findElement(By.xpath("//*[@id=\"password_text_field\"]")).sendKeys("testpass");
+        //Click the button "Next"
         driver.findElement(By.xpath("//*[@id=\"sign-in\"]/i")).click();
     }
 
     @Then("User cannot login on Spotify")
     public void userCannotLoginOnSpotify() {
+
+        try{
+            assert.Equals(driver.findElement(By.id("errMsg"))).getText(), "Your Apple ID or password was incorrect.";
+//If the message is displayed
+            System.out.println("PASS");
+        } catch (Exception e){
+//If the message is not displayed
+            System.out.println("FAIL");
+            verificationErrors.append(e.toString());
+        }
     }
 }
 
