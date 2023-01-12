@@ -14,3 +14,4 @@ Sa creati un feature file cu scenarii la alegere de pe site (10 scenarii)
 Pentru Backend
 Sa creati un feature file in care testati API call-urile de la BookStore
 https://demoqa.com/swagger/
+Minim verificat status si verificat daca aveti content in response body
