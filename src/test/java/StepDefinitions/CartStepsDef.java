@@ -17,10 +17,6 @@ public class CartStepsDef {
     ProductCard productCard = new ProductCard(driver);
     Homepage homepage = new Homepage(driver);
 
-    @After
-    public void closeBrowser() {
-        driver.quit();
-    }
     @Given("User is logged in on website {string} with username {string} and password {string}")
     public void userIsLoggedInOnWebsiteWithUsernameAndPassword(String url, String username, String password) {
         driver.get(url);

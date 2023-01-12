@@ -10,22 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginStepsDef {
 
-   /* @Before
-    public void LaunchBrowser() {
-        //System.setProperty("webdriver.chrome.driver", "C://Users//franc//drivers//chromedriver.exe");
-        driver.manage().window().maximize();
-    }
-
-    */
-
     WebDriver driver = new ChromeDriver();
     LoginPage loginPage = new LoginPage(driver);
 
-
-    @After
-    public void closeBrowser() {
-        driver.quit();
-    }
 
     @Given("User navigates to website {string}")
     public void user_navigates_to_website(String url) {

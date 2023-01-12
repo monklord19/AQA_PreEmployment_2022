@@ -11,6 +11,7 @@ public class SpotifyHomepage {
 
     public SpotifyHomepage(WebDriver driver) {
         this.driver = driver;
+
     }
 
     public WebElement acceptAllCookies() {

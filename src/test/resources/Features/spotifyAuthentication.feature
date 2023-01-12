@@ -11,3 +11,16 @@ Feature: Spotify Authentication
       When User clicks on Login button accounts page is displayed
       And User enters invalid mail and invalid password for Spotify account
       Then User can not login and error message is displayed
+
+    Scenario: Login with Apple
+      Given On Spotify website
+      When User clicks on Login button accounts page is displayed
+      And User selects continue with Apple, enters invalid mail and invalid password
+      Then User can not login and error message for Apple account is displayed
+
+    Scenario: Login with Facebook
+      Given On Spotify website
+      When User clicks on Login button accounts page is displayed
+      And User selects continue with Facebook, enters invalid mail and invalid password
+      Then User can not login and error message for Facebook account is displayed
+
