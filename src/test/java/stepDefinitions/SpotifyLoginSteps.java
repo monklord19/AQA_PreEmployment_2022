@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,15 +14,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+//import static java.awt.SystemColor.window;
+
 public class SpotifyLoginSteps {
     WebDriver driver = new ChromeDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+
     //1st scenario
     @Given("User is on spotify homepage")
     public void onSpotifyWebsite() {
-        //driver.get("https://open.spotify.com/");
-        driver.get("https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F");
+        driver.get("https://open.spotify.com/");
+        //driver.get("https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F");
         driver.manage().window().maximize();
     }
 
@@ -37,20 +42,7 @@ public class SpotifyLoginSteps {
 
     @And("User enters username")
     public void enterUsername() {
-//        java.util.Set<String> handles = driver.getWindowHandles();
-//        String winHandle1 = driver.getWindowHandle();
-//        handles.remove(winHandle1);
-//
-//        String winHandle = handles.iterator().next();
-//        String winHandle2 = " ";
-//        if (winHandle != winHandle1) {
-//            winHandle2 = winHandle;
-//            driver.switchTo().window(winHandle2);
-        //      }
-        //driver.findElement(By.id("login-username")).sendKeys("spotifyacc@test.com");
-        //driver.findElement(By.id("#login-username")).sendKeys("spotifyacc@test.com");
-        //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".#login-username"))).click();
-        driver.findElement(By.id("login-username")).sendKeys("test");
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("login-username"))).sendKeys("test");
     }
 
     @And("User enters password")
@@ -72,9 +64,12 @@ public class SpotifyLoginSteps {
     }
 
     //2nd scenario
-    @And("Click on the Apple button")
+    @And("Clicks on the Apple button")
     public void appleButton() {
-        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]")).click();
+        //wait.until(ExpectedConditions.elementToBeClickable(By.className("Type__TypeElement-goli3j-0.dmuHFl.sc-hKwDye.sc-kDTinF.sc-iqseJM.fXzRSj.iSqHJa.cSNvew"))).click();
+        //driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]")).click();
+        //driver.findElement(By.linkText("Continue with Apple")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]/button"))).click();
     }
 
     @And("User enters email")
@@ -99,4 +94,57 @@ public class SpotifyLoginSteps {
         String errMsgReceived = "Your Apple ID or password was incorrect.";
         Assert.assertEquals(errMsg, errMsgReceived);
     }
+
+    //3rd scenario Fb login
+    @And("Clicks on the Facebook button")
+    public void fbButton() {
+        //driver.findElement(By.className(".dQmJFP")).click();
+        //driver.findElement(By.linkText("Continue with Facebook")).click();
+        //driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[1]/button/span/svg")).click();
+        //driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[1]/button")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/ul/li[1]"))).click();
+    }
+
+    @And("Clicks on the Allow cookies button")
+    public void fbCookies() {
+        //js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        //driver.findElement(By.xpath("//*[@id=\"u_0_b_hQ\"]")).click();
+        //ldriver.findElement(By.id("cookie-policy-manage-dialog-accept-button")).click();
+        driver.findElement(By.xpath("//*[@id=\"u_0_b_3g\"]")).click();
+        //*[@id="u_0_b_3g"]
+    }
+
+    @And("User enters facebook email")
+    public void fbEmail() {
+        driver.findElement(By.id("email")).click();
+    }
+
+    @And("User enters facebook password")
+    public void fbPass() {
+        driver.findElement(By.id("pass")).click();
+    }
+
+    @And("Clicks log in button")
+    public void fbLogin() {
+        driver.findElement(By.id("loginbutton")).click();
+    }
+
+    @Then("An error message should pop up")
+    public void fbErrMsg() {
+
+    }
 }
+
+//        java.util.Set<String> handles = driver.getWindowHandles();
+//        String winHandle1 = driver.getWindowHandle();
+//        handles.remove(winHandle1);
+//
+//        String winHandle = handles.iterator().next();
+//        String winHandle2 = " ";
+//        if (winHandle != winHandle1) {
+//            winHandle2 = winHandle;
+//            driver.switchTo().window(winHandle2);
+//      }
+//driver.findElement(By.id("login-username")).sendKeys("spotifyacc@test.com");
+//driver.findElement(By.id("#login-username")).sendKeys("spotifyacc@test.com");
+//wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".#login-username"))).click();
