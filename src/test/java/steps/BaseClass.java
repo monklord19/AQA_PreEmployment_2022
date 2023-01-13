@@ -1,24 +1,26 @@
 package steps;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.time.Duration;
 
 
 public class BaseClass {
 
-    static WebDriver driver = new ChromeDriver();
+     static WebDriver driver = new ChromeDriver();
 
-    @Before
-    public void openBrowser() {
+    @BeforeClass
+    public static void openBrowser() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
     }
 
-    @After
-    public void closeBrowser() {
+    @AfterClass
+    public static void closeBrowser() {
         driver.quit();
     }
-
 
 }

@@ -21,6 +21,7 @@ public class GmailLoginPage{
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
+
     public void setGmailUsername(String username) {
         WebElement gmailUsernameFieldElement = driver.findElement(gmailUsernameField);
         gmailUsernameFieldElement.sendKeys(username);

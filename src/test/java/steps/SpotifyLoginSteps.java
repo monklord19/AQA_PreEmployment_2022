@@ -22,18 +22,18 @@ public class SpotifyLoginSteps extends BaseClass {
 
     AppleLoginPage appleLoginPage = new AppleLoginPage(driver);
 
-    @Given("user is on the main page")
-    public void onSpotifyPage() {
-        driver.get("https://www.spotify.com/");
+    @Given("user is on {string} page")
+    public void onSpotifyPage(String url) {
+        driver.get(url);
     }
 
     @And("user closes cookie")
-    public void userClosesCookie() {
+    public void userClosesCookie() throws InterruptedException {
         spotifyMainPage.closeCookie();
     }
 
     @And("user goes to login page")
-    public void userGoesToLoginPage() {
+    public void userGoesToLoginPage() throws InterruptedException {
         spotifyMainPage.clickLogin();
     }
 

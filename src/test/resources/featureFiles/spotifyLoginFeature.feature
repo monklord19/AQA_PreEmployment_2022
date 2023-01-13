@@ -1,7 +1,7 @@
 Feature: Login on Spotify
 
   Background:
-    Given user is on the main page
+    Given user is on 'https://www.spotify.com/' page
     And user closes cookie
     And user goes to login page
 
