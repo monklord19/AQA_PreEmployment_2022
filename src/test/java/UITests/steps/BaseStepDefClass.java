@@ -7,7 +7,7 @@ public class BaseStepDefClass  {
 
     protected void close_browser() {
         driver.close();
-        //driver.quit();
+        driver.quit();
         driver = null;
 
     }

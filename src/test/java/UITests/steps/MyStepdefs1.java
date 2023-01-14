@@ -7,9 +7,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.sl.In;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class MyStepdefs1 extends BaseStepDefClass {
     WebDriver driver = new ChromeDriver();
@@ -140,5 +142,29 @@ public class MyStepdefs1 extends BaseStepDefClass {
     public void onSpotifyWebsite() {
         driver.get("https://accounts.spotify.com/en/login?continue=https");
     }
+
+    @Given("on luma website")
+    public void onLumaWebsite() {
+        driver.get("https://magento.softwaretestingboard.com/");
+    }
+
+    @When("I hover over gear field and press the bags option")
+    public void iHoverOverGearFieldAndPressTheBagsOption() throws InterruptedException{
+        loginPage.clickOnBagsField();
+    }
+
+
+    @And("I scroll and hover over the item {string} and click on add to cart")
+    public void iScrollAndHoverOverTheItemAndClickOnAddToCart(String text) throws InterruptedException{
+        loginPage.addBagToCart(text);
+    }
+
+    @Then("Product should be added to cart with the name {string}")
+    public void productShouldBeAddedToCartWithTheName(String text) throws InterruptedException{
+         loginPage.verifyObjecInCart(text);
+    }
+
+
+
 
 }

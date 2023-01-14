@@ -2,7 +2,9 @@ package UITests.pageObjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebElement;
@@ -13,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FunctionsDefiniton {
 
     WebDriver driver;
+
     public FunctionsDefiniton(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -108,11 +111,62 @@ public class FunctionsDefiniton {
     @CacheLookup
     private WebElement mainText;
 
-
    @FindBy(xpath="//button[@data-cookiebanner='accept_button']")
    @CacheLookup
    private WebElement cookie;
 
+   @FindBy(id="ui-id-6")
+   @CacheLookup
+   private WebElement gearField;
+
+   public WebElement getGearField()
+   {
+       return gearField;
+   }
+
+    @FindBy(id="ui-id-25")
+    @CacheLookup
+    private WebElement bagsField;
+
+    public WebElement getBagsField()
+    {
+        return bagsField;
+    }
+
+    @FindBy( xpath = "//main[@id='maincontent']/div[3]/div[1]/div[3]/ol/li[5]/div")
+    @CacheLookup
+    private WebElement  itemInList;
+
+    public WebElement getItemInList()
+    {
+        return itemInList;
+    }
+    @FindBy(xpath = "//main[@id='maincontent']/div[3]/div[1]/div[3]/ol/li[5]/div/div/div[3]/div/div[1]/form/button")
+    @CacheLookup
+    private WebElement addToCart;
+
+    public WebElement getAddToCartButton()
+    {
+        return addToCart;
+    }
+
+    @FindBy(xpath = "//body[@data-container='body']/div[2]/header/div[2]/div[1]/a")
+    @CacheLookup
+    private WebElement cartButton;
+
+    public WebElement getCartButton()
+    {
+        return cartButton;
+    }
+
+    @FindBy(xpath = "//ol[@id='mini-cart']/li[1]/div[1]/div[1]/strong/a")
+    @CacheLookup
+    private WebElement textInCart;
+
+    public WebElement getTextInCart()
+    {
+        return textInCart;
+    }
     public WebElement getCookie()
     {
         return cookie;
@@ -167,8 +221,6 @@ public class FunctionsDefiniton {
     {
         Thread.sleep(6000);
         Assert.assertEquals(errorMessage.getText(), message);
-
-
     }
     public void refreshPage()
     {
@@ -288,6 +340,39 @@ public class FunctionsDefiniton {
         Thread.sleep(1000);
     }
 
+
+    public void clickOnBagsField() throws InterruptedException
+    {
+        Actions actions = new Actions(driver);
+        Thread.sleep(2000);
+        actions.moveToElement(getGearField());
+        Thread.sleep(1000);
+        actions.moveToElement(getBagsField());
+        Thread.sleep(1000);
+        actions.click().build().perform();
+    }
+
+    public void addBagToCart(String text) throws InterruptedException
+    {
+        Thread.sleep(3000);
+       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",getItemInList());
+        Thread.sleep(3000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(getItemInList()).perform();
+        Thread.sleep(3000);
+        getAddToCartButton().click();
+        Thread.sleep(6000);
+    }
+
+    public void verifyObjecInCart(String text) throws InterruptedException
+    {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",getCartButton());
+        Thread.sleep(6000);
+        getCartButton().click();
+        Thread.sleep(6000);
+        Assert.assertEquals(getTextInCart().getText(),text);
+        Thread.sleep(1000);
+    }
 
 
 }

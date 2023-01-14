@@ -13,7 +13,7 @@ Feature: Test cases for the spotify website
       And I type in the email or username "alexe@gmail.com" and press Next
       Then A pop-up saying "Contul Google nu a fost găsit" should appear
 
-    Scenario: I try to log in with a valid google account and worng password
+    Scenario: I try to log in with a valid google account and wrong password
       When I click the login with google option
       And I type in the email or username "alexaa@gmail.com" and press Next
       Then A new page opens up, where the text "Nu te-am putut conecta" should appear
