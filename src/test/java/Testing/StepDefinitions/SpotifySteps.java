@@ -8,7 +8,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.Testing.AppConfig;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -87,7 +89,10 @@ public class SpotifySteps extends TestBase {
 
     @Then("error message appears")
     public void errorMessageIsDisplayedOnSpotify() {
-        spotifyPage.errorMsgSpotify();
+        //spotifyPage.errorMsgSpotify();
+        Object expected=AppConfig.getErrorSpotify();
+        Object actual=spotifyLocators.getSpotify_errMsg().getText();
+        spotifyPage.assertErrorMessage(expected,actual);
     }
 
     //Invalid login with Apple account
@@ -115,7 +120,7 @@ public class SpotifySteps extends TestBase {
     public void userIsNotLoggedAndErrorIsDisplayed() {
        // spotifyPage.errorMsgApple();
         Object expected = AppConfig.getErrorApple();
-        Object actual=spotifyLocators.getAppleError();
+        Object actual=spotifyLocators.getAppleError().getText();
         spotifyPage.assertErrorMessage(expected, actual);
     }
     public void assertErrorMessage(Object expected,Object actual){
