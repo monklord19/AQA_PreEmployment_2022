@@ -5,7 +5,8 @@ Feature: Demoqa test
 
   Scenario:
     When user clicks 'Element' category
-    And user clicks on "Check Box" element
-#    And user double clicks on double-click button
-#    Then user receives message
-#    And the message is: 'You have done a double click'
+    And user clicks on "Check Box" element item
+    And user clicks on expand Home button
+    And user clicks on 'Downloads' checkbox;
+    Then message is diplayed: You have selected:'downloads'
+

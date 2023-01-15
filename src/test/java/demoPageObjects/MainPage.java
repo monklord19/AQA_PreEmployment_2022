@@ -20,11 +20,12 @@ public class MainPage {
 
     public void clickOnCategoryCard(String category) {
         String categoryCardXpath = "//h5[contains(text(), '" + category + "')]";
-        WebElement meniuItemsElement = driver.findElement(By.xpath(categoryCardXpath));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", meniuItemsElement);
-        wait.until(ExpectedConditions.visibilityOf(meniuItemsElement));
-        meniuItemsElement.click();
+        WebElement meniuCategoryElement = driver.findElement(By.xpath(categoryCardXpath));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", meniuCategoryElement);
+        wait.until(ExpectedConditions.visibilityOf(meniuCategoryElement));
+        meniuCategoryElement.click();
     }
+
 
 }
 
