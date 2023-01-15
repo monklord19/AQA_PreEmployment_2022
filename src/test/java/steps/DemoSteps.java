@@ -7,6 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 public class DemoSteps extends BaseClass {
@@ -42,6 +43,26 @@ public class DemoSteps extends BaseClass {
 
     @Then("message is diplayed: You have selected:{string}")
     public void messageIsDiplayed(String message) {
-        Assert.assertEquals(message,elementPage.messageIsDisplayed(message));
+        Assert.assertEquals(message, elementPage.messageIsDisplayed(message));
+    }
+
+    @And("user double clicks on Double Click Me button")
+    public void userDoubleClicksButton() {
+        elementPage.doubleClickButtonAction();
+    }
+
+    @And("user right clicks on Right Click Me button")
+    public void userRightClicksOnButton() {
+        elementPage.rightClickButtonAction();
+    }
+
+    @And("user clicks on Click Me button")
+    public void userClicksOnButton() {
+        elementPage.clickButtonAction();
+    }
+
+    @Then("user receives confirmation messages")
+    public void userReceivesConfirmationMessages() {
+        elementPage.confirmationMessagesAreDisplayed();
     }
 }
