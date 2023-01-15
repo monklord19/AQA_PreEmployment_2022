@@ -7,7 +7,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 public class DemoSteps extends BaseClass {
@@ -21,7 +20,7 @@ public class DemoSteps extends BaseClass {
         driver.get(url);
     }
 
-    @When("user clicks {string} category")
+    @When("user clicks on {string} category")
     public void userClicksCategoryCard(String category) {
         mainpage.clickOnCategoryCard(category);
     }
@@ -64,5 +63,29 @@ public class DemoSteps extends BaseClass {
     @Then("user receives confirmation messages")
     public void userReceivesConfirmationMessages() {
         elementPage.confirmationMessagesAreDisplayed();
+    }
+
+    @And("user clicks on Add button")
+    public void userClicksOnAddButton() {
+        elementPage.clickOnAddButton();
+    }
+
+    @And("user fills with: {string},{string},{string},{string},{string},{string} the registration form")
+    public void userFillsTheRegistrationForm(String firstName, String lastName, String email, String age, String salary, String department) {
+        elementPage.fillFirstNameField(firstName);
+        elementPage.fillLastNameField(lastName);
+        elementPage.fillEmailField(email);
+        elementPage.fillAgeField(age);
+        elementPage.fillSalaryField(salary);
+        elementPage.fillDepartmentField(department);
+    }
+
+    @And("user clicks submit button")
+    public void userClicksSubmitButton() {
+        elementPage.clickRegistrationFormSubmitButton();
+    }
+
+    @And("user clicks the edit button from the first line")
+    public void userClicksEditButtonFromTheFirstLine() {
     }
 }

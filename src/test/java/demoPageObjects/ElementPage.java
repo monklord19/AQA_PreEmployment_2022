@@ -21,6 +21,14 @@ public class ElementPage {
     By doubleClickMessage = By.id("doubleClickMessage");
     By rightClickMessage = By.id("rightClickMessage");
     By clickMessage = By.id("dynamicClickMessage");
+    By addNewRecordButton = By.id("addNewRecordButton");
+    By firstNameField = By.id("firstName");
+    By lastNameField = By.id("lastName");
+    By emailField = By.id("userEmail");
+    By ageField = By.id("age");
+    By salaryField = By.id("salary");
+    By departmentField = By.id("department");
+    By registrationFormSubmitButton = By.id("submit");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -69,12 +77,53 @@ public class ElementPage {
         clickButtonElement.click();
     }
 
-    public void confirmationMessagesAreDisplayed(){
+    public void confirmationMessagesAreDisplayed() {
         WebElement doubleClickMesageElement = driver.findElement(doubleClickMessage);
         WebElement rightClickMessageElement = driver.findElement(rightClickMessage);
-        WebElement clickMessageElement= driver.findElement(clickMessage);
+        WebElement clickMessageElement = driver.findElement(clickMessage);
         doubleClickMesageElement.isDisplayed();
         rightClickMessageElement.isDisplayed();
         clickMessageElement.isDisplayed();
     }
+
+    public void clickOnAddButton() {
+        WebElement addNewRecordButtonElement = driver.findElement(addNewRecordButton);
+        addNewRecordButtonElement.click();
+    }
+
+    public void fillFirstNameField(String firstName) {
+        WebElement firstNameFieldElement = driver.findElement(firstNameField);
+        firstNameFieldElement.sendKeys(firstName);
+    }
+
+    public void fillLastNameField(String lastName) {
+        WebElement lastNameFieldElement = driver.findElement(lastNameField);
+        lastNameFieldElement.sendKeys(lastName);
+    }
+
+    public void fillEmailField(String email) {
+        WebElement emailFieldElement = driver.findElement(emailField);
+        emailFieldElement.sendKeys(email);
+    }
+
+    public void fillAgeField(String age) {
+        WebElement ageFieldElement = driver.findElement(ageField);
+        ageFieldElement.sendKeys(age);
+    }
+
+    public void fillSalaryField(String salary) {
+        WebElement salaryFieldElement = driver.findElement(salaryField);
+        salaryFieldElement.sendKeys(salary);
+    }
+
+    public void fillDepartmentField(String department) {
+        WebElement departmentFieldElement = driver.findElement(departmentField);
+        departmentFieldElement.sendKeys(department);
+    }
+
+    public void clickRegistrationFormSubmitButton() {
+        WebElement registrationFormSubmitButtonElement = driver.findElement(registrationFormSubmitButton);
+        registrationFormSubmitButtonElement.click();
+    }
+
 }
