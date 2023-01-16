@@ -1,4 +1,4 @@
-package StepsDefinitions;//package StepDefinitions;
+//package StepsDefinitions;
 //
 //import io.cucumber.java.en.*;
 //import org.junit.Assert;
@@ -6,9 +6,9 @@ package StepsDefinitions;//package StepDefinitions;
 //import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.chrome.ChromeDriver;
-//import pageObjects.pageObjects;
+//import pages.pageObjects;
 //
-// This file runs with pageObjects file. This is Page Object model.
+//// This file runs with pageObjects file. This is Page Object model.
 //public class MySteps {
 //    WebDriver driver = new ChromeDriver();
 //    pageObjects pom;
@@ -22,7 +22,6 @@ package StepsDefinitions;//package StepDefinitions;
 //
 //    @Given("User clicks on Elements button")
 //    public void userClicksOnElementsButton() {
-//
 //        pom.userClicksOnElementsButton();
 ////        driver.findElement(By.className("card-up")).click();
 //    }
@@ -44,6 +43,19 @@ package StepsDefinitions;//package StepDefinitions;
 ////        WebElement text = driver.findElement(By.className("mt-3"));
 ////        String expectedText = "You have selected Yes";
 ////        Assert.assertEquals(expectedText, text.getText());
+//    }
+//
+//    @When("User clicks on Check Box")
+//    public void userClicksOnCheckBox() {
+//        pom.userClicksOnCheckBox();
+//    }
+//    @When("User clicks on Home Check Box")
+//    public void userClicksOnHomeCheckBox() {
+//        pom.userClicksOnHomeCheckBox();
+//    }
+//    @Then("You have selected Home Desktop appears")
+//    public void youHaveSelectedHomeDesktopAppears() {
+//        pom.youHaveSelectedHomeDesktopAppears();
 //    }
 //
 //}

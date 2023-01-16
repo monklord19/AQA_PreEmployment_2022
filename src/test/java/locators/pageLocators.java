@@ -27,12 +27,21 @@ public class pageLocators {
     @FindBy(className = "mt-3")
     WebElement yesTextAppears;
 
-    public void userClicksOnElementsButton() {
-        elementsButton.click();
-    }
+    @FindBy(id = "item-1")
+    WebElement checkBox;
+
+    @FindBy(className = "rct-checkbox")
+    WebElement homeCheckBox;
+
+    @FindBy(id = "result")
+    WebElement homeDesktopTestAppears;
 
     public void userClicksOnRadioButton() {
         radioButton.click();
+    }
+
+    public void userClicksOnElementsButton() {
+        elementsButton.click();
     }
 
     public void userCLicksOnYesOption() {
@@ -42,6 +51,37 @@ public class pageLocators {
     public void youHaveSelectedYesTextAppears() {
         WebElement text = yesTextAppears;
         String expectedText = "You have selected Yes";
+        Assert.assertEquals(expectedText, text.getText());
+    }
+
+    public void userClicksOnCheckBox() {
+        checkBox.click();
+    }
+
+    public void userClicksOnHomeCheckBox() {
+        homeCheckBox.click();
+    }
+
+    public void youHaveSelectedHomeDesktopAppears() {
+        WebElement text = homeDesktopTestAppears;
+        String expectedText = "You have selected :\n" +
+                "home\n" +
+                "desktop\n" +
+                "notes\n" +
+                "commands\n" +
+                "documents\n" +
+                "workspace\n" +
+                "react\n" +
+                "angular\n" +
+                "veu\n" +
+                "office\n" +
+                "public\n" +
+                "private\n" +
+                "classified\n" +
+                "general\n" +
+                "downloads\n" +
+                "wordFile\n" +
+                "excelFile";
         Assert.assertEquals(expectedText, text.getText());
     }
 

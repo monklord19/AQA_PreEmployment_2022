@@ -46,4 +46,17 @@ public class MyStepsPF {
 //        Assert.assertEquals(expectedText, text.getText());
     }
 
+    @When("User clicks on Check Box")
+    public void userClicksOnCheckBox() {
+        pfm.userClicksOnCheckBox();
+    }
+    @When("User clicks on Home Check Box")
+    public void userClicksOnHomeCheckBox() {
+        pfm.userClicksOnHomeCheckBox();
+    }
+    @Then("You have selected Home Desktop appears")
+    public void youHaveSelectedHomeDesktopAppears() {
+        pfm.youHaveSelectedHomeDesktopAppears();
+    }
+
 }
