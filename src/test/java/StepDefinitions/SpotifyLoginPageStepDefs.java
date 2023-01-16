@@ -2,24 +2,37 @@ package StepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import org.openqa.selenium.By;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.SpotifyLoginPage;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SpotifyLoginPageStepDefs {
+    WebDriver driver = new ChromeDriver();
+    SpotifyLoginPage spotifyLoginPage = new SpotifyLoginPage(driver);
 
-    WebDriver driver;
-    WebElement submitButton;
-
-    @Given("On the Spotify site, I click ACCEPT COOKIES")
-    public void onTheSpotifySiteIClickACCEPTCOOKIES() {
-        driver = new ChromeDriver();
-        driver.get("https://open.spotify.com/");
+    @Given("On the Spotify Login page")
+    public void onTheSpotifyLoginPage() {
+        driver.get("https://accounts.spotify.com/en/login");
     }
 
-    @And("I click Log in; the Login - Spotify page opens")
-    public void iClickLogInTheLoginSpotifyPageOpens() {
-        submitButton = driver.findElement(By.name("login-button"));
-        submitButton.click();}
+    @When("I enter invalid username and password")
+    public void iEnterInvalidUsernameAndPassword() {
+        spotifyLoginPage.setUsernameField("Invalid Username");
+        spotifyLoginPage.setPasswordField("Invalid Password");
+    }
+
+    @And("I click Log in button")
+    public void iClickLogInButton() {
+        spotifyLoginPage.clickLoginButton();
+    }
+
+    @Then("I am unable to log in and error message is displayed")
+    public void iAmUnableToLogInAndErrorMessageIsDisplayed() {
+        assertTrue (driver.getPageSource().contains("Incorrect username or password."));
+    }
+
 }

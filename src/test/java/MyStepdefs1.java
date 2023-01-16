@@ -44,16 +44,16 @@ public class MyStepdefs1 {
         driver.quit();
     }
 
-    @When("I enter valid username and password")
-    public void IEnterValidUsernameAndPassword() {
-        textBoxUserName = driver.findElement(By.name("user-name"));
-        String userNameValue = textBoxUserName.getAttribute("value");
-        textBoxPassword = driver.findElement(By.name("password"));
-        String passwordValue = textBoxPassword.getAttribute("value");
-        assertEquals ("secret_sauce", passwordValue);
-        assertTrue (userNameValue.equals("standard_user") || userNameValue.equals("problem_user") || userNameValue.equals("performance_glitch_user"));
-
-    }
+//    @When("I enter valid username and password")
+//    public void IEnterValidUsernameAndPassword() {
+//        textBoxUserName = driver.findElement(By.name("user-name"));
+//        String userNameValue = textBoxUserName.getAttribute("value");
+//        textBoxPassword = driver.findElement(By.name("password"));
+//        String passwordValue = textBoxPassword.getAttribute("value");
+//        assertEquals ("secret_sauce", passwordValue);
+//        assertTrue (userNameValue.equals("standard_user") || userNameValue.equals("problem_user") || userNameValue.equals("performance_glitch_user"));
+//
+//    }
 
 
 
