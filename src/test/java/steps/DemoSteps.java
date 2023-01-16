@@ -133,4 +133,14 @@ public class DemoSteps extends BaseClass {
     public void secondLineIsErased(String firstName) {
         Assert.assertFalse(elementPage.checkIfNewFormIsRegistered().contains(firstName));
     }
+
+    @And("user enters {string}")
+    public void userEntersPath(String path) {
+        elementPage.enterPath(path);
+    }
+
+    @And("file name {string} and path of document uploaded is displayed")
+    public void pathOfDocumentUploadedIsDisplayed(String fileName) {
+        Assert.assertTrue(elementPage.nameOfUploadedFile().contains(fileName));
+    }
 }

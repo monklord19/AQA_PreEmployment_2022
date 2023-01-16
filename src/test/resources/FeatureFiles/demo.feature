@@ -35,4 +35,11 @@ Feature: Demoqa test
       | firstName |  | lastName |  | email                 |  | age |  | salary |  | department |
       | Radu      |  | Sabau    |  | sabau.radu91@yahoo.ro |  | 31  |  | 11000  |  | Technical  |
 
-
+  Scenario Outline: Upload a file
+    When user clicks on 'Element' category
+    And user clicks on 'Upload and Download' element item
+    And user enters '<Path>'
+    And file name 'FirstWeek.txt' and path of document uploaded is displayed
+    Examples:
+      | Path |
+      | C:\Users\Radu Sabau\Desktop\AQA-Pre-Employment\AQAProject\AQA_PreEmployment_2022\HomeWorks\FirstWeek.txt  |

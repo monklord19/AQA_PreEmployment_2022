@@ -37,7 +37,8 @@ public class ElementPage {
     By webTable = By.xpath("//div[@class='rt-table']");
     By firstLineAgeField = By.xpath("//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/" +
             "div[1]/div/div[3]");
-
+    By chooseFileButton = By.xpath("//input[@type='file']");
+    By pathOfUploadedFile = By.id("uploadedFilePath");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -168,10 +169,19 @@ public class ElementPage {
         WebElement uploadButtonElement = driver.findElement(uploadButton);
         uploadButtonElement.click();
     }
-    public String checkEditedAge(){
+
+    public String checkEditedAge() {
         WebElement firstLineAgeFieldElement = driver.findElement(firstLineAgeField);
         return firstLineAgeFieldElement.getText();
     }
 
+    public void enterPath(String path){
+        WebElement chooseFileInputElement = driver.findElement(chooseFileButton);
+        chooseFileInputElement.sendKeys(path);
+    }
+    public String nameOfUploadedFile(){
+        WebElement pathOfUploadedFileElement = driver.findElement(pathOfUploadedFile);
+        return pathOfUploadedFileElement.getText();
+    }
 
 }
