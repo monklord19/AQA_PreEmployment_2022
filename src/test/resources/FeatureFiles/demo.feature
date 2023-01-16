@@ -24,10 +24,15 @@ Feature: Demoqa test
     And user clicks on Add button
     And user fills with: '<firstName>','<lastName>','<email>','<age>','<salary>','<department>' the registration form
     And user clicks submit button
+    And new line with: '<firstName>','<lastName>','<email>','<age>','<salary>','<department>' is registered
     And user clicks the edit button from the first line
-    And user edits the age
+    And user edits the age with '40' years
     And user clicks submit button
-    And user
+    And age at first line is edited at '40'
+    And user clicks delete button on second line
+    And "Alden"'s line is erased
     Examples:
       | firstName |  | lastName |  | email                 |  | age |  | salary |  | department |
-      | Radu      |  | Sabau    |  | sabau.radu91@yahoo.ro |  | 31  |  | 15000  |  | Technical  |
+      | Radu      |  | Sabau    |  | sabau.radu91@yahoo.ro |  | 31  |  | 11000  |  | Technical  |
+
+

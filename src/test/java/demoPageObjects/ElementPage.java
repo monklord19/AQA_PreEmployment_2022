@@ -29,6 +29,15 @@ public class ElementPage {
     By salaryField = By.id("salary");
     By departmentField = By.id("department");
     By registrationFormSubmitButton = By.id("submit");
+    By editButton = By.xpath("//div[contains(text(),'Insurance')]//following-sibling::div/div/span" +
+            "[@title='Edit']");
+    By deleteButton = By.xpath("//div[contains(text(),'Compliance')]//following-sibling::div/div/span" +
+            "[@title='Delete']");
+    By uploadButton = By.id("uploadFile");
+    By webTable = By.xpath("//div[@class='rt-table']");
+    By firstLineAgeField = By.xpath("//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/" +
+            "div[1]/div/div[3]");
+
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -49,7 +58,8 @@ public class ElementPage {
     }
 
     public void clickOnCheckbox(String node) {
-        String checkboxXpath = "//*[@id='tree-node-" + node.toLowerCase() + "']//following-sibling::span[@class='rct-checkbox']";
+        String checkboxXpath = "//*[@id='tree-node-" + node.toLowerCase() + "']//following-sibling::span[@class=" +
+                "'rct-checkbox']";
         WebElement checkboxElement = driver.findElement(By.xpath(checkboxXpath));
         checkboxElement.click();
     }
@@ -77,13 +87,19 @@ public class ElementPage {
         clickButtonElement.click();
     }
 
-    public void confirmationMessagesAreDisplayed() {
+    public boolean confirmationDoubleClickMessageIsDiplayed() {
         WebElement doubleClickMesageElement = driver.findElement(doubleClickMessage);
+        return doubleClickMesageElement.isDisplayed();
+    }
+
+    public boolean confirmationRightClickMessageIsDiplayed() {
         WebElement rightClickMessageElement = driver.findElement(rightClickMessage);
+        return rightClickMessageElement.isDisplayed();
+    }
+
+    public boolean confirmationClickMessageIsDiplayed() {
         WebElement clickMessageElement = driver.findElement(clickMessage);
-        doubleClickMesageElement.isDisplayed();
-        rightClickMessageElement.isDisplayed();
-        clickMessageElement.isDisplayed();
+        return clickMessageElement.isDisplayed();
     }
 
     public void clickOnAddButton() {
@@ -125,5 +141,37 @@ public class ElementPage {
         WebElement registrationFormSubmitButtonElement = driver.findElement(registrationFormSubmitButton);
         registrationFormSubmitButtonElement.click();
     }
+
+    public String checkIfNewFormIsRegistered() {
+        WebElement webTableElement = driver.findElement(webTable);
+        return webTableElement.getText();
+    }
+
+    public void clickEditButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(editButton));
+        WebElement editButtonElement = driver.findElement(editButton);
+        editButtonElement.click();
+    }
+
+    public void editAge(String age) {
+        WebElement ageFieldElement = driver.findElement(ageField);
+        ageFieldElement.clear();
+        ageFieldElement.sendKeys(age);
+    }
+
+    public void deleteSecondLine() {
+        WebElement deleteButtonElement = driver.findElement(deleteButton);
+        deleteButtonElement.click();
+    }
+
+    public void clickUploadButton() {
+        WebElement uploadButtonElement = driver.findElement(uploadButton);
+        uploadButtonElement.click();
+    }
+    public String checkEditedAge(){
+        WebElement firstLineAgeFieldElement = driver.findElement(firstLineAgeField);
+        return firstLineAgeFieldElement.getText();
+    }
+
 
 }

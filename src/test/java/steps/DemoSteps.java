@@ -9,6 +9,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DemoSteps extends BaseClass {
 
     MainPage mainpage = new MainPage(driver);
@@ -62,7 +65,9 @@ public class DemoSteps extends BaseClass {
 
     @Then("user receives confirmation messages")
     public void userReceivesConfirmationMessages() {
-        elementPage.confirmationMessagesAreDisplayed();
+        Assert.assertTrue(elementPage.confirmationDoubleClickMessageIsDiplayed() &&
+                elementPage.confirmationRightClickMessageIsDiplayed() &&
+                elementPage.confirmationClickMessageIsDiplayed());
     }
 
     @And("user clicks on Add button")
@@ -85,7 +90,47 @@ public class DemoSteps extends BaseClass {
         elementPage.clickRegistrationFormSubmitButton();
     }
 
+    @And("new line with: {string},{string},{string},{string},{string},{string} is registered")
+    public void newLineIsAdded(String firstName, String lastName, String email, String age, String salary, String department) {
+        List<String>data = new ArrayList<String>();
+        data.add(firstName);
+        data.add(lastName);
+        data.add(email);
+        data.add(age);
+        data.add(salary);
+        data.add(department);
+        for (String value : data) {
+            Assert.assertTrue(elementPage.checkIfNewFormIsRegistered().contains(value));
+        }
+    }
+
     @And("user clicks the edit button from the first line")
     public void userClicksEditButtonFromTheFirstLine() {
+        elementPage.clickEditButton();
+    }
+
+    @And("user edits the age with {string} years")
+    public void userEditsTheAge(String age) {
+        elementPage.editAge(age);
+    }
+
+    @And("user clicks delete button on second line")
+    public void userClicksDeleteButtonOnSecondLine() {
+        elementPage.deleteSecondLine();
+    }
+
+    @And("user clicks on Upload button")
+    public void userClicksOnUploadButton() {
+        elementPage.clickUploadButton();
+    }
+
+    @And("age at first line is edited at {string}")
+    public void ageAtFirstLineIsEdited(String newAge) {
+        Assert.assertEquals(newAge,elementPage.checkEditedAge());
+    }
+
+    @And("{string}'s line is erased")
+    public void secondLineIsErased(String firstName) {
+        Assert.assertFalse(elementPage.checkIfNewFormIsRegistered().contains(firstName));
     }
 }
