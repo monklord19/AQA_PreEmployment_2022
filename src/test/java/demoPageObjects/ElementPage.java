@@ -39,6 +39,7 @@ public class ElementPage {
             "div[1]/div/div[3]");
     By chooseFileButton = By.xpath("//input[@type='file']");
     By pathOfUploadedFile = By.id("uploadedFilePath");
+    By outerFrame = By.id("frame1");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -182,6 +183,21 @@ public class ElementPage {
     public String nameOfUploadedFile(){
         WebElement pathOfUploadedFileElement = driver.findElement(pathOfUploadedFile);
         return pathOfUploadedFileElement.getText();
+    }
+    public String outerFrameText() {
+        WebElement outerFrameElement = driver.findElement(outerFrame);
+        driver.switchTo().frame(outerFrameElement);
+        WebElement outerFrameTextElement = driver.findElement(By.xpath("//html/body"));
+        String outerFrameText = outerFrameTextElement.getText();
+        driver.switchTo().frame(0);
+        return outerFrameText;
+    }
+
+        public String innerFrameText(){
+        WebElement innerFrameTextElement = driver.findElement(By.xpath("//html/body/p"));
+        String innerFrameText = innerFrameTextElement.getText();
+        driver.switchTo().defaultContent();
+        return innerFrameText;
     }
 
 }

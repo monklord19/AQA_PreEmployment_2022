@@ -92,7 +92,7 @@ public class DemoSteps extends BaseClass {
 
     @And("new line with: {string},{string},{string},{string},{string},{string} is registered")
     public void newLineIsAdded(String firstName, String lastName, String email, String age, String salary, String department) {
-        List<String>data = new ArrayList<String>();
+        List<String> data = new ArrayList<String>();
         data.add(firstName);
         data.add(lastName);
         data.add(email);
@@ -126,7 +126,7 @@ public class DemoSteps extends BaseClass {
 
     @And("age at first line is edited at {string}")
     public void ageAtFirstLineIsEdited(String newAge) {
-        Assert.assertEquals(newAge,elementPage.checkEditedAge());
+        Assert.assertEquals(newAge, elementPage.checkEditedAge());
     }
 
     @And("{string}'s line is erased")
@@ -142,5 +142,16 @@ public class DemoSteps extends BaseClass {
     @And("file name {string} and path of document uploaded is displayed")
     public void pathOfDocumentUploadedIsDisplayed(String fileName) {
         Assert.assertTrue(elementPage.nameOfUploadedFile().contains(fileName));
+    }
+
+    @And("user gets and print the outer frame text:{string}")
+    public void userGetsAndPrintTheOuterFrameText(String text) {
+        Assert.assertTrue(elementPage.outerFrameText().contains(text));
+    }
+
+
+    @And("user gets and print the inner frame text:{string}")
+    public void userGetsAndPrintTheInnerFrameTextChildIframe(String text) {
+        Assert.assertTrue(elementPage.innerFrameText().contains(text));
     }
 }

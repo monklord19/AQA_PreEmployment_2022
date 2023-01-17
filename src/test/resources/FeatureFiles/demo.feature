@@ -41,5 +41,12 @@ Feature: Demoqa test
     And user enters '<Path>'
     And file name 'FirstWeek.txt' and path of document uploaded is displayed
     Examples:
-      | Path |
-      | C:\Users\Radu Sabau\Desktop\AQA-Pre-Employment\AQAProject\AQA_PreEmployment_2022\HomeWorks\FirstWeek.txt  |
+      | Path                                                                                                     |
+      | C:\Users\Radu Sabau\Desktop\AQA-Pre-Employment\AQAProject\AQA_PreEmployment_2022\HomeWorks\FirstWeek.txt |
+
+  Scenario: Geting the texts from the outer and inner frames
+    When user clicks on 'Alerts, Frame & Windows' category
+    And user clicks on 'Nested Frames' element item
+    And user gets and print the outer frame text:'Parent frame'
+    And user gets and print the inner frame text:'Child Iframe'
+
