@@ -10,7 +10,7 @@ Feature: Demoqa test
     And user clicks on 'Downloads' checkbox;
     Then message is diplayed: You have selected:'downloads'
 
-  Scenario: Buttons functionality
+  Scenario: Buttons functionality check
     When user clicks on 'Element' category
     And user clicks on 'Buttons' element item
     And user double clicks on Double Click Me button
@@ -50,3 +50,10 @@ Feature: Demoqa test
     And user gets and print the outer frame text:'Parent frame'
     And user gets and print the inner frame text:'Child Iframe'
 
+  Scenario: Alerts functionality check
+    When user clicks on 'Alerts, Frame & Windows' category
+    And user clicks on 'Alerts' element item
+    And user clicks on the simple alert button to open it and close it with OK
+    And user clicks on the timer alert button to open it and close it with OK
+    And user clicks on the confirm alert button to open it and close it with Cancel
+    And user clicks on the prompt alert button to open it, write 'Radu' and close it with OK

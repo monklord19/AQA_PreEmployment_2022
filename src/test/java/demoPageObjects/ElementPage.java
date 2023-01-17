@@ -1,9 +1,6 @@
 package demoPageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,10 +37,16 @@ public class ElementPage {
     By chooseFileButton = By.xpath("//input[@type='file']");
     By pathOfUploadedFile = By.id("uploadedFilePath");
     By outerFrame = By.id("frame1");
+    By openAlertButton = By.xpath("//button[@id='alertButton']");
+    By openTimerAlertButton = By.xpath("//button[@id='timerAlertButton']");
+    By openConfirmationAlertButton = By.xpath("//button[@id='confirmButton']");
+    By confirmationMessage = By.xpath("//span[@id='confirmResult']");
+    By openPromptButton = By.xpath("//button[@id='promtButton']");
+    By promptConfirmationMessage = By.xpath("//span[@id='promptResult']");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(7));
     }
 
     public void clickOnElementItems(String elementItem) {
@@ -176,14 +179,16 @@ public class ElementPage {
         return firstLineAgeFieldElement.getText();
     }
 
-    public void enterPath(String path){
+    public void enterPath(String path) {
         WebElement chooseFileInputElement = driver.findElement(chooseFileButton);
         chooseFileInputElement.sendKeys(path);
     }
-    public String nameOfUploadedFile(){
+
+    public String nameOfUploadedFile() {
         WebElement pathOfUploadedFileElement = driver.findElement(pathOfUploadedFile);
         return pathOfUploadedFileElement.getText();
     }
+
     public String outerFrameText() {
         WebElement outerFrameElement = driver.findElement(outerFrame);
         driver.switchTo().frame(outerFrameElement);
@@ -193,11 +198,52 @@ public class ElementPage {
         return outerFrameText;
     }
 
-        public String innerFrameText(){
+    public String innerFrameText() {
         WebElement innerFrameTextElement = driver.findElement(By.xpath("//html/body/p"));
         String innerFrameText = innerFrameTextElement.getText();
         driver.switchTo().defaultContent();
         return innerFrameText;
     }
+
+    public String clickToOpenAlert() {
+        WebElement openAlertButtonElement = driver.findElement(openAlertButton);
+        openAlertButtonElement.click();
+        Alert alert = driver.switchTo().alert();
+        String alertMessage = alert.getText();
+        alert.accept();
+        return alertMessage;
+    }
+    public String clickToOpenTimerAlert(){
+        WebElement openTimerAlertButtonElement = driver.findElement(openTimerAlertButton);
+        openTimerAlertButtonElement.click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        String alertMessage = alert.getText();
+        alert.accept();
+        return alertMessage;
+    }
+    public String clickToOpenConfirmationAlert(){
+        WebElement openConfirmationAlertButtonElement = driver.findElement(openConfirmationAlertButton);
+        openConfirmationAlertButtonElement.click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+        WebElement confirmationMessageElement = driver.findElement(confirmationMessage);
+        String confirmationMessageAction = confirmationMessageElement.getText();
+        return confirmationMessageAction;
+    }
+    public String clickToOpenPromptAlert(String name){
+        WebElement openPromptAlertButtonElement = driver.findElement(openPromptButton);
+        openPromptAlertButtonElement.click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys(name);
+        alert.accept();
+        WebElement promptConfirmationMessageActionElement = driver.findElement(promptConfirmationMessage);
+        String promptConfirmationMessageAction = promptConfirmationMessageActionElement.getText();
+        return promptConfirmationMessageAction;
+    }
+
+
 
 }

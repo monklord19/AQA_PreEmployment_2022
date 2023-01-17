@@ -151,7 +151,27 @@ public class DemoSteps extends BaseClass {
 
 
     @And("user gets and print the inner frame text:{string}")
-    public void userGetsAndPrintTheInnerFrameTextChildIframe(String text) {
+    public void userGetsAndPrintTheInnerFrameText(String text) {
         Assert.assertTrue(elementPage.innerFrameText().contains(text));
+    }
+
+    @And("user clicks on the simple alert button to open it and close it with OK")
+    public void userClicksOnTheSimpleAlertButtonToOpenIt() {
+        Assert.assertTrue(elementPage.clickToOpenAlert().contains("You clicked a button"));
+    }
+
+    @And("user clicks on the timer alert button to open it and close it with OK")
+    public void userClicksOnTheTimerAlertButtonToOpenIt() {
+        Assert.assertTrue(elementPage.clickToOpenTimerAlert().contains("This alert appeared after 5 seconds"));
+    }
+
+    @And("user clicks on the confirm alert button to open it and close it with Cancel")
+    public void userClicksOnTheConfirmAlertButtonToOpenIt() {
+        Assert.assertTrue(elementPage.clickToOpenConfirmationAlert().contains("You selected Cancel"));
+    }
+
+    @And("user clicks on the prompt alert button to open it, write {string} and close it with OK")
+    public void userClicksOnThePromptAlertButtonToOpenIt(String name) {
+        Assert.assertTrue(elementPage.clickToOpenPromptAlert(name).contains(name));
     }
 }
