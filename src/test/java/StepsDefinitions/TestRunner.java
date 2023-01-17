@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/FeatureFiles/*.feature"},
         glue = {"src/test/java/StepsDefinitions"},
-        tags = "@LoginwithGoogle or @LoginwithSpotify or @LoginwithApple or @LoginwithFacebook",
+        //tags = "(@LoginwithGoogle or @LoginwithSpotify or @LoginwithApple or @LoginwithFacebook)",
         plugin = "pretty"
 
         //tags = "@RegressionTestsBAP"

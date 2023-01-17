@@ -1,6 +1,6 @@
 Feature:Test Spotify Login
-Background: I am on login page and accept coockies
-@LoginwithGoogle
+Background:I am on login page and accept coockies
+@Test
   Scenario: Login with Google account
     Given Click Connect
     And Choose CONTINUE WITH GOOGLE
@@ -8,14 +8,14 @@ Background: I am on login page and accept coockies
     And Click Next
     Then Error Message is displayed
 
-  @LoginwithSpotify
+  @Test
   Scenario:Login with Spotify account
     Given Click Connect
     When I enter username and password
     And Click LOGIN
     Then Error message2 is displayed
 
-  @LoginwithApple
+  @Test
   Scenario: Login with Apple account
     Given Click Connect
     And Choose CONTINUE WITH Apple
@@ -25,7 +25,7 @@ Background: I am on login page and accept coockies
     And Click Signin
     Then Error Message3 is displayed
 
-  @LoginwithFacebook
+  @Test
   Scenario: Login with Facebook account
     Given Click Connect
     And Choose CONTINUE WITH Facebook
