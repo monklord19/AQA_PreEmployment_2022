@@ -12,6 +12,7 @@ public class AppleLoginLocators {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+    public static final String login_spotifypage_xpath = "//*[@id=\"main\"]/div/div[2]/div[1]/header/div[5]/button[2]/span";
 
     public static final String loginapple_xpath = "//*[@id=\"root\"]/div/div[2]/div/div/ul/li[2]/button";
     public static final String account_id = "account_name_text_field";
@@ -19,7 +20,12 @@ public class AppleLoginLocators {
     public static final String passapple_id = "password_text_field";
     public static final String next_xpath = "//*[@id=\"sign-in\"]/i";
 
-    public static final String error_apple_xpath = "//*[@id=\"signin\"]/div[1]/div[2]/div";
+    public static final String error_apple_xpath = "//*[@id=\"errMsg\"]";
+
+    @FindBy(xpath = AppleLoginLocators.login_spotifypage_xpath)
+    @CacheLookup
+    private
+    WebElement login_spotify_page;
 
 
     @FindBy(xpath = AppleLoginLocators.loginapple_xpath)
@@ -52,6 +58,10 @@ public class AppleLoginLocators {
     private
     WebElement error_apple;
 
+    public WebElement getLoginSpotifyPage()
+    {
+        return login_spotify_page;
+    }
     public WebElement getLoginWithApple()
     {
         return loginapple;

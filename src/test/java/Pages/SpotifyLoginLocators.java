@@ -13,24 +13,28 @@ public class SpotifyLoginLocators {
         PageFactory.initElements(driver, this);
     }
 
-
+    //Login with spotify
     public static final String login_spotify_xpath = "//*[@id=\"main\"]/div/div[2]/div[1]/header/div[5]/button[2]/span";
 
-    public static final String xpath_username = "/html/body/div[1]/div/div[2]/div/div/div[1]/div[1]/input";
+    public static final String id_username = "login-username";
     public static final String xpath_password = "//*[@id=\"login-password\"]";
     public static final String login_xpath = "//*[@id=\"login-button\"]/div[1]";
     public static final String error_xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div[1]/span";
 
+    //Login via gmail
 
+
+
+    //spotify login
     @FindBy(xpath = SpotifyLoginLocators.login_spotify_xpath)
     @CacheLookup
     private
     WebElement loginspotify;
 
-    @FindBy(xpath = SpotifyLoginLocators.xpath_username)
+    @FindBy(id = SpotifyLoginLocators.id_username)
     @CacheLookup
     private
-    WebElement username;
+    WebElement spotify_username;
 
     @FindBy (xpath = SpotifyLoginLocators.xpath_password)
     @CacheLookup
@@ -53,7 +57,7 @@ public class SpotifyLoginLocators {
     }
 
     public WebElement getUsername() {
-        return username;
+        return spotify_username;
     }
 
     public WebElement getPassword() {

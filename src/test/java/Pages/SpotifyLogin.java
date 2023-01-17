@@ -26,9 +26,11 @@ public class SpotifyLogin{
         spotifyloginLocators.getLoginSpotify().click();
     }
 
-    public void setUsername(String username){
+    public void setUsername(String spotify_username){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(90));
+        wait.until(ExpectedConditions.visibilityOf(spotifyloginLocators.getUsername()));
         spotifyloginLocators.getUsername().clear();
-        spotifyloginLocators.getUsername().sendKeys(username);
+        spotifyloginLocators.getUsername().sendKeys(spotify_username, Keys.RETURN);
     }
 
     public void setPassword(String password){

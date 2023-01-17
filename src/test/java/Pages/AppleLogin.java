@@ -18,8 +18,11 @@ public class AppleLogin {
         this.driver = driver;
         appleloginLocators = new AppleLoginLocators(driver);
     }
+    public void clickLoginSpotifyPage(){
+        appleloginLocators.getLoginSpotifyPage().click();
+    }
     public void loginWithApple(){
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(90));
         wait.until(ExpectedConditions.visibilityOf(appleloginLocators.getLoginWithApple()));
         appleloginLocators.getLoginWithApple().click();
     }

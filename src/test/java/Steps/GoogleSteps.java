@@ -16,24 +16,34 @@ public class GoogleSteps {
         driver.get(url);
     }
 
-    @And("User click on login with another account")
-    public void userClickOnLoginWithAnotherAccount(){
-        googleLogin.anotherAccount();
+    @And("User open the connect page")
+    public void userOpenTheConnectPage(){
+        googleLogin.connectPage();
     }
+
+    //@And("User click on login with another account")
+    //public void userClickOnLoginWithAnotherAccount(){
+      //  googleLogin.anotherAccount();
+    //}
 
     @And("User click on login with Gmail")
     public void userClickOnLoginWithGmail(){
         googleLogin.loginWithGoogleCont();
     }
 
-    @And("User enter a valid gmail as {gmail}")
+    @And("User enter a valid gmail as {string}")
     public void userEnterAValidGmailAs(String gmail){
         googleLogin.enterGmail(gmail);
     }
 
-    @And("User enter an invalid passwordgmail as {passwordgmail}")
-    public void userEnterAnInvalidPasswordgmailAs(String passwordgmail){
-        googleLogin.enterPass(passwordgmail);
+    @And("User press the move on button")
+    public void userPressTheMoveOnButton(){
+        googleLogin.moveOn();
+    }
+
+    @And("User enter an invalid google pass as {string}")
+    public void userEnterAnInvalidGooglePassAs(String pass){
+        googleLogin.enterPass(pass);
     }
 
     @And("User click on log in with gmail")

@@ -22,14 +22,15 @@ public class SpotifySteps {
         spotifyLogin.clickLoginSpotify();
     }
 
-    @And("User enter an invalid username as {string}")
-    public void userEnterAnInvalidUsernameAs(String username) {
+    @And("User enter invalid spotify username as {string}")
+    public void user_enter_invalid_spotify_username_as(String spotify_username) {
 
-        spotifyLogin.setUsername(username);
+        spotifyLogin.setUsername(spotify_username);
+        throw new io.cucumber.java.PendingException();
     }
 
-    @And("User enter an invalid password as {string}")
-    public void userEnterAnInvalidPasswordAs(String password) {
+    @And("User enter invalid spotify password as {string}")
+    public void userEnterInvalidPasswordAs(String password) {
 
         spotifyLogin.setPassword(password);
     }

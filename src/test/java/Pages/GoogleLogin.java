@@ -18,9 +18,13 @@ public class GoogleLogin{
         this.driver = driver;
         googleloginLocators = new GoogleLoginLocators(driver);
     }
+    public void connectPage(){
+        googleloginLocators.getConnectPage().click();
+    }
+
 
     public void loginWithGoogleCont(){
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(90));
         wait.until(ExpectedConditions.visibilityOf(googleloginLocators.getLoginWithGoogleCont()));
         googleloginLocators.getLoginWithGoogleCont().click();
     }
@@ -38,10 +42,16 @@ public class GoogleLogin{
 
     }
 
-    public void enterPass(String passwordgmail){
+    public void moveOn(){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(googleloginLocators.getMoveOn()));
+        googleloginLocators.getMoveOn().click();
+    }
+
+    public void enterPass(String pass){
         wait.until(ExpectedConditions.visibilityOf(googleloginLocators.getEnterPass()));
         googleloginLocators.getEnterPass().clear();
-        googleloginLocators.getEnterPass().sendKeys(passwordgmail, Keys.RETURN);
+        googleloginLocators.getEnterPass().sendKeys(pass, Keys.RETURN);
 
     }
 

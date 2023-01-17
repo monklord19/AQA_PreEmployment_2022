@@ -22,5 +22,5 @@ public class InitialClass {
         driver.quit();
         Reporter.log("Browser is close", true);
 
-    }
+   }
 }
