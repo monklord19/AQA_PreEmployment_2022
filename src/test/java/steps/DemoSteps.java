@@ -147,12 +147,14 @@ public class DemoSteps extends BaseClass {
     @And("user gets and print the outer frame text:{string}")
     public void userGetsAndPrintTheOuterFrameText(String text) {
         Assert.assertTrue(elementPage.outerFrameText().contains(text));
+        System.out.println(elementPage.outerFrameText());
     }
 
 
     @And("user gets and print the inner frame text:{string}")
     public void userGetsAndPrintTheInnerFrameText(String text) {
         Assert.assertTrue(elementPage.innerFrameText().contains(text));
+        System.out.println(elementPage.innerFrameText());
     }
 
     @And("user clicks on the simple alert button to open it and close it with OK")
@@ -174,4 +176,16 @@ public class DemoSteps extends BaseClass {
     public void userClicksOnThePromptAlertButtonToOpenIt(String name) {
         Assert.assertTrue(elementPage.clickToOpenPromptAlert(name).contains(name));
     }
+
+    @And("user adds {int} days from current date in first date field")
+    public void userAddsDateInFirstDateField(int days) {
+        elementPage.selectDateInPickerMonthYearInputField(days);;
+    }
+
+    @And("user adds {int} days and {int} hours from current date in seconds date field")
+    public void userAddsJulyPMDateAndHourInFirstDateField(int days,int hours) {
+        elementPage.selectDateAndTimeInputField(days,hours);
+    }
+
+
 }

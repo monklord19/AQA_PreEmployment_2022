@@ -4,8 +4,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.Month;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ElementPage {
     WebDriver driver;
@@ -43,6 +49,8 @@ public class ElementPage {
     By confirmationMessage = By.xpath("//span[@id='confirmResult']");
     By openPromptButton = By.xpath("//button[@id='promtButton']");
     By promptConfirmationMessage = By.xpath("//span[@id='promptResult']");
+    By datePickerMonthYearInputField = By.id("datePickerMonthYearInput");
+    By dateAndTimeInputField = By.id("dateAndTimePickerInput");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -213,7 +221,8 @@ public class ElementPage {
         alert.accept();
         return alertMessage;
     }
-    public String clickToOpenTimerAlert(){
+
+    public String clickToOpenTimerAlert() {
         WebElement openTimerAlertButtonElement = driver.findElement(openTimerAlertButton);
         openTimerAlertButtonElement.click();
         wait.until(ExpectedConditions.alertIsPresent());
@@ -222,17 +231,18 @@ public class ElementPage {
         alert.accept();
         return alertMessage;
     }
-    public String clickToOpenConfirmationAlert(){
+
+    public String clickToOpenConfirmationAlert() {
         WebElement openConfirmationAlertButtonElement = driver.findElement(openConfirmationAlertButton);
         openConfirmationAlertButtonElement.click();
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.dismiss();
         WebElement confirmationMessageElement = driver.findElement(confirmationMessage);
-        String confirmationMessageAction = confirmationMessageElement.getText();
-        return confirmationMessageAction;
+        return confirmationMessageElement.getText();
     }
-    public String clickToOpenPromptAlert(String name){
+
+    public String clickToOpenPromptAlert(String name) {
         WebElement openPromptAlertButtonElement = driver.findElement(openPromptButton);
         openPromptAlertButtonElement.click();
         wait.until(ExpectedConditions.alertIsPresent());
@@ -240,10 +250,40 @@ public class ElementPage {
         alert.sendKeys(name);
         alert.accept();
         WebElement promptConfirmationMessageActionElement = driver.findElement(promptConfirmationMessage);
-        String promptConfirmationMessageAction = promptConfirmationMessageActionElement.getText();
-        return promptConfirmationMessageAction;
+        return promptConfirmationMessageActionElement.getText();
     }
 
+    public void selectDateInPickerMonthYearInputField( int days) {
+        WebElement datePickerMonthYearInputElement = driver.findElement(datePickerMonthYearInputField);
+        String s = Keys.chord(Keys.CONTROL, "a");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE,days);
+        Date currentDatePlustThirtyDays = calendar.getTime();
+        String afterThirtyDays = dateFormat.format(currentDatePlustThirtyDays);
+        datePickerMonthYearInputElement.sendKeys(s);
+        datePickerMonthYearInputElement.sendKeys(Keys.DELETE);
+        datePickerMonthYearInputElement.sendKeys(afterThirtyDays);
+        datePickerMonthYearInputElement.sendKeys(Keys.ENTER);
+    }
 
+    public void selectDateAndTimeInputField(int days,int hours) {
+        WebElement dateAndTimeInputFieldElement = driver.findElement(dateAndTimeInputField);
+        String s = Keys.chord(Keys.CONTROL, "a");
+        DateFormat dateFormat = new SimpleDateFormat();
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE,days);
+        calendar.add(Calendar.HOUR,hours);
+        Date currentDatePlustThirtyDays = calendar.getTime();
+        String afterThirtyDays = dateFormat.format(currentDatePlustThirtyDays);
+        dateAndTimeInputFieldElement.sendKeys(s);
+        dateAndTimeInputFieldElement.sendKeys(Keys.DELETE);
+        dateAndTimeInputFieldElement.sendKeys(afterThirtyDays);
+        dateAndTimeInputFieldElement.sendKeys(Keys.ENTER);
+    }
 
 }

@@ -57,3 +57,10 @@ Feature: Demoqa test
     And user clicks on the timer alert button to open it and close it with OK
     And user clicks on the confirm alert button to open it and close it with Cancel
     And user clicks on the prompt alert button to open it, write 'Radu' and close it with OK
+
+  Scenario: Add date in Date Picker fields
+    When user clicks on 'Widgets' category
+    And user clicks on 'Date Picker' element item
+    And user adds 30 days from current date in first date field
+    And user adds 30 days and 3 hours from current date in seconds date field
+
