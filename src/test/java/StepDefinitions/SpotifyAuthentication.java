@@ -18,7 +18,7 @@ public class SpotifyAuthentication{
     WebDriver driver = new ChromeDriver();
     SpotifyHomepage homepage = new SpotifyHomepage(driver);
 
-    ConfigFileReader configFileReader;
+    //ConfigFileReader configFileReader;
 
     @Given("On Spotify website")
     public void onSpotifyWebsite() {
@@ -39,7 +39,7 @@ public class SpotifyAuthentication{
         WebElement continueWithGoogle = driver.findElement(By.cssSelector(".Type__TypeElement-goli3j-0.cWkmRE.sc-hKwDye.sc-kDTinF.fXzRSj.iSqHJa"));
         continueWithGoogle.click();
         WebElement googleEmailOrNr = driver.findElement(By.cssSelector("#identifierId"));
-        googleEmailOrNr.sendKeys(configFileReader.getEmail());
+        googleEmailOrNr.sendKeys(ConfigFileReader.getEmail());
         WebElement next = driver.findElement(By.cssSelector(".VfPpkd-LgbsSe.VfPpkd-LgbsSe-OWXEXe-k8QpJ.VfPpkd-LgbsSe-OWXEXe-dgl2Hf.nCP5yc.AjY5Oe.DuMIQc.LQeN7.qIypjc.TrZEUc.lw1w4b"));
         next.click();
         WebElement googlePsw = driver.findElement(By.cssSelector(".whsOnd.zHQkBf"));
@@ -59,9 +59,9 @@ public class SpotifyAuthentication{
         homepage.waitUntilElementIsVisible(3000);
 
         WebElement spotifyEmailOrNr = driver.findElement(By.cssSelector("#login-username"));
-        spotifyEmailOrNr.sendKeys(configFileReader.getEmail());
+        spotifyEmailOrNr.sendKeys(ConfigFileReader.getEmail());
         WebElement spotifyPsw = driver.findElement(By.cssSelector("#login-password"));
-        spotifyPsw.sendKeys(configFileReader.getPassword());
+        spotifyPsw.sendKeys(ConfigFileReader.getPassword());
         WebElement loginButton = driver.findElement(By.cssSelector("#login-button"));
         Actions action = new Actions(driver);
         action.moveToElement(loginButton).click().perform();
@@ -73,7 +73,7 @@ public class SpotifyAuthentication{
         homepage.waitUntilElementIsVisible(2000);
         WebElement errorMessage = driver.findElement(By.cssSelector(".Message-sc-15vkh7g-0.jHItEP"));
         String errorMsg = "Incorrect username or password.";
-        Assert.assertEquals(errorMsg, configFileReader.getSpotifyErrorMsg());
+        Assert.assertEquals(errorMsg, ConfigFileReader.getSpotifyErrorMsg());
     }
 
     @And("User selects continue with Apple, enters invalid mail and invalid password")
