@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(
         //path of feature file
-        features = {"src/test/resources/Feature Files"},
+        features = {"src/test/resources/features"},
         plugin = {
                 "pretty",
                 "html:target/cucumber.html",
