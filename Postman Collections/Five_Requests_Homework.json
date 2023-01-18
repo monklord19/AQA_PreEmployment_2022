@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "71f44764-b975-4afc-b13d-53b70a124de3",
+		"name": "AQA_Pre_Employment_Homework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_All_Users",
+			"_postman_id": "461fbd5a-486d-44f0-a788-4dfbc5f8f655",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET_Single_User",
+			"_postman_id": "a7b064e0-0ce5-4745-8df5-a2bef50d2246",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET_Single_User_Not_Found",
+			"_postman_id": "917dd3ed-03d0-4121-b38b-3ce84e7f8cfa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "POST_Create",
+			"_postman_id": "11672c63-9569-434f-9ade-c4e39ac0f062",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_Delete request",
+			"_postman_id": "857c1d6c-219d-46ee-b018-0f5e0ca29b40",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
