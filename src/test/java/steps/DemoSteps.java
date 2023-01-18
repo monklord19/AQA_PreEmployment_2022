@@ -8,15 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class DemoSteps {
-    WebDriver driver = new ChromeDriver();
 
-    DemoMainPage demoMainPage = new DemoMainPage(driver);
-
-    @Given("user is on demo main page")
-    public void onDemoMainPage() {
-        driver.manage().window().maximize();
-        driver.get("https://demoqa.com/");
-    }
 
 //    @When("user clicks {string} button")
 //    public void userClicksOnElementButton(String elementName) {
