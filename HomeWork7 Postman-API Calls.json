@@ -146,7 +146,7 @@
 			]
 		},
 		{
-			"name": "List Resourse",
+			"name": "List Resource",
 			"event": [
 				{
 					"listen": "test",
@@ -397,6 +397,10 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}"
+				},
 				"url": {
 					"raw": "https://reqres.in/api/users?page=2",
 					"protocol": "https",
@@ -422,6 +426,10 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}"
+						},
 						"url": {
 							"raw": "https://reqres.in/api/users?page=2",
 							"protocol": "https",
@@ -447,7 +455,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 18 Jan 2023 15:21:41 GMT"
+							"value": "Wed, 18 Jan 2023 19:01:16 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -471,7 +479,7 @@
 						},
 						{
 							"key": "Etag",
-							"value": "W/\"33-2sQkI0Ts6TL3OX4UzRgLqIMEDBs\""
+							"value": "W/\"33-bzzEZR98yh/V/A5A7y9zeywaWYE\""
 						},
 						{
 							"key": "Via",
@@ -483,7 +491,7 @@
 						},
 						{
 							"key": "Report-To",
-							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=IQVevRXfH3fwv0udJ4u8W8u%2B0OheSlgXmSOzxPIAdH7emHapqvq9QwOUYsQbDwrpPcGGjgS9NtYM81gBtZxyhxgVzFYb3uSw4ajuTT%2FLM1aKmbVlIe9D8%2B4%2FzA%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=VOkvBzL2hCcnEEvMlgW%2B2%2FCn5PKU6y3K4OoV3caTqRPZ69QWmXmdxddlJQSTSSj84udFdAickEovAT2hrTqH2hq5g%2Bza5uevEW08PBOsiwbX6gjI5%2FUqiWBMtA%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
 						},
 						{
 							"key": "NEL",
@@ -495,11 +503,11 @@
 						},
 						{
 							"key": "CF-RAY",
-							"value": "78b8525fdafddc5b-LHR"
+							"value": "78b9940ac81a719c-LHR"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"871\",\n    \"createdAt\": \"2023-01-18T15:21:41.122Z\"\n}"
+					"body": "{\n    \"id\": \"615\",\n    \"createdAt\": \"2023-01-18T19:01:16.638Z\"\n}"
 				}
 			]
 		},
@@ -508,6 +516,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"radu\",\r\n    \"job\": \"zion resident\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://reqres.in/api/users/2",
 					"protocol": "https",
@@ -605,6 +622,102 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"updatedAt\": \"2023-01-18T15:31:12.580Z\"\n}"
+				},
+				{
+					"name": "Update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"radu\",\r\n    \"job\": \"zion resident\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users/2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 18 Jan 2023 19:02:37 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"52-T13FT92BmxUpW2l3ioIBDZGsZvQ\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=Q1sNm86IO4oidj7IYQlKwBRSMtiZdMpHjV3us83eL9AFp2GJHYs19B2flUKu0VqHHrJt80qkBM9TT66%2F3da384X4Os%2BiL80ZTSEHlPyZA9jR5aBZ67yCcxPx3A%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "78b99606fc2030d8-FRA"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"first_name\": \"radu\",\n    \"job\": \"zion resident\",\n    \"updatedAt\": \"2023-01-18T19:02:37.976Z\"\n}"
 				}
 			]
 		}
