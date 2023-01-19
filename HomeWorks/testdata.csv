@@ -1,0 +1,3 @@
+﻿endpoint,email,password
+/api/register/qa,mada.holt@reqres.in,sword
+/api/register/reg,whatever.holt@reqres.in,pistol
