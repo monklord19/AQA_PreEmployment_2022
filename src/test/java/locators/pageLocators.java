@@ -1,8 +1,11 @@
 package locators;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -35,6 +38,15 @@ public class pageLocators {
 
     @FindBy(id = "result")
     WebElement homeDesktopTestAppears;
+
+    @FindBy(id = "item-4")
+    WebElement buttons;
+
+    @FindBy(xpath = "//*[text()='Click Me']")
+    WebElement clickMeButton;
+
+    @FindBy(id = "dynamicClickMessage")
+    WebElement dynamicClickTextAppears;
 
     public void userClicksOnRadioButton() {
         radioButton.click();
@@ -82,6 +94,28 @@ public class pageLocators {
                 "downloads\n" +
                 "wordFile\n" +
                 "excelFile";
+        Assert.assertEquals(expectedText, text.getText());
+    }
+
+    public void userClicksOnButtonsButton() {
+//        WebElement buttons = driver.findElement(By.id("item-4"));
+          JavascriptExecutor js = (JavascriptExecutor) driver;
+          js.executeScript("javascript:window.scrollBy(250,350)");
+//        new Actions(driver)
+//                .click(buttons)
+//                .perform();
+//
+          buttons.click();
+    }
+
+    public void userCLicksOnClickMeButton() throws InterruptedException {
+        Thread.sleep(2000);
+        clickMeButton.click();
+    }
+
+    public void youHaveDoneADynamicClickTextAppears() {
+        WebElement text = dynamicClickTextAppears;
+        String expectedText = "You have done a dynamic click";
         Assert.assertEquals(expectedText, text.getText());
     }
 

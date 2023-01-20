@@ -1,11 +1,12 @@
 package StepsDefinitions;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import locators.pageLocators;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 // This file runs with pageLocators file. This is Page Factory model.
 
@@ -57,6 +58,22 @@ public class MyStepsPF {
     @Then("You have selected Home Desktop appears")
     public void youHaveSelectedHomeDesktopAppears() {
         pfm.youHaveSelectedHomeDesktopAppears();
+    }
+
+    @When("User clicks on Buttons button")
+    public void user_clicks_on_buttons_button() {
+//        WebElement buttons = driver.findElement(By.id("item-4"));
+//        actions.moveToElement(buttons);
+//        actions.perform();
+        pfm.userClicksOnButtonsButton();
+    }
+    @When("User clicks on Click Me button")
+    public void user_clicks_on_click_me_button() throws InterruptedException {
+        pfm.userCLicksOnClickMeButton();
+    }
+    @Then("You have done a dynamic click text appears")
+    public void you_have_done_a_dynamic_click_text_appears() {
+        pfm.youHaveDoneADynamicClickTextAppears();
     }
 
 }
