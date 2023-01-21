@@ -16,9 +16,9 @@ public class AddToCart {
 
     public AddToCart(WebDriver driver) {
         this.driver = driver;
-//        if (!driver.getTitle().equals("Swag Labs")) {
-//            throw new IllegalStateException("This is not Login Page of Saucedemo website. The current page is" + driver.getCurrentUrl());
-//        }
+        if (!driver.getTitle().equals("Swag Labs")) {
+            throw new IllegalStateException("This is not Login Page of Saucedemo website. The current page is" + driver.getCurrentUrl());
+        }
     }
     public void addProductToCart() {
         driver.findElement(btn_addBackpack).click();

@@ -6,12 +6,12 @@ Background:I am on login page and accept coockies
     And Choose CONTINUE WITH GOOGLE
     When Enter "email"
     And Click Next
-    Then Error Message is displayed
+    Then Google Error Message is displayed
 
   @Test
   Scenario:Login with Spotify account
     Given Click Connect
-    When I enter username and password
+    When I type credentials username and password
     And Click LOGIN
     Then Error message2 is displayed
 

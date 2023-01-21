@@ -1,8 +1,9 @@
 Feature: Test Luma website
-
-#  Scenario: Testing Add Product to cart
-#    Given I open Browser
-#    And Select Gear, Bags
-#    When  I add the bag to Cart
-#    And I open my shopping cart
-#    Then I should see the product in my shopping cart
+  @Luma
+  Scenario: Testing Add Bag on Luma website
+    Given I opens website
+    And I hoover over Gears drop down
+    And I select Bags
+    When I select  Savvy Shoulder Tote
+    And I click Add to Cart
+    Then I should see Bag in cart

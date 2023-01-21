@@ -63,6 +63,7 @@ public class SpotifyPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(btn_TryAgainG));
         Assert.assertTrue(driver.findElement(btn_TryAgainG).isDisplayed());
     }
+
     public void enterSpotifyname(String name){
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_spotifyname));
         driver.findElement(txt_spotifyname).sendKeys(name);
@@ -81,26 +82,7 @@ public class SpotifyPage {
         System.out.println(strng);
         Assert.assertEquals("Nume utilizator sau parolă incorectă.", strng);
     }
-//    public void clickChooseApple() {
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(btn_continueApple));
-//        driver.findElement(btn_continueApple).click();
-//    }
-//    public void enterAppleName(String name){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(txt_appleName));
-//        driver.findElement(txt_appleName).sendKeys(name);
-//    }
-//    public void clickAppleNext(){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(btn_appleLogin));
-//        driver.findElement(btn_appleLogin).click();
-//    }
-//    public void enterApplePassword(String password){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(txt_applePassword));
-//        driver.findElement(txt_applePassword).sendKeys(password);
-//    }
-//    public void verifyErrorApple(){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(msg_errorApple));
-//        Assert.assertTrue(driver.findElement(msg_errorApple).isDisplayed());
-//    }
+
     public void clickChooseFacebook(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(btn_continueFacebook));
         driver.findElement(btn_continueFacebook).click();

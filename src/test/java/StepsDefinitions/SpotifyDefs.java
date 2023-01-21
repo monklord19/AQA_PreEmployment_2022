@@ -16,14 +16,14 @@ import java.io.IOException;
 import static Pages.ConfigReader.*;
 
 
-public class SpotifyDefs //extends BasePage
+public class SpotifyDefs extends BasePage
 {
     WebDriver driver = new ChromeDriver();
 
     SpotifyPage spage = new SpotifyPage(driver);
     SpotifyAppleLogin appleL = new SpotifyAppleLogin(driver);
 
-    @Before
+   // @Before
     public void IAmOnLoginPageAndAcceptCoockies() throws IOException {
 
         String test_url = getUrl();
@@ -46,10 +46,11 @@ public class SpotifyDefs //extends BasePage
     public void clickNext() {
         spage.clickBtnNext();
     }
-    @Then("Error Message is displayed")
-    public void error_message_is_displayed() {
+    @Then("Google Error Message is displayed")
+    public void google_error_message_is_displayed() {
 
         spage.verifyTryAgainIsDisplayed();
+
     }
 
     @Given("Click Connect")
@@ -58,8 +59,8 @@ public class SpotifyDefs //extends BasePage
         spage.closeCookie();
         spage.Connect();
     }
-    @When("^I enter (.*) and (.*)$")
-    public void i_enter_username_and_password(String name,String password) throws IOException {
+    @When("^I type credentials (.*) and (.*)$")
+    public void iTypeUsernameAndPassword(String name,String password) throws IOException {
         spage.enterSpotifyname(getUsername());
         spage.enterSpotifyPassword(getPassword());
 
