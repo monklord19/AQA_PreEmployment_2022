@@ -26,6 +26,27 @@ Feature: DemoQa tests
     And Check if the registration was a success
     Then Click delete button for the new registration
 
+  Scenario: Fill the practice form
+    Given Click on practice form
+    And Fill out the register form
+    When Click submit button
+   Then Check the Thanks message
+
+
+#    And Fill the First name with "Marian" and last name with "alex"
+#    And Fill email field with "marian.alex@gmak.com"
+#    And pick the gender Male
+#    When Insert a 10 digits Phone Number
+#    And  Make sure the date is "23 Jan 2023"
+#    And Chose the "Literature" subject
+#    And Click on Reading and Music  checkBox
+#    And Chose profile picture
+#    And Fill the current Address field with "str 1"
+#    And Select state and city
+#    Then Click submit button and check for the thanks message
+
+
+
 
 
 

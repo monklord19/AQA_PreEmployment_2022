@@ -12,7 +12,8 @@ public class DemoElementsPage {
     private WebElement textBoxLink;
     @FindBy(id = "item-1")
     private WebElement checkBox;
-
+    @FindBy(id = "item-3")
+    private WebElement webTables;
     WebDriver driver;
 
     public DemoElementsPage(WebDriver driver) {
@@ -25,5 +26,8 @@ public class DemoElementsPage {
     }
     public void clickCheckBox(){
         checkBox.click();
+    }
+    public void clickWebTables(){
+        webTables.click();
     }
 }

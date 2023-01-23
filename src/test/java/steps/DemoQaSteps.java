@@ -8,10 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.CheckBoxPage;
-import pages.DemoElementsPage;
-import pages.DemoPage;
-import pages.TextBoxPage;
+import pages.*;
 
 public class DemoQaSteps {
     WebDriver driver = new ChromeDriver();
@@ -19,17 +16,19 @@ public class DemoQaSteps {
     TextBoxPage textBoxPage = new TextBoxPage(driver);
     DemoElementsPage demoElementsPage = new DemoElementsPage(driver);
     CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
+    WebTablesPage webTablesPage = new WebTablesPage(driver);
+    PracticeFormPage practiceFormPage =new PracticeFormPage(driver);
+    FormsPage formsPage = new FormsPage(driver);
     @Before
     public void maxPage() {
         driver.manage().window().maximize();
     }
 
-    @After
-    public void closePage() {
-
-        driver.quit();
-    }
+//    @After
+//    public void closePage() {
+//
+//        driver.quit();
+//    }
 
     @Given("You are on the demoQa page")
     public void youAreOnTheDemoQaPage() {
@@ -72,7 +71,6 @@ public class DemoQaSteps {
     public void clickOnCheckBox() {
         demoPage.clickOnElelments();
         demoElementsPage.clickCheckBox();
-
     }
 
     @And("Click on expand all button")
@@ -87,10 +85,76 @@ public class DemoQaSteps {
 
     @Then("The specific select message should be displayed")
     public void theSpecificSelectMessageShouldBeDisplayed() {
-        checkBoxPage.checkResultForm("You have selected :\n" +
-                "workspace\n" +
-                "react\n" +
-                "angular\n" +
-                "veu");
+        checkBoxPage.checkResultForm("You have selected :\n" + "workspace\n" + "react\n" + "angular\n" + "veu");
+    }
+
+    //test 3
+    @Given("Click web tables")
+    public void clickWebTables() {
+        demoPage.clickOnElelments();
+        demoElementsPage.clickWebTables();
+    }
+
+    @And("Click Add button")
+    public void clickAddButton() {
+        webTablesPage.clickAddButton();
+    }
+
+    @And("Fill the Registration form")
+    public void fillTheRegistrationForm() {
+        webTablesPage.setFirstNameField("Jonny");
+        webTablesPage.setLastNameField("Mellow");
+        webTablesPage.setEmailField("jonny@gmail.com");
+        webTablesPage.setAgeField("50");
+        webTablesPage.setSalaryField("5000");
+        webTablesPage.setDepartmentField("first department");
+    }
+
+    @And("Click the Submit")
+    public void clickTheSubmit() {
+        webTablesPage.clickSubmitButton();
+    }
+
+    @When("Search for  the new person in the table")
+    public void searchForTheNewPersonInTheTable() {
+        webTablesPage.searchFieldFindJonny("Jonny");
+    }
+
+    @And("Check if the registration was a success")
+    public void checkIfTheRegistrationWasASuccess() {
+        webTablesPage.checkToFindJonny();
+    }
+
+    @Then("Click delete button for the new registration")
+    public void clickDeleteButtonForTheNewRegistration() {
+        webTablesPage.deleteJonnyProfile();
+    }
+//test 4
+    @Given("Click on practice form")
+    public void clickOnPracticeForm() {
+        demoPage.clickFormLink();
+        formsPage.clickPracticeForm();
+
+    }
+
+
+    @And("Fill out the register form")
+    public void fillOutTheRegisterForm() throws InterruptedException {
+        practiceFormPage.setFirstNameField("Jonny");
+        practiceFormPage.setLastNameField("Boy");
+        practiceFormPage.setEmailField("jonnyboy@gmds.com");
+        practiceFormPage.selectMaleCheckBox();
+        practiceFormPage.setPhoneNumberField("1234567890");
+        practiceFormPage.checkDate();
+        practiceFormPage.setSubjectField();
+        practiceFormPage.chooseProfilePic();
+    }
+
+    @When("Click submit button")
+    public void clickSubmitButton() {
+    }
+
+    @Then("Check the Thanks message")
+    public void checkTheThanksMessage() {
     }
 }
