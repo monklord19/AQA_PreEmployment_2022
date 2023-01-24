@@ -4,12 +4,10 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -43,6 +41,8 @@ public class ElementPage {
     By chooseFileButton = By.xpath("//input[@type='file']");
     By pathOfUploadedFile = By.id("uploadedFilePath");
     By outerFrame = By.id("frame1");
+
+    By childFrame = By.xpath("//iframe[contains(@srcdoc, 'Child')]");
     By openAlertButton = By.xpath("//button[@id='alertButton']");
     By openTimerAlertButton = By.xpath("//button[@id='timerAlertButton']");
     By openConfirmationAlertButton = By.xpath("//button[@id='confirmButton']");
@@ -51,6 +51,7 @@ public class ElementPage {
     By promptConfirmationMessage = By.xpath("//span[@id='promptResult']");
     By datePickerMonthYearInputField = By.id("datePickerMonthYearInput");
     By dateAndTimeInputField = By.id("dateAndTimePickerInput");
+    By resizableBox = By.id("resizableBoxWithRestriction");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -66,6 +67,7 @@ public class ElementPage {
     }
 
     public void clickOnExpandHomeButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(expandHomeButton));
         WebElement expandHomeButtonElement = driver.findElement(expandHomeButton);
         expandHomeButtonElement.click();
     }
@@ -74,6 +76,7 @@ public class ElementPage {
         String checkboxXpath = "//*[@id='tree-node-" + node.toLowerCase() + "']//following-sibling::span[@class=" +
                 "'rct-checkbox']";
         WebElement checkboxElement = driver.findElement(By.xpath(checkboxXpath));
+        wait.until(ExpectedConditions.elementToBeClickable(checkboxElement));
         checkboxElement.click();
     }
 
@@ -101,16 +104,19 @@ public class ElementPage {
     }
 
     public boolean confirmationDoubleClickMessageIsDiplayed() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(doubleClickMessage));
         WebElement doubleClickMesageElement = driver.findElement(doubleClickMessage);
         return doubleClickMesageElement.isDisplayed();
     }
 
     public boolean confirmationRightClickMessageIsDiplayed() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(rightClickMessage));
         WebElement rightClickMessageElement = driver.findElement(rightClickMessage);
         return rightClickMessageElement.isDisplayed();
     }
 
     public boolean confirmationClickMessageIsDiplayed() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(clickMessage));
         WebElement clickMessageElement = driver.findElement(clickMessage);
         return clickMessageElement.isDisplayed();
     }
@@ -200,31 +206,36 @@ public class ElementPage {
     public String outerFrameText() {
         WebElement outerFrameElement = driver.findElement(outerFrame);
         driver.switchTo().frame(outerFrameElement);
-        WebElement outerFrameTextElement = driver.findElement(By.xpath("//html/body"));
-        String outerFrameText = outerFrameTextElement.getText();
-        driver.switchTo().frame(0);
-        return outerFrameText;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body")));
+        return driver.findElement(By.xpath("//html/body")).getText();
     }
 
     public String innerFrameText() {
-        WebElement innerFrameTextElement = driver.findElement(By.xpath("//html/body/p"));
-        String innerFrameText = innerFrameTextElement.getText();
-        driver.switchTo().defaultContent();
-        return innerFrameText;
+        driver.switchTo().frame(0);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/p")));
+        return driver.findElement(By.xpath("//html/body/p")).getText();
     }
 
-    public String clickToOpenAlert() {
+
+    public void clickToOpenAlert() {
         WebElement openAlertButtonElement = driver.findElement(openAlertButton);
         openAlertButtonElement.click();
+    }
+
+    public String alertClickMessageIsDisplayed() {
         Alert alert = driver.switchTo().alert();
         String alertMessage = alert.getText();
         alert.accept();
         return alertMessage;
     }
 
-    public String clickToOpenTimerAlert() {
+    public void clickToOpenTimerAlert() {
         WebElement openTimerAlertButtonElement = driver.findElement(openTimerAlertButton);
         openTimerAlertButtonElement.click();
+
+    }
+
+    public String alertTimerMessageIsDisplayed() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         String alertMessage = alert.getText();
@@ -232,9 +243,12 @@ public class ElementPage {
         return alertMessage;
     }
 
-    public String clickToOpenConfirmationAlert() {
+    public void clickToOpenConfirmationAlert() {
         WebElement openConfirmationAlertButtonElement = driver.findElement(openConfirmationAlertButton);
         openConfirmationAlertButtonElement.click();
+    }
+
+    public String confirmationAlertMessageIsDisplayed() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.dismiss();
@@ -242,9 +256,12 @@ public class ElementPage {
         return confirmationMessageElement.getText();
     }
 
-    public String clickToOpenPromptAlert(String name) {
+    public void clickToOpenPromptAlert() {
         WebElement openPromptAlertButtonElement = driver.findElement(openPromptButton);
         openPromptAlertButtonElement.click();
+    }
+
+    public String promptAlertMessageIsDisplayed(String name) {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.sendKeys(name);
@@ -253,14 +270,14 @@ public class ElementPage {
         return promptConfirmationMessageActionElement.getText();
     }
 
-    public void selectDateInPickerMonthYearInputField( int days) {
+    public void selectDateInPickerMonthYearInputField(int days) {
         WebElement datePickerMonthYearInputElement = driver.findElement(datePickerMonthYearInputField);
         String s = Keys.chord(Keys.CONTROL, "a");
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DATE,days);
+        calendar.add(Calendar.DATE, days);
         Date currentDatePlustThirtyDays = calendar.getTime();
         String afterThirtyDays = dateFormat.format(currentDatePlustThirtyDays);
         datePickerMonthYearInputElement.sendKeys(s);
@@ -269,21 +286,29 @@ public class ElementPage {
         datePickerMonthYearInputElement.sendKeys(Keys.ENTER);
     }
 
-    public void selectDateAndTimeInputField(int days,int hours) {
+    public void selectDateAndTimeInputField(int days, int hours) {
         WebElement dateAndTimeInputFieldElement = driver.findElement(dateAndTimeInputField);
         String s = Keys.chord(Keys.CONTROL, "a");
         DateFormat dateFormat = new SimpleDateFormat();
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DATE,days);
-        calendar.add(Calendar.HOUR,hours);
+        calendar.add(Calendar.DATE, days);
+        calendar.add(Calendar.HOUR, hours);
         Date currentDatePlustThirtyDays = calendar.getTime();
         String afterThirtyDays = dateFormat.format(currentDatePlustThirtyDays);
         dateAndTimeInputFieldElement.sendKeys(s);
         dateAndTimeInputFieldElement.sendKeys(Keys.DELETE);
         dateAndTimeInputFieldElement.sendKeys(afterThirtyDays);
         dateAndTimeInputFieldElement.sendKeys(Keys.ENTER);
+    }
+
+    public void resizeElementToMaximum(int x, int y) {
+        WebElement elementToBeResized = driver.findElement(resizableBox);
+//        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("resizableBoxWithRestriction")));
+        Actions action = new Actions(driver);
+        action.clickAndHold(elementToBeResized).moveByOffset(x, y);
+        action.build().perform();
     }
 
 }

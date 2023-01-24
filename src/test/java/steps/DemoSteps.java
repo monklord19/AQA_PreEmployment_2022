@@ -53,21 +53,29 @@ public class DemoSteps extends BaseClass {
         elementPage.doubleClickButtonAction();
     }
 
-    @And("user right clicks on Right Click Me button")
+    @Then("user receives Double Click confirmation messages")
+    public void userReceivesDoubleClickConfirmationMessages() {
+        Assert.assertTrue(elementPage.confirmationDoubleClickMessageIsDiplayed());
+    }
+
+    @When("user right clicks on Right Click Me button")
     public void userRightClicksOnButton() {
         elementPage.rightClickButtonAction();
     }
 
-    @And("user clicks on Click Me button")
+    @Then("user receives Right Click confirmation messages")
+    public void userReceivesRightClickConfirmationMessages() {
+        Assert.assertTrue(elementPage.confirmationRightClickMessageIsDiplayed());
+    }
+
+    @When("user clicks on Click Me button")
     public void userClicksOnButton() {
         elementPage.clickButtonAction();
     }
 
-    @Then("user receives confirmation messages")
+    @Then("user receives Click confirmation messages")
     public void userReceivesConfirmationMessages() {
-        Assert.assertTrue(elementPage.confirmationDoubleClickMessageIsDiplayed() &&
-                elementPage.confirmationRightClickMessageIsDiplayed() &&
-                elementPage.confirmationClickMessageIsDiplayed());
+        Assert.assertTrue(elementPage.confirmationClickMessageIsDiplayed());
     }
 
     @And("user clicks on Add button")
@@ -129,7 +137,7 @@ public class DemoSteps extends BaseClass {
         Assert.assertEquals(newAge, elementPage.checkEditedAge());
     }
 
-    @And("{string}'s line is erased")
+    @Then("{string}'s line is erased")
     public void secondLineIsErased(String firstName) {
         Assert.assertFalse(elementPage.checkIfNewFormIsRegistered().contains(firstName));
     }
@@ -144,47 +152,72 @@ public class DemoSteps extends BaseClass {
         Assert.assertTrue(elementPage.nameOfUploadedFile().contains(fileName));
     }
 
-    @And("user gets and print the outer frame text:{string}")
-    public void userGetsAndPrintTheOuterFrameText(String text) {
-        Assert.assertTrue(elementPage.outerFrameText().contains(text));
-        System.out.println(elementPage.outerFrameText());
-    }
+    @Then("user gets and print the outer frame text:{string}")
+    public void userGetsAndPrintTheOuterFrameText(String frame) {
+        Assert.assertEquals(elementPage.outerFrameText(), frame);
 
+    }
 
     @And("user gets and print the inner frame text:{string}")
     public void userGetsAndPrintTheInnerFrameText(String text) {
         Assert.assertTrue(elementPage.innerFrameText().contains(text));
-        System.out.println(elementPage.innerFrameText());
     }
 
-    @And("user clicks on the simple alert button to open it and close it with OK")
+    @And("user clicks on the simple alert button to open it")
     public void userClicksOnTheSimpleAlertButtonToOpenIt() {
-        Assert.assertTrue(elementPage.clickToOpenAlert().contains("You clicked a button"));
+        elementPage.clickToOpenAlert();
     }
 
-    @And("user clicks on the timer alert button to open it and close it with OK")
+    @Then("user gets the alert message and close it with OK")
+    public void userGetsTheAlertMessageAndCloseItWithOK() {
+        Assert.assertTrue(elementPage.alertClickMessageIsDisplayed().contains("You clicked a button"));
+    }
+
+    @When("user clicks on the timer alert button to open it")
     public void userClicksOnTheTimerAlertButtonToOpenIt() {
-        Assert.assertTrue(elementPage.clickToOpenTimerAlert().contains("This alert appeared after 5 seconds"));
+        elementPage.clickToOpenTimerAlert();
     }
 
-    @And("user clicks on the confirm alert button to open it and close it with Cancel")
+    @Then("user gets the timer alert message and close it with OK")
+    public void userGetsTheTimerAlertMessageAndCloseItWithOK() {
+        Assert.assertTrue(elementPage.alertTimerMessageIsDisplayed().contains("This alert appeared after 5 seconds"));
+    }
+
+    @When("user clicks on the confirm alert button to open it")
     public void userClicksOnTheConfirmAlertButtonToOpenIt() {
-        Assert.assertTrue(elementPage.clickToOpenConfirmationAlert().contains("You selected Cancel"));
+        elementPage.clickToOpenConfirmationAlert();
     }
 
-    @And("user clicks on the prompt alert button to open it, write {string} and close it with OK")
-    public void userClicksOnThePromptAlertButtonToOpenIt(String name) {
-        Assert.assertTrue(elementPage.clickToOpenPromptAlert(name).contains(name));
+    @Then("user gets the confirm alert message and close it with Cancel")
+    public void userGetsTheConfirmAlertMessageAndCloseItWithOK() {
+        Assert.assertTrue(elementPage.confirmationAlertMessageIsDisplayed().contains("You selected Cancel"));
+    }
+
+    @When("user clicks on the prompt alert button to open it")
+    public void userClicksOnThePromptAlertButtonToOpenIt() {
+        elementPage.clickToOpenPromptAlert();
+    }
+
+    @Then("user gets the prompt alert, write {string} and close it with OK")
+    public void userGetsThePromptAlertWriteRaduAndCloseItWithOK(String name) {
+        Assert.assertTrue(elementPage.promptAlertMessageIsDisplayed(name).contains(name));
     }
 
     @And("user adds {int} days from current date in first date field")
     public void userAddsDateInFirstDateField(int days) {
-        elementPage.selectDateInPickerMonthYearInputField(days);;
+        elementPage.selectDateInPickerMonthYearInputField(days);
+        ;
     }
 
     @And("user adds {int} days and {int} hours from current date in seconds date field")
-    public void userAddsJulyPMDateAndHourInFirstDateField(int days,int hours) {
-        elementPage.selectDateAndTimeInputField(days,hours);
+    public void userAddsJulyPMDateAndHourInFirstDateField(int days, int hours) {
+        elementPage.selectDateAndTimeInputField(days, hours);
+    }
+
+
+    @Then("user resize the window to {int} and {int} pixels")
+    public void userResizeTheWindowToPixels(int x, int y) {
+        elementPage.resizeElementToMaximum(x, y);
     }
 
 
