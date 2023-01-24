@@ -70,5 +70,14 @@ Feature: Demoqa test
     Then user adds 15 days from current date in first date field
     And user adds 15 days and 3 hours from current date in seconds date field
 
+  Scenario: Drag and drop simple action
+    When user clicks on 'Interactions' category
+    And user clicks on 'Droppable' element item
+    And user clicks on Simple button
+    And user drag box and drop it on drop box
+    Then user receives confirmation message on drop box:'Dropped!'
+
+    
+
 
 

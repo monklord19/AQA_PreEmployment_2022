@@ -52,6 +52,9 @@ public class ElementPage {
     By datePickerMonthYearInputField = By.id("datePickerMonthYearInput");
     By dateAndTimeInputField = By.id("dateAndTimePickerInput");
     By resizableBox = By.id("resizableBoxWithRestriction");
+    By simpleDroppableButton = By.id("droppableExample-tab-simple");
+    By draggableBox = By.id("draggable");
+    By droppableBox = By.xpath("//div[@class='simple-drop-container']//div[@id='droppable']");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -303,12 +306,21 @@ public class ElementPage {
         dateAndTimeInputFieldElement.sendKeys(Keys.ENTER);
     }
 
-    public void resizeElementToMaximum(int x, int y) {
-        WebElement elementToBeResized = driver.findElement(resizableBox);
-//        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("resizableBoxWithRestriction")));
+    public void clickOnSimpleButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(simpleDroppableButton));
+        WebElement simpleDroppableButtonElement = driver.findElement(simpleDroppableButton)   ;
+        simpleDroppableButtonElement.click();
+    }
+    public void dragAndDropBox(){
+        WebElement draggableBoxElement = driver.findElement(draggableBox);
+        WebElement droppableBoxElement = driver.findElement(droppableBox);
+        wait.until(ExpectedConditions.elementToBeClickable(draggableBoxElement));
         Actions action = new Actions(driver);
-        action.clickAndHold(elementToBeResized).moveByOffset(x, y);
-        action.build().perform();
+        action.dragAndDrop(draggableBoxElement, droppableBoxElement).build().perform();
+    }
+    public String droppedMessageIsDisplayed(){
+        WebElement droppableBoxElement = driver.findElement(droppableBox);
+        return droppableBoxElement.getText();
     }
 
 }

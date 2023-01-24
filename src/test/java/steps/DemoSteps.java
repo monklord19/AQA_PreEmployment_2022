@@ -215,10 +215,18 @@ public class DemoSteps extends BaseClass {
     }
 
 
-    @Then("user resize the window to {int} and {int} pixels")
-    public void userResizeTheWindowToPixels(int x, int y) {
-        elementPage.resizeElementToMaximum(x, y);
+    @And("user clicks on Simple button")
+    public void userClicksOnSimpleButton() {
+        elementPage.clickOnSimpleButton();
     }
 
+    @And("user drag box and drop it on drop box")
+    public void userDragBoxAndDropItOnDropBox() {
+        elementPage.dragAndDropBox();
+    }
 
+    @Then("user receives confirmation message on drop box:{string}")
+    public void userReceivesConfirmationMessageOnDropBoxDropped(String message) {
+        Assert.assertEquals(elementPage.droppedMessageIsDisplayed(),message);
+    }
 }
