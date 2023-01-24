@@ -44,10 +44,10 @@ public class ReqresApiTest {
     }
     @Test
     public void GetUser(){
-        var asd =  given().when().get("/users/2").then().log().body();
-                asd.assertThat().body("data.id",equalTo(2));
-                asd.assertThat().statusCode(200);
-            asd.time(Matchers.lessThan(1500L));
+        var response =  given().when().get("/users/2").then().log().body();
+                response.assertThat().body("data.id",equalTo(2));
+                response.assertThat().statusCode(200);
+            response.time(Matchers.lessThan(1500L));
 
     }
     @Test
@@ -80,9 +80,9 @@ public class ReqresApiTest {
     }
     @Test
     public void DeleteUser(){
-        var responde =given().when().delete("users/2").then().log().body();
-        responde.assertThat().statusCode(204);
-        responde.time(Matchers.lessThan(2000L));
+        var response =given().when().delete("users/2").then().log().body();
+        response.assertThat().statusCode(204);
+        response.time(Matchers.lessThan(2000L));
 
     }
     @Test
@@ -114,7 +114,7 @@ public class ReqresApiTest {
         int statusCode = response.getStatusCode();
         response.then().log().body();
         System.out.println("Print status code:--->" + statusCode);
-        // Assert that correct status code is returned.
+
         Assert.assertEquals(statusCode, 200,
                 "Correct status code returned");
         long time = response.getTime();
