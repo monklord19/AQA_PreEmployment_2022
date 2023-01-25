@@ -68,8 +68,11 @@ public class POST_Requests {
         RestAssured.baseURI = "https://demoqa.com/BookStore/v1";
         RequestSpecification request = RestAssured.given();
         String credentials ="AndreeaCazan:Mimi@@234";
+
         byte[] encodedCredentials = Base64.encodeBase64(credentials.getBytes());
-        request.header("Authorization","Basic "+encodedCredentials);
+        String encodedCredentialsasString = new String(encodedCredentials);
+
+        request.header("Authorization","Basic "+encodedCredentialsasString);
         String load= """
                 {
                   "userId": "a821501d-f417-4837-85b9-ce717b3df167",
