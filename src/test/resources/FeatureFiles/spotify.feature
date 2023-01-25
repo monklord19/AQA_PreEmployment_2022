@@ -1,4 +1,4 @@
-Feature: Login on Spotify
+Feature: Spotify Login
 
   Background:
     Given user is on the main page
