@@ -12,3 +12,4 @@ ENV/
 *.idea
 build/
 drivers
+src/main/resources/drivers

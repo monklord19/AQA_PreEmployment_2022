@@ -1,0 +1,35 @@
+Request method:	POST
+Request URI:	https://reqres.in/api/register
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "email": "eve.holt@reqres.in",
+    "password": "pistol"
+}
+HTTP/1.1 200 OK
+Date: Wed, 25 Jan 2023 17:47:37 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 36
+Connection: keep-alive
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Etag: W/"24-4iP0za1geN2he+ohu8F0FhCjLks"
+Via: 1.1 vegur
+CF-Cache-Status: DYNAMIC
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KDjKD4k9CvKYCiGOA%2B7wpva0LUkhpVf0J0whxqNsWNf0%2B470ZD4%2BdfBpgbyws7PJZVceuH09CcPqteI64V8RQd65o6u1MtrvQZHucyChzAWBv4EjQVu63zIqpA%3D%3D"}],"group":"cf-nel","max_age":604800}
+NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+Server: cloudflare
+CF-RAY: 78f2d5c60f0f30f9-FRA
+
+{
+    "id": 4,
+    "token": "QpwL5tke4Pnpja7X4"
+}

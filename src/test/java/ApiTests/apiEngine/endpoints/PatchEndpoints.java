@@ -1,7 +1,6 @@
 package ApiTests.apiEngine.endpoints;
 
 import ApiTests.apiEngine.Routes.PatchRoute;
-import ApiTests.apiEngine.Routes.PutRoute;
 import ApiTests.model.Requests.UpdateUser;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;

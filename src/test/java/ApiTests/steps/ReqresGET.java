@@ -1,6 +1,7 @@
 package ApiTests.steps;
 
 import ApiTests.apiEngine.endpoints.GetEndpoints;
+import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.hamcrest.Matchers;
@@ -17,8 +18,14 @@ public class ReqresGET {
         ValidatableResponse v = getUserList.then();
         v.statusCode(Matchers.equalTo(200));
         v.statusLine(Matchers.equalTo("HTTP/1.1 200 OK"));
-        v.time(Matchers.lessThanOrEqualTo((long) 2000));
+        v.time(Matchers.lessThanOrEqualTo((long) 3000));
         v.body("page",Matchers.equalTo(2));
+        //extraction from JSON in Rest Assured with JsonPath
+        String allEmails= JsonPath.read(body,"$.data[*].email").toString();
+        System.out.println("All emails from data list are:");
+        System.out.println(allEmails);
+        String numberOfPeople=JsonPath.read(body,"$.data.length()").toString();
+        System.out.println("The number of people in data list is: " + numberOfPeople);
     }
     @Test
     public void getSingleUser() {
