@@ -1,11 +1,13 @@
 package ApiTests;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.io.File;
 
@@ -21,6 +23,45 @@ public class POST_Requests {
         Response response =httpRequest.body(fileBody).post("Account/v1/User");
         int statusCode = response.getStatusCode();
         System.out.println("Status is" +statusCode);
+    }
+    @Test
+    public void AddBookWithBearerToken(){
+        RestAssured.baseURI = "https://demoqa.com/";
+        RequestSpecification request = RestAssured.given();
+        String credentials ="""
+                             {
+                             "userName": "AndreeaCazan",
+                             "password": "Mimi@@234"
+                             }
+                             """;
+        request.header("Content-Type","application/json");
+
+        Response responseFromToken =request.body(credentials).post("Account/v1/GenerateToken");
+        responseFromToken.prettyPrint();
+
+        String jsonString = responseFromToken.getBody().asString();
+        String tokenGenerated = JsonPath.from(jsonString).get("token");
+
+        request.header("Authorization","Bearer "+tokenGenerated)
+                .header("Content-Type","application/json");
+
+        String addBookDetails= """
+                {
+                  "userId": "a821501d-f417-4837-85b9-ce717b3df167",
+                  "collectionOfIsbns": [
+                    {
+                      "isbn": "9781449337711"
+                    }
+                  ]
+                }
+                """;
+
+        Response addBookResponse= request.body(addBookDetails).post("BookStore/v1/Books");
+        System.out.println("Status code is"+addBookResponse.getStatusCode());
+        Assertions.assertEquals(201,addBookResponse.getStatusCode());
+        addBookResponse.prettyPrint();
+
+
     }
     @Test
     public void POSTBookWhithBasicAuthentification(){
@@ -46,4 +87,5 @@ public class POST_Requests {
 
 
     }
+
 }
