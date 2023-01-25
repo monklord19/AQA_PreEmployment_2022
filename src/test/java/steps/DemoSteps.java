@@ -229,4 +229,19 @@ public class DemoSteps extends BaseClass {
     public void userReceivesConfirmationMessageOnDropBoxDropped(String message) {
         Assert.assertEquals(elementPage.droppedMessageIsDisplayed(),message);
     }
+
+    @And("user clicks {string} button")
+    public void userClicksGridButton(String tab) {
+        elementPage.clickTabType(tab);
+    }
+
+    @And("user clicks {string}")
+    public void userSelectsAnd(String itemName) {
+        elementPage.selectItemOnListTab(itemName);
+    }
+
+    @Then("{string} item is active")
+    public void selectedItemIsActive(String itemName) {
+        Assert.assertTrue(elementPage.selectedItemIsActive(itemName).contains("active"));
+    }
 }

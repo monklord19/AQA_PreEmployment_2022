@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class ElementPage {
     WebDriver driver;
@@ -55,6 +56,8 @@ public class ElementPage {
     By simpleDroppableButton = By.id("droppableExample-tab-simple");
     By draggableBox = By.id("draggable");
     By droppableBox = By.xpath("//div[@class='simple-drop-container']//div[@id='droppable']");
+    By verticalListContainer = By.id("demo-tabpane-list");
+    private By firstLineAgeField1;
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -306,21 +309,53 @@ public class ElementPage {
         dateAndTimeInputFieldElement.sendKeys(Keys.ENTER);
     }
 
-    public void clickOnSimpleButton(){
+    public void clickOnSimpleButton() {
         wait.until(ExpectedConditions.elementToBeClickable(simpleDroppableButton));
-        WebElement simpleDroppableButtonElement = driver.findElement(simpleDroppableButton)   ;
+        WebElement simpleDroppableButtonElement = driver.findElement(simpleDroppableButton);
         simpleDroppableButtonElement.click();
     }
-    public void dragAndDropBox(){
+
+    public void dragAndDropBox() {
         WebElement draggableBoxElement = driver.findElement(draggableBox);
         WebElement droppableBoxElement = driver.findElement(droppableBox);
         wait.until(ExpectedConditions.elementToBeClickable(draggableBoxElement));
         Actions action = new Actions(driver);
         action.dragAndDrop(draggableBoxElement, droppableBoxElement).build().perform();
     }
-    public String droppedMessageIsDisplayed(){
+
+    public String droppedMessageIsDisplayed() {
         WebElement droppableBoxElement = driver.findElement(droppableBox);
         return droppableBoxElement.getText();
     }
 
+    public void clickTabType(String tab) {
+        String tabTypeXpath = "//a[@id='demo-tab-" + tab.toLowerCase() + "']";
+        WebElement tabTypeElement = driver.findElement(By.xpath(tabTypeXpath));
+        tabTypeElement.click();
+    }
+
+    public void selectItemOnListTab(String itemName) {
+        WebElement verticalListElement = driver.findElement(verticalListContainer);
+        List<WebElement> verticalList = verticalListElement.findElements(
+                By.xpath("//ul[@id='verticalListContainer']/li"));
+        for (WebElement item : verticalList) {
+            if (item.getText().contains(itemName)) {
+                item.click();
+                break;
+            }
+        }
+    }
+    public String selectedItemIsActive(String itemName) {
+        WebElement verticalListElement = driver.findElement(verticalListContainer);
+        List<WebElement> verticalList = verticalListElement.findElements(
+                By.xpath("//ul[@id='verticalListContainer']/li"));
+        String message = "";
+        for (WebElement item : verticalList) {
+            if (item.getText().contains(itemName)) {
+                message = item.getAttribute("class");
+                break;
+            }
+        }
+        return message;
+    }
 }

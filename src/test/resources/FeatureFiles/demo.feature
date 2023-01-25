@@ -77,7 +77,11 @@ Feature: Demoqa test
     And user drag box and drop it on drop box
     Then user receives confirmation message on drop box:'Dropped!'
 
-    
-
+  Scenario: Select multiple items from a vertical list
+    When user clicks on 'Interactions' category
+    And user clicks on 'Selectable' element item
+    And user clicks 'List' button
+    And user clicks 'Dapibus ac facilisis in'
+    Then 'Dapibus ac facilisis in' item is active
 
 
