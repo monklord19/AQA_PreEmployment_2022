@@ -7,10 +7,53 @@
 	},
 	"item": [
 		{
-			"name": "Get single user",
+			"name": "Get single user details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200(Get single user details)\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"console.log(\"here I will log my results\")\r",
+							"\r",
+							"let Jsondata = pm.response.json();\r",
+							"\r",
+							"console.log(typeof Jsondata.data.id);\r",
+							"\r",
+							"pm.test(\"I am verifying the json data\", function(){\r",
+							"    pm.expect(Jsondata.data.id).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
 			},
 			"response": []
 		}

@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "38679201-57e2-451a-aadb-8b155861f361",
+		"name": "test0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25310610"
+	},
+	"item": [
+		{
+			"name": "Get user details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res=pm.response.json();\r",
+							"console.log(\"Response is:- \", res);\r",
+							"\r",
+							"console. log(\"Email id of 1st index is:- \",res.data[0].email);\r",
+							"pm.test(\"Verify 1st index email id\", function(){\r",
+							"    pm.expect(res.data[0].email).to.eql(\"michael.lawson@reqres.in\");\r",
+							"    pm.expect(res.data[0].email).to.equals(\"michael.lawson@reqres.in\"); //==\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

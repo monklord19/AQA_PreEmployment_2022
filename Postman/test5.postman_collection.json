@@ -7,12 +7,39 @@
 	},
 	"item": [
 		{
-			"name": "New Request",
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201(Create User)\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"let res=pm.response.json();\r",
+							"pm.test(\"Verifying ID after creating the new user\", function(){\r",
+							"    pm.expect(parseInt(res.id)).to.greaterThan(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Roxana Nicoleta\",\r\n    \"job\": \"Junior QA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://reqres.in/api/unknown",
+					"raw": "https://reqres.in/api/users",
 					"protocol": "https",
 					"host": [
 						"reqres",
@@ -20,7 +47,7 @@
 					],
 					"path": [
 						"api",
-						"unknown"
+						"users"
 					]
 				}
 			},
