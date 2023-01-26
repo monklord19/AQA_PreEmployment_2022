@@ -1,7 +1,4 @@
-Feature: Homework week2 marti
+Feature: Homework
 
-  Scenario:
-    Given On sauce website
-    When User enters valid credentials
-    Then User should be logged in
+
 
