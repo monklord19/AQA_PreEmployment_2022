@@ -1,7 +1,6 @@
 package steps;
 
-import org.junit.After;
-import org.junit.Before;
+import base.BaseClass;
 import pages.SpotifyPage;
 
 import io.cucumber.java.en.And;
@@ -11,8 +10,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 
 public class SpotifyTest {
@@ -20,13 +18,6 @@ public class SpotifyTest {
 
     //SpotifyPage SpotifyPage;
     SpotifyPage SpotifyPage = new SpotifyPage(driver);
-
-/*
-   @After
-    public void quit(){
-       driver.close();
-    }
-*/
 
     @Given("I open spotify website")
     public void iOpenSpotifyWebsite(){

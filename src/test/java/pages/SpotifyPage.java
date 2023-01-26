@@ -1,5 +1,6 @@
 package pages;
 
+import base.BaseClass;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.security.PublicKey;
 import java.time.Duration;
 
-public class SpotifyPage {
+public class SpotifyPage extends BaseClass {
     WebDriver driver;
     WebDriverWait wait;
 
@@ -91,8 +92,9 @@ public class SpotifyPage {
 
         WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(4));
         w.until(ExpectedConditions.elementToBeClickable(AcceptCookiesButton));
+        //wait(AcceptCookiesButton);
         AcceptCookiesButton.click();
-        //driver.quit();
+        //clickElement(AcceptCookiesButton);
     }
 
     public void HomePageLoginButton(){

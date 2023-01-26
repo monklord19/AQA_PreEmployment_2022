@@ -1,7 +1,7 @@
 Feature:Cart test
 
   Background:
-    Given I open the website
+    Given I open the website magento
 
   @VerifyAddToCartButtons
   Scenario: Verify add to cart button from every product
@@ -11,7 +11,7 @@ Feature:Cart test
     Then i should click on every button and each one shoould change their text from add to cart to remove
 
   @VerifyTheRemoveButton
-  Scenario Outline: After I logged successfully I verify if i can add and remove an item from cart
+  Scenario: After I logged successfully I verify if i can add and remove an item from cart
     When I enter the "standard_user" and "secret_sauce"
     And I'm successfully login
     And I add an item to card pressing the button add to cart
