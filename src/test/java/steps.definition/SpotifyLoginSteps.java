@@ -2,6 +2,7 @@ package steps.definition;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
 import page.objects.SpotifyFlow;
 import io.cucumber.java.en.*;
 import utils.BrowserReader;

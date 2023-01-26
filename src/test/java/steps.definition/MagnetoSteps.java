@@ -4,12 +4,18 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
 import page.objects.MagnetoFlow;
 import page.objects.SpotifyFlow;
 import utils.BaseClass;
 import utils.BrowserReader;
+
+import java.io.FileReader;
 
 public class MagnetoSteps extends BaseClass {
 
@@ -54,4 +60,5 @@ public class MagnetoSteps extends BaseClass {
     public void userShouldSeeHisProductInCart() {
         magnetoFlow.onShoppingCart();
     }
+
 }
