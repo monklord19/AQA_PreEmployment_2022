@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.testng.Assert;
 import java.io.File;
 import java.util.Map;
+import static ApiTests.ReqresEndpoint.*;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -31,7 +32,7 @@ public class ReqresApiTest {
                 .header("Content-Type","application/json")
                 .contentType(ContentType.JSON)
                 .when().body(fileBody)
-                .post("/users");
+                .post(createUser);
                 postResponse.then().assertThat().body("name",equalTo("AndreeaC"))
                         .body("job",equalTo("AQA"))
                         .statusCode(201);
@@ -44,7 +45,7 @@ public class ReqresApiTest {
     }
     @Test
     public void GetUser(){
-        var response =  given().when().get("/users/2").then().log().body();
+        var response =  given().when().get(getUser).then().log().body();
                 response.assertThat().body("data.id",equalTo(2));
                 response.assertThat().statusCode(200);
             response.time(Matchers.lessThan(1500L));
@@ -56,9 +57,20 @@ public class ReqresApiTest {
     var response = given().auth().none()
                 .header("Content-Type","application/json")
                 .contentType(ContentType.JSON).
-            body(fileBody2).when().put("/users/2").then().log().body();
+            body(fileBody2).when().put(getUser).then().log().body();
     response.assertThat().statusCode(200);
     response.assertThat().body("name",equalTo("morpheus"));
+        response.time(Matchers.lessThan(2000L));
+    }
+    @Test
+    public void UpdateUserPatch(){
+
+        var response = given().auth().none()
+                .header("Content-Type","application/json")
+                .contentType(ContentType.JSON).
+                body(fileBody2).when().patch(getUser).then().log().body();
+        response.assertThat().statusCode(200);
+        response.assertThat().body("name",equalTo("morpheus"));
         response.time(Matchers.lessThan(2000L));
     }
     @Test
@@ -68,7 +80,7 @@ public class ReqresApiTest {
         var response = given().auth().none()
                 .header("Content-Type","application/json")
                 .contentType(ContentType.JSON).body(fileBody3)
-                .when().post("/users").then()
+                .when().post(createUser).then()
                 .extract().response();
         response.then().log().body();
         response.then().assertThat().body("email",equalTo("eve.holt@reqres.in"));
@@ -80,20 +92,20 @@ public class ReqresApiTest {
     }
     @Test
     public void DeleteUser(){
-        var response =given().when().delete("users/2").then().log().body();
+        var response =given().when().delete(getUser).then().log().body();
         response.assertThat().statusCode(204);
         response.time(Matchers.lessThan(2000L));
 
     }
     @Test
     public void getUser404(){
-        var response =given().when().get("users/23").then().log().body();
+        var response =given().when().get(notFoundUser).then().log().body();
         response.assertThat().statusCode(404);
         response.time(Matchers.lessThan(2000L));
     }
     @Test
     public void getListResource(){
-        var response =given().when().get("unknown").then().log().body();
+        var response =given().when().get(getListResource).then().log().body();
         response.assertThat().statusCode(200);
         response.assertThat().body("total_pages",equalTo(2));
         response.assertThat().body("data.name[1]",equalTo("fuchsia rose"));
@@ -101,7 +113,7 @@ public class ReqresApiTest {
     }
     @Test
     public void getSingleResource(){
-        var response =given().when().get("unknown/2").then().log().body();
+        var response =given().when().get(getSingleResource).then().log().body();
         response.assertThat().statusCode(200);
         response.assertThat().body("data.year",equalTo(2001));
         response.time(Matchers.lessThan(2000L));
@@ -110,7 +122,7 @@ public class ReqresApiTest {
     public void GetUsers() {
 
         RequestSpecification httpRequest = RestAssured.given();
-        Response response = httpRequest.get("/users?page=2");
+        Response response = httpRequest.get(getUsers);
         int statusCode = response.getStatusCode();
         response.then().log().body();
         System.out.println("Print status code:--->" + statusCode);
