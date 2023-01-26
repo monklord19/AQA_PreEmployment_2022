@@ -1,15 +1,19 @@
 package pages;
 
+import net.bytebuddy.asm.Advice;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
+
+import javax.lang.model.element.Element;
+import java.io.File;
 
 public class PracticeFormPage {
 
@@ -26,18 +30,26 @@ public class PracticeFormPage {
     private WebElement phoneNumberField;
     @FindBy(id = "dateOfBirthInput")
     private WebElement dateOfBirthField;
-    @FindBy(css = ".subjects-auto-complete__control")
+    @FindBy(css = "input#subjectsInput")
     private WebElement subjectField;
-    @FindBy(id = "hobbies-checkbox-2")
+    @FindBy(css = "label[for='hobbies-checkbox-2']")
     private WebElement readingCheckBox;
-    @FindBy(id = "hobbies-checkbox-3")
+    @FindBy(css = "label[for='hobbies-checkbox-3']")
     private WebElement musicCheckbox;
-    @FindBy(id = "uploadPicture")
+    @FindBy(css = "input#uploadPicture")
     private WebElement chooseFileButton;
     @FindBy(id = "currentAddress")
     private WebElement currentAddressField;
-    @FindBy(css = "div#state .css-tlfecz-indicatorContainer")
+    @FindBy(css = "#state [class=' css-1wy0on6']")
     private WebElement stateDropDown;
+    @FindBy(css = "div:nth-of-type(6) > .group-header > .header-wrapper")
+    private WebElement bSAPPclickable;
+    @FindBy(css = "button#submit")
+    private  WebElement submitButton;
+    @FindBy(css = "button#submit")
+    private  WebElement formSubmitButton;
+    @FindBy(css = "div#example-modal-sizes-title-lg")
+    private  WebElement thankYouText;
 
 
     public PracticeFormPage(WebDriver driver) {
@@ -70,20 +82,39 @@ public class PracticeFormPage {
 
     }
 
-    public void setSubjectField() throws InterruptedException {
+    public void setSubjectField(String subject) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("javascript:window.scrollBy(250,350)");
-        Thread.sleep(2000);
-        Actions act = new Actions(driver);
-        act.sendKeys(Keys.TAB).build().perform();
-        act.sendKeys(Keys.RETURN).build().perform();
-        subjectField.click();
-        subjectField.clear();
-        subjectField.sendKeys("literature");
+        subjectField.sendKeys(subject);
+    }
+
+    public void chooseHobbies() {
+        readingCheckBox.click();
+        musicCheckbox.click();
+
     }
 
     public void chooseProfilePic() {
-        chooseFileButton.click();
-        chooseFileButton.sendKeys("C:/Users/tonia/Desktop/amongUsPic.png");
+        File file = new File("D:\\AQA_PreEmployment_2022\\amongUsPic.png");
+        chooseFileButton.sendKeys(file.getAbsolutePath());
+    }
+
+    public void setCurrentAddressField(String address) {
+        currentAddressField.sendKeys(address);
+    }
+
+//    public void clickStateDropDown() throws InterruptedException {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+//        bSAPPclickable.click();
+//        Thread.sleep(3000);
+//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+//        stateDropDown.click();
+//    }
+    public void clickSubmitButton(){
+        submitButton.click();
+    }
+    public void checkThanksText(){
+        Assert.assertEquals("Thanks for submitting the form",thankYouText.getText());
     }
 }

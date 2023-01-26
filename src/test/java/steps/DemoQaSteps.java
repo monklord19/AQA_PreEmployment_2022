@@ -146,15 +146,20 @@ public class DemoQaSteps {
         practiceFormPage.selectMaleCheckBox();
         practiceFormPage.setPhoneNumberField("1234567890");
         practiceFormPage.checkDate();
-        practiceFormPage.setSubjectField();
+        practiceFormPage.setSubjectField("literature");
+        practiceFormPage.chooseHobbies();
         practiceFormPage.chooseProfilePic();
+        practiceFormPage.setCurrentAddressField("ceva adressa acolo mnoo");
+//        practiceFormPage.clickStateDropDown();
     }
 
     @When("Click submit button")
     public void clickSubmitButton() {
+        practiceFormPage.clickSubmitButton();
     }
 
     @Then("Check the Thanks message")
     public void checkTheThanksMessage() {
+        practiceFormPage.checkThanksText();
     }
 }
