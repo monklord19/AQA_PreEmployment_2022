@@ -1,36 +1,33 @@
 package ApiTests;
 
-import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
-import io.restassured.response.ValidatableResponse;
-import netscape.javascript.JSObject;
-import org.apache.groovy.parser.antlr4.GroovyParser;
 import org.junit.Assert;
 import org.junit.Test;
-import static org.hamcrest.Matchers.equalTo;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
 
 public class HomeworkApiTests {
     @Test
     public void testGetUserList() {
         int n = 300;
         String endpoint = "https://reqres.in/api/users?page=2";
-        var fff = RestAssured.get(endpoint);
-        System.out.println(fff.getStatusCode());
-        int statCode = fff.getStatusCode();
+        var var = RestAssured.get(endpoint);
+        System.out.println(var.getStatusCode());
+        int statCode = var.getStatusCode();
         Assert.assertEquals(statCode, 200);
-        if (fff.getTime() <= n) {
+        if (var.getTime() <= n) {
             System.out.println("It Is good");
         }
-        System.out.println("It is not good.Actual response time is " + fff.getTime());
-        System.out.println(fff.getBody().asString());
+        System.out.println("It is not good.Actual response time is " + var.getTime());
+        System.out.println(var.getBody().asString());
     }
 
     @Test
     public void getUserList() {
         String endpoint = "https://reqres.in/api/users?page=2";
-        var fff = given().get(endpoint).then().statusCode(200).body("data.id[1]",equalTo(8)).log().all();
+        var var = given().get(endpoint).then().statusCode(200).body("data.id[1]",equalTo(8)).log().all();
 
     }
 
@@ -44,7 +41,7 @@ public class HomeworkApiTests {
                   "job": "leader"
                 }
                 """;
-     var fff =   given().body(body).when().post(endpoint).then().log().body().statusCode(201);
+     var var =   given().body(body).when().post(endpoint).then().log().body().statusCode(201);
     }
 
     @Test
