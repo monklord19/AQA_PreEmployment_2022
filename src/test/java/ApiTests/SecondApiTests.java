@@ -4,8 +4,14 @@ import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+
+import static org.hamcrest.Matchers.lessThan;
+
 import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,7 +19,7 @@ public class SecondApiTests {
     @Test
     public void getAllUsers() {
         String endpoint = "https://reqres.in/api/users?page=2";
-        given().when().get(endpoint).then().log().body();
+        given().when().get(endpoint).then().assertThat().time(lessThan(2500L)).log().body();
     }
 
     @Test
@@ -36,7 +42,7 @@ public class SecondApiTests {
                 "job": "leader"
                 }
                 """;
-        given().body(body).when().post(endpoint).then().log().body();
+        given().body(body).when().post(endpoint).then().assertThat().time(lessThan(2500L)).log();
     }
 
     @Test
@@ -50,8 +56,9 @@ public class SecondApiTests {
                  "avatar": "https://reqres.in/img/faces/7-image.jpg"
                 }
                 """;
-        given().body(body).when().post(endpoint).then().log().body();
+        given().body(body).when().post(endpoint).then().assertThat().time(lessThan(2500L)).log().body();
     }
+
     @Test
     public void updateUserEight() {
         String endpoint = "https://reqres.in/api/users/8";
@@ -61,7 +68,9 @@ public class SecondApiTests {
                 "job": "tester"
                 }
                 """;
-        given().body(body).when().post(endpoint).then().log().body();
+        given().body(body).when().post(endpoint).then().assertThat().time(lessThan(2500L)).log().body();
+
+
     }
 }
 
