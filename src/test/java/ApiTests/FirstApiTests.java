@@ -21,15 +21,15 @@ public class FirstApiTests {
         for (Header header : allHeaders){
             System.out.println("Key:" + header.getName() + "Value" + header.getValue());
         }
-        //given().when().get(endpoint).then().log().body();
     }
 
     @Test
     public void getSpecificEmployee(){
         String endpoint = "http://dummy.restapiexample.com/employee/719";
-        var asd = given().when().get(endpoint).then().assertThat().body("status", equalTo("success"))
+        var abc = given().when().get(endpoint).then().assertThat().body("status", equalTo("success"))
                 .body("data.id", equalTo(1));
-        asd.log().body();
+        abc.log().body();
+        abc.assertThat().statusCode(200);
     }
 
     @Test
@@ -48,24 +48,24 @@ public class FirstApiTests {
     }
 
     @Test
-    public void addEmployee2(){
-        String endpoint = "https://dummy.restapiexample.com/public/api/v1/update/21";
+    public void updateEmployee(){
+        String endpoint = "http://dummy.restapiexample.com/update/719";
         String body = """
-                 {
+                {
                 "name":"test",
                 "salary":"123",
                 "age":"23"
                 }
                 """;
+        var response = given().body(body).when().put(endpoint).then().log().body();
+        response.assertThat().body("status",equalTo("success"));
 
-        var resp = given().body(body).when().put(endpoint).then().log().body();
-        resp.assertThat().body("status", equalTo("success"));
     }
 
     @Test
     public void deleteEmplyee(){
         String endpoint ="http://dummy.restapiexample.com/delete/4118";
-        given().when().delete(endpoint).then().log().body();
+        var response = given().when().delete(endpoint).then().log().body();
     }
 
 
