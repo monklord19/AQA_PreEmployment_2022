@@ -51,4 +51,5 @@ public class CartStepDefs {
     public void theSavvyShoulderToteProductIsAddedToTheCartAndYouAddedSavvyShoulderToteToYourShoppingCartMessageIsDisplayed() { String confirmation = "Proceed to Checkout";
         assertEquals(driver.getPageSource().contains("Proceed to checkout"), confirmation, "Produsul nu este in cos");
     }
+
 }

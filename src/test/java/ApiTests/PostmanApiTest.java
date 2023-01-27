@@ -1,5 +1,6 @@
 package ApiTests;
 
+import Entities.User;
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -74,6 +75,18 @@ public class PostmanApiTest {
                 """;
         var response = given().body(body).when().post(endpoint).then().log().body();
         response.assertThat().statusCode(201);
+    }
+
+    @Test
+    public void CreateUserSerialization () {
+        System.out.println("TEST Create user with serialization");
+        String endpoint ="https://reqres.in/api/users";
+        User deserializedUser = (User) UserSerializationTest.DeSerializeFromFileToObject("userSerialized");
+        System.out.println("User name is " + deserializedUser.getName());
+        System.out.println("User job is " + deserializedUser.getJob());
+        var response = given().body(deserializedUser.toString()).when().post(endpoint).then().log().body();
+        response.assertThat().statusCode(201);
+
     }
 
     @Test
