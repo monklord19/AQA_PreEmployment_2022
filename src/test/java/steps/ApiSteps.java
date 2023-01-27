@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -59,9 +60,45 @@ public class ApiSteps {
         Assert.assertEquals(emailAddress, getJsonPath(response, "data.email"));
     }
 
-    @Then("response time is less than {int} miliseconds")
+    @Then("response time is less than {int} milliseconds")
     public void responseTimeIsUnder(int responseTime) {
         Assert.assertTrue(responseTime > response.time());
+    }
+
+    @When("user sends a get request list resources for page {int}")
+    public void userSendsAGetRequestForListResources(int pageNumber) {
+        response = request.queryParam("page",pageNumber).get();
+    }
+
+    @Then("user receives number of page and is: {string}")
+    public void userReceivesNumberOfPageIs(String pageNumber) {
+        Assert.assertEquals(pageNumber, getJsonPath(response, "page"));
+    }
+
+    @Then("user receives number of users on this page and is: {string}")
+    public void userReceivesNumberOfUsersOnThisPageIs(String numberOfUsersOnPage) {
+        Assert.assertEquals(numberOfUsersOnPage,getJsonPath(response,"data.size()"));
+    }
+
+    @Then("user receives the total number of pages and is: {string}")
+    public void userReceivesTheNumberOfPagesAndIs(String totalPages) {
+        Assert.assertEquals(totalPages,getJsonPath(response,"total_pages"));
+    }
+
+    @When("user sends delete request for user number: {string}")
+    public void userSendsDeleteRequestForUserNumber(String userNumber) {
+        response = request.delete(userNumber);
+    }
+
+    @When("user sends post request with new name and job")
+    public void userSendsPostRequestWith() {
+        String body = """
+            {
+            "name": "Radu",
+            "job": "Tech"
+                }
+            """;
+        response = request.contentType(ContentType.JSON).body(body).post();
     }
 
 }
