@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
 import org.junit.Test;
@@ -35,42 +36,38 @@ public class SecondApiTests {
 
     @Test
     public void createUniqueIdUser() {
-        String endpoint = "https://reqres.in/api/users";
+        String endpoint = "https://reqres.in/api/users/";
         String body = """
                 {
-                "name": "morpheus",
-                "job": "leader"
-                }
-                """;
-        given().body(body).when().post(endpoint).then().assertThat().time(lessThan(2500L)).log();
-    }
-
-    @Test
-    public void registerExistingUser() {
-        String endpoint = "https://reqres.in/api/register";
-        String body = """
-                {
-                 "email": "michael.lawson@reqres.in",
-                 "first_name": "Michael",
-                 "last_name": "Lawson",
-                 "avatar": "https://reqres.in/img/faces/7-image.jpg"
-                }
-                """;
-        given().body(body).when().post(endpoint).then().assertThat().time(lessThan(2500L)).log().body();
-    }
-
-    @Test
-    public void updateUserEight() {
-        String endpoint = "https://reqres.in/api/users/8";
-        String body = """
-                {
-                "name": "morpheus test",
+                "name": "adi",
                 "job": "tester"
                 }
                 """;
-        given().body(body).when().post(endpoint).then().assertThat().time(lessThan(2500L)).log().body();
+        given().body(body).when().post(endpoint).then().log().body();
+    }
 
+    @Test
+    public void register() {
+        String endpoint = "https://reqres.in/api/register";
+        String body = """
+                {
+                 "email": "eve.holt@reqres.in",
+                 "password": "pistol"
+                }
+                """;
+        given().body(body).when().post(endpoint).then().time(lessThan(2500L)).log().body();
+    }
 
+    @Test
+    public void updateUser() {
+        String endpoint = "https://reqres.in/api/users/8";
+        String body = """
+                {
+                "name": "morpheus",
+                "job": "zion resident"
+                }
+                """;
+        given().body(body).when().put(endpoint).then().log().body();
     }
 }
 
