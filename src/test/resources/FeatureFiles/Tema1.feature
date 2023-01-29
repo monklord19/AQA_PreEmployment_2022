@@ -1,5 +1,5 @@
 Feature: Homework1
-  Background: User opens https://www.saucedemo.com/
+  //Background: User opens https://www.saucedemo.com/
     Given user opens website
   Scenario: Login with valid credentials
     Given user enters a valid username as standard_user

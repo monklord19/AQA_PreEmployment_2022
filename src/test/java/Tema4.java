@@ -24,11 +24,12 @@ public class Tema4 {
     FacebookLoginPage facebookLoginPage;
     AppleLoginPage appleLoginPage;
 
-    @Before
-    public void init()
+    /*@Before
+    //public void init()
     {
         SpotifyPage.driver.get("https://open.spotify.com/");
     }
+    */
 
     @Given("user enters e-mail address and invalid password")
     public void userEntersEMailAddressAndInvalidPassword() {
