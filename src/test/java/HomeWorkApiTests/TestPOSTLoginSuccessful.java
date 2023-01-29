@@ -1,5 +1,8 @@
 package HomeWorkApiTests;
 
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -17,27 +20,30 @@ public class TestPOSTLoginSuccessful extends BaseClass {
     @Test
     public void loginSuccessful() {
         var response = given()
-                .queryParam("page", "2")
+                .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/users")
+                .post("/login")
                 .then()
                 .log()
                 .body();
-        response.assertThat().statusCode(201);
+        response.assertThat().statusCode(200);
     }
 
     @Test
-    public void idIsCreated() {
+    public void tokenIsCreated() {
         var response = given()
-                .queryParam("page", "2")
+                .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/users")
+                .post("/login")
                 .then()
-                .log()
-                .body();
-        response.assertThat().body("id", isA(String.class));
+                .extract()
+                .response();
+
+        String responseBody = response.asString();
+        JsonPath jsonBody = new JsonPath(responseBody);
+        Assert.assertEquals(jsonBody.getString("token"),"QpwL5tke4Pnpja7X4");
     }
 
 }

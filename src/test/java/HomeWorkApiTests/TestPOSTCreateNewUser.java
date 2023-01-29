@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.Is.isA;
 
 public class TestPOSTCreateNewUser extends BaseClass {
     String body = """

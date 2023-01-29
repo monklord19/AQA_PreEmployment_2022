@@ -55,6 +55,30 @@ Feature: API test Reqres to Hooks
     When user sends post request with new name and job
     Then user receives status code 201
 
+  Scenario: Test POST create new user name and job field
+    When user sends post request with new name and job
+    Then user checks if the name and job of new user are: 'Radu' and 'Tech'
+
+  Scenario: Test POST create new user id and the time when is created
+    When user sends post request with new name and job
+    Then user checks if there is an id and a time when new user is created
+
+  Scenario: Test POST login successful status code
+    When user sends post login request with username and password
+    Then user receives status code 200
+
+  Scenario: Test POST login successful status code
+    When user sends post login request with username and password
+    Then user receives token: "QpwL5tke4Pnpja7X4"
+    
+  Scenario: Test POST register successful status code
+    When user sends post register request with username and password
+    Then user receives status code 200
+
+  Scenario: Test POST register successful id and token
+    When user sends post register request with username and password
+    Then user receives id and token: "4" and "QpwL5tke4Pnpja7X4"
+
 
 
 

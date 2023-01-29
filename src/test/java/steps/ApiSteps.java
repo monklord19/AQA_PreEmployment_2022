@@ -13,7 +13,7 @@ import org.junit.Assert;
 
 public class ApiSteps {
     public static final String BASE_URL = "https://reqres.in";
-    public static final String BASE_PATH_USERS = "/api/users/";
+    public static final String BASE_PATH_USERS = "/api/";
     public static RequestSpecification request;
     public Response response;
 
@@ -32,7 +32,7 @@ public class ApiSteps {
 
     @When("user sends a get request for user {string}")
     public void userSendsAGetRequestForTheSecondUser(String userNumber) {
-        response = request.get(userNumber);
+        response = request.get("users/" + userNumber);
     }
 
     @Then("user receives status code {int}")
@@ -67,7 +67,7 @@ public class ApiSteps {
 
     @When("user sends a get request list resources for page {int}")
     public void userSendsAGetRequestForListResources(int pageNumber) {
-        response = request.queryParam("page",pageNumber).get();
+        response = request.queryParam("page", pageNumber).get("users");
     }
 
     @Then("user receives number of page and is: {string}")
@@ -77,28 +77,74 @@ public class ApiSteps {
 
     @Then("user receives number of users on this page and is: {string}")
     public void userReceivesNumberOfUsersOnThisPageIs(String numberOfUsersOnPage) {
-        Assert.assertEquals(numberOfUsersOnPage,getJsonPath(response,"data.size()"));
+        Assert.assertEquals(numberOfUsersOnPage, getJsonPath(response, "data.size()"));
     }
 
     @Then("user receives the total number of pages and is: {string}")
     public void userReceivesTheNumberOfPagesAndIs(String totalPages) {
-        Assert.assertEquals(totalPages,getJsonPath(response,"total_pages"));
+        Assert.assertEquals(totalPages, getJsonPath(response, "total_pages"));
     }
 
     @When("user sends delete request for user number: {string}")
     public void userSendsDeleteRequestForUserNumber(String userNumber) {
-        response = request.delete(userNumber);
+        response = request.delete("users/" + userNumber);
     }
 
     @When("user sends post request with new name and job")
     public void userSendsPostRequestWith() {
         String body = """
-            {
-            "name": "Radu",
-            "job": "Tech"
+                {
+                    "name": "Radu",
+                    "job": "Tech"
                 }
-            """;
-        response = request.contentType(ContentType.JSON).body(body).post();
+                """;
+        response = request.contentType(ContentType.JSON).body(body).post("users");
     }
 
+    @Then("user checks if the name and job of new user are: {string} and {string}")
+    public void userChecksTheNameAndJobOfNewUser(String name, String job) {
+        Assert.assertEquals(name, getJsonPath(response, "name"));
+        Assert.assertEquals(job, getJsonPath(response, "job"));
+    }
+
+
+    @Then("user checks if there is an id and a time when new user is created")
+    public void userChecksIfThereIsAnIdAndATimeWhenNewUserIsCreated() {
+        String idResp = getJsonPath(response, "id");
+        String createdAtResp = getJsonPath(response, "createdAt");
+        Assert.assertFalse(idResp.isEmpty() && createdAtResp.isEmpty());
+    }
+
+    @When("user sends post login request with username and password")
+    public void userSendsPostRequestWithUsernameAndPassword() {
+        String body = """
+                {
+                    "email": "eve.holt@reqres.in",
+                    "password": "cityslicka"
+                }
+                """;
+        response = request.contentType(ContentType.JSON).body(body).post("login");
+    }
+
+    @Then("user receives token: {string}")
+    public void userReceivesToken(String loginToken) {
+        Assert.assertEquals(loginToken, getJsonPath(response, "token"));
+    }
+
+    @When("user sends post register request with username and password")
+    public void userSendsPostRegisterRequestWithUsernameAndPassword() {
+        String requestParams = """
+                {
+                    "email": "eve.holt@reqres.in",
+                    "password": "pistol"
+                }
+                """;
+        response = request.contentType(ContentType.JSON).body(requestParams).post("register");
+    }
+
+    @Then("user receives id and token: {string} and {string}")
+    public void userReceivesIdAndTokenAnd(String idNumber, String registerToken) {
+        Assert.assertEquals(idNumber, getJsonPath(response, "id"));
+        Assert.assertEquals(registerToken, getJsonPath(response, "token"));
+    }
 }
