@@ -1,37 +1,44 @@
 Feature: Login testing
 
   @ValidLogin
-  Scenario: Login using valid credentials
+  Scenario Outline: Login using valid credentials
     Given On sauce website
-    When User enters username
-    And Password
+    When User enters <username> and <password>
     And Clicks the login button
     Then User should be logged in
+
+    Examples:
+      | username      | password     |
+      | standard_user | secret_sauce |
+      | problem_user  | secret_sauce |
 
 
   @InvalidLogin
   Scenario: Login using invalid credentials
-    Given On sauce website2
-    When User enters username2
-    And Wrong password
-    And Clicks the login button2
-    Then User should not be logged in
+    Given On sauce website
+    When User enters username as "standard_user"
+    And Password as "wrong"
+    And Clicks the login button
+    Then An error message is displayed "Epic sadface: Username and password do not match any user in this service"
 
 
   @Product
   Scenario: Adding a product to cart
-    Given I am already logged in
-    When I click on the ADD TO CART button corresponding to the Sauce Labs Bike Light
+    Given On sauce website
+    When User enters username as "standard_user"
+    And Password "secret_sauce"
+    And Clicks the login button
+    When Add to cart Sauce Labs Bike Light
     And I check the cart
     Then The item should be there
 
   @MultipleLogin
   Scenario Outline: Login using different usernames
-    Given On sauce website3
+    Given On sauce website
     When User enters username as "<username>"
     And Password as "<password>"
-    And Clicks the login button3
-    Then User should be logged in3
+    And Clicks the login button
+    Then User should be logged in
 
     Examples:
       | username        | password     |
