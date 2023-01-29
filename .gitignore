@@ -13,3 +13,10 @@ ENV/
 build/
 drivers
 src/main/resources/drivers
+src/test/java/ApiTests/HttpStatusCode.java
+src/test/java/ApiTests/steps/oldTests
+src/test/resources/testData
+src/test/java/ApiTests/apiEngine
+src/test/java/ApiTests/steps
+logging.txt
+src/test/java/Testing/StepDefinitions/Hooks.java
