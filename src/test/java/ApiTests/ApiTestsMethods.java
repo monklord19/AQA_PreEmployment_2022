@@ -58,7 +58,4 @@ public class ApiTestsMethods extends ReqResApiFlow {
         deteleEmployee();
     }
 
-
-
-
 }

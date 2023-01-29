@@ -4,16 +4,13 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.hamcrest.Matchers;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
-import org.junit.Test;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static io.restassured.RestAssured.baseURI;
@@ -25,33 +22,39 @@ public class ReqResApiFlow {
     public void getStatus() {
 
         int status = given().when().get("https://reqres.in").getStatusCode();
-        if (status == 200 || status==201) {
-            System.out.println("Status is " + status);
+        if (status == 200 || status == 201) {
+            System.out.println("Status is " + status + " OK");
             Assert.assertTrue(true);
-        } else if (status ==204 || status == 400 || status ==401 || status == 403 || status ==404 ){
-            System.out.println("Status is" + status + "invalid request to go through");
+
+            }else if (status == 204) {
+            System.out.println("Success status but no content" + status);
             Assert.assertTrue(true);
-        }
-        else {
-            System.out.println("Unknown request");
+
+            }else if (status == 400 || status == 401 || status == 403 || status == 404) {
+                System.out.println("Status is" + status + "invalid request to go through");
+                Assert.assertTrue(true);
+            }else {
+                System.out.println("Unknown request");
+            }
+
         }
 
-    }
 
-        public void getResponseTime(){
-        long startTime = System.nanoTime();
-        Response response = RestAssured.get("https://reqres.in");
-        long endTime = System.nanoTime();
-        long duration = (endTime - startTime) / 1000000;
-            if(duration<300){
+        public void getResponseTime() {
+            long startTime = System.nanoTime();
+            Response response = RestAssured.get("https://reqres.in");
+            long endTime = System.nanoTime();
+            long duration = (endTime - startTime) / 1000000;
+            if (duration < 300) {
                 System.out.println("Response time " + duration + " ms");
-                Assert.assertEquals(200,response.getStatusCode());
-            }
-            else {
-                System.out.println("Invalid response to go through");
-            }
+                Assert.assertEquals(200, response.getStatusCode());
+            } else{
 
+                System.out.println("Invalid response to go through");
+
+            }
         }
+
 
     public void getJsonFile() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
@@ -152,11 +155,13 @@ public class ReqResApiFlow {
         System.out.println(JSONObject.toJSONString(request));
         given().body(request.toJSONString()).when().patch("https://reqres.in/api/users/2");
     }
-    @Test
     public void deteleEmployee(){
         String endPoint = "https://reqres.in/api/users/2";
         given().when().delete(endPoint).then().log().body();
     }
+
+
+
 
 }
 
