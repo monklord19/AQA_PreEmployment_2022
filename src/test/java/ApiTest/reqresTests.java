@@ -1,8 +1,10 @@
 package ApiTest;
 
+import io.opentelemetry.sdk.logs.data.Body;
 import io.restassured.RestAssured;
 import io.restassured.http.Headers;
 import io.restassured.http.Method;
+import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import io.restassured.response.Response;
@@ -26,6 +28,9 @@ public class reqresTests {
         //baseURI = "https://reqres.in/";
         RequestSpecification httpRequest = RestAssured.given();
         Response response = httpRequest.request(Method.GET, "/api/users/2");
+
+        ResponseBody body = response.getBody();
+        System.out.println("The 2nd user is"+body.toString());
 
         int statusCode = response.getStatusCode();
         System.out.println("Response status code is" + " " + statusCode);

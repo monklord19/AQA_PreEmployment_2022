@@ -23,15 +23,11 @@ public class LogInTest {
         //System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\chromedriver.exe");
     }*/
 
-    @After
-    public void close_browser(){
-
-        driver.close();
-    }
 
     @Given("I open the website")
     public void i_open_the_website(){
         driver.get("https://www.saucedemo.com");
+
 
     }
 
