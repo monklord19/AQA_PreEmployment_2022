@@ -17,8 +17,12 @@ public class DemoQaSteps {
     DemoElementsPage demoElementsPage = new DemoElementsPage(driver);
     CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
     WebTablesPage webTablesPage = new WebTablesPage(driver);
-    PracticeFormPage practiceFormPage =new PracticeFormPage(driver);
+    PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
     FormsPage formsPage = new FormsPage(driver);
+    ButtonsPage buttonsPage = new ButtonsPage(driver);
+    WidgetsPage widgetsPage = new WidgetsPage(driver);
+    SliderPage sliderPage = new SliderPage(driver);
+
     @Before
     public void maxPage() {
         driver.manage().window().maximize();
@@ -111,7 +115,7 @@ public class DemoQaSteps {
     }
 
     @And("Click the Submit")
-    public void clickTheSubmit() {
+    public void clickTheSubmit() throws InterruptedException {
         webTablesPage.clickSubmitButton();
     }
 
@@ -120,16 +124,13 @@ public class DemoQaSteps {
         webTablesPage.searchFieldFindJonny("Jonny");
     }
 
-    @And("Check if the registration was a success")
+    @Then("Check if the registration was a success")
     public void checkIfTheRegistrationWasASuccess() {
         webTablesPage.checkToFindJonny();
     }
 
-    @Then("Click delete button for the new registration")
-    public void clickDeleteButtonForTheNewRegistration() {
-        webTablesPage.deleteJonnyProfile();
-    }
-//test 4
+
+    //test 4
     @Given("Click on practice form")
     public void clickOnPracticeForm() {
         demoPage.clickFormLink();
@@ -150,7 +151,7 @@ public class DemoQaSteps {
         practiceFormPage.chooseHobbies();
         practiceFormPage.chooseProfilePic();
         practiceFormPage.setCurrentAddressField("ceva adressa acolo mnoo");
-//        practiceFormPage.clickStateDropDown();
+        practiceFormPage.clickStateDropDown();
     }
 
     @When("Click submit button")
@@ -161,5 +162,41 @@ public class DemoQaSteps {
     @Then("Check the Thanks message")
     public void checkTheThanksMessage() {
         practiceFormPage.checkThanksText();
+    }
+
+    // test 5
+    @Given("Click on the Buttons btn")
+    public void clickOnTheButtonsBtn() {
+        demoPage.clickOnElelments();
+        demoElementsPage.clickButtonsButton();
+    }
+
+    @When("Double click the Double Click Me button")
+    public void doubleClickTheDoubleClickMeButton() throws InterruptedException {
+        Thread.sleep(2000);
+        buttonsPage.doubleClick();
+    }
+
+    @Then("Check for the double click message")
+    public void checkForTheDoubleClickMessage() {
+        buttonsPage.checkDoubleClickMessage("You have done a double click");
+    }
+
+    //test6
+    @Given("Click on Widgets link")
+    public void clickOnWidgetsLink() {
+        demoPage.clickWidgetsLink();
+        widgetsPage.clickSliderButton();
+    }
+
+
+
+    @When("Move the slider at 50")
+    public void moveTheSliderAt() throws InterruptedException {
+        sliderPage.sliderMove();
+    }
+
+    @Then("Check  for the number 50")
+    public void checkForTheNumber(String arg0) {
     }
 }

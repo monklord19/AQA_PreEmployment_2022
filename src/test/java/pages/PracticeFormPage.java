@@ -42,7 +42,7 @@ public class PracticeFormPage {
     private WebElement currentAddressField;
     @FindBy(css = "#state [class=' css-1wy0on6']")
     private WebElement stateDropDown;
-    @FindBy(css = "div:nth-of-type(6) > .group-header > .header-wrapper")
+    @FindBy(css = "div:nth-of-type(5) > .group-header > .header-wrapper")
     private WebElement bSAPPclickable;
     @FindBy(css = "button#submit")
     private  WebElement submitButton;
@@ -103,14 +103,15 @@ public class PracticeFormPage {
         currentAddressField.sendKeys(address);
     }
 
-//    public void clickStateDropDown() throws InterruptedException {
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-//        bSAPPclickable.click();
-//        Thread.sleep(3000);
-//        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-//        stateDropDown.click();
-//    }
+    public void clickStateDropDown() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+        Thread.sleep(3000);
+        bSAPPclickable.click();
+        Thread.sleep(2000);
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+
+    }
     public void clickSubmitButton(){
         submitButton.click();
     }

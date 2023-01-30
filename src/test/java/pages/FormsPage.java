@@ -15,6 +15,7 @@ public class FormsPage {
         PageFactory.initElements(driver, this);
     }
     public void clickPracticeForm(){
+
         practiceFormLink.click();
     }
 }

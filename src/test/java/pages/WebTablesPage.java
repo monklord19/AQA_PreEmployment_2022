@@ -34,7 +34,7 @@ public class WebTablesPage {
     @FindBy(id = "submit")
     private WebElement submitButton;
 
-    @FindBy(id = "searchBox")
+    @FindBy(css = "input#searchBox")
     private WebElement searchBoxField;
 
     @FindBy(css = ".rt-tbody > div:nth-of-type(1) > div[role='row'] > div:nth-of-type(1)")
@@ -76,8 +76,9 @@ public class WebTablesPage {
         departmentField.sendKeys(department);
     }
 
-    public void clickSubmitButton() {
+    public void clickSubmitButton() throws InterruptedException {
         submitButton.click();
+        Thread.sleep(1000);
     }
 
     public void searchFieldFindJonny(String jonnyName){
@@ -86,7 +87,5 @@ public class WebTablesPage {
     public void checkToFindJonny(){
         Assert.assertEquals(findJonnyFirstName.getText(),"Jonny");
     }
-    public void deleteJonnyProfile(){
-        deleteButton.click();
-    }
+
 }

@@ -23,19 +23,23 @@ Feature: DemoQa tests
     And Fill the Registration form
     And Click the Submit
     When Search for  the new person in the table
-    And Check if the registration was a success
-    Then Click delete button for the new registration
+    Then Check if the registration was a success
 
   Scenario: Fill the practice form
     Given Click on practice form
     And Fill out the register form
     When Click submit button
-   Then Check the Thanks message
+    Then Check the Thanks message
 
+  Scenario: Double click the button in the Buttons section
+    Given Click on the Buttons btn
+    When Double click the Double Click Me button
+    Then Check for the double click message
 
-
-
-
+  Scenario: Slider test
+    Given Click on Widgets link
+    When Move the slider at 50
+    Then Check  for the number 50
 
 
 
