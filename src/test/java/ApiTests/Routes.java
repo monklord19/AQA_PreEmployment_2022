@@ -6,16 +6,19 @@ public enum Routes {
     GenerateToken("Account/AccountV1GenerateTokenPost"),
 
 
-
     //BOOKSTORE
-    GetBooks("BookStore/BookStoreV1BooksGet");
+    GetBooks("BookStore/BookStoreV1BooksGet"),
+    PostBooks("BookStore/BookStoreV1BooksPost"),
+    DeleteBooks("BookStore/BookStoreV1BooksDelete"),
+    GetBook("BookStore/BookStoreV1BookGet");
     private final String url;
-    Routes(String url){
-        this.url=url;
+
+    Routes(String url) {
+        this.url = url;
     }
-    public String getUrl(){
+
+    public String getUrl() {
         return this.url;
     }
-
 }
 

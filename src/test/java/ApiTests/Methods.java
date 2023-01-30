@@ -1,5 +1,11 @@
 package ApiTests;
 
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import net.minidev.json.JSONObject;
+import org.testng.Assert;
+
 public class Methods {
     public void RegistrationSuccessful() {
         RestAssured.baseURI = "https://bookstore.toolsqa.com";
