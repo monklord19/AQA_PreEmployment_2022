@@ -19,7 +19,7 @@ public class FirstApiTests {
         Response response = httpRequest.get("");
         Headers allHeaders = response.headers();
         for(Header header:allHeaders){
-            System.out.println("Key:"+header.getName()+"Value"+header.getValue());
+            System.out.println("Key: " + header.getName() + " Value " + header.getValue());
         }
     }
     @Test
@@ -30,6 +30,8 @@ public class FirstApiTests {
     }
     @Test
     public void addEmployee(){
+
+
         String endpoint = "https://dummy.restapiexample.com/api/v1/create";
         String body = """
                {
