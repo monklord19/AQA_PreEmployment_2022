@@ -108,7 +108,6 @@ public class ReqresDefs {
         JsonPath jsonPath = response.jsonPath();
         boolean dataExists = jsonPath.get("data").toString().contains("id");
         Assert.assertTrue(dataExists);
-        System.out.println(dataExists);
     }
 
     @And("Check number of id properties")
