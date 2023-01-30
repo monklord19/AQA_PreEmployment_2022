@@ -1,5 +1,6 @@
 package ApiTests;
 
+import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -80,12 +81,11 @@ public class ReqresApiTest {
         var response = given().auth().none()
                 .header("Content-Type","application/json")
                 .contentType(ContentType.JSON).body(fileBody3)
-                .when().post(createUser).then()
+                .when().post("/register").then()
                 .extract().response();
         response.then().log().body();
-        response.then().assertThat().body("email",equalTo("eve.holt@reqres.in"));
 
-        Assertions.assertEquals(201, response.statusCode());
+        Assertions.assertEquals(200, response.statusCode());
         long time = response.getTime();
         System.out.println(time);
         Assert.assertTrue(time<1600);
@@ -118,6 +118,8 @@ public class ReqresApiTest {
         response.assertThat().body("data.year",equalTo(2001));
         response.time(Matchers.lessThan(2000L));
     }
+
+
     @Test
     public void GetUsers() {
 

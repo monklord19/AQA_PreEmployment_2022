@@ -13,8 +13,8 @@ public class LumaSteps {
     WebDriver driver = new ChromeDriver();
     LumaPage objects= new LumaPage(driver);
 
-    @Given("I opens website")
-    public void iOpensWebsite() {
+    @Given("I open website")
+    public void iOpenWebsite() {
         String test_url ="https://magento.softwaretestingboard.com/gear.html";
 
         driver.manage().window().maximize();

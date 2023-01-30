@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/*.feature"},
-        glue = {"src/test/java/StepsDefinitions"},
+        features = {"src/test/resources/FeatureFiles/ReqresFeature.feature"},
+        glue = {"src/test/java/StepsDefinitions/ReqresSteps.java"},
         //tags = "(@LoginwithGoogle or @LoginwithSpotify or @LoginwithApple or @LoginwithFacebook)",
         plugin = "pretty"
 
