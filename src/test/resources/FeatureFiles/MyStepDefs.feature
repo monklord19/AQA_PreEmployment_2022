@@ -87,6 +87,94 @@ Feature: Homework
     And Enter another facebook password "facebook-second-password-test"
     Then User should be logged in with facebook account "false"
 
+  Scenario: List users
+    Given On API address
+    When Send a get request for page 2
+    Then Receive status code 200 and the response time
+
+  Scenario: Single user found
+    Given On API address
+    When Sends a get request for the second user
+    And Check number of properties in the 'data' object
+    And Check number of properties in the 'support' object
+    Then Receive status code 200 and the response time
+
+  Scenario: Single user not found
+    Given On API address
+    When Send a get request for the no. 23 user
+    Then Receive status code 404 and the response time
+
+  Scenario: List <Resource>
+    Given On API address
+    When Send a get request for unknown page
+    And Check number of values
+    Then Receive status code 200 and the response time
+
+  Scenario: Single <Resource>
+    Given On API address
+    When Send a get request for unknown page for id 2
+    And Check number of id properties
+    Then Receive status code 200 and the response time
+
+  Scenario: Single <Resource> not found
+    Given On API address
+    When Send a get request for unknown page for id 23
+    And Check data
+    Then Receive status code 404 and the response time
+
+  Scenario: Create properties
+    Given On API address
+    When Send a post request for name and job
+    And Response body should contains name, job, id and createdAt
+    Then Receive status code 201 and the response time
+
+  Scenario: Update properties with put method
+    Given On API address
+    When Send a put request for name and job
+    And Response body should contains name, job and createdAt
+    Then Receive status code 200 and the response time
+
+  Scenario: Update properties with patch method
+    Given On API address
+    When Send a patch request for name and job
+    And Response body should contains name, job and createdAt
+    Then Receive status code 200 and the response time
+
+  Scenario: Delete properties with delete method
+    Given On API address
+    When Send a delete request to an API
+    Then Receive status code 204 and the response time
+
+  Scenario: Register successful
+    Given On API address
+    When Send register request to an API
+    And Check body if contains id and token
+    Then Receive status code 200 and the response time
+
+  Scenario: Register unsuccessful
+    Given On API address
+    When Send a register request without password to an API
+    Then Receive status code 400 and the response time
+
+  Scenario: Login successful
+    Given On API address
+    When Send a login request to an API
+    Then Receive status code 200 and the response time
+
+  Scenario: Login unsuccessful
+    Given On API address
+    When Send a login request without password to an API
+    Then Receive status code 400 and the response time
+
+  Scenario: Delayed response
+    Given On API address
+    When Send a get request to an delayed API
+    Then Receive status code 200 and the delayed response time
+    
+
+
+
+
 
 
 

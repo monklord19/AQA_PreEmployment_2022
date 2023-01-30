@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class LoginSpotifyPage extends BasePage {
+    public class LoginSpotifyPage extends BasePage {
     public WebDriver driver;
 
 
@@ -29,7 +29,6 @@ public class LoginSpotifyPage extends BasePage {
     }
 
 
-
     // By Apple
     By appleIdField = By.id("account_name_text_field");
     By applePasswordField = By.id("password_text_field");
@@ -47,9 +46,12 @@ public class LoginSpotifyPage extends BasePage {
     }
 
 
-
     // By Google
-    By emailGoogleField = By.id("identifierId");
+
+    public LoginSpotifyPage (WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+    }
     public WebElement enterGoogleEmail() {
         return driver.findElement(emailGoogleField);
     }
@@ -59,7 +61,7 @@ public class LoginSpotifyPage extends BasePage {
     public WebElement getGoogleNextButton() {
         return driver.findElement(nextButton);
     }
-
+    By emailGoogleField = By.id("identifierId");
 
 
     // By Spotify
@@ -68,10 +70,6 @@ public class LoginSpotifyPage extends BasePage {
     By loginButton = By.id("login-button");
     By nextButton = By.id("identifierNext");
     By signInButton = By.id("sign-in");
-    public LoginSpotifyPage (WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-    }
     public WebElement enterSpotifyEmail() {
         return driver.findElement(emailField);
     }
@@ -81,8 +79,6 @@ public class LoginSpotifyPage extends BasePage {
     public WebElement clickLoginButtonOnSpotify() {
         return driver.findElement(loginButton);
     }
-
-
     public WebElement getNextButton() {
         return driver.findElement(nextButton);
     }
