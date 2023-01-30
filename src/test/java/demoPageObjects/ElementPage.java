@@ -3,7 +3,9 @@ package demoPageObjects;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,7 +59,10 @@ public class ElementPage {
     By draggableBox = By.id("draggable");
     By droppableBox = By.xpath("//div[@class='simple-drop-container']//div[@id='droppable']");
     By verticalListContainer = By.id("demo-tabpane-list");
-    private By firstLineAgeField1;
+    By selectValueField = By.xpath("//*[@id=\"withOptGroup\"]/div[1]");
+    By singleValueField = By.className("css-1uccc91-singleValue");
+    By selectOneField = By.xpath("//*[@id=\"selectOne\"]/div");
+    By selectOneValueField = By.xpath("//div[@id='selectOne']/div/div//div[contains(text(),'Mr.')]");
 
     public ElementPage(WebDriver driver) {
         this.driver = driver;
@@ -201,7 +206,7 @@ public class ElementPage {
 
     public void enterPath(String path) {
         WebElement chooseFileInputElement = driver.findElement(chooseFileButton);
-        chooseFileInputElement.sendKeys(path);
+        chooseFileInputElement.sendKeys(System.getProperty("user.dir")+path);
     }
 
     public String nameOfUploadedFile() {
@@ -345,6 +350,7 @@ public class ElementPage {
             }
         }
     }
+
     public String selectedItemIsActive(String itemName) {
         WebElement verticalListElement = driver.findElement(verticalListContainer);
         List<WebElement> verticalList = verticalListElement.findElements(
@@ -357,5 +363,43 @@ public class ElementPage {
             }
         }
         return message;
+    }
+
+    public void selectValueMeniu() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectValueField));
+        WebElement selectValueFieldElement = driver.findElement(selectValueField);
+        selectValueFieldElement.click();
+    }
+
+    public void selectValue(String value) {
+        String valueXpath = "//div[contains(text(),'" + value + "')]";
+        WebElement valueSelectedElement = driver.findElement(By.xpath(valueXpath));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", valueSelectedElement);
+        wait.until(ExpectedConditions.visibilityOf(valueSelectedElement));
+        valueSelectedElement.click();
+    }
+
+    public String singleValueIsSelected() {
+        WebElement singleValueFieldElement = driver.findElement(singleValueField);
+        return singleValueFieldElement.getText();
+    }
+
+    public void selectOneMeniu() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectOneField));
+        WebElement selectOneValueFieldElement = driver.findElement(selectOneField);
+        selectOneValueFieldElement.click();
+    }
+    public String oneValueIsSelected() {
+        WebElement oneValueFieldElement = driver.findElement(selectOneValueField);
+        return oneValueFieldElement.getText();
+    }
+    public void selectOldStyleSelectMenu(String color){
+        Select selection = new Select(driver.findElement(By.xpath("//*[@id='oldSelectMenu']")));
+        selection.selectByVisibleText(color);
+    }
+    public boolean oldStyleSelectMennuSelection(String color){
+        WebElement colorSelected = driver.findElement(By.xpath("//select[@id='oldSelectMenu']//option[contains(text(),'"+color+"')]"));
+        Assert.assertTrue(colorSelected.isSelected());
+        return true;
     }
 }

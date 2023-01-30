@@ -244,4 +244,39 @@ public class DemoSteps extends BaseClass {
     public void selectedItemIsActive(String itemName) {
         Assert.assertTrue(elementPage.selectedItemIsActive(itemName).contains("active"));
     }
+
+    @And("user clicks on select value option")
+    public void userClicksOnSelectValueOption() {
+        elementPage.selectValueMeniu();
+    }
+
+    @And("user selects value {string}")
+    public void userSelectsValueAnotherRootOption(String value) {
+        elementPage.selectValue(value);
+    }
+
+    @Then("{string} value is selected")
+    public void anotherRootOptionValueIsSelected(String singleValueMessage) {
+        Assert.assertEquals(elementPage.singleValueIsSelected(),singleValueMessage);
+    }
+
+    @When("user clicks on select one value option")
+    public void userClicksOnSelectOneValueOption() {
+        elementPage.selectOneMeniu();
+    }
+
+    @Then("{string} one value is selected")
+    public void mrOneValueIsSelected(String oneValue) {
+        Assert.assertEquals(elementPage.oneValueIsSelected(),oneValue);
+    }
+
+    @When("user selects color {string} in old style select menu")
+    public void userSelectsColorBlueInOldStyleSelectMenu(String color) {
+        elementPage.selectOldStyleSelectMenu(color);
+    }
+
+    @Then("color {string} is selected")
+    public void colorBlueIsSelected(String colorSelected) {
+        Assert.assertTrue(elementPage.oldStyleSelectMennuSelection(colorSelected));
+    }
 }

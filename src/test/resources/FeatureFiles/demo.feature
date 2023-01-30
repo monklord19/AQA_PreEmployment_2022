@@ -44,7 +44,7 @@ Feature: Demoqa test
     Then file name 'FirstWeek.txt' and path of document uploaded is displayed
     Examples:
       | Path                                                                                                     |
-      | C:\Users\Radu Sabau\Desktop\AQA-Pre-Employment\AQAProject\AQA_PreEmployment_2022\HomeWorks\FirstWeek.txt |
+      | \HomeWorks\FirstWeek.txt |
 
   Scenario: Geting the texts from the outer and inner frames
     When user clicks on 'Alerts, Frame & Windows' category
@@ -84,4 +84,14 @@ Feature: Demoqa test
     And user clicks 'Dapibus ac facilisis in'
     Then 'Dapibus ac facilisis in' item is active
 
-
+  Scenario: Select value, tile and old style menus functionality
+    When user clicks on 'Widgets' category
+    And user clicks on 'Select Menu' element item
+    And user clicks on select value option
+    And user selects value 'Another root option'
+    Then 'Another root option' value is selected
+    When user clicks on select one value option
+    And user selects value 'Mr.'
+    Then 'Mr.' one value is selected
+    When user selects color 'Blue' in old style select menu
+    Then color 'Blue' is selected
