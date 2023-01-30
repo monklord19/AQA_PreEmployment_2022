@@ -13,21 +13,21 @@ public class HomeworkApiTests {
     public void testGetUserList() {
         int n = 300;
         String endpoint = "https://reqres.in/api/users?page=2";
-        var var = RestAssured.get(endpoint);
-        System.out.println(var.getStatusCode());
-        int statCode = var.getStatusCode();
+        var response = RestAssured.get(endpoint);
+        System.out.println(response.getStatusCode());
+        int statCode = response.getStatusCode();
         Assert.assertEquals(statCode, 200);
-        if (var.getTime() <= n) {
+        if (response.getTime() <= n) {
             System.out.println("It Is good");
         }
-        System.out.println("It is not good.Actual response time is " + var.getTime());
-        System.out.println(var.getBody().asString());
+        System.out.println("It is not good.Actual response time is " + response.getTime());
+        System.out.println(response.getBody().asString());
     }
 
     @Test
     public void getUserList() {
         String endpoint = "https://reqres.in/api/users?page=2";
-        var var = given().get(endpoint).then().statusCode(200).body("data.id[1]",equalTo(8)).log().all();
+        var response = given().get(endpoint).then().statusCode(200).body("data.id[1]",equalTo(8)).log().all();
 
     }
 
@@ -41,7 +41,7 @@ public class HomeworkApiTests {
                   "job": "leader"
                 }
                 """;
-     var var =   given().body(body).when().post(endpoint).then().log().body().statusCode(201);
+     var response =   given().body(body).when().post(endpoint).then().log().body().statusCode(201);
     }
 
     @Test
