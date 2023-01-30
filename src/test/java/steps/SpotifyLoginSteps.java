@@ -23,14 +23,14 @@ public class SpotifyLoginSteps {
     SpotifyLoginPage spotifyLoginPage = new SpotifyLoginPage(driver);
     SpotifyLoginApplePage spotifyLoginApplePage = new SpotifyLoginApplePage(driver);
     SpotifyLoginFbPage spotifyLoginFbPage = new SpotifyLoginFbPage(driver);
-    @Before
-    public void openBrowser() {
-        driver.manage().window().maximize();
-    }
-    @After
-    public void closeBrowser() {
-        driver.quit();
-    }
+//    @Before
+//    public void openBrowser() {
+//        driver.manage().window().maximize();
+//    }
+//    @After
+//    public void closeBrowser() {
+//        driver.quit();
+//    }
     @Given("You are on the spotify page")
     public void youAreOnTheSpotifyPage() {
         driver.get("https://open.spotify.com");
@@ -111,4 +111,6 @@ public class SpotifyLoginSteps {
     public void checkToSeeIfErrorIsDisplayed() {
       spotifyLoginFbPage.checkFbAlert();
     }
+
+
 }
