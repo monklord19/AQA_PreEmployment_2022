@@ -9,6 +9,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
+
+
 public class ReqresApiTests {
 
     @Test
@@ -28,12 +30,24 @@ public class ReqresApiTests {
     @Test
     public void PostUser() {
         String postuser = "https://reqres.in/api/users";
+        String newuserbody = """
+                {
+                "name": "morpheus",
+                "job": "leader"
+                }
+                """;
         given().when().post(postuser).then().log().body();
     }
 
     @Test
     public void RegisterSuccessful() {
         String register = "https://reqres.in/api/register";
+        String regsuccesful = """
+                {
+                "email": "eve.holt@reqres.in",
+                "password": "pistol"
+                }
+                """;
         given().when().post(register).then().log().body();
     }
 
@@ -83,4 +97,18 @@ public class ReqresApiTests {
         String url = "https://reqres.in/api/users/2";
         var time = given().when().get(url).then().assertThat().time(lessThan(500L));
     }
+
+    @Test
+    public void Test5 (){
+    Response response = RestAssured.get("https://reqres.in/api/users?page=2");
+
+    // Get the status code of the request.
+    //If request is successful, status code will be 200
+
+    int statusCode = response.getStatusCode();
+
+    // Assert that correct status code is returned.
+      Assert.assertEquals(statusCode,200);
 }
+}
+
