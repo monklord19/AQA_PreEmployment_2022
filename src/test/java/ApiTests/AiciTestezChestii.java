@@ -1,6 +1,7 @@
 package ApiTests;
 
 import ApiTests.apiEngine.Requests.AuthorizationRequest;
+import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonObject;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
@@ -9,11 +10,10 @@ import org.junit.Assert;
 import org.testng.annotations.Test;
 
 public class AiciTestezChestii {
-    BackendPropertiesReader reader;
     @Test
     public void testezChestii(){
 
-        String BASE_URL = reader.getBaseUrl();
+        String BASE_URL = BackendPropertiesReader.getInstance().getBaseUrl();
         RestAssured.baseURI = BASE_URL;
         RequestSpecification requestSpecificationSettings;
         RequestSpecBuilder builder = new RequestSpecBuilder();
@@ -26,7 +26,9 @@ public class AiciTestezChestii {
         AuthorizationRequest authRequestBody = new AuthorizationRequest(userName, password);
         Routes createUserRoute = Routes.CreateUser;
         Response createUserResponse = request.body(authRequestBody).post(createUserRoute.getUrl());
-        Assert.assertEquals(400,createUserResponse.getStatusCode());
+        String responseAsString=createUserResponse.asPrettyString();
+        System.out.println(responseAsString);
+        Assert.assertEquals(201,createUserResponse.getStatusCode());
 
     }
 }

@@ -2,8 +2,8 @@ package ApiTests;
 
 public enum Routes {
     //ACCOUNT
-    Authorize("Account/v1/Authorized"),
-    GenerateToken("Account//v1/GenerateToken"),
+    Authorize("/Account/v1/Authorized"),
+    GenerateToken("/Account//v1/GenerateToken"),
     CreateUser("/Account/v1/User"),
     DeleteUser("/Account/v1/User/{UUID}"),
     GetUser("/Account/v1/User/{UUID}"),
