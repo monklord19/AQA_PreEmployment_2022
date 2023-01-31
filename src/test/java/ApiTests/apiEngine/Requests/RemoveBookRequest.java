@@ -1,4 +1,4 @@
-package apiEngine.Requests;
+package ApiTests.apiEngine.Requests;
 
 public class RemoveBookRequest {
     public String isbn;
