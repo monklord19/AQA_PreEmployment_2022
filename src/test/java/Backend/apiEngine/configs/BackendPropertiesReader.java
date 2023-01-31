@@ -1,4 +1,4 @@
-package ApiTests.apiEngine.configs;
+package Backend.apiEngine.configs;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -50,5 +50,6 @@ public class BackendPropertiesReader {
         if(password!=null) return password;
         else throw new RuntimeException("Password not specified in .properties file");
     }
+
 }
 

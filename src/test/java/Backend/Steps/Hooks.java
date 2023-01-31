@@ -1,54 +1,55 @@
-package ApiTests.Steps;
+package Backend.Steps;
 
-import ApiTests.apiEngine.Requests.AuthorizationRequest;
-import ApiTests.apiEngine.Routes.Routes;
-import ApiTests.apiEngine.configs.BackendPropertiesReader;
+import Backend.apiEngine.Routes.Routes;
+import Backend.apiEngine.configs.BackendPropertiesReader;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import net.minidev.json.JSONObject;
 import org.junit.Assert;
 
-import java.util.List;
-import java.util.Map;
-
-public class Methods {
+public class Hooks {
     public static RequestSpecification iSetTheRequestSpecifications() {
         String BASE_URL = BackendPropertiesReader.getInstance().getBaseUrl();
-        RestAssured.baseURI = BASE_URL;
+        System.out.println(BASE_URL);
+        //RestAssured.baseURI = BASE_URL;
         RequestSpecification requestSpecificationSettings;
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setBaseUri(BASE_URL);
-        builder.addHeader("Content-Type:", " application/json");
+        builder.setContentType(ContentType.JSON);
         requestSpecificationSettings = builder.build();
-        RequestSpecification request=RestAssured.given().spec(requestSpecificationSettings);
+        RequestSpecification request = RestAssured.given().spec(requestSpecificationSettings);
         return request;
     }
-
-    public static Response createUser() {
+    public static Response createUserAccount() {
         String userName = BackendPropertiesReader.getInstance().getUserName();
         String password = BackendPropertiesReader.getInstance().getPassword();
-        AuthorizationRequest authRequestBody = new AuthorizationRequest(userName, password);
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("userName", userName);
+        requestBody.put("password", password);
         Routes createUserRoute = Routes.CreateUser;
-        Response createUserResponse = Methods.iSetTheRequestSpecifications().body(authRequestBody).post(createUserRoute.getUrl());
+        System.out.println(Routes.CreateUser.getUrl());
+        Response createUserResponse = Hooks.iSetTheRequestSpecifications().body(requestBody).post(createUserRoute.getUrl());
         Assert.assertEquals(201,createUserResponse.getStatusCode());
         return createUserResponse;
     }
-
     public static String getUserId() {
-        String responseAsString = Methods.createUser().asString();
+        String responseAsString = Hooks.createUserAccount().asString();
         Assert.assertTrue(responseAsString.contains("userID"));
         String userId = JsonPath.from(responseAsString).get("userID");
         return userId;
     }
-
     public String generateAndGetToken() {
         String userName = BackendPropertiesReader.getInstance().getUserName();
         String password = BackendPropertiesReader.getInstance().getPassword();
-        AuthorizationRequest authRequestBody = new AuthorizationRequest(userName, password);
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("userName", userName);
+        requestBody.put("password", password);
         Routes generateTokenRoute = Routes.GenerateToken;
-        Response responseForToken = Methods.iSetTheRequestSpecifications().body(authRequestBody).post(generateTokenRoute.getUrl());
+        Response responseForToken = Hooks.iSetTheRequestSpecifications().body(requestBody).post(generateTokenRoute.getUrl());
         String responseAsString = responseForToken.asString();
         Assert.assertTrue(responseAsString.contains("token"));
         String token = JsonPath.from(responseAsString).get("token");
@@ -58,23 +59,18 @@ public class Methods {
     public void AuthorizedSuccessful() {
         String userName = BackendPropertiesReader.getInstance().getUserName();
         String password = BackendPropertiesReader.getInstance().getPassword();
-        AuthorizationRequest authRequestBody = new AuthorizationRequest(userName, password);
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("userName", userName);
+        requestBody.put("password", password);
         Routes authRoute = Routes.Authorize;
-        Response response = Methods.iSetTheRequestSpecifications().body(authRequestBody).post(authRoute.getUrl());
+        Response response = Hooks.iSetTheRequestSpecifications().body(requestBody).post(authRoute.getUrl());
         Assert.assertTrue(response.asString().contains("true"));
-        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
-    public static Response getAllBooks(){
-        Routes getAllBooksRoute=Routes.GetBooks;
-       Response getAllBooksResponse= Methods.iSetTheRequestSpecifications().get(getAllBooksRoute.getUrl());
-       return getAllBooksResponse;
-    }
-    public static String getBooksISBN(){
-String allBooksResponseAsString=Methods.getAllBooks().asString();
-        List<Map<String,String>> books=JsonPath.from(allBooksResponseAsString).get("books");
-        Assert.assertTrue(books.size()>0);
-        String bookISBN=books.get(0).get("isbn");
-        return bookISBN;
 
-    }
+
+
+
+
+
 }
