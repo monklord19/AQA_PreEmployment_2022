@@ -1,6 +1,4 @@
-package ApiTests;
-
-import org.codehaus.groovy.transform.SourceURIASTTransformation;
+package ApiTests.apiEngine.configs;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

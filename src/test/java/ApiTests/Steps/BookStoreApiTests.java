@@ -1,4 +1,6 @@
-import ApiTests.Methods;
+package ApiTests.Steps;
+
+import ApiTests.Steps.Methods;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

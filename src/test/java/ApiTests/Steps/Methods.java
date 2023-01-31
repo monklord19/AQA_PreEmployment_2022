@@ -1,13 +1,14 @@
-package ApiTests;
+package ApiTests.Steps;
 
 import ApiTests.apiEngine.Requests.AuthorizationRequest;
+import ApiTests.apiEngine.Routes.Routes;
+import ApiTests.apiEngine.configs.BackendPropertiesReader;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
-import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
