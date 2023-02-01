@@ -4,8 +4,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import selenium.Utils.BaseClass;
 
-public class DemoQAFrontEndTesting {
+public class DemoQAFrontEndTesting extends BaseClass {
+
+    WebDriver driver;
+
     @Given("User selects the button Text Box on the Elements page")
     public void userSelectsTheButtonTextBoxOnTheElementsPage() {
     }
