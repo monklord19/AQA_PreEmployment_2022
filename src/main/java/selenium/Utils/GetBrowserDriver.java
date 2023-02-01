@@ -5,9 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import selenium.BaseClass;
 
-public class GetBrowserDriver extends BaseClass {
+public class GetBrowserDriver {
 
     public static WebDriver driver;
 
