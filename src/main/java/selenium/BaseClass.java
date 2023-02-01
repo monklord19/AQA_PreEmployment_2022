@@ -1,6 +1,7 @@
 package selenium;
 
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import selenium.Utils.PropertiesUtil;
 
@@ -18,6 +19,9 @@ public class BaseClass {
     public static void initializeDriver (){
         String url = properties.getProperty("application.url");
         String browser = props.getProperty("browser.driver");
+
+        getBrowserDriver(browser);
+        WebDriverManager.chromedriver().setup();
 
         driver = getBrowserDriver(browser);
         driver.get(url);

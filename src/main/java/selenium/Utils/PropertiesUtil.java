@@ -1,5 +1,7 @@
 package selenium.Utils;
 
+import selenium.BaseClass;
+
 import java.util.Properties;
 
 
@@ -7,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class PropertiesUtil {
+public class PropertiesUtil extends BaseClass {
     public static Properties properties = new Properties();
     static FileInputStream fis;
 

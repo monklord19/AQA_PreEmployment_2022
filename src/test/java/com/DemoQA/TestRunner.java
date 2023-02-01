@@ -9,9 +9,9 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         //path of feature file
-        features = {"src/test/resources/FeatureFiles"},
+        features = {"src/test/resources"},
         //path of step definition file
-        glue = {"src/test/java/com/DemoQA"},
+        glue = {"com.DemoQA"},
         plugin = {
                 "pretty",
                 "html:target/cucumber.html",
