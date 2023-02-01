@@ -1,11 +1,11 @@
-package com.DemoQA.Steps;
+package com.DemoQA.SeleniumTesting.Steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class DemoQASeleniumTesting {
+public class DemoQAFrontEndTesting {
     @Given("User selects the button Text Box on the Elements page")
     public void userSelectsTheButtonTextBoxOnTheElementsPage() {
     }
