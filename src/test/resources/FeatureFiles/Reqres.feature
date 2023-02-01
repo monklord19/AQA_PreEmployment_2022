@@ -5,16 +5,15 @@ Feature: List all available users (get)
     When I request a list of users
     Then The users information is listed
 
-
-@GetSpecificUser
-Feature: See a specific user (get)
+  @GetSpecificUser
+  Feature: See a specific user (get)
 
   Scenario: See a specific user
     Given I am on the reqres website
     When I request to see a specific user's information
     Then The user is displayed
 
-@PostUser
+  @PostUser
   Feature: Create and add a user to an existing list (post)
 
   Scenario: Add a user
