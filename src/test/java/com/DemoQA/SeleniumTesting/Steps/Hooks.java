@@ -3,7 +3,7 @@ package com.DemoQA.SeleniumTesting.Steps;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import selenium.Utils.BaseClass;
+import selenium.BaseClass;
 
 public class Hooks extends BaseClass {
 

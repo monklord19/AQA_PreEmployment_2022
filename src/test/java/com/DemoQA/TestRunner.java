@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
         //path of feature file
         features = {"src/test/resources/FeatureFiles"},
         //path of step definition file
-        glue = {"src/test/java/com/DemoQA/SeleniumTesting"},
+        glue = {"src/test/java/com/DemoQA/SeleniumTesting/Steps"},
         plugin = {
                 "pretty",
                 "html:target/cucumber.html",

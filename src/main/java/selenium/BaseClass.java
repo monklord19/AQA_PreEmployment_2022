@@ -1,7 +1,8 @@
-package selenium.Utils;
+package selenium;
 
 
 import org.openqa.selenium.WebDriver;
+import selenium.Utils.PropertiesUtil;
 
 import java.util.Properties;
 
