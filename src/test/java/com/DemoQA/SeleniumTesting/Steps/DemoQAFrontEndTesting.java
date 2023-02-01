@@ -5,33 +5,42 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import selenium.BaseClass;
+import selenium.PageObjects.ElementsPage;
 import selenium.PageObjects.HomePage;
 
 
-public class DemoQAFrontEndTesting extends BaseClass {
+public class DemoQAFrontEndTesting {
 
     WebDriver driver;
 
-    @Given("User selects the Elements section")
+    @Given("User selects the <Elements> section")
     public void userSelectsTheElementsSection() {
 
         HomePage.ClickElementsButton();
     }
 
-    @And("User clicks on the Radio Button element")
+    @And("User clicks on the <Radio Button> element")
     public void userClicksOnTheRadioButtonElement() {
-        HomePage.ClickRadioButton();
+
+        ElementsPage.ClickRadioButton();
     }
 
     @When("User selects the option <Impressive>")
     public void userSelectsTheOptionImpressive() {
+        ElementsPage.ClickYesOnRadioButton();
     }
+
 
    @Then("The message: {string} is displayed")
    public void theMessageIsDisplayed(String arg0) {
+        ElementsPage.ValidateYesOptionOnRadioButton("You have selected Yes");
   }
+
+
 }
+
+
+
 
 
 

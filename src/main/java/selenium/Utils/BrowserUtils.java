@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.BaseClass;
+import org.junit.Assert;
 
 import java.time.Duration;
 import java.util.Properties;
@@ -16,6 +17,7 @@ public class BrowserUtils extends BaseClass {
 
     public static void clickElement(String element) {
 
+        WebElement e = driver.findElement(By.xpath(element));
         FindAndWaitForElement(element).click();
     }
 
@@ -39,5 +41,12 @@ public class BrowserUtils extends BaseClass {
             System.out.println("Element not found");
         }
         return element;
+    }
+
+    public static void validateText(String element, String expectedText){
+
+        String actualText = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Text: " + expectedText + "is not matching with Actual Text:" +actualText,
+                expectedText.equals(actualText));
     }
 }
