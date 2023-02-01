@@ -1,5 +1,7 @@
-Scenario: Testing the 'Elements' Section on the ToolsQA website
+Feature: Front End Testing - https://demoqa.com/
 
+
+Scenario: Testing the 'Elements' Section on the ToolsQA website
   Given User selects the button Text Box on the Elements page
   When User completes all the required fields
   And User clicks on the Submit button
