@@ -40,7 +40,4 @@ public class BrowserUtils extends BaseClass {
         }
         return element;
     }
-
-
-
 }
