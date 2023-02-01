@@ -15,7 +15,8 @@ public class DemoQAFrontEndTesting {
 
     @Given("User selects the Elements section")
     public void userSelectsTheElementsSection() {
-        HomePage.ElementsButton();
+
+        HomePage.ElementsButton.
     }
 
     @And("User clicks on the Radio Button element")
