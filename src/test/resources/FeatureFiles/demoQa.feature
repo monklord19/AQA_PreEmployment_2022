@@ -41,6 +41,24 @@ Feature: DemoQa tests
     When Move the slider at 50
     Then Check  for the number 50
 
+  Scenario: Auto Complete test
+    Given Click on Auto complete in widgets
+    When  Fill the Type multiple color field with "Red" and "Yellow"
+    And Fill theType single color field with "Blue"
+    Then Check the field for the colors
 
+  Scenario: Hover over main item 2 test
+    Given Click on Menu button
+    When Hover over main item 2
+    And Hover over SUB SUB LIST
+    Then Make sure Sub Sub item 2 is displayed
 
+  Scenario: Select Menu test
+    Given Click on Select menu button
+    When Complete all the fields
+    Then Check select field for to have "Group 2, option 2" and old style menu to have the color "Yellow"
 
+    Scenario: Droppable test
+      Given Click on droppable button
+      When Drag the drag me box in the Drop here box
+      Then Check for the draggable to hover over the box

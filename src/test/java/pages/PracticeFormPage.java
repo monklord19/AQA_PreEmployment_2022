@@ -40,8 +40,10 @@ public class PracticeFormPage {
     private WebElement chooseFileButton;
     @FindBy(id = "currentAddress")
     private WebElement currentAddressField;
-    @FindBy(css = "#state [class=' css-1wy0on6']")
-    private WebElement stateDropDown;
+    @FindBy(css = "div#state .css-1g6gooi > div > input")
+    private WebElement selectState;
+    @FindBy(css = "div#city .css-1g6gooi > div > input")
+    private WebElement selectCity;
     @FindBy(css = "div:nth-of-type(5) > .group-header > .header-wrapper")
     private WebElement bSAPPclickable;
     @FindBy(css = "button#submit")
@@ -82,10 +84,12 @@ public class PracticeFormPage {
 
     }
 
-    public void setSubjectField(String subject) {
+    public void setSubjectField(String subject) throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("javascript:window.scrollBy(250,350)");
         subjectField.sendKeys(subject);
+        subjectField.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
     }
 
     public void chooseHobbies() {
@@ -103,14 +107,17 @@ public class PracticeFormPage {
         currentAddressField.sendKeys(address);
     }
 
-    public void clickStateDropDown() throws InterruptedException {
+    public void selectStateAndCity() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
+        selectState.sendKeys("NCR");
+        selectState.sendKeys(Keys.ENTER);
+        selectCity.sendKeys("Delhi");
+        selectCity.sendKeys(Keys.ENTER);
         bSAPPclickable.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-
     }
     public void clickSubmitButton(){
         submitButton.click();

@@ -15,7 +15,7 @@ public class SliderPage {
     WebDriver driver;
     @FindBy(css = ".range-slider.range-slider--primary")
     private WebElement slider;
-    @FindBy(css = "[class='col-3'] [value]")
+    @FindBy(css = "div#sliderContainer")
     private WebElement resultSlider;
     public SliderPage(WebDriver driver) {
         this.driver = driver;
@@ -29,6 +29,6 @@ public class SliderPage {
 
     }
     public void checkResult(){
-        Assert.assertEquals(resultSlider.getText(),"50");
+        Assert.assertEquals("50",resultSlider.getText());
     }
 }

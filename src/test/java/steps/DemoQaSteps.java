@@ -22,17 +22,22 @@ public class DemoQaSteps {
     ButtonsPage buttonsPage = new ButtonsPage(driver);
     WidgetsPage widgetsPage = new WidgetsPage(driver);
     SliderPage sliderPage = new SliderPage(driver);
+    AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
+    MenuPage menuPage = new MenuPage(driver);
+    SelectMenuButtonPage selectMenuButtonPage = new SelectMenuButtonPage(driver);
+    InteractionsPage interactionsPage = new InteractionsPage(driver);
+    DroppablePage droppablePage = new DroppablePage(driver);
 
     @Before
     public void maxPage() {
         driver.manage().window().maximize();
     }
 
-//    @After
-//    public void closePage() {
-//
-//        driver.quit();
-//    }
+    @After
+    public void closePage() {
+
+        driver.quit();
+    }
 
     @Given("You are on the demoQa page")
     public void youAreOnTheDemoQaPage() {
@@ -147,11 +152,11 @@ public class DemoQaSteps {
         practiceFormPage.selectMaleCheckBox();
         practiceFormPage.setPhoneNumberField("1234567890");
         practiceFormPage.checkDate();
-        practiceFormPage.setSubjectField("literature");
+        practiceFormPage.setSubjectField("English");
         practiceFormPage.chooseHobbies();
         practiceFormPage.chooseProfilePic();
         practiceFormPage.setCurrentAddressField("ceva adressa acolo mnoo");
-        practiceFormPage.clickStateDropDown();
+        practiceFormPage.selectStateAndCity();
     }
 
     @When("Click submit button")
@@ -190,13 +195,96 @@ public class DemoQaSteps {
     }
 
 
-
     @When("Move the slider at 50")
     public void moveTheSliderAt() throws InterruptedException {
         sliderPage.sliderMove();
     }
 
     @Then("Check  for the number 50")
-    public void checkForTheNumber(String arg0) {
+    public void checkForTheNumber() {
+        sliderPage.checkResult();
+    }
+
+    //test 7
+    @Given("Click on Auto complete in widgets")
+    public void clickOnAutoCompleteInWidgets() {
+        demoPage.clickWidgetsLink();
+        widgetsPage.clickAutoCompleteButton();
+    }
+
+    @When("Fill the Type multiple color field with {string} and {string}")
+    public void fillTheTypeMultipleColorFieldWithAnd(String colorRed, String colorYellow) {
+        autoCompletePage.setMultipleColorsField(colorRed, colorYellow);
+
+    }
+
+    @And("Fill theType single color field with {string}")
+    public void fillTheTypeSingleColorFieldWith(String colorBlue) {
+        autoCompletePage.setSingleColorsField(colorBlue);
+    }
+
+    @Then("Check the field for the colors")
+    public void checkTheFieldForTheColors() {
+        autoCompletePage.checkFields();
+    }
+
+    //test 8
+    @Given("Click on Menu button")
+    public void clickOnMenuButton() {
+        demoPage.clickWidgetsLink();
+        widgetsPage.clickMenuButton();
+    }
+
+    @When("Hover over main item 2")
+    public void hoverOverMainItem() {
+        menuPage.hoverOverMainItem2();
+    }
+
+    @And("Hover over SUB SUB LIST")
+    public void hoverOverSUBSUBLIST() {
+        menuPage.hoverToSubSubList();
+    }
+
+    @Then("Make sure Sub Sub item 2 is displayed")
+    public void makeSureSubSubItemIsDisplayed() {
+        menuPage.checkIfSubSubItemIsDisplayed();
+    }
+
+    //test 9
+    @Given("Click on Select menu button")
+    public void clickOnSelectMenuButton() {
+        demoPage.clickWidgetsLink();
+        widgetsPage.clickSelectMenuButton();
+    }
+
+    @When("Complete all the fields")
+    public void completeAllTheFields() throws InterruptedException {
+        selectMenuButtonPage.selectValue("Group 2, option 2");
+        selectMenuButtonPage.selectOneGender();
+        selectMenuButtonPage.pickSingleColor("Yellow");
+        selectMenuButtonPage.selectTheColors("Red","Blue");
+        selectMenuButtonPage.pickSingleCar("Volvo");
+    }
+
+    @Then("Check select field for to have {string} and old style menu to have the color {string}")
+    public void checkSelectFieldForToHaveAndOldStyleMenuToHaveTheColor(String selectValue, String colorMenu) {
+        selectMenuButtonPage.checkValue(selectValue);
+        selectMenuButtonPage.checkColorMenu(colorMenu);
+    }
+
+    @Given("Click on droppable button")
+    public void clickOnDroppableButton() {
+        demoPage.clickInteractionsLink();
+        interactionsPage.clickDroppableButton();
+    }
+
+    @When("Drag the drag me box in the Drop here box")
+    public void dragTheDragMeBoxInTheDropHereBox() {
+        droppablePage.dragElementToDropPoint();
+    }
+
+    @Then("Check for the draggable to hover over the box")
+    public void checkForTheDraggableToHoverOverTheBox() {
+        droppablePage.checkIfDropped();
     }
 }

@@ -15,6 +15,9 @@ public class DemoPage {
     private WebElement formsLink;
     @FindBy(css = "div:nth-of-type(4) > div > .card-up")
     private WebElement widgetsLink;
+    @FindBy(css = "div:nth-of-type(5) > div > .card-up")
+    private WebElement interactionsLink;
+
 
     public DemoPage(WebDriver driver) {
         this.driver = driver;
@@ -31,5 +34,8 @@ public class DemoPage {
 
     public void clickWidgetsLink() {
         widgetsLink.click();
+    }
+    public void clickInteractionsLink(){
+        interactionsLink.click();
     }
 }
