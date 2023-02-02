@@ -1,4 +1,4 @@
-package selenium.Utils;
+package com.DemoQA.Utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

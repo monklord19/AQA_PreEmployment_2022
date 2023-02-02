@@ -1,7 +1,7 @@
-package selenium.PageObjects;
+package com.DemoQA.PageObjects;
 
-import selenium.BaseClass;
-import selenium.Utils.BrowserUtils;
+import com.DemoQA.Utils.BrowserUtils;
+import com.DemoQA.BaseClass;
 
 public class HomePage extends BaseClass {
 

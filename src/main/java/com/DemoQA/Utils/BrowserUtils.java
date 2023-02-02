@@ -1,11 +1,11 @@
-package selenium.Utils;
+package com.DemoQA.Utils;
 
+import com.DemoQA.BaseClass;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.BaseClass;
 
 import java.time.Duration;
 import java.util.Properties;
@@ -21,12 +21,10 @@ public class BrowserUtils extends BaseClass {
         FindAndWaitForElement(element).click();
     }
 
-
     public static void enterText(String element, String text) {
         FindAndWaitForElement(element).clear();
         FindAndWaitForElement(element).sendKeys(text);
     }
-
 
 
     public static WebElement FindAndWaitForElement(String xpath) {
@@ -35,15 +33,14 @@ public class BrowserUtils extends BaseClass {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))));
-
-
         } catch (Exception e){
             System.out.println("Element not found");
         }
         return element;
     }
 
-//Elements - Radio Button Scenario
+
+//Elements - Radio Button
     public static void validateText(String element, String expectedText){
 
         String actualText = FindAndWaitForElement(element).getText();
@@ -51,13 +48,14 @@ public class BrowserUtils extends BaseClass {
                 expectedText.equals(actualText));
     }
 
-//Elements - Radio Button
+
     public static void validateSubmitButton(String element, String expectedText) {
 
-    String actualText = FindAndWaitForElement(element).getText();
-    Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
-            expectedText.equals(actualText));
-}
+        String actualText = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
+                expectedText.equals(actualText));
+    }
+
 //Elements - Text Box
     public static void validateName(String element, String expectedFullName) {
         String actualFullName = FindAndWaitForElement(element).getText();
@@ -82,10 +80,4 @@ public class BrowserUtils extends BaseClass {
         Assert.assertTrue("Expected Permanent Address: " + expectedPermanentAddress + " is not matching with Actual Expected Permanent Address:" + expectedPermanentAddress,
                 expectedPermanentAddress.equals(actualPermanentAddress));
     }
-
-
-
-
-
-
 }
