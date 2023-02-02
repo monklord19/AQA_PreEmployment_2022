@@ -5,6 +5,8 @@ import com.DemoQA.PageObjects.Elements.Links;
 import com.DemoQA.PageObjects.Elements.RadioButton;
 import com.DemoQA.PageObjects.Elements.TextBox;
 import com.DemoQA.PageObjects.HomePage;
+import com.DemoQA.PageObjects.Widgets.Accordion;
+import com.DemoQA.PageObjects.Widgets.ToolTips;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -63,7 +65,7 @@ public class DemoQAFrontEndTesting {
         TextBox.ValidateFullName("Name:TestFullName");
         TextBox.ValidateEmail("Email:TestEmail@invalid.com");
         TextBox.ValidateCurrentAddress("Current Address :Test Niko Street No 40");
-        TextBox.ValidatePermanentAddress("Permananet Address :Allina Street No 122");
+        TextBox.ValidatePermanentAddress("Permanent Address :Allina Street No 122");
     }
 
 
@@ -110,6 +112,73 @@ public class DemoQAFrontEndTesting {
     @Then("The message {string} appears")
     public void theMessageAppears(String arg0) {
         Links.ValidateTextforMovedLink("Link has responded with staus 301 and status text Moved Permanently");
+    }
+
+
+//Scenario No. 5
+
+    @Given("User selects the <Widgets> section")
+    public void userSelectsTheWidgetsSection() {
+        HomePage.ClickWidgetsButton();
+    }
+
+    @When("User clicks on the <Tool Tips> button on the <Widgets> section")
+    public void userClicksOnTheToolTipsButtonOnTheWidgetsSection() {
+        ToolTips.ClickToolTips();
+    }
+
+    @And("User is hovering the button <Contrary>")
+    public void userIsHoveringTheButtonContrary() {
+        ToolTips.HooverContrary();
+
+    }
+
+    @Then("The following message is displayed: {string}")
+    public void theFollowingMessageIsDisplayed(String arg0) {
+
+
+    }
+
+
+//Scenario No.6
+
+    @When("User clicks on the <Accordion> button from the <Widgets> section")
+    public void userClicksOnTheAccordionButtonFromTheWidgetsSection() {
+        Accordion.ClickAccordion();
+    }
+
+    @And("User selects the accordion <Why do we use it?>")
+    public void userSelectsTheAccordionWhyDoWeUseIt() {
+        Accordion.ClickWhyDoWeUSeIt();
+    }
+
+    @Then("The answer will push down")
+    public void theAnswerWillPushDown() {
+    }
+
+
+
+//Scenario No.7
+
+
+    @Given("User selects the <Elements> section on DemoQa homepage")
+    public void userSelectsTheElementsSectionOnDemoQaHomepage() {
+    }
+
+    @And("User selects the button <Text Box>")
+    public void userSelectsTheButtonTextBox() {
+    }
+
+    @When("User enters data in the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>")
+    public void userEntersDataInTheFieldsFullNameEmailCurrentAddressPermanentAddress() {
+    }
+
+    @And("User clicks on the button Submit")
+    public void userClicksOnTheButtonSubmit() {
+    }
+
+    @Then("A new box with all the entered data is displayed.")
+    public void aNewBoxWithAllTheEnteredDataIsDisplayed() {
     }
 }
 

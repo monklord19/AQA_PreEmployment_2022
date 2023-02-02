@@ -1,4 +1,5 @@
-Feature: Front End Testing - https://demoqa.com/
+
+Feature: Front End Testing - https://demoqa.com/ - ELEMENTS
 
   Background: User selects the <Elements> section on DemoQa website
 
@@ -30,4 +31,16 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     And User selects the <Links> section
     When User clicks on the <Moved> link that will send an api call
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
+
+
+
+Feature: Front End Testing - https://demoqa.com/ - WIDGETS
+
+  Background: User selects the <Widgets> section on DemoQa website
+
+  Scenario: Testing the 'Widgets' Section - Accordion
+    Given User selects the <Widgets> section
+    When User clicks on the <Accordion> button from the <Widgets> section
+    And User selects the accordion <Why do we use it?>
+    Then The answer will push down.
 

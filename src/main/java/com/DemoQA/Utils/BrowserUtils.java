@@ -4,6 +4,7 @@ import com.DemoQA.BaseClass;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -48,13 +49,13 @@ public class BrowserUtils extends BaseClass {
                 expectedText.equals(actualText));
     }
 
-
     public static void validateSubmitButton(String element, String expectedText) {
 
         String actualText = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
                 expectedText.equals(actualText));
     }
+
 
 //Elements - Text Box
     public static void validateName(String element, String expectedFullName) {
@@ -87,9 +88,19 @@ public class BrowserUtils extends BaseClass {
                 expectedTextCheckBox.equals(actualTextCheckBox));
     }
 
+
 // Elements - Links
     public static void validateTextMovedLink(String element, String expectedTextMovedLink) {
         String actualTextMovedLink = FindAndWaitForElement(element).getText();
         Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink,"Link has responded with staus 301 and status text Moved Permanently");
     }
+
+// Widgets - Tool Tips
+    public static void hooverElement(String element) {
+        WebElement webelement = FindAndWaitForElement(element);
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(webelement);
+
+}
 }
