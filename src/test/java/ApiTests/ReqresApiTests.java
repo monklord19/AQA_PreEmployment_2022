@@ -31,6 +31,7 @@ public class ReqresApiTests {
     @Test
     public void updateSingleUser(){
         RestAssured.baseURI = "https://reqres.in/api/users/2";
+        /*
         String body= """
                 {
                  "name": "morpheus",
@@ -38,17 +39,18 @@ public class ReqresApiTests {
                 }
                 """;
         given().body(body).when().put(baseURI).then().log().body();
-
+         */
 
         JSONObject requestParams = new JSONObject();
         requestParams.put("name", "morpheus");
         requestParams.put("job", "zion resident");
-        //given().body(requestParams.toJSONString()).when().put().then().statusCode(200).log().all();
+        given().body(requestParams.toString()).when().put().then().statusCode(200).log().all();
     }
 
     @Test
     public void createSingleUser(){
         RestAssured.baseURI = "https://reqres.in/api/users";
+        /*
         String body = """
                {
                "name":"Franci",
@@ -56,6 +58,13 @@ public class ReqresApiTests {
                }
                """;
         given().body(body).when().post(baseURI).then().log().body();
+
+         */
+
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("name", "Franci");
+        requestParams.put("job", "qa");
+        given().body(requestParams.toString()).when().post().then().statusCode(201).log().all();
     }
 
     @Test
