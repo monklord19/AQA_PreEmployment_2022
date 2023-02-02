@@ -1,11 +1,11 @@
 package selenium.Utils;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.BaseClass;
-import org.junit.Assert;
 
 import java.time.Duration;
 import java.util.Properties;
@@ -43,10 +43,49 @@ public class BrowserUtils extends BaseClass {
         return element;
     }
 
+//Elements - Radio Button Scenario
     public static void validateText(String element, String expectedText){
 
         String actualText = FindAndWaitForElement(element).getText();
-        Assert.assertTrue("Expected Text: " + expectedText + "is not matching with Actual Text:" +actualText,
+        Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" +actualText,
                 expectedText.equals(actualText));
     }
+
+//Elements - Radio Button
+    public static void validateSubmitButton(String element, String expectedText) {
+
+    String actualText = FindAndWaitForElement(element).getText();
+    Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
+            expectedText.equals(actualText));
+}
+//Elements - Text Box
+    public static void validateName(String element, String expectedFullName) {
+        String actualFullName = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Full Name: " + expectedFullName + " is not matching with Actual Full Name:" + expectedFullName,
+                expectedFullName.equals(actualFullName));
+    }
+
+    public static void validateEmail(String element, String expectedEmail) {
+        String actualEmail = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Email: " + expectedEmail + " is not matching with Actual Email:" + expectedEmail,
+                expectedEmail.equals(actualEmail));
+    }
+
+    public static void validateCurrentAddress(String element, String expectedCurrentAddress) {
+        String actualCurrentAddress = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Current Address: " + expectedCurrentAddress + " is not matching with Actual Current Address:" + expectedCurrentAddress,
+                expectedCurrentAddress.equals(actualCurrentAddress));
+    }
+
+    public static void validatePermanentAddress(String element, String expectedPermanentAddress) {
+        String actualPermanentAddress = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Permanent Address: " + expectedPermanentAddress + " is not matching with Actual Expected Permanent Address:" + expectedPermanentAddress,
+                expectedPermanentAddress.equals(actualPermanentAddress));
+    }
+
+
+
+
+
+
 }
