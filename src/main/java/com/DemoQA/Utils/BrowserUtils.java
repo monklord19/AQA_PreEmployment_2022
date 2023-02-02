@@ -80,4 +80,10 @@ public class BrowserUtils extends BaseClass {
         Assert.assertTrue("Expected Permanent Address: " + expectedPermanentAddress + " is not matching with Actual Expected Permanent Address:" + expectedPermanentAddress,
                 expectedPermanentAddress.equals(actualPermanentAddress));
     }
+
+    public static void validateTextCheckBox(String element, String expectedTextCheckBox) {
+        String actualTextCheckBox = FindAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Permanent Address: " + expectedTextCheckBox + " is not matching with Actual Expected Permanent Address:" + expectedTextCheckBox,
+                expectedTextCheckBox.equals(actualTextCheckBox));
+    }
 }

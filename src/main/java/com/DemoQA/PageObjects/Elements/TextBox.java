@@ -4,7 +4,7 @@ import com.DemoQA.Utils.BrowserUtils;
 
 public class TextBox {
 
-    //Text Box - Fields to be completed
+    //Text Box - Web Elements
     private static String TextBoxButton = "//*[@id=\"item-0\"]/span";
     private static String FullNameTextBox = "//*[@id=\"userName\"]";
     private static String EmailTextBox = "//*[@id=\"userEmail\"]";
@@ -12,7 +12,7 @@ public class TextBox {
     private static String PermanentAddressTextBox = "//*[@id=\"permanentAddress\"]";
     private static String SubmitTextBox = "//*[@id=\"submit\"]";
 
-    //Text Box - Fields to be validated
+    //Text Box - Elements to be validated
     private static String ValidateFullName = "//*[@id=\"name\"]";
     private static String ValidateEmail = "//*[@id=\"email\"]";
     private static String ValidateCurrentAddress = "//*[@id=\"currentAddress\"]";

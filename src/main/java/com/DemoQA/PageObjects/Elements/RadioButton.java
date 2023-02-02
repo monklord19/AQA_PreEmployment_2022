@@ -5,11 +5,11 @@ import com.DemoQA.Utils.BrowserUtils;
 
 public class RadioButton extends BaseClass {
 
-    //Radio Button - Fields to be completed
+    //Radio Button - Web Elements
     private static String linkRadioButton = "//*[@id=\"item-2\"]/span";
     private static String YesRadioElement = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[2]/label";
 
-    //Radio Button - Fields to be validated
+    //Radio Button - Elements to be validated
     private static String TextYesOptionOnRadioButton = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/p";
 
 

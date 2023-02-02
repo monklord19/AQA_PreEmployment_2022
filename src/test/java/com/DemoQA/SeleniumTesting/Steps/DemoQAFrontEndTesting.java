@@ -1,5 +1,6 @@
 package com.DemoQA.SeleniumTesting.Steps;
 
+import com.DemoQA.PageObjects.Elements.CheckBox;
 import com.DemoQA.PageObjects.Elements.RadioButton;
 import com.DemoQA.PageObjects.Elements.TextBox;
 import com.DemoQA.PageObjects.HomePage;
@@ -69,22 +70,35 @@ public class DemoQAFrontEndTesting {
 
     @And("User selects the button <Check Box> on the <Elements> section")
     public void userSelectsTheButtonCheckBoxOnTheElementsSection() {
+        CheckBox.ClickCheckBoxButton();
+
     }
 
     @When("User expands the Check Box List")
     public void userExpandsTheCheckBoxList() {
+        CheckBox.HomeCheckBoxButton();
     }
 
     @And("User selects the options <Commands>, <Angular>, <Classified>")
     public void userSelectsTheOptionsCommandsAngularClassified() {
+        CheckBox.CommandsCheckBox();
+        CheckBox.AngularCheckBox();
+        CheckBox.ClassifiedCheckbox();
     }
-
 
     @Then("A message {string} is displayed")
     public void aMessageIsDisplayed(String arg0) {
+        CheckBox.ValidateTextCheckBox("You have selected :\n" +
+                "commands\n" +
+                "angular\n" +
+                "classified");
+    }
+
+
+
+
 
     }
-}
 
 
 
