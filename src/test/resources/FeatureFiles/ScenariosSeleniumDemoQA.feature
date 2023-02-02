@@ -11,9 +11,9 @@ Feature: Front End Testing - https://demoqa.com/ - ELEMENTS
 
 
 Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!!
-  Given  User selects the <Elements> section
-  And User selects the button <Text Box> on the <Elements> section
-  When User completes the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>
+    Given  User selects the <Elements> section
+    And User selects the button <Text Box> on the <Elements> section
+    When User completes the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>
   And User clicks on the Submit button
   Then A new box is displayed with all information previously entered.
 
@@ -40,16 +40,22 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     Then The answer will push down
 
 
-  Scenario: Testing the 'Elements' Section - Text Box
+
+
+  Scenario Outline: Testing the 'Elements' Section - Text Box
+
     Given  User selects the <Elements> section on DemoQa homepage
     And User selects the button <Text Box>
-    When User enters data in the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>
+    When User enters name in the field <Full Name>
+    And User enters email in the field <Email>
+    And User enters current address in the field <Current Address>
+    And User enters permanent address in the field <Permanent Address>
     And User clicks on the button Submit
     Then A new box with all the entered data is displayed.
     Examples:
     |        Full Name        |       Email            |       Current Address                         |       Permanent Address     |
-    |        MMC              |    testemail@gmail.com |           Romania                             |            Romania          |
-    |        M                |    testemail@yahoo.com |     Alabama Street 121                        |            400678           |
-    |Test_Name Test_FirstName |  testemail@outlook.com |Alabama Street 121 Apartment 1110 Milano Italy |           Apartment 12      |
+    |        MMC              |    test@gmail.com      |           Romania                             |            Romania          |
+    |        M                |    test@yahoo.com      |     Alabama Street 121                        |            400678           |
+    |Test_Name Test_FirstName |  test@outlook.com      |Alabama Street 121 Apartment 1110 Milano Italy |           Apartment 12      |
 
 

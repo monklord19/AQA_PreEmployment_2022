@@ -163,23 +163,45 @@ public class DemoQAFrontEndTesting {
 
     @Given("User selects the <Elements> section on DemoQa homepage")
     public void userSelectsTheElementsSectionOnDemoQaHomepage() {
+        HomePage.ClickElementsButton();
     }
 
     @And("User selects the button <Text Box>")
     public void userSelectsTheButtonTextBox() {
+        TextBox.ClickTextBoxButton();
     }
 
-    @When("User enters data in the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>")
-    public void userEntersDataInTheFieldsFullNameEmailCurrentAddressPermanentAddress() {
+    @When("^User enters name in the field (.*)$")
+    public void userEntersNameInTheFieldFullName(String name) {
+        TextBox.EnterFullName(name);
+    }
+
+    @And("^User enters email in the field (.*)$")
+    public void userEntersEmailInTheFieldEmail(String email) {
+        TextBox.EnterEmail(email);
+    }
+
+    @And("^User enters current address in the field (.*)$")
+    public void userEntersCurrentAddressInTheFieldCurrentAddress(String address1) {
+        TextBox.EnterCurrentAddress(address1);
+    }
+
+    @And("^User enters permanent address in the field (.*)$")
+    public void userEntersPermanentAddressInTheFieldPermanentAddress(String address2) {
+        TextBox.EnterPermanentAddress(address2);
     }
 
     @And("User clicks on the button Submit")
     public void userClicksOnTheButtonSubmit() {
+        TextBox.ClickSubmitTextBox();
     }
 
     @Then("A new box with all the entered data is displayed.")
     public void aNewBoxWithAllTheEnteredDataIsDisplayed() {
     }
+
+
+
 }
 
 
