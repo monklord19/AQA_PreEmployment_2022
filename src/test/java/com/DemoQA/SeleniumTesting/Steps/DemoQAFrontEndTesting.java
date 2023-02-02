@@ -1,6 +1,7 @@
 package com.DemoQA.SeleniumTesting.Steps;
 
 import com.DemoQA.PageObjects.Elements.CheckBox;
+import com.DemoQA.PageObjects.Elements.Links;
 import com.DemoQA.PageObjects.Elements.RadioButton;
 import com.DemoQA.PageObjects.Elements.TextBox;
 import com.DemoQA.PageObjects.HomePage;
@@ -94,11 +95,23 @@ public class DemoQAFrontEndTesting {
                 "classified");
     }
 
+//Scenario No.4
 
-
-
-
+    @And("User selects the <Links> section")
+    public void userSelectsTheLinksSection() {
+        Links.ClickLinks();
     }
+
+    @When("User clicks on the <Moved> link that will send an api call")
+    public void userClicksOnTheMovedLinkThatWillSendAnApiCall() {
+        Links.ClickMovedLink();
+    }
+
+    @Then("The message {string} appears")
+    public void theMessageAppears(String arg0) {
+        Links.ValidateTextforMovedLink("Link has responded with staus 301 and status text Moved Permanently");
+    }
+}
 
 
 

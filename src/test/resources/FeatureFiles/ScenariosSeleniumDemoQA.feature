@@ -23,3 +23,11 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     When User expands the Check Box List
     And User selects the options <Commands>, <Angular>, <Classified>
     Then A message "You have selected : commands angular classified" is displayed
+
+
+  Scenario: Testing the 'Elements' Section - Links
+    Given User selects the <Elements> section
+    And User selects the <Links> section
+    When User clicks on the <Moved> link that will send an api call
+    Then The message "Link has responded with status 301 and status text Moved Permanently" appears
+

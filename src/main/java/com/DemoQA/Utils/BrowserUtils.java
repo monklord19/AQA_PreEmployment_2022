@@ -77,13 +77,19 @@ public class BrowserUtils extends BaseClass {
 
     public static void validatePermanentAddress(String element, String expectedPermanentAddress) {
         String actualPermanentAddress = FindAndWaitForElement(element).getText();
-        Assert.assertTrue("Expected Permanent Address: " + expectedPermanentAddress + " is not matching with Actual Expected Permanent Address:" + expectedPermanentAddress,
+        Assert.assertTrue("Expected Permanent Address: " + expectedPermanentAddress + " is not matching with Actual Permanent Address:" + expectedPermanentAddress,
                 expectedPermanentAddress.equals(actualPermanentAddress));
     }
 
     public static void validateTextCheckBox(String element, String expectedTextCheckBox) {
         String actualTextCheckBox = FindAndWaitForElement(element).getText();
-        Assert.assertTrue("Expected Permanent Address: " + expectedTextCheckBox + " is not matching with Actual Expected Permanent Address:" + expectedTextCheckBox,
+        Assert.assertTrue("Expected Permanent Address: " + expectedTextCheckBox + " is not matching with Actual Permanent Address:" + expectedTextCheckBox,
                 expectedTextCheckBox.equals(actualTextCheckBox));
+    }
+
+// Elements - Links
+    public static void validateTextMovedLink(String element, String expectedTextMovedLink) {
+        String actualTextMovedLink = FindAndWaitForElement(element).getText();
+        Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink,"Link has responded with staus 301 and status text Moved Permanently");
     }
 }

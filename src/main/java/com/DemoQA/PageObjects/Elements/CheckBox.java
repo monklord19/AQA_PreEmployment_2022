@@ -7,8 +7,8 @@ public class CheckBox extends BaseClass {
 
     //Check Box - Web Elements
     private static String linkCheckBoxButton = "//*[@id=\"item-1\"]/span";
-    private static String HomeCheckBoxButton = "//*[@id=\"tree-node\"]/ol/li/span/label/span[1]/svg";
-    private static String ExpandCheckBoxList = "//*[@id=\"tree-node\"]/div/button[1]/svg/path";
+    private static String HomeCheckBoxButton = "//*[@id=\"tree-node\"]/ol/li/span/label/span[3]";
+    private static String ExpandCheckBoxList = "//*[@id=\"tree-node\"]/div/button[1]";
     private static String CommandsCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[1]/ol/li[2]/span/label/span[1]/svg/path";
     private static String AngularCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[2]/ol/li[1]/ol/li[2]/span/label/span[3]";
     private static String ClassifiedCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[2]/ol/li[1]/ol/li[2]/span/label/span[3]";

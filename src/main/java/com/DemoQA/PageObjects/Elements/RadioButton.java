@@ -14,10 +14,12 @@ public class RadioButton extends BaseClass {
 
 
     public static void ClickRadioButton(){
+
         BrowserUtils.clickElement(linkRadioButton);
     }
 
     public static void ClickYesOnRadioButton(){
+
         BrowserUtils.clickElement(YesRadioElement);
     }
 
