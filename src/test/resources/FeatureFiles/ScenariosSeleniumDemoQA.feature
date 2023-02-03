@@ -64,3 +64,13 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     |Test_Name Test_FirstName |  test@outlook.com      |Alabama Street 121 Apartment 1110 Milano Italy |           Apartment 12      |
 
 
+
+  Scenario: Testing the 'Elements' Section - Web Tables
+    Given User selects the <Elements> section
+    And User clicks on the <Web Tables> button from the <Elements> section
+    When User user clicks on the button "Add"
+    And User adds valid First Name,Last Name, Email, Age, Salary and Department
+    And user clicks the button "Submit"
+    Then A new row is added to the table
+
+

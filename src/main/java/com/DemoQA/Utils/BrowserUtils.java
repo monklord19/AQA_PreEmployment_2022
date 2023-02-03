@@ -27,7 +27,19 @@ public class BrowserUtils extends BaseClass {
         FindAndWaitForElement(element).sendKeys(text);
     }
 
+    public static void hooverElement(String element){
+        WebElement webElement = FindAndWaitForElement(element);
 
+        Actions actions = new Actions(driver);
+        actions.moveToElement(webElement);
+    }
+
+    public static void validateValue(String element, String expectedValue, String attributeType){
+        String actualValue = FindAndWaitForElement(element).getAttribute(attributeType);
+        Assert.assertTrue("Expected Value: " + expectedValue + " is not matching with Actual Text:" + actualValue,
+                expectedValue.equals(actualValue));
+
+    }
     public static WebElement FindAndWaitForElement(String xpath) {
         String timeout = properties.getProperty("timeout.maximum");
         WebElement element = null;
@@ -40,14 +52,13 @@ public class BrowserUtils extends BaseClass {
         return element;
     }
 
-
-    //Elements - Radio Button
     public static void validateText(String element, String expectedText) {
 
         String actualText = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
                 expectedText.equals(actualText));
     }
+
 
     public static void validateSubmitButton(String element, String expectedText) {
 
@@ -101,13 +112,8 @@ public class BrowserUtils extends BaseClass {
         Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink, "Link has responded with staus 301 and status text Moved Permanently");
     }
 
-    // Widgets - Tool Tips
-    public static void hooverElement(String element) {
-        WebElement webelement = FindAndWaitForElement(element);
 
-        Actions actions = new Actions(driver);
-        actions.moveToElement(webelement);
-    }
+
 
 
 }

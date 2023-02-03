@@ -21,7 +21,7 @@ public class CheckBox extends BaseClass {
         BrowserUtils.clickElement(linkCheckBoxButton);
     }
 
-    public static void ExpandCheckBoxList(){
+    public static void ClickExpandCheckBoxList(){
         BrowserUtils.clickElement(ExpandCheckBoxList);
     }
 

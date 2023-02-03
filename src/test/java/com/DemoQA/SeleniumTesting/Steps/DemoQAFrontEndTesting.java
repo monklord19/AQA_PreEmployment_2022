@@ -1,9 +1,6 @@
 package com.DemoQA.SeleniumTesting.Steps;
 
-import com.DemoQA.PageObjects.Elements.CheckBox;
-import com.DemoQA.PageObjects.Elements.Links;
-import com.DemoQA.PageObjects.Elements.RadioButton;
-import com.DemoQA.PageObjects.Elements.TextBox;
+import com.DemoQA.PageObjects.Elements.*;
 import com.DemoQA.PageObjects.HomePage;
 import com.DemoQA.PageObjects.Widgets.Accordion;
 import com.DemoQA.PageObjects.Widgets.ToolTips;
@@ -206,8 +203,41 @@ public class DemoQAFrontEndTesting {
 
     }
 
+//Scenario No. 8
+    @And("User clicks on the <Web Tables> button from the <Elements> section")
+    public void userClicksOnTheWebTablesButtonFromTheElementsSection() {
+        WebTables.ClickTextBoxButton();
+    }
 
+    @When("User user clicks on the button {string}")
+    public void userUserClicksOnTheButton(String arg0) {
+        WebTables.ClickOnAddButton();
+    }
 
+    @And("User adds valid First Name,Last Name, Email, Age, Salary and Department")
+    public void userAddsValidFirstNameLastNameEmailAgeSalaryAndDepartment() {
+        WebTables.AddTextFirstName("Anton");
+        WebTables.AddTextLastName("Marinela");
+        WebTables.AddTextEmail("anton.marinela@gmail.com");
+        WebTables.AddTextAge("30");
+        WebTables.AddTextSalary("9000");
+        WebTables.AddTextDepartment("IT");
+    }
+
+    @And("user clicks the button {string}")
+    public void userClicksTheButton(String arg0) {
+        WebTables.ClickSubmitButton();
+    }
+
+    @Then("A new row is added to the table")
+    public void aNewRowIsAddedToTheTable() {
+       WebTables.FirstNameValidation("Anton");
+       WebTables.LastNameValidation("Marinela");
+       WebTables.AgeValidation("30");
+       WebTables.EmailValidation("anton.marinela@gmail.com");
+       WebTables.SalaryValidation("9000");
+       WebTables.DepartmentValidation("IT");
+    }
 }
 
 

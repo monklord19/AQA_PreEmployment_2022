@@ -32,6 +32,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     When User clicks on the <Moved> link that will send an api call
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
 
+
   Scenario: Testing the 'Widgets' Section - Tool Tips
     Given User selects the <Widgets> section
     When User clicks on the <Tool Tips> button on the <Widgets> section
@@ -61,5 +62,15 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     |        MMC              |    test@gmail.com      |           Romania                             |            Romania          |
     |        M                |    test@yahoo.com      |     Alabama Street 121                        |            400678           |
     |Test_Name Test_FirstName |  test@outlook.com      |Alabama Street 121 Apartment 1110 Milano Italy |           Apartment 12      |
+
+
+
+  Scenario: Testing the 'Elements' Section - Web Tables
+    Given User selects the <Elements> section
+    And User clicks on the <Web Tables> button from the <Elements> section
+    When User user clicks on the button "Add"
+    And User adds valid First Name,Last Name, Email, Age, Salary and Department
+    And user clicks the button "Submit"
+    Then A new row is added to the table
 
 
