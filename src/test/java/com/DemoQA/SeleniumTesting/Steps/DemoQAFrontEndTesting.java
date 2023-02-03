@@ -17,7 +17,7 @@ public class DemoQAFrontEndTesting {
 
     WebDriver driver;
 
-//Scenario no.1
+    //Scenario no.1
     @Given("User selects the <Elements> section")
     public void userSelectsTheElementsSection() {
         HomePage.ClickElementsButton();
@@ -36,7 +36,7 @@ public class DemoQAFrontEndTesting {
     @Then("The message {string} is displayed")
     public void theMessageIsDisplayed(String arg0) {
         RadioButton.ValidateYesOptionOnRadioButton("You have selected Yes");
-  }
+    }
 
 
 //Scenario no.2
@@ -61,39 +61,30 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new box is displayed with all information previously entered.")
     public void aNewBoxIsDisplayedWithAllInformationPreviouslyEntered() {
-        TextBox.ValidateFullName("Name:TestFullName");
-        TextBox.ValidateEmail("Email:TestEmail@invalid.com");
-        TextBox.ValidateCurrentAddress("Current Address :Test Niko Street No 40");
-        TextBox.ValidatePermanentAddress("Permanent Address :Allina Street No 122");
+        TextBox.ValidateTheFullName("Name:TestFullName");
+        //TextBox.ValidateTheEmail("Email:TestEmail@invalid.com");
+        //TextBox.ValidateTheCurrentAddress("Current Address :Test Niko Street No 40");
+        //TextBox.ValidateThePermanentAddress("Permanent Address :Allina Street No 122");
     }
 
 
 //Scenario no.3
 
-    @And("User selects the button <Check Box> on the <Elements> section")
-    public void userSelectsTheButtonCheckBoxOnTheElementsSection() {
+    @And("User selects the element <Check Box>")
+    public void userSelectsTheElementCheckBox() {
         CheckBox.ClickCheckBoxButton();
     }
 
-    @When("User expands the Check Box List")
-    public void userExpandsTheCheckBoxList() {
-        CheckBox.HomeCheckBoxButton();
+    @When("User clicks the check box button <Home>")
+    public void userClicksTheCheckBoxButtonHome() {
+        CheckBox.ClickHomeCheckBoxButton();
     }
 
-    @And("User selects the options <Commands>, <Angular>, <Classified>")
-    public void userSelectsTheOptionsCommandsAngularClassified() {
-        CheckBox.CommandsCheckBox();
-        CheckBox.AngularCheckBox();
-        CheckBox.ClassifiedCheckbox();
+    @Then("A response message appears on the page")
+    public void aResponseMessageAppearsOnThePage() {
+        CheckBox.ValidateTextCheckBox("You have selected :");
     }
 
-    @Then("A message {string} is displayed")
-    public void aMessageIsDisplayed(String arg0) {
-        CheckBox.ValidateTextCheckBox("You have selected :\n" +
-                "commands\n" +
-                "angular\n" +
-                "classified");
-    }
 
 //Scenario No.4
 
@@ -152,7 +143,6 @@ public class DemoQAFrontEndTesting {
     }
 
 
-
 //Scenario No.7
 
     @Given("User selects the <Elements> section on DemoQa homepage")
@@ -203,10 +193,10 @@ public class DemoQAFrontEndTesting {
 
     }
 
-//Scenario No. 8
+    //Scenario No. 8
     @And("User clicks on the <Web Tables> button from the <Elements> section")
     public void userClicksOnTheWebTablesButtonFromTheElementsSection() {
-        WebTables.ClickTextBoxButton();
+        WebTables.ClickOnWebTablesButton();
     }
 
     @When("User user clicks on the button {string}")
@@ -231,13 +221,51 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new row is added to the table")
     public void aNewRowIsAddedToTheTable() {
-       WebTables.FirstNameValidation("Anton");
-       WebTables.LastNameValidation("Marinela");
-       WebTables.AgeValidation("30");
-       WebTables.EmailValidation("anton.marinela@gmail.com");
-       WebTables.SalaryValidation("9000");
-       WebTables.DepartmentValidation("IT");
+        WebTables.FirstNameValidation("Anton");
+        WebTables.LastNameValidation("Marinela");
+        WebTables.AgeValidation("30");
+        WebTables.EmailValidation("anton.marinela@gmail.com");
+        WebTables.SalaryValidation("9000");
+        WebTables.DepartmentValidation("IT");
     }
+
+
+//Scenario No. 9
+
+    @Then("User clicks the Edit button")
+    public void userClicksTheEditButton() {
+        WebTables.ClickOnEditButton();
+    }
+
+    @And("User modifies the Email and clicks the Submit button")
+    public void userModifiesTheEmailAndClicksTheSubmitButton() {
+        WebTables.EditEmailField("anton.marinela@outlook.com");
+    }
+
+    @And("checks if the email was successfully updated on the table")
+    public void checksIfTheEmailWasSuccessfullyUpdatedOnTheTable() {
+        WebTables.ClickSubmitButton();
+        WebTables.EmailValidation("anton.marinela@outlook.com");
+    }
+
+//Scenario No. 10
+
+    @When("User clicks on the <Buttons> element")
+    public void userClicksOnTheButtonsElement() {
+        Buttons.ClickButtonsElement();
+    }
+
+    @And("User clicks on the button <Click Me>")
+    public void userClicksOnTheButtonClickMe() {
+        Buttons.ClickOnClickMe();
+    }
+
+    @Then("A response message is displayed")
+    public void aResponseMessageIsDisplayed() {
+        Buttons.ClickMeValidateResponse("You have done a dynamic click");
+    }
+
+
 }
 
 

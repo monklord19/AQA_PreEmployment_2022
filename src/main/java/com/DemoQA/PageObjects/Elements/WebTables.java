@@ -14,6 +14,11 @@ public class WebTables {
     private static String AddSalary = "//*[@id=\"salary\"]";
     private static String AddDepartment = "//*[@id=\"department\"]";
     private static String ClickSubmit = "//*[@id=\"submit\"]";
+    private static String ClickEditButton = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[7]";
+    private static String EditEmail = "//*[@id=\"userEmail\"]";
+    private static String EditSubmitButton = "//*[@id=\"submit\"]";
+
+
 
     //Validate the new added elements
     private static String ValidateFirstName = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[1]";
@@ -24,7 +29,8 @@ public class WebTables {
     private static String ValidateDepartment = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[6]";
 
 
-    public static void ClickTextBoxButton(){
+
+    public static void ClickOnWebTablesButton(){
         BrowserUtils.clickElement(ClickWebTablesButton);
     }
 
@@ -82,5 +88,17 @@ public class WebTables {
 
     public static void DepartmentValidation(String expectedDepartment){
         BrowserUtils.validateText(ValidateDepartment, expectedDepartment);
+    }
+
+    public static void ClickOnEditButton(){
+        BrowserUtils.clickElement(ClickEditButton);
+    }
+
+    public static void EditEmailField(String EditTheEmail){
+        BrowserUtils.enterText(EditEmail, EditTheEmail);
+    }
+
+    public static void ClickSubmitOnEditAction(){
+        BrowserUtils.clickElement(EditSubmitButton);
     }
 }

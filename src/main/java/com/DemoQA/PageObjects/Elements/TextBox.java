@@ -47,20 +47,20 @@ public class TextBox {
         BrowserUtils.clickElement(SubmitTextBox);
     }
 
-    public static void ValidateFullName(String expectedFullName){
+    public static void ValidateTheFullName(String expectedFullName){
         BrowserUtils.validateText(ValidateFullName, expectedFullName);
     }
 
-    public static void ValidateEmail(String expectedEmail){
+    public static void ValidateTheEmail(String expectedEmail){
 
         BrowserUtils.validateText(ValidateEmail, expectedEmail);
     }
 
-    public static void ValidateCurrentAddress(String expectedCurrentAddress){
+    public static void ValidateTheCurrentAddress(String expectedCurrentAddress){
         BrowserUtils.validateText(ValidateCurrentAddress, expectedCurrentAddress);
     }
 
-    public static void ValidatePermanentAddress(String expectedPermanentAddress){
+    public static void ValidateThePermanentAddress(String expectedPermanentAddress){
         BrowserUtils.validateText(ValidatePermanentAddress, expectedPermanentAddress);
     }
 

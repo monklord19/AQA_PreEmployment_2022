@@ -9,9 +9,10 @@ public class CheckBox extends BaseClass {
     private static String linkCheckBoxButton = "//*[@id=\"item-1\"]/span";
     private static String HomeCheckBoxButton = "//*[@id=\"tree-node\"]/ol/li/span/label/span[3]";
     private static String ExpandCheckBoxList = "//*[@id=\"tree-node\"]/div/button[1]";
-    private static String CommandsCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[1]/ol/li[2]/span/label/span[1]/svg/path";
-    private static String AngularCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[2]/ol/li[1]/ol/li[2]/span/label/span[3]";
-    private static String ClassifiedCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[2]/ol/li[1]/ol/li[2]/span/label/span[3]";
+    private static String CommandsCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[1]/ol/li[2]/span/label/span[3]";
+    private static String AngularCheckBox = "//*[text()='Angular']";
+    private static String ClassifiedCheckBox = "//*[@id=\"tree-node\"]/ol/li/ol/li[2]/ol/li[2]/ol/li[3]/span/label/span[3]";
+    private static String DocumentsCategory = "//*[text()='Documents']";
 
     //Radio Button - Elements to be validated
     private static String ValidateTextCheckBox = "//*[@id=\"result\"]/span[1]";
@@ -25,15 +26,15 @@ public class CheckBox extends BaseClass {
         BrowserUtils.clickElement(ExpandCheckBoxList);
     }
 
-    public static void CommandsCheckBox(){
+    public static void ClickCommandsCheckBox(){
         BrowserUtils.clickElement(CommandsCheckBox);
     }
 
-    public static void AngularCheckBox(){
+    public static void ClickAngularCheckBox(){
         BrowserUtils.clickElement(AngularCheckBox);
     }
 
-    public static void ClassifiedCheckbox(){
+    public static void ClickClassifiedCheckbox(){
         BrowserUtils.clickElement(ClassifiedCheckBox);
     }
 
@@ -41,8 +42,12 @@ public class CheckBox extends BaseClass {
         BrowserUtils.validateText(ValidateTextCheckBox, expectedText);
     }
 
-    public static void HomeCheckBoxButton(){
+    public static void ClickHomeCheckBoxButton(){
         BrowserUtils.clickElement(HomeCheckBoxButton);
+    }
+
+    public static void ClickOnDocumentsCategory(){
+        BrowserUtils.clickElement(DocumentsCategory);
     }
 
 

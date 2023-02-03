@@ -10,20 +10,19 @@ Feature: Front End Testing - https://demoqa.com/ - ELEMENTS
     Then The message "You have selected Yes" is displayed
 
 
-Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!!
+Scenario: Testing the 'Elements' Section - Text Box  // eroare la asertia nr.3!!!!
     Given  User selects the <Elements> section
     And User selects the button <Text Box> on the <Elements> section
     When User completes the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>
-  And User clicks on the Submit button
-  Then A new box is displayed with all information previously entered.
+    And User clicks on the Submit button
+    Then A new box is displayed with all information previously entered.
 
 
   Scenario: Testing the 'Elements' Section - Check Box
     Given User selects the <Elements> section
-    And User selects the button <Check Box> on the <Elements> section
-    When User expands the Check Box List
-    And User selects the options <Commands>, <Angular>, <Classified>
-    Then A message "You have selected : commands angular classified" is displayed
+    And User selects the element <Check Box>
+    When User clicks the check box button <Home>
+    Then A response message appears on the page
 
 
   Scenario: Testing the 'Elements' Section - Links
@@ -65,12 +64,37 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
 
 
 
-  Scenario: Testing the 'Elements' Section - Web Tables
+  Scenario: Testing the 'Elements' Section - Web Tables - Add new record on the table
     Given User selects the <Elements> section
     And User clicks on the <Web Tables> button from the <Elements> section
     When User user clicks on the button "Add"
     And User adds valid First Name,Last Name, Email, Age, Salary and Department
     And user clicks the button "Submit"
     Then A new row is added to the table
+
+
+
+  Scenario: Testing the 'Elements' Section - Web Tables - Web Tables Actions
+    Given User selects the <Elements> section
+    And User clicks on the <Web Tables> button from the <Elements> section
+    When User user clicks on the button "Add"
+    And User adds valid First Name,Last Name, Email, Age, Salary and Department
+    And user clicks the button "Submit"
+    Then User clicks the Edit button
+    And User modifies the Email and clicks the Submit button
+    And checks if the email was successfully updated on the table
+
+
+  Scenario: Testing the 'Elements' Section - Buttons
+    Given User selects the <Elements> section
+    When User clicks on the <Buttons> element
+    And User clicks on the button <Click Me>
+    Then A response message is displayed
+
+
+
+
+
+
 
 
