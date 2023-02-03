@@ -19,6 +19,8 @@ public class TextBox {
     private static String ValidatePermanentAddress = "//*[@id=\"permanentAddress\"]";
 
 
+
+
     public static void ClickTextBoxButton(){
         BrowserUtils.clickElement(TextBoxButton);
     }
@@ -40,6 +42,7 @@ public class TextBox {
     }
 
     public static void ClickSubmitTextBox(){
+
         BrowserUtils.clickElement(SubmitTextBox);
     }
 
@@ -48,6 +51,7 @@ public class TextBox {
     }
 
     public static void ValidateEmail(String expectedEmail){
+
         BrowserUtils.validateText(ValidateEmail, expectedEmail);
     }
 
@@ -58,4 +62,6 @@ public class TextBox {
     public static void ValidatePermanentAddress(String expectedPermanentAddress){
         BrowserUtils.validateText(ValidatePermanentAddress, expectedPermanentAddress);
     }
+
+
 }

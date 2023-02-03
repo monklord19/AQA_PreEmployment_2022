@@ -40,10 +40,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     Then The answer will push down
 
 
-
-
   Scenario Outline: Testing the 'Elements' Section - Text Box
-
 
     Given  User selects the <Elements> section on DemoQa homepage
     And User selects the button <Text Box>
@@ -55,7 +52,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     Then A new box with all the entered data is displayed.
     Examples:
     |        Full Name        |       Email            |       Current Address                         |       Permanent Address     |
-    |        MMC              |    test@gmail.com      |           Romania                             |            Romania          |
+    |        MMC              |    test@gmail.com      |           Romania                             |            Romania1         |
     |        M                |    test@yahoo.com      |     Alabama Street 121                        |            400678           |
     |Test_Name Test_FirstName |  test@outlook.com      |Alabama Street 121 Apartment 1110 Milano Italy |           Apartment 12      |
 

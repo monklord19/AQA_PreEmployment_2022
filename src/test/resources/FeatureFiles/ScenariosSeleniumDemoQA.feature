@@ -40,8 +40,6 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     Then The answer will push down
 
 
-
-
   Scenario Outline: Testing the 'Elements' Section - Text Box
 
     Given  User selects the <Elements> section on DemoQa homepage

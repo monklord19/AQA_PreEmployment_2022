@@ -34,18 +34,18 @@ public class BrowserUtils extends BaseClass {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))));
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Element not found");
         }
         return element;
     }
 
 
-//Elements - Radio Button
-    public static void validateText(String element, String expectedText){
+    //Elements - Radio Button
+    public static void validateText(String element, String expectedText) {
 
         String actualText = FindAndWaitForElement(element).getText();
-        Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" +actualText,
+        Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
                 expectedText.equals(actualText));
     }
 
@@ -57,7 +57,7 @@ public class BrowserUtils extends BaseClass {
     }
 
 
-//Elements - Text Box
+    //Elements - Text Box
     public static void validateName(String element, String expectedFullName) {
         String actualFullName = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Full Name: " + expectedFullName + " is not matching with Actual Full Name:" + expectedFullName,
@@ -82,6 +82,17 @@ public class BrowserUtils extends BaseClass {
                 expectedPermanentAddress.equals(actualPermanentAddress));
     }
 
+
+
+
+
+
+
+
+
+
+
+    //Elements - Check Box
     public static void validateTextCheckBox(String element, String expectedTextCheckBox) {
         String actualTextCheckBox = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Permanent Address: " + expectedTextCheckBox + " is not matching with Actual Permanent Address:" + expectedTextCheckBox,
@@ -89,18 +100,19 @@ public class BrowserUtils extends BaseClass {
     }
 
 
-// Elements - Links
+    // Elements - Links
     public static void validateTextMovedLink(String element, String expectedTextMovedLink) {
         String actualTextMovedLink = FindAndWaitForElement(element).getText();
-        Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink,"Link has responded with staus 301 and status text Moved Permanently");
+        Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink, "Link has responded with staus 301 and status text Moved Permanently");
     }
 
-// Widgets - Tool Tips
+    // Widgets - Tool Tips
     public static void hooverElement(String element) {
         WebElement webelement = FindAndWaitForElement(element);
 
         Actions actions = new Actions(driver);
         actions.moveToElement(webelement);
+    }
 
-}
+
 }

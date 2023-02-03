@@ -198,6 +198,8 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new box with all the entered data is displayed.")
     public void aNewBoxWithAllTheEnteredDataIsDisplayed() {
+
+
     }
 
 
