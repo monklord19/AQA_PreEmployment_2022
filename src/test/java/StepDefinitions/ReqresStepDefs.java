@@ -73,40 +73,39 @@ public class ReqresStepDefs {
         Assert.assertTrue(response.time()<2000L);
     }
 
-//    //Update a user (put method)
-//    @When("I want to update a user")
-//    public void iWantToUpdateAUser() {
-//        RestAssured.baseURI = "https://reqres.in";
-//        RequestSpecification request = RestAssured.given();
-//        String informationForUpdate = """
-//                {
-//                "name": "Daliana",
-//                "job": "TW"
-//                }
-//                """;
-//        Response updateUser = request.body(informationForUpdate).put("/api/users/2");
-//    }
-//
-//    @Then("I check that user is updated")
-//    public void iCheckThatUserIsUpdated() {
-//        RestAssured.baseURI = "https://reqres.in";
-//        RequestSpecification request = RestAssured.given();
-//        String informationForUpdate = """
-//                {
-//                "name": "Daliana",
-//                "job": "TW"
-//                }
-//                """;
-//        Response updateUser = request.body(informationForUpdate).put("/api/users/2");
-//        Assertions.assertEquals(200, updateUser.getStatusCode());
-//        System.out.println("The response code is: " + updateUser.getStatusCode());
-//
-//        String responseBody = updateUser.getBody().asString();
-//        System.out.println("Response body for the updated user is:" + responseBody);
-//    }
-//
-//    // Delete a user from the list (delete method)
-//
+    //Update a user (put method)
+    @When("I want to update a user")
+    public void iWantToUpdateAUser() {
+        RequestSpecification request = RestAssured.given();
+        String informationForUpdate = """
+                {
+                "name": "morpheus",
+                "job": "zion resident"
+                }
+                """;
+        Response updateUser = request.body(informationForUpdate).put("/api/users/2");
+    }
+
+    @Then("I check that user is updated")
+    public void iCheckThatUserIsUpdated() {
+        System.out.println("The user was successfully updated via Put method");
+        RestAssured.baseURI = BASE_URL + "/api/users/2";
+        RequestSpecification request = RestAssured.given();
+        String informationForUpdate = """
+                {
+                "name": "morpheus",
+                "job": "zion resident"
+                }
+                """;
+        Response updateUser = request.body(informationForUpdate).put("/api/users/2");
+        Assertions.assertEquals(200, updateUser.getStatusCode());
+        System.out.println("The response code is: " + updateUser.getStatusCode());
+        String responseBody = updateUser.getBody().asString();
+        System.out.println("Response body for the updated user is:" + responseBody);
+    }
+
+    // Delete a user from the list (delete method)
+
 //    @When("I want to delete a user")
 //    public void iWantToDeleteAUser() {
 //        request.header("Content-Type", "application/json");
