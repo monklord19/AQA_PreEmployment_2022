@@ -11,7 +11,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 
 public class DemoQAFrontEndTesting {
@@ -74,7 +76,6 @@ public class DemoQAFrontEndTesting {
     @And("User selects the button <Check Box> on the <Elements> section")
     public void userSelectsTheButtonCheckBoxOnTheElementsSection() {
         CheckBox.ClickCheckBoxButton();
-
     }
 
     @When("User expands the Check Box List")
@@ -130,13 +131,10 @@ public class DemoQAFrontEndTesting {
     @And("User is hovering the button <Contrary>")
     public void userIsHoveringTheButtonContrary() {
         ToolTips.HooverContrary();
-
     }
 
-    @Then("The following message is displayed: {string}")
-    public void theFollowingMessageIsDisplayed(String arg0) {
-
-
+    @Then("A success message is displayed")
+    public void aSuccessMessageIsDisplayed() {
     }
 
 
@@ -159,7 +157,6 @@ public class DemoQAFrontEndTesting {
 
 
 //Scenario No.7
-
 
     @Given("User selects the <Elements> section on DemoQa homepage")
     public void userSelectsTheElementsSectionOnDemoQaHomepage() {
@@ -198,7 +195,14 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new box with all the entered data is displayed.")
     public void aNewBoxWithAllTheEnteredDataIsDisplayed() {
-
+        WebElement responseScenarioOutline = driver.findElement(By.xpath("//*[@id=\"output\"]"));
+        //Boolean t = TextBox.ValidateResponseScenarioOutline().isDisplayed;
+        Boolean t = driver.findElement(By.xpath("//*[@id=\"output\"]")).isDisplayed();
+        if (t) {
+            System.out.println("Element is dispalyed");
+        } else {
+            System.out.println("Element is not dispalyed");
+        }
 
     }
 

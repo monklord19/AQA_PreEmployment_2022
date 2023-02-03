@@ -33,6 +33,13 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
 
 
+  Scenario: Testing the 'Widgets' Section - Tool Tips
+    Given User selects the <Widgets> section
+    When User clicks on the <Tool Tips> button on the <Widgets> section
+    And User is hovering the button <Contrary>
+    Then A success message is displayed
+
+
   Scenario: Testing the 'Widgets' Section - Accordion
     Given User selects the <Widgets> section
     When User clicks on the <Accordion> button from the <Widgets> section

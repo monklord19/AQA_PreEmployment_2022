@@ -82,14 +82,9 @@ public class BrowserUtils extends BaseClass {
                 expectedPermanentAddress.equals(actualPermanentAddress));
     }
 
-
-
-
-
-
-
-
-
+    public static void validateResponseScenarioOutline(String element){
+        WebElement actualResponseScenarioOutline = FindAndWaitForElement(element);
+    }
 
 
     //Elements - Check Box

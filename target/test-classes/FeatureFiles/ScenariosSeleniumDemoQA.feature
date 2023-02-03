@@ -32,6 +32,12 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     When User clicks on the <Moved> link that will send an api call
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
 
+  Scenario: Testing the 'Widgets' Section - Tool Tips
+    Given User selects the <Widgets> section
+    When User clicks on the <Tool Tips> button on the <Widgets> section
+    And User is hovering the button <Contrary>
+    Then A success message is displayed
+
 
   Scenario: Testing the 'Widgets' Section - Accordion
     Given User selects the <Widgets> section
@@ -52,7 +58,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //eroare la asertia nr.3!!!
     Then A new box with all the entered data is displayed.
     Examples:
     |        Full Name        |       Email            |       Current Address                         |       Permanent Address     |
-    |        MMC              |    test@gmail.com      |           Romania                             |            Romania1         |
+    |        MMC              |    test@gmail.com      |           Romania                             |            Romania          |
     |        M                |    test@yahoo.com      |     Alabama Street 121                        |            400678           |
     |Test_Name Test_FirstName |  test@outlook.com      |Alabama Street 121 Apartment 1110 Milano Italy |           Apartment 12      |
 
