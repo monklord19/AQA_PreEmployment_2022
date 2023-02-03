@@ -193,7 +193,7 @@ public class DemoQAFrontEndTesting {
 
     }
 
-    //Scenario No. 8
+//Scenario No. 8
     @And("User clicks on the <Web Tables> button from the <Elements> section")
     public void userClicksOnTheWebTablesButtonFromTheElementsSection() {
         WebTables.ClickOnWebTablesButton();
