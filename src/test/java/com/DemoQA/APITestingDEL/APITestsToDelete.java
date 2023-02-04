@@ -1,4 +1,4 @@
-package com.DemoQA.APITesting;
+package com.DemoQA.APITestingDEL;
 
 import org.junit.Test;
 
@@ -40,9 +40,9 @@ public class APITestsToDelete {
         String endpoint = "https://dummy.restapiexample.com/api/v1/create";
         String body = """
                {
-               "name":"test",
-               "salary":"123",
-               "age":"23"
+               "name":"testttt",
+               "salary":"111123",
+               "age":"32"
                }
                """;
         var response = given().body(body).when().post(endpoint).then().log().body();

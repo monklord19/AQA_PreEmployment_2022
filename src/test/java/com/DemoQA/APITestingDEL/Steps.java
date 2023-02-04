@@ -1,4 +1,4 @@
-package com.DemoQA.APITesting;
+package com.DemoQA.APITestingDEL;
 
 import io.restassured.response.Response;
 

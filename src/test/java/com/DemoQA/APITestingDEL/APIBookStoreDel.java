@@ -1,4 +1,4 @@
-package com.DemoQA.APITesting;
+package com.DemoQA.APITestingDEL;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
