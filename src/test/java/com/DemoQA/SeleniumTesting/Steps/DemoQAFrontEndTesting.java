@@ -123,6 +123,7 @@ public class DemoQAFrontEndTesting {
 
     @Then("A success message is displayed")
     public void aSuccessMessageIsDisplayed() {
+        ToolTips.HooverContrary().getText();
     }
 
 
