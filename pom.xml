@@ -138,6 +138,13 @@
             <version>0.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.flipthebird.gwt-hashcode-equals</groupId>
+            <artifactId>gwt-hashcode-equals</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+
+
 
     </dependencies>
 
