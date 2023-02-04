@@ -23,7 +23,7 @@ public class APIBookStoreDel {
         private static String jsonString;
         private static String bookId;
 
-        @Given("I am an authorized user")
+   @Given("I am an authorized user")
         public void iAmAnAuthorizedUser() {
 
             RestAssured.baseURI = BASE_URL;
