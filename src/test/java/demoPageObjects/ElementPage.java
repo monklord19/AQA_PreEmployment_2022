@@ -44,8 +44,6 @@ public class ElementPage {
     By chooseFileButton = By.xpath("//input[@type='file']");
     By pathOfUploadedFile = By.id("uploadedFilePath");
     By outerFrame = By.id("frame1");
-
-    By childFrame = By.xpath("//iframe[contains(@srcdoc, 'Child')]");
     By openAlertButton = By.xpath("//button[@id='alertButton']");
     By openTimerAlertButton = By.xpath("//button[@id='timerAlertButton']");
     By openConfirmationAlertButton = By.xpath("//button[@id='confirmButton']");
@@ -54,7 +52,6 @@ public class ElementPage {
     By promptConfirmationMessage = By.xpath("//span[@id='promptResult']");
     By datePickerMonthYearInputField = By.id("datePickerMonthYearInput");
     By dateAndTimeInputField = By.id("dateAndTimePickerInput");
-    By resizableBox = By.id("resizableBoxWithRestriction");
     By simpleDroppableButton = By.id("droppableExample-tab-simple");
     By draggableBox = By.id("draggable");
     By droppableBox = By.xpath("//div[@class='simple-drop-container']//div[@id='droppable']");
@@ -394,7 +391,7 @@ public class ElementPage {
         return oneValueFieldElement.getText();
     }
     public void selectOldStyleSelectMenu(String color){
-        Select selection = new Select(driver.findElement(By.xpath("//*[@id='oldSelectMenu']")));
+        Select selection = new Select(driver.findElement(By.id("oldSelectMenu")));
         selection.selectByVisibleText(color);
     }
     public boolean oldStyleSelectMennuSelection(String color){

@@ -4,8 +4,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/"}
-
+        plugin = {
+                "pretty",
+                "html:reports/report.html",
+                "json:reports/cucumber.json"
+        },
+        features="src/test/resources/FrontendFeatureFiles/frontend.feature",
+        glue="steps"
 )
 public class TestRunner {
 }
