@@ -18,9 +18,9 @@ public class BookStoreStepdefs {
     private static final String USERNAME = "Calina Maniu";
     private static final String PASSWORD = "CMcm123*";
     private static final String BASE_URL = "https://demoqa.com";
+    private static final String ISBN = "9781449325862";
 
     private static String token;
-    private static String userId;
     private static Response response;
     private static String jsonString;
     private static String bookId;
@@ -247,8 +247,65 @@ public class BookStoreStepdefs {
     @And("Status will be {int}")
     public void statusWillBe(int arg0) {
         int statusCode = response.getStatusCode();
-        System.out.println("Status received => " + response.getStatusLine());
+        System.out.println("Status received: " + response.getStatusLine());
         Assert.assertEquals(200, statusCode);
+    }
+
+
+// Scenario No. 7 - BookStore - Post
+
+    @When("User executes a POST request to add a new list")
+    public void userExecutesAPOSTRequestToAddANewList() {
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("userId", "TQ123");
+        requestParams.put("isbn", "9781449325862");
+
+        request.header("Content-Type", "application/json");
+        request.body(requestParams.toJSONString());
+
+        Response response = request.post("BookStore/v1/Books");
+        System.out.println("The status received: " + response.statusLine());
+
+
+
+
+    }
+
+    @Then("The new list will be added")
+    public void theNewListWillBeAdded() {
+    }
+
+    @And("Status response will be {int}")
+    public void ResponseWillBe(int arg0) {
+    }
+
+
+    @And("Response will be {int}")
+    public void responseWillBe(int arg0) {
+    }
+
+// Scenario No. 8 - BookStore - Delete
+
+    @When("User executes a DELETE request to delete a book")
+    public void userExecutesADELETERequestToDELETEABook() {
+        RestAssured.baseURI= "https://bookstore.toolsqa.com/BookStore/v1";
+        RequestSpecification httpRequest = RestAssured.given();
+        Response res = httpRequest.queryParam("ISBN","9781449365035").get("/Book");
+        ResponseBody body = res.body();
+        String responseBody = body.asString();
+        JsonPath jpath = new JsonPath(responseBody);
+        String title = jpath.getString("title");
+        System.out.println("The book title is - "+title);
+    }
+
+    @Then("The book is successfully deleted")
+    public void theBookIsSuccessfullyDeleted() {
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
     }
 }
 
