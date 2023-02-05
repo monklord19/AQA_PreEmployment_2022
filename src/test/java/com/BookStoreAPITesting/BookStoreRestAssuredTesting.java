@@ -32,6 +32,25 @@ public class BookStoreRestAssuredTesting {
         //If request is successful, status code will be 200
         int statusCode = response.getStatusCode();
 
+        //Read JSON Response Body using Rest Assured
+        RestAssured.baseURI = "https://restapi.demoqa.com/utilities/weather/city";
+        RequestSpecification Request = RestAssured.given();
+        Response responseResponse = httpRequest.get("/Hyderabad");
+        // Retrieve the body of the Response
+        ResponseBody body = responseResponse.getBody();
+
+        // By using the ResponseBody.asString() method, we can convert the  body
+        // into the string representation.
+        System.out.println("Response Body is: " + body.asString());
+
+        //Validate Response Body contains some String
+        // To check for sub string presence get the Response body as a String.
+        // Do a String.contains
+        String bodyAsString = body.asString();
+        Assert.assertEquals(bodyAsString.contains("Hyderabad"),true );
+
+
+
         // Assert that correct status code is returned.
         Assert.assertEquals(200, statusCode);
 

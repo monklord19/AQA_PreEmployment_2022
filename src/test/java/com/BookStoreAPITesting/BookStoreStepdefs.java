@@ -25,6 +25,19 @@ public class BookStoreStepdefs {
     private static String jsonString;
     private static String bookId;
 
+    @Given("User is an authorized user")
+    public void userIsAnAuthorizedUser() {
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+
+        request.header("Content-Type", "application/json");
+        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
+                .post("/Account/v1/GenerateToken");
+
+        String jsonString = response.asString();
+        token = JsonPath.from(jsonString).get("token");
+    }
+
 // Scenario No. 1 - Account - POST new user
 
     @Given("User is on demoQA website")
@@ -50,6 +63,7 @@ public class BookStoreStepdefs {
         RequestSpecification request = RestAssured.given();
         Response response = request.post("Account/v1/User");
         ResponseBody body = response.getBody();
+        String bodyAsString = body.asString();
         System.out.println("Response body is: " + body.asString());
     }
 
@@ -159,16 +173,60 @@ public class BookStoreStepdefs {
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
         response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
-                .delete("/Account//AccountV1UserByUserIdDelete");
+                .delete("/Account/AccountV1UserByUserIdDelete");
 
-        Response response = request.delete("/Account//AccountV1UserByUserIdDelete");
+        Response response = request.delete("/Account/AccountV1UserByUserIdDelete");
         int statusCode = response.getStatusCode();
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
     }
+        @And("Response header will appear")
+        public void responseHeaderWillAppear() {
 
-    @And("Response header will appear")
-    public void responseHeaderWillAppear() {
+        }
+
+
+
+// Scenario No. 5 - Account - Get
+
+    @When("User executes a GET request")
+    public void userExecutesAGETRequest() {
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+
+        request.header("Content-Type", "application/json");
+        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
+                .post("/Account/v1/GenerateToken");
+
+        String jsonString = response.asString();
+        token = JsonPath.from(jsonString).get("token");
+
+
+
+        request.header("Content-Type", "application/json");
+        response = request.body("{ \"userId\":\"" + USER_ID + "\"}")
+                .get("/Account/AccountV1UserByUserIdGet");
+
+        Response response = request.get("/Account/AccountV1UserByUserIdDelete");
+
     }
+
+    @Then("Status response will be successful")
+    public void statusResponseWillBeSuccessful() {
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
+                .get("/Account/AccountV1UserByUserIdGet");
+
+        Response response = request.get("/Account/A/Account/AccountV1UserByUserIdGet");
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
+        ResponseBody body = response.body();
+        System.out.println("Response Body is: " + body.asString());
+    }
+
+
+
 }
 
