@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "bfb8b0d5-c83c-4848-b647-ca06ace95b90",
+		"name": "DemoQA Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21328311"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"AndreeaCazan\",\r\n  \"password\": \"Mimi234!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://demoqa.com/Account/v1/User",
+					"protocol": "https",
+					"host": [
+						"demoqa",
+						"com"
+					],
+					"path": [
+						"Account",
+						"v1",
+						"User"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"AndreeaCazan\",\r\n  \"password\": \"Mimi234!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://demoqa.com/Account/v1/GenerateToken",
+					"protocol": "https",
+					"host": [
+						"demoqa",
+						"com"
+					],
+					"path": [
+						"Account",
+						"v1",
+						"GenerateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"books\");\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.books[0].isbn).to.eql(\"9781449325862\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User not authorized!\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"2345\",\r\n  \"collectionOfIsbns\": [\r\n    {\r\n      \"isbn\": \"2345678\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Books?UserId=234",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Books"
+					],
+					"query": [
+						{
+							"key": "UserId",
+							"value": "234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book by ISBN",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Book?ISBN=\n9781491950296",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Book"
+					],
+					"query": [
+						{
+							"key": "ISBN",
+							"value": "\n9781491950296"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Mimi234!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "AndreeaCazan3",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n                  \"userId\": \"05ba2493-9d31-4b35-8b79-32899aabdd4c\",\r\n                  \"isbn\": \"9781491950296\"\r\n                }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Book",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"Mama\",\r\n  \"isbn\": \"345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Books/234?UserID=234",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Books",
+						"234"
+					],
+					"query": [
+						{
+							"key": "UserID",
+							"value": "234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Add User Authorised",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"AndreeaCazan2\",\r\n  \"password\": \"Mimi234!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://demoqa.com/Account/v1/Authorized",
+					"protocol": "https",
+					"host": [
+						"demoqa",
+						"com"
+					],
+					"path": [
+						"Account",
+						"v1",
+						"Authorized"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://demoqa.com/Account/v1/User?UserId=2345",
+					"protocol": "https",
+					"host": [
+						"demoqa",
+						"com"
+					],
+					"path": [
+						"Account",
+						"v1",
+						"User"
+					],
+					"query": [
+						{
+							"key": "UserId",
+							"value": "2345"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

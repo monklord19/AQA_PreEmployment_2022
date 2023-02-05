@@ -16,7 +16,7 @@ public class POST_Requests {
     @Test
     public void AddUser(){
         RestAssured.baseURI = "https://demoqa.com/";
-        File fileBody=new File("src/test/java/Util/PayloadUser");
+        File fileBody=new File("src/test/java/Util/PayloadUser.json");
 
         RequestSpecification httpRequest = RestAssured.given();
         httpRequest.header("Content-Type","application/json");
@@ -30,8 +30,8 @@ public class POST_Requests {
         RequestSpecification request = RestAssured.given();
         String credentials ="""
                              {
-                             "userName": "AndreeaCazan",
-                             "password": "Mimi@@234"
+                             "userName": "AndreeaCazan3",
+                             "password": "Mimi234!"
                              }
                              """;
         request.header("Content-Type","application/json");
@@ -47,10 +47,10 @@ public class POST_Requests {
 
         String addBookDetails= """
                 {
-                  "userId": "a821501d-f417-4837-85b9-ce717b3df167",
+                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
                   "collectionOfIsbns": [
                     {
-                      "isbn": "9781449337711"
+                      "isbn": "9781593275846"
                     }
                   ]
                 }
@@ -67,7 +67,7 @@ public class POST_Requests {
     public void POSTBookWhithBasicAuthentification(){
         RestAssured.baseURI = "https://demoqa.com/BookStore/v1";
         RequestSpecification request = RestAssured.given();
-        String credentials ="AndreeaCazan:Mimi@@234";
+        String credentials ="AndreeaCazan3:Mimi234!";
 
         byte[] encodedCredentials = Base64.encodeBase64(credentials.getBytes());
         String encodedCredentialsasString = new String(encodedCredentials);
@@ -75,10 +75,10 @@ public class POST_Requests {
         request.header("Authorization","Basic "+encodedCredentialsasString);
         String load= """
                 {
-                  "userId": "a821501d-f417-4837-85b9-ce717b3df167",
+                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
                   "collectionOfIsbns": [
                     {
-                      "isbn": "9781449331818"
+                      "isbn": "9781491904244"
                     }
                   ]
                 }

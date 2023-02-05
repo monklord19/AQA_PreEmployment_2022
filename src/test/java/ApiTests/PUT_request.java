@@ -16,7 +16,7 @@ public class PUT_request {
                 .header("Content-Type","application/json");
         String replacementBody= """
                 {
-                  "userId": "a821501d-f417-4837-85b9-ce717b3df167",
+                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
                   "isbn": "9781593275846"
                 }
                 """;
