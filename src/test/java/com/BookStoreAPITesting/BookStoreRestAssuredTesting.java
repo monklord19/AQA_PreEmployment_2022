@@ -22,10 +22,10 @@ public class BookStoreRestAssuredTesting {
         RequestSpecification httpRequest = RestAssured.given();
         // specify the method type (GET) and the parameters if any.
         //In this case the request does not take any parameters
+
         Response response = httpRequest.request(Method.GET, "");
 
         // Print the status and message body of the response received from the server
-        System.out.println("Status received => " + response.getStatusLine());
         System.out.println("Response=>" + response.prettyPrint());
 
         // Get the status code of the request.
@@ -84,8 +84,8 @@ public class BookStoreRestAssuredTesting {
         RestAssured.baseURI ="https://demoqa.com/Account/v1";
         RequestSpecification request = RestAssured.given();
         JSONObject requestParams = new JSONObject();
-        requestParams.put("userName", "test_rest");
-        requestParams.put("password", "Testrest@123");
+        requestParams.put("userName", "test test");
+        requestParams.put("password", "Testtttrest@123");
         request.body(requestParams.toJSONString());
         Response response = request.post("/User");
         ResponseBody body = response.getBody();
