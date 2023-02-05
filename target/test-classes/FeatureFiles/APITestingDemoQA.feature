@@ -26,7 +26,7 @@ Feature: API Tests on Demo QA - Bookstore
     And Response header will be displayed
 
 
-  Scenario: Delete User - POST/Account/Delete
+  Scenario: Delete User - DELETE/Account/User
     Given User is an authorized user
     And User is on demoQA website
     When User deletes a user
@@ -34,11 +34,20 @@ Feature: API Tests on Demo QA - Bookstore
     And Response header will appear
 
 
-  Scenario: Get User - POST/Account/User
+  Scenario: Get User - GET/Account/User
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request
     Then Status response will be successful
+
+
+  Scenario: Get the list of available books - GET/BookStore/Books
+    Given User is an authorized user
+    And User is on demoQA website
+    When User executes a GET request to get the list of available books
+    Then The list with all the available book will be displayed
+    And Status will be 200
+
 
 
 

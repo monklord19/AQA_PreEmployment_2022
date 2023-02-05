@@ -226,7 +226,29 @@ public class BookStoreStepdefs {
         System.out.println("Response Body is: " + body.asString());
     }
 
+// Scenario No. 6 - BookStore - Get
 
+    @When("User executes a GET request to get the list of available books")
+    public void userExecutesAGETRequestToGetTheListOfAvailableBooks() {
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+        Response response = request.get("/BookStore/v1/Books");
+    }
 
+    @Then("The list with all the available book will be displayed")
+    public void theListWithAllTheAvailableBookWillBeDisplayed() {
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+        Response response = request.get("/BookStore/v1/Books");
+        System.out.println("All the available books: " + response.prettyPrint());
+
+    }
+
+    @And("Status will be {int}")
+    public void statusWillBe(int arg0) {
+        int statusCode = response.getStatusCode();
+        System.out.println("Status received => " + response.getStatusLine());
+        Assert.assertEquals(200, statusCode);
+    }
 }
 
