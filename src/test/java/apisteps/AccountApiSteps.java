@@ -1,28 +1,28 @@
-package ApiTests;
+package apisteps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+
+import java.util.ArrayList;
+
+import static org.hamcrest.Matchers.*;
 
 public class AccountApiSteps {
 
-    public static final String BASE_URI = "https://demoqa.com/";
-    public static final String BASE_PATH_ACCOUNT_V1 = "/Account/v1/";
-    private static String userID;
-    private static String token;
-    public ValidatableResponse response;
+    public static String userID;
+    public static String token;
+    public static ArrayList userBookList;
+    public static ValidatableResponse response;
 
-    @Given("set base URI and PATH account")
-    public static void setup() {
-        RestAssured.baseURI = BASE_URI;
-        RestAssured.basePath = BASE_PATH_ACCOUNT_V1;
+    @Given("set BASE URI")
+    public void setBaseURI() {
+        RestAssured.baseURI = "https://demoqa.com/";
     }
-
     @When("send a POST request for registration of new user with username: {string} and password: {string}")
     public void sendPOSTRegistration(String username, String password) {
         String body = """
@@ -35,8 +35,9 @@ public class AccountApiSteps {
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/User")
+                .post("/Account/v1/User")
                 .then()
+                .statusCode(201)
                 .log()
                 .body();
         userID = response.extract().path("userID").toString();
@@ -59,8 +60,9 @@ public class AccountApiSteps {
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/GenerateToken")
+                .post("/Account/v1/GenerateToken")
                 .then()
+                .statusCode(200)
                 .log()
                 .body();
         token = response.extract().path("token").toString();
@@ -78,10 +80,12 @@ public class AccountApiSteps {
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/Authorized")
+                .post("/Account/v1/Authorized")
                 .then()
+                .statusCode(200)
                 .log()
                 .body();
+
     }
 
     @When("send a GET request for account details for userID")
@@ -90,10 +94,11 @@ public class AccountApiSteps {
                 .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/User/{userID}", userID)
+                .get("/Account/v1/User/{userID}", userID)
                 .then()
                 .log()
                 .body();
+        userBookList = response.extract().path("books.isbn");
     }
 
     @When("send a DELETE request for userID")
@@ -102,10 +107,18 @@ public class AccountApiSteps {
                 .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/User/{userID}", userID)
+                .delete("/Account/v1/User/{userID}", userID)
                 .then()
+                .statusCode(204)
                 .log()
                 .body();
 
     }
+
+    @And("response body contains path: {string}, value: {string}")
+    public void responseBodyContainsUsername(String path, String value) {
+        response.assertThat().body(path, equalTo(value));
+    }
+
+
 }

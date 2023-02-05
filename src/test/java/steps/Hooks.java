@@ -1,8 +1,9 @@
 package steps;
 
-import demoPageObjects.BaseClass;
+import demopageobjects.BaseClass;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.restassured.RestAssured;
 
 public class Hooks extends BaseClass {
 
@@ -12,15 +13,16 @@ public class Hooks extends BaseClass {
         this.baseClass = baseClass;
     }
 
-    @Before
+    @Before("not @api")
     public void before() {
         baseClass.setDriver();
         baseClass.getDriver().get("https://demoqa.com/");
     }
 
-    @After
+    @After("not @api")
     public void after() {
         baseClass.getDriver().quit();
     }
+
 
 }

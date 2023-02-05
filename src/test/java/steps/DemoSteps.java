@@ -1,8 +1,8 @@
 package steps;
 
-import demoPageObjects.BaseClass;
-import demoPageObjects.ElementPage;
-import demoPageObjects.MainPage;
+import demopageobjects.BaseClass;
+import demopageobjects.ElementPage;
+import demopageobjects.MainPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

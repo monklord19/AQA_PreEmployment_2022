@@ -1,4 +1,4 @@
-package demoPageObjects;
+package demopageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
