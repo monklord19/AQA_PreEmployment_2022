@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
         //tags = "@RegressionTestsBAP"
 )
 public class TestRunner {
-   @Before
-    public void setup() {
-       System.setProperty("webdriver.chrome.driver", "C:\\Users\\user1\\Desktop\\chromedriver\\chromedriver.exe");
-   }
+    @Before
+public void setup() {
+              System.setProperty("webdriver.chrome.driver", "C:\\Users\\user1\\Desktop\\chromedriver\\chromedriver.exe");
+           }
+
 }
