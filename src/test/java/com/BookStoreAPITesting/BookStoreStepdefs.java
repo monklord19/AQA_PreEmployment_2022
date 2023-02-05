@@ -307,5 +307,29 @@ public class BookStoreStepdefs {
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
     }
+
+// Scenario No. 9 - BookStore - Delete
+
+    @When("User executes a GET request to get details about a particular book")
+    public void userExecutesAGETRequestToGetDetailsAboutAParticularBook() {
+        RestAssured.baseURI= "https://bookstore.toolsqa.com/BookStore/v1";
+        RequestSpecification httpRequest = RestAssured.given();
+        Response res = httpRequest.queryParam("ISBN","9781449365035").get("/Book");
+        ResponseBody body = res.body();
+        String javaBook = body.asString();
+        JsonPath book = new JsonPath(javaBook);
+        String title = book.getString("title");
+        System.out.println("The book title is - "+title);
+    }
+
+    @Then("The details are displayed")
+    public void theDetailsAreDisplayed() {
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
+
+    }
+
+
 }
 
