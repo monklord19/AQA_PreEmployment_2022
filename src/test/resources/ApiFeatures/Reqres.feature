@@ -26,6 +26,6 @@ Feature: Reqres ApiTests
 
   @DeleteEmployees
   Scenario: DeleteEmployee
-    Given User is on website
+    Given User is on reqres website
     When User want to delete an employee
     Then Employee is deleted
