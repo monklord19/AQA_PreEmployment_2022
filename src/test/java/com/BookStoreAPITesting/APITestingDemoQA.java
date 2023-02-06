@@ -14,7 +14,7 @@ import org.junit.Assert;
 import java.util.List;
 import java.util.Map;
 
-public class BookStoreStepdefs {
+public class APITestingDemoQA {
 
     private static final String USER_ID = "63ed010e-277d-49aa-a9e2-49aac451c678";
     private static final String USERNAME = "Calina Maniu";
