@@ -1,4 +1,4 @@
-package com.BookStoreAPITesting;
+package com.DemoQA.APITesting;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

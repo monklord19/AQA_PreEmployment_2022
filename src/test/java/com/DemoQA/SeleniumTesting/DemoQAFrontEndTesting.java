@@ -1,4 +1,4 @@
-package com.DemoQA.SeleniumTestingDemoQA;
+package com.DemoQA.SeleniumTesting;
 
 import com.DemoQA.PageObjects.Elements.*;
 import com.DemoQA.PageObjects.HomePage;
