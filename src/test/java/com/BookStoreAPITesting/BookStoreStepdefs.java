@@ -20,11 +20,13 @@ public class BookStoreStepdefs {
     private static final String USERNAME = "Calina Maniu";
     private static final String PASSWORD = "CMcm123*";
     private static final String BASE_URL = "https://demoqa.com";
+    private static final String ISBN = "9781449331818";
 
     private static String token;
     private static Response response;
     private static String jsonString;
     private static String bookId;
+    private static String isbn;
 
 // Background for Scenarios no. 2 to no. 10 - User is an Authorized user
 
@@ -235,8 +237,6 @@ public class BookStoreStepdefs {
     }
 
 
-
-
 // Scenario No. 7 - Add a book to my list - POST/BookStore/Books
 
     @When("User executes a POST request to add a new book")
@@ -247,15 +247,17 @@ public class BookStoreStepdefs {
                 .header("Content-Type", "application/json");
 
         response = request.body("{ \"userId\": \"" + USER_ID + "\", " +
-                        "\"collectionOfIsbns\": [ { \"isbn\": \"" + bookId + "\" } ]}")
+                        "\"collectionOfIsbns\": [ { \"isbn\": \"" + ISBN + "\" } ]}")
                 .post("/BookStore/v1/Books");
 
         Response response = request.get("/BookStore/v1/Books");
         ResponseBody body = response.getBody();
 
         System.out.println("Response Body is: " + body.asString());
-        Assert.assertEquals(401, response.getStatusCode());
 
+        int statusCode = response.getStatusCode();
+        System.out.println("Status response is: " + response.getStatusLine());
+        Assert.assertEquals( "HTTP/1.1 200 OK", response.getStatusLine());
     }
 
     @Then("The new book will be added and Response will be {int}")
@@ -274,7 +276,7 @@ public class BookStoreStepdefs {
         request.header("Authorization", "Bearer " + token)
                 .header("Content-Type", "application/json");
 
-        response = request.body("{ \"isbn\": \"" + bookId + "\", \"userId\": \"" + USER_ID + "\"}")
+        response = request.body("{ \"userId\": \"" + USER_ID + "\"}")
                 .delete("/BookStore/v1/Book");
     }
 
@@ -293,6 +295,8 @@ public class BookStoreStepdefs {
 
         jsonString = response.asString();
         List<Map<String, String>> booksOfUser = JsonPath.from(jsonString).get("books");
+        Assert.assertEquals(0, booksOfUser.size());
+
     }
 
 
@@ -300,21 +304,26 @@ public class BookStoreStepdefs {
 
     @When("User executes a GET request to get details about a particular book")
     public void userExecutesAGETRequestToGetDetailsAboutAParticularBook() {
-        RestAssured.baseURI= "https://bookstore.toolsqa.com/BookStore/v1";
-        RequestSpecification httpRequest = RestAssured.given();
-        Response res = httpRequest.queryParam("ISBN","9781449365035").get("/Book");
-        ResponseBody body = res.body();
-        String javaBook = body.asString();
-        JsonPath book = new JsonPath(javaBook);
-        String title = book.getString("title");
-        System.out.println("The book title is - "+title);
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        response = request.body("{ \"isbn\":\"" + ISBN + "\"}")
+                .get("/Account/AccountV1UserByUserIdGet");
+
+        Response response = request.get("/Account/Account/AccountV1UserByUserIdGet");
+        ResponseBody body = response.getBody();
+        String bodyAsString = body.asString();
+        System.out.println("Response Body is: " + body.asString());
+
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+
     }
 
     @Then("The details are displayed")
     public void theDetailsAreDisplayed() {
         int statusCode = response.getStatusCode();
         Assert.assertEquals(200, statusCode);
-        System.out.println("Status Code is: " + response.getStatusLine());
+        System.out.println("Status Code is: " + response.getStatusCode());
 
     }
 

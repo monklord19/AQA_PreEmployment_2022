@@ -99,7 +99,7 @@ public class APIBookStoreDel {
 
         jsonString = response.asString();
         List<Map<String, String>> booksOfUser = JsonPath.from(jsonString).get("books");
-        //Assert.assertEquals(0, booksOfUser.size());
+        Assert.assertEquals(0, booksOfUser.size());
     }
 
     @Test

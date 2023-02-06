@@ -45,12 +45,11 @@ Feature: API Tests on Demo QA - Bookstore
     And The call will have a response header
 
 
-  Scenario: Scenario No. 7 - Add a book to my list - POST/BookStore/Books   AICI AM RAMAS !!!
+  Scenario: Scenario No. 7 - Add a book to my list - POST/BookStore/Books   /correct tot scenariul //FINAL
     Given User is an authorized user
     And User is on demoQA website
     When User executes a POST request to add a new book
     Then The new book will be added and Response will be 200
-
 
 
   Scenario: Scenario No. 8 - Delete a book - DELETE/BookStore/Books
