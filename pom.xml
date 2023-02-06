@@ -16,6 +16,27 @@
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-core -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>1.2.6</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.11.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-html</artifactId>
+            <version>0.2.7</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -23,18 +44,43 @@
             <version>4.7.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>7.10.0</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.8.1</version>
+            <version>7.10.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>26.0.2</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm-deps -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-jvm-deps</artifactId>
+            <version>1.0.6</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.7.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
 
