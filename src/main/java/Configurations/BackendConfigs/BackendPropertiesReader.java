@@ -1,4 +1,4 @@
-package Backend.apiEngine.configs;
+package Configurations.BackendConfigs;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,7 +12,7 @@ public class BackendPropertiesReader {
 
     private BackendPropertiesReader() {
         BufferedReader reader;
-        String filePath = "src/test/resources/BackendProperties.properties";
+        String filePath = "src/main/resources/BackendProperties.properties";
         try {
             reader = new BufferedReader(new FileReader(filePath));
             properties = new Properties();

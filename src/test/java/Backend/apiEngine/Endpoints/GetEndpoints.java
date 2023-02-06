@@ -1,6 +1,5 @@
 package Backend.apiEngine.Endpoints;
 
-import Backend.Steps.Hooks;
 import Backend.apiEngine.Routes.Routes;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -10,16 +9,33 @@ import java.util.List;
 import java.util.Map;
 
 public class GetEndpoints {
-    public static Response getAllBooks(){
-        Routes getAllBooksRoute=Routes.GetBooks;
-        Response getAllBooksResponse= Hooks.iSetTheRequestSpecifications().get(getAllBooksRoute.getUrl());
+
+    public static Response getAllBooks() {
+        Routes getAllBooksRoute = Routes.GetBooks;
+        Response getAllBooksResponse = CommonMethods.iSetTheRequestSpecifications().get(getAllBooksRoute.getUrl());
         return getAllBooksResponse;
     }
-    public static String getBooksISBN(){
-        String allBooksResponseAsString=GetEndpoints.getAllBooks().asString();
-        List<Map<String,String>> books= JsonPath.from(allBooksResponseAsString).get("books");
-        Assert.assertTrue(books.size()>0);
-        String bookISBN=books.get(0).get("isbn");
+
+    public static String getBookISBN() {
+        String allBooksResponseAsString = GetEndpoints.getAllBooks().asString();
+        List<Map<String, String>> books = JsonPath.from(allBooksResponseAsString).get("books");
+        Assert.assertTrue(books.size() > 0);
+        String bookISBN = books.get(0).get("isbn");
         return bookISBN;
+    }
+
+    public static Response getABook() {
+        String bookISBN = GetEndpoints.getBookISBN();
+        Routes getABookRoute = Routes.GetBook;
+        Response getABookResponse = CommonMethods.iSetTheRequestSpecifications().queryParam("ISBN", bookISBN).get(getABookRoute.getUrl());
+        return getABookResponse;
+    }
+
+    public static Response getAUser() {
+        String userId = PostEndpoints.getUserId();
+        System.out.println(userId);
+        Routes getAUserRoute = Routes.GetUser;
+        Response getAUserResponse = CommonMethods.iSetTheRequestSpecifications().pathParam("UserId", userId).get(getAUserRoute.getUrl());
+        return getAUserResponse;
     }
 }
