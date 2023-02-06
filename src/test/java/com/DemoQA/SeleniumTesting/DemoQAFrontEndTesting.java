@@ -17,21 +17,19 @@ public class DemoQAFrontEndTesting {
 
     WebDriver driver;
 
-    //Scenario no.1
+//Scenario No. 1 - Testing the Radio Button element - Elements/Radio Button
+
     @Given("User selects the <Elements> section")
     public void userSelectsTheElementsSection() {
-        HomePage.ClickElementsButton();
-    }
+        HomePage.ClickElementsButton();}
 
     @And("User clicks on the <Radio Button> element")
     public void userClicksOnTheRadioButtonElement() {
-        RadioButton.ClickRadioButton();
-    }
+        RadioButton.ClickRadioButton();}
 
     @When("User selects the option <Yes>")
     public void userSelectsTheOptionYes() {
-        RadioButton.ClickYesOnRadioButton();
-    }
+        RadioButton.ClickYesOnRadioButton();}
 
     @Then("The message {string} is displayed")
     public void theMessageIsDisplayed(String arg0) {
@@ -39,7 +37,7 @@ public class DemoQAFrontEndTesting {
     }
 
 
-//Scenario no.2
+//Scenario No. 2 - Testing the Text Box element - Elements/Text Box
 
     @And("User selects the button <Text Box> on the <Elements> section")
     public void userSelectsTheButtonTextBoxOnTheElementsSection() {
@@ -48,8 +46,8 @@ public class DemoQAFrontEndTesting {
 
     @When("User completes the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>")
     public void userCompletesTheFieldsFullNameEmailCurrentAddressPermanentAddress() {
-        TextBox.EnterFullName("TestFullName");
-        TextBox.EnterEmail("TestEmail@invalid.com");
+        TextBox.EnterFullName("Maniu Calina");
+        TextBox.EnterEmail("maniucalina@invalid.com");
         TextBox.EnterCurrentAddress("Test Niko Street No 40");
         TextBox.EnterPermanentAddress("Allina Street No 122");
     }
@@ -61,14 +59,12 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new box is displayed with all information previously entered.")
     public void aNewBoxIsDisplayedWithAllInformationPreviouslyEntered() {
-        TextBox.ValidateTheFullName("Name:TestFullName");
-        //TextBox.ValidateTheEmail("Email:TestEmail@invalid.com");
-        //TextBox.ValidateTheCurrentAddress("Current Address :Test Niko Street No 40");
-        //TextBox.ValidateThePermanentAddress("Permanent Address :Allina Street No 122");
+        TextBox.ValidateTheFullName("Name:Maniu Calina");
+        TextBox.ValidateTheEmail("Email:maniucalina@invalid.com");
     }
 
 
-//Scenario no.3
+//Scenario No. 3 - Testing the CheckBox element - Elements/Check Box
 
     @And("User selects the element <Check Box>")
     public void userSelectsTheElementCheckBox() {
@@ -86,7 +82,7 @@ public class DemoQAFrontEndTesting {
     }
 
 
-//Scenario No.4
+//Scenario No. 4 - Testing the Links element - Elements/Links
 
     @And("User selects the <Links> section")
     public void userSelectsTheLinksSection() {
@@ -95,21 +91,18 @@ public class DemoQAFrontEndTesting {
 
     @When("User clicks on the <Moved> link that will send an api call")
     public void userClicksOnTheMovedLinkThatWillSendAnApiCall() {
-        Links.ClickMovedLink();
-    }
+        Links.ClickMovedLink();}
 
     @Then("The message {string} appears")
     public void theMessageAppears(String arg0) {
-        Links.ValidateTextforMovedLink("Link has responded with staus 301 and status text Moved Permanently");
-    }
+        Links.ValidateTextforMovedLink("Link has responded with staus 301 and status text Moved Permanently");}
 
 
-//Scenario No. 5
+//Scenario No. 5 - Testing the Tool Tips widget - Widgets/Tool Tips
 
     @Given("User selects the <Widgets> section")
     public void userSelectsTheWidgetsSection() {
-        HomePage.ClickWidgetsButton();
-    }
+        HomePage.ClickWidgetsButton();}
 
     @When("User clicks on the <Tool Tips> button on the <Widgets> section")
     public void userClicksOnTheToolTipsButtonOnTheWidgetsSection() {
@@ -123,11 +116,10 @@ public class DemoQAFrontEndTesting {
 
     @Then("A success message is displayed")
     public void aSuccessMessageIsDisplayed() {
-
     }
 
 
-//Scenario No.6
+//Scenario No. 6 - Testing the Accordion widget - Widgets/Accordion
 
     @When("User clicks on the <Accordion> button from the <Widgets> section")
     public void userClicksOnTheAccordionButtonFromTheWidgetsSection() {
@@ -144,7 +136,7 @@ public class DemoQAFrontEndTesting {
     }
 
 
-//Scenario No.7
+//Scenario No. 7 - Testing the Text Box element - Elements/Text Box
 
     @Given("User selects the <Elements> section on DemoQa homepage")
     public void userSelectsTheElementsSectionOnDemoQaHomepage() {
@@ -194,7 +186,7 @@ public class DemoQAFrontEndTesting {
 
     }
 
-//Scenario No. 8
+// Scenario No. 8 - Testing the Web Tables element - Elements/Web tables
     @And("User clicks on the <Web Tables> button from the <Elements> section")
     public void userClicksOnTheWebTablesButtonFromTheElementsSection() {
         WebTables.ClickOnWebTablesButton();
@@ -231,7 +223,7 @@ public class DemoQAFrontEndTesting {
     }
 
 
-//Scenario No. 9
+//Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions
 
     @Then("User clicks the Edit button")
     public void userClicksTheEditButton() {
@@ -249,7 +241,7 @@ public class DemoQAFrontEndTesting {
         WebTables.EmailValidation("anton.marinela@outlook.com");
     }
 
-//Scenario No. 10
+//Scenario No. 10 - Testing the Buttons element - Elements/Buttons
 
     @When("User clicks on the <Buttons> element")
     public void userClicksOnTheButtonsElement() {

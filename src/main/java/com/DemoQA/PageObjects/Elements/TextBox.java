@@ -17,7 +17,7 @@ public class TextBox {
     private static String ValidateEmail = "//*[@id=\"email\"]";
     private static String ValidateCurrentAddress = "//*[@id=\"currentAddress\"]";
     private static String ValidatePermanentAddress = "//*[@id=\"permanentAddress\"]";
-    private static String ValidateResponseScenarioOutline = "//*[@id=\\\"output\\\"]\"";
+    private static String ValidateResponseScenarioOutline = ""; //!!!! nu e bun xpath-ul
 
 
 

@@ -18,4 +18,6 @@ public class ToolTips extends BaseClass {
     public static void HooverContrary(){
         BrowserUtils.hooverElement(HooverContraryWord);
     }
+
+
 }

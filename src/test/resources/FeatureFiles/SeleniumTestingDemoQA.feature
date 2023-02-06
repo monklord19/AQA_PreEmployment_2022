@@ -1,16 +1,14 @@
 
-Feature: Front End Testing - https://demoqa.com/ - ELEMENTS
+Feature: Front End Testing - https://demoqa.com/
 
-  Background: User selects the <Elements> section on DemoQa website
-
-  Scenario: Testing the 'Elements' Section - Radio Button //Scenario 1 - correct
+  Scenario: Scenario No. 1 - Testing the Radio Button element - Elements/Radio Button    //correct
     Given User selects the <Elements> section
     And User clicks on the <Radio Button> element
     When User selects the option <Yes>
     Then The message "You have selected Yes" is displayed
 
 
-Scenario: Testing the 'Elements' Section - Text Box  //Scenario 2 eroare la asertia nr.3!!!!
+Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box      //correct
     Given  User selects the <Elements> section
     And User selects the button <Text Box> on the <Elements> section
     When User completes the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>
@@ -18,35 +16,35 @@ Scenario: Testing the 'Elements' Section - Text Box  //Scenario 2 eroare la aser
     Then A new box is displayed with all information previously entered.
 
 
-  Scenario: Testing the 'Elements' Section - Check Box //Scenario 3 - correct
+  Scenario: Scenario No. 3 - Testing the Check Box element - Elements/Check Box       //correct
     Given User selects the <Elements> section
     And User selects the element <Check Box>
     When User clicks the check box button <Home>
     Then A response message appears on the page
 
 
-  Scenario: Testing the 'Elements' Section - Links //Scenario 4 - correct
+  Scenario: Scenario No. 4 - Testing the Links element - Elements/Links   //correct
     Given User selects the <Elements> section
     And User selects the <Links> section
     When User clicks on the <Moved> link that will send an api call
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
 
 
-  Scenario: Testing the 'Widgets' Section - Tool Tips  //Scenario 5 - error:User is hoovering the button <Contrary>
+  Scenario: Scenario No. 5 - Testing the Tool Tips widget - Widgets/Tool Tips    // error:User is hoovering the button <Contrary>
     Given User selects the <Widgets> section
     When User clicks on the <Tool Tips> button on the <Widgets> section
     And User is hovering the button <Contrary>
     Then A success message is displayed
 
 
-  Scenario: Testing the 'Widgets' Section - Accordion //Scenario 6 - error:User clicks on the <Accordion> button
+  Scenario: Scenario No. 6 - Testing the Accordion widget - Widgets/Accordion   //Scenario 6 - error:User clicks on the <Accordion> button
     Given User selects the <Widgets> section
     When User clicks on the <Accordion> button from the <Widgets> section
     And User selects the accordion <Why do we use it?>
     Then The answer will push down
 
 
-  Scenario Outline: Testing the 'Elements' Section - Text Box // Scenario 7 - eroare asertie
+  Scenario Outline: Scenario No. 7 - Testing the Text Box element - Elements/Text Box      //eroare asertie
 
     Given  User selects the <Elements> section on DemoQa homepage
     And User selects the button <Text Box>
@@ -64,7 +62,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //Scenario 2 eroare la aser
 
 
 
-  Scenario: Testing the 'Elements' Section - Web Tables - Add new record on the table // Scenario 8 - correct
+  Scenario: Scenario No. 8 - Testing the Web Tables element - Elements/Web tables  - correct
     Given User selects the <Elements> section
     And User clicks on the <Web Tables> button from the <Elements> section
     When User user clicks on the button "Add"
@@ -73,8 +71,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //Scenario 2 eroare la aser
     Then A new row is added to the table
 
 
-
-  Scenario: Testing the 'Elements' Section - Web Tables - Web Tables Actions //  Scenario 9 - eroare asertie
+  Scenario: Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions     Scenario 9 - eroare asertie
     Given User selects the <Elements> section
     And User clicks on the <Web Tables> button from the <Elements> section
     When User user clicks on the button "Add"
@@ -85,7 +82,7 @@ Scenario: Testing the 'Elements' Section - Text Box  //Scenario 2 eroare la aser
     And checks if the email was successfully updated on the table
 
 
-  Scenario: Testing the 'Elements' Section - Buttons //Scenario 10 - correct
+  Scenario: Scenario No. 10 - Testing the Buttons element - Elements/Buttons
     Given User selects the <Elements> section
     When User clicks on the <Buttons> element
     And User clicks on the button <Click Me>

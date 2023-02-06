@@ -52,8 +52,8 @@ public class BrowserUtils extends BaseClass {
         return element;
     }
 
-    public static void validateText(String element, String expectedText) {
 
+    public static void validateText(String element, String expectedText) {
         String actualText = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
                 expectedText.equals(actualText));
@@ -61,14 +61,12 @@ public class BrowserUtils extends BaseClass {
 
 
     public static void validateSubmitButton(String element, String expectedText) {
-
         String actualText = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
                 expectedText.equals(actualText));
     }
 
 
-    //Elements - Text Box
     public static void validateName(String element, String expectedFullName) {
         String actualFullName = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Full Name: " + expectedFullName + " is not matching with Actual Full Name:" + expectedFullName,
@@ -98,7 +96,6 @@ public class BrowserUtils extends BaseClass {
     }
 
 
-    //Elements - Check Box
     public static void validateTextCheckBox(String element, String expectedTextCheckBox) {
         String actualTextCheckBox = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Permanent Address: " + expectedTextCheckBox + " is not matching with Actual Permanent Address:" + expectedTextCheckBox,
@@ -106,7 +103,6 @@ public class BrowserUtils extends BaseClass {
     }
 
 
-    // Elements - Links
     public static void validateTextMovedLink(String element, String expectedTextMovedLink) {
         String actualTextMovedLink = FindAndWaitForElement(element).getText();
         Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink, "Link has responded with staus 301 and status text Moved Permanently");

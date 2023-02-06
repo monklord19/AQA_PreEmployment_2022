@@ -4,7 +4,7 @@ import com.DemoQA.Utils.BrowserUtils;
 
 public class Accordion {
 
-    private static String ClickAccordionButton = "//*[@id=\"item-0\"]";
+    private static String ClickAccordionButton = "//*[@id=\"item-0\"]/span";
     private static String WhyDoWeUseItAccordion = "//*[@id=\"section3Heading\"]";
 
 
