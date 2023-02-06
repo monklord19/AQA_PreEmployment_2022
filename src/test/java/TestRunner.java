@@ -4,7 +4,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/"}
+        monochrome = true,
+        features = {"src/test/resources/FeatureFiles/"},
+        glue = {"UITests.stepsDefinitions"}
 
 )
 public class TestRunner {
