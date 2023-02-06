@@ -1,3 +1,4 @@
+
 Feature: DemoQa tests
 
   Background:
@@ -58,7 +59,7 @@ Feature: DemoQa tests
     When Complete all the fields
     Then Check select field for to have "Group 2, option 2" and old style menu to have the color "Yellow"
 
-    Scenario: Droppable test
-      Given Click on droppable button
-      When Drag the drag me box in the Drop here box
-      Then Check for the draggable to hover over the box
+  Scenario: Droppable test
+    Given Click on droppable button
+    When Drag the drag me box in the Drop here box
+    Then Check for the draggable to hover over the box

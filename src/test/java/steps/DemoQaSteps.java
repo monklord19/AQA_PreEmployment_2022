@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
 
-public class DemoQaSteps {
+public class DemoQaSteps  {
     WebDriver driver = new ChromeDriver();
     DemoPage demoPage = new DemoPage(driver);
     TextBoxPage textBoxPage = new TextBoxPage(driver);
@@ -28,20 +28,19 @@ public class DemoQaSteps {
     InteractionsPage interactionsPage = new InteractionsPage(driver);
     DroppablePage droppablePage = new DroppablePage(driver);
 
-    @Before
+    @Before("not @apiTests")
     public void maxPage() {
         driver.manage().window().maximize();
     }
-
-    @After
+    @After("not @apiTests")
     public void closePage() {
-
         driver.quit();
     }
 
     @Given("You are on the demoQa page")
     public void youAreOnTheDemoQaPage() {
         driver.get("https://demoqa.com/");
+
     }
 
     @Given("User Clicks on Text box")
@@ -196,7 +195,7 @@ public class DemoQaSteps {
 
 
     @When("Move the slider at 50")
-    public void moveTheSliderAt() throws InterruptedException {
+    public void moveTheSliderAt()  {
         sliderPage.sliderMove();
     }
 
@@ -262,7 +261,7 @@ public class DemoQaSteps {
         selectMenuButtonPage.selectValue("Group 2, option 2");
         selectMenuButtonPage.selectOneGender();
         selectMenuButtonPage.pickSingleColor("Yellow");
-        selectMenuButtonPage.selectTheColors("Red","Blue");
+        selectMenuButtonPage.selectTheColors("Red", "Blue");
         selectMenuButtonPage.pickSingleCar("Volvo");
     }
 
@@ -287,4 +286,5 @@ public class DemoQaSteps {
     public void checkForTheDraggableToHoverOverTheBox() {
         droppablePage.checkIfDropped();
     }
+
 }
