@@ -38,9 +38,9 @@ public class ElementPage {
     By deleteButton = By.xpath("//div[contains(text(),'Compliance')]//following-sibling::div/div/span" +
             "[@title='Delete']");
     By uploadButton = By.id("uploadFile");
-    By webTable = By.xpath("//div[@class='rt-table']");
-    By firstLineAgeField = By.xpath("//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/" +
-            "div[1]/div/div[3]");
+    By webTable = By.className("rt-table");
+    By firstLineAgeField = By.xpath("//div[@role='rowgroup'][1]//div[@class='rt-td'][3]");
+
     By chooseFileButton = By.xpath("//input[@type='file']");
     By pathOfUploadedFile = By.id("uploadedFilePath");
     By outerFrame = By.id("frame1");
@@ -233,6 +233,7 @@ public class ElementPage {
     public String alertClickMessageIsDisplayed() {
         Alert alert = driver.switchTo().alert();
         String alertMessage = alert.getText();
+        wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
         return alertMessage;
     }

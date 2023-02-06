@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class AccountApiSteps {
     public void setBaseURI() {
         RestAssured.baseURI = "https://demoqa.com/";
     }
+
     @When("send a POST request for registration of new user with username: {string} and password: {string}")
     public void sendPOSTRegistration(String username, String password) {
         String body = """
@@ -85,9 +87,11 @@ public class AccountApiSteps {
                 .statusCode(200)
                 .log()
                 .body();
-
     }
-
+    @Then("response contains: {string}")
+    public void responseContainsTrue(String confirmation) {
+        response.assertThat().body(containsString(confirmation));
+    }
     @When("send a GET request for account details for userID")
     public void sendGETRequestAccountDetails() {
         response = RestAssured.given()

@@ -1,15 +1,11 @@
 package apisteps;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.ValidatableResponse;
 import org.testng.Assert;
-
 import java.util.ArrayList;
-
 import static io.restassured.RestAssured.given;
 import static apisteps.AccountApiSteps.userBookList;
 import static apisteps.AccountApiSteps.token;
