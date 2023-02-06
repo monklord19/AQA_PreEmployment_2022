@@ -29,28 +29,28 @@ Feature: API Tests on Demo QA - Bookstore
     Then User is successfully deleted
 
 
-  Scenario: Scenario No. 5 - Get Book - GET/Account/User
+  Scenario: Scenario No. 5 - Get Book - GET/Account/User     //FINAL
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request
     Then Status response will be successful
-    And The call will have a response header
 
 
-  Scenario: Scenario No. 6 - Get the list of available books - GET/BookStore/Books  //correct tot scenariul
+  Scenario: Scenario No. 6 - Get the list of available books - GET/BookStore/Books  //correct tot scenariul //FINAL
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request to get the list of available books
     Then The list with all the available book will be displayed
     And Status will be 200
+    And The call will have a response header
 
 
-  Scenario: Scenario No. 7 - Add list of books - POST/BookStore/Books // imi da Time out
+  Scenario: Scenario No. 7 - Add a book to my list - POST/BookStore/Books   AICI AM RAMAS !!!
     Given User is an authorized user
     And User is on demoQA website
-    When User executes a POST request to add a new list
-    Then The new list will be added
-    And Response will be 200
+    When User executes a POST request to add a new book
+    Then The new book will be added and Response will be 200
+
 
 
   Scenario: Scenario No. 8 - Delete a book - DELETE/BookStore/Books

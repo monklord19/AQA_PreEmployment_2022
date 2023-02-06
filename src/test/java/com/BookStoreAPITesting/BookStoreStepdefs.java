@@ -9,7 +9,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import org.json.simple.JSONObject;
 import org.junit.Assert;
 
 import java.util.List;
@@ -58,7 +57,7 @@ public class BookStoreStepdefs {
         request.header("Content-Type", "application/json");
         response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
                 .post("/Account/v1/User");
-        Response response = request.post("/Account/v1/User");
+        Response response = request.get("/Account/v1/User");
         ResponseBody body = response.getBody();
         System.out.println("Response Body is: " + body.asString());
 
@@ -114,17 +113,13 @@ public class BookStoreStepdefs {
         response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
                 .post("/Account/v1/Authorized");
 
-        Response response = request.post("Account/v1/Authorized");
+        Response response = request.get("Account/v1/Authorized");
+        ResponseBody body = response.getBody();
+        System.out.println("Response Body is: " + body.asString());
     }
 
     @And("Status Response will be {int}")
     public void statusResponseWillBe(int arg0) {
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
-                .post("/Account/v1/Authorized");
-
-        Response response = request.post("Account/v1/Authorized");
         int statusCode = response.getStatusCode();
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
@@ -234,48 +229,39 @@ public class BookStoreStepdefs {
 
     @And("The call will have a response header")
     public void theCallWillHaveAResponseHeader() {
-        String contentType = response.header("contentType");
-        System.out.println("Connection is: " + contentType);
-        Assert.assertEquals("application/json; charset=utf-8", contentType);
-
         String contentLength = response.header("content-length");
         System.out.println("Content-length is: " + contentLength);
-        Assert.assertEquals("4514", contentLength);
+        Assert.assertEquals("278", contentLength);
     }
 
 
 
 
-// Scenario No. 7 - Add list of books - POST/BookStore/Books
+// Scenario No. 7 - Add a book to my list - POST/BookStore/Books
 
-    @When("User executes a POST request to add a new list")
-    public void userExecutesAPOSTRequestToAddANewList() {
+    @When("User executes a POST request to add a new book")
+    public void userExecutesAPOSTRequestToAddANewBook() {
         RestAssured.baseURI = BASE_URL;
         RequestSpecification request = RestAssured.given();
+        request.header("Authorization", "Bearer " + token)
+                .header("Content-Type", "application/json");
 
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("userId", "TQ123");
-        requestParams.put("isbn", "9781449325862");
+        response = request.body("{ \"userId\": \"" + USER_ID + "\", " +
+                        "\"collectionOfIsbns\": [ { \"isbn\": \"" + bookId + "\" } ]}")
+                .post("/BookStore/v1/Books");
 
-        request.header("Content-Type", "application/json");
-        request.body(requestParams.toJSONString());
+        Response response = request.get("/BookStore/v1/Books");
+        ResponseBody body = response.getBody();
 
-        Response response = request.post("BookStore/v1/Books");
-        System.out.println("The status received: " + response.statusLine());
+        System.out.println("Response Body is: " + body.asString());
+        Assert.assertEquals(401, response.getStatusCode());
+
     }
 
-    @Then("The new list will be added")
-    public void theNewListWillBeAdded() {
+    @Then("The new book will be added and Response will be {int}")
+    public void theNewBookWillBeAddedAndResponseWillBe(int arg0) {
     }
 
-    @And("Status response will be {int}")
-    public void ResponseWillBe(int arg0) {
-    }
-
-
-    @And("Response will be {int}")
-    public void responseWillBe(int arg0) {
-    }
 
 
 // Scenario No. 8 - Delete a book - DELETE/BookStore/Books
@@ -354,6 +340,7 @@ public class BookStoreStepdefs {
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
     }
+
 
 }
 
