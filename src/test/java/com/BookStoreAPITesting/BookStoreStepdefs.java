@@ -42,13 +42,13 @@ public class BookStoreStepdefs {
         token = JsonPath.from(jsonString).get("token");
     }
 
-// Scenario No. 1 - Create an new user - POST/Account/User
+
+// Scenario No. 1 - Create a new user - POST/Account/User
 
     @Given("User is on demoQA website")
     public void userIsOnDemoQAWebsite() {
         RestAssured.baseURI ="https://demoqa.com";
     }
-
 
     @When("User creates a new user using the POST method")
     public void userCreatesANewUserUsingThePOSTMethod() {
@@ -69,6 +69,8 @@ public class BookStoreStepdefs {
 
     @And("Status Response is {int}")
     public void statusResponseIs(int arg0) {
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusCode());
     }
 
@@ -94,8 +96,10 @@ public class BookStoreStepdefs {
 
     @Then("Token is generated successfully")
     public void tokenIsGeneratedSuccessfully() {
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
         System.out.println("Generated Token is: " + token);
-
     }
 
 
@@ -139,7 +143,6 @@ public class BookStoreStepdefs {
         String serverType = response.header("Server");
         System.out.println("Server value: " + serverType);
         Assert.assertEquals("nginx/1.17.10 (Ubuntu)",serverType);
-
     }
 
 
@@ -157,8 +160,8 @@ public class BookStoreStepdefs {
         Response response = request.delete("/Account/AccountV1UserByUserIdDelete");
     }
 
-    @Then("User is successfully deleted with status {int}")
-    public void userIsSuccessfullyDeletedWithStatus(int arg0) {
+    @Then("User is successfully deleted")
+    public void userIsSuccessfullyDeleted(int arg0) {
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
         response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
@@ -169,47 +172,39 @@ public class BookStoreStepdefs {
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
     }
-        @And("Response header will appear")
-        public void responseHeaderWillAppear() {
-
-        }
 
 
-// Scenario No. 5 - Get User - GET/Account/User
+
+// Scenario No. 5 - Get Book - GET/Account/User
 
     @When("User executes a GET request")
     public void userExecutesAGETRequest() {
-        RestAssured.baseURI = BASE_URL;
         RequestSpecification request = RestAssured.given();
-
-        request.header("Content-Type", "application/json");
-        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
-                .post("/Account/v1/GenerateToken");
-
-        String jsonString = response.asString();
-        token = JsonPath.from(jsonString).get("token");
-
         request.header("Content-Type", "application/json");
         response = request.body("{ \"userId\":\"" + USER_ID + "\"}")
                 .get("/Account/AccountV1UserByUserIdGet");
 
-        Response response = request.get("/Account/AccountV1UserByUserIdDelete");
-
-    }
-
-    @Then("Status response will be successful")
-    public void statusResponseWillBeSuccessful() {
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
-                .get("/Account/AccountV1UserByUserIdGet");
-
-        Response response = request.get("/Account/A/Account/AccountV1UserByUserIdGet");
+        Response response = request.get("/Account/Account/AccountV1UserByUserIdGet");
         int statusCode = response.getStatusCode();
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
         ResponseBody body = response.body();
         System.out.println("Response Body is: " + body.asString());
+    }
+
+    @Then("Status response will be successful")
+    public void statusResponseWillBeSuccessful() {
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
+
+        String contentType = response.header("contentType");
+        System.out.println("Connection is: " + contentType);
+        Assert.assertEquals("application/json; charset=utf-8",contentType);
+
+        String contentLength = response.header("content-length");
+        System.out.println("Content-length is: " + contentLength);
+        Assert.assertEquals("4514", contentLength);
     }
 
 
@@ -236,6 +231,19 @@ public class BookStoreStepdefs {
         System.out.println("Status received: " + response.getStatusLine());
         Assert.assertEquals(200, statusCode);
     }
+
+    @And("The call will have a response header")
+    public void theCallWillHaveAResponseHeader() {
+        String contentType = response.header("contentType");
+        System.out.println("Connection is: " + contentType);
+        Assert.assertEquals("application/json; charset=utf-8", contentType);
+
+        String contentLength = response.header("content-length");
+        System.out.println("Content-length is: " + contentLength);
+        Assert.assertEquals("4514", contentLength);
+    }
+
+
 
 
 // Scenario No. 7 - Add list of books - POST/BookStore/Books
@@ -346,7 +354,6 @@ public class BookStoreStepdefs {
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
     }
-
 
 }
 

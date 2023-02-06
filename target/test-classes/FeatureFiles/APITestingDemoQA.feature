@@ -2,19 +2,19 @@
 Feature: API Tests on Demo QA - Bookstore
 
 
-  Scenario: Scenario No. 1 - Create an new user - POST/Account/User
+  Scenario: Scenario No. 1 - Create a new user - POST/Account/User  //FINAL
     Given User is on demoQA website
     When User creates a new user using the POST method
     Then Status Response is 200
 
 
-  Scenario: Scenario No. 2 - Generate Token - POST/Account/Generate Token  //correct tot scenariul
+  Scenario: Scenario No. 2 - Generate Token - POST/Account/Generate Token  //correct tot scenariul//FINAL
     Given User is on demoQA website
     When Authorized user generates token
     Then Token is generated successfully
 
 
-  Scenario: Scenario No. 3 - Authorize User - POST/Account/Authorized     //correct tot scenariul
+  Scenario: Scenario No. 3 - Authorize User - POST/Account/Authorized     //correct tot scenariul//FINAL
     Given User is an authorized user
     And User is on demoQA website
     When User makes a POST method for authorization
@@ -22,19 +22,19 @@ Feature: API Tests on Demo QA - Bookstore
     And Response header will be displayed
 
 
-  Scenario: Scenario No. 4 - Delete User - DELETE/Account/User
+  Scenario: Scenario No. 4 - Delete User - DELETE/Account/User        //FINAL
     Given User is an authorized user
     And User is on demoQA website
     When User deletes a user
-    Then User is successfully deleted with status 200
-    And Response header will appear
+    Then User is successfully deleted
 
 
-  Scenario: Scenario No. 5 - Get User - GET/Account/User
+  Scenario: Scenario No. 5 - Get Book - GET/Account/User
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request
     Then Status response will be successful
+    And The call will have a response header
 
 
   Scenario: Scenario No. 6 - Get the list of available books - GET/BookStore/Books  //correct tot scenariul
