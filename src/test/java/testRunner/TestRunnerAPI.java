@@ -6,11 +6,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/FeatureFiles/feature.feature"
-        ,glue={"stepsDefinitions"}
+
+        features = "src/test/resources/FeatureFiles/demoqa.feature"
+        ,glue={"ApiTests"}
 )
 
-public class TestRunner {
+public class TestRunnerAPI {
 
 
 }
