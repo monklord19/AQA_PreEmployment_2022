@@ -12,13 +12,16 @@ import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 
+import java.util.List;
+import java.util.Map;
+
 public class BookStoreStepdefs {
 
     private static final String USER_ID = "63ed010e-277d-49aa-a9e2-49aac451c678";
     private static final String USERNAME = "Calina Maniu";
     private static final String PASSWORD = "CMcm123*";
     private static final String BASE_URL = "https://demoqa.com";
-    private static final String ISBN = "9781449325862";
+    private static final String ISBN = "9781593277574";
 
     private static String token;
     private static Response response;
@@ -186,7 +189,6 @@ public class BookStoreStepdefs {
         }
 
 
-
 // Scenario No. 5 - Account - Get
 
     @When("User executes a GET request")
@@ -226,6 +228,7 @@ public class BookStoreStepdefs {
         System.out.println("Response Body is: " + body.asString());
     }
 
+
 // Scenario No. 6 - BookStore - Get
 
     @When("User executes a GET request to get the list of available books")
@@ -241,7 +244,6 @@ public class BookStoreStepdefs {
         RequestSpecification request = RestAssured.given();
         Response response = request.get("/BookStore/v1/Books");
         System.out.println("All the available books: " + response.prettyPrint());
-
     }
 
     @And("Status will be {int}")
@@ -268,10 +270,6 @@ public class BookStoreStepdefs {
 
         Response response = request.post("BookStore/v1/Books");
         System.out.println("The status received: " + response.statusLine());
-
-
-
-
     }
 
     @Then("The new list will be added")
@@ -287,28 +285,40 @@ public class BookStoreStepdefs {
     public void responseWillBe(int arg0) {
     }
 
+
 // Scenario No. 8 - BookStore - Delete
 
     @When("User executes a DELETE request to delete a book")
     public void userExecutesADELETERequestToDELETEABook() {
-        RestAssured.baseURI= "https://bookstore.toolsqa.com/BookStore/v1";
-        RequestSpecification httpRequest = RestAssured.given();
-        Response res = httpRequest.queryParam("ISBN","9781449365035").get("/Book");
-        ResponseBody body = res.body();
-        String responseBody = body.asString();
-        JsonPath jpath = new JsonPath(responseBody);
-        String title = jpath.getString("title");
-        System.out.println("The book title is - "+title);
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+
+        request.header("Authorization", "Bearer " + token)
+                .header("Content-Type", "application/json");
+
+        response = request.body("{ \"isbn\": \"" + bookId + "\", \"userId\": \"" + USER_ID + "\"}")
+                .delete("/BookStore/v1/Book");
     }
 
     @Then("The book is successfully deleted")
     public void theBookIsSuccessfullyDeleted() {
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(200, statusCode);
-        System.out.println("Status Code is: " + response.getStatusLine());
+        Assert.assertEquals(200, response.getStatusCode());
+
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+
+        request.header("Authorization", "Bearer " + token)
+                .header("Content-Type", "application/json");
+
+        response = request.get("/Account/v1/User/" + USER_ID);
+        Assert.assertEquals(200, response.getStatusCode());
+
+        jsonString = response.asString();
+        List<Map<String, String>> booksOfUser = JsonPath.from(jsonString).get("books");
     }
 
-// Scenario No. 9 - BookStore - Delete
+
+// Scenario No. 9 - BookStore - GET
 
     @When("User executes a GET request to get details about a particular book")
     public void userExecutesAGETRequestToGetDetailsAboutAParticularBook() {
@@ -331,5 +341,25 @@ public class BookStoreStepdefs {
     }
 
 
+// Scenario No. 10 - BookStore - Put
+    @When("User executes a PUT request to replace a particular book")
+    public void userExecutesAPUTRequestToReplaceAParticularBook() {
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+
+        request.header("Authorization", "Bearer " + token)
+                .header("Content-Type", "application/json");
+
+        response = request.body("{ \"userId\": \"" + USER_ID + "\", " +
+                        "\"collectionOfIsbns\": [ { \"isbn\": \"" + bookId + "\" } ]}")
+                .post("/BookStore/v1/Books");
+    }
+
+    @Then("The book is successfully replaced")
+    public void theBookIsSuccessfullyReplaced() {
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
+    }
 }
 

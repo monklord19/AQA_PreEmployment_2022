@@ -57,7 +57,7 @@ Feature: API Tests on Demo QA - Bookstore
     And Response will be 200
 
 
-  Scenario: Delete a book - DELETE/BookStore/Books      //correct tot scenariul
+  Scenario: Delete a book - DELETE/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a DELETE request to delete a book
@@ -69,6 +69,13 @@ Feature: API Tests on Demo QA - Bookstore
     And User is on demoQA website
     When User executes a GET request to get details about a particular book
     Then The details are displayed
+
+
+  Scenario: Replace a book - PUT/BookStore/Books
+    Given User is an authorized user
+    And User is on demoQA website
+    When User executes a PUT request to replace a particular book
+    Then The book is successfully replaced
 
 
 
