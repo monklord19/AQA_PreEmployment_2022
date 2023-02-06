@@ -78,8 +78,8 @@ public class BookStoreStepdefs {
 
 // Scenario No. 2 - Generate Token - POST/Account/Generate Token
 
-    @When("Authorized user generates token")
-    public void authorizedUserGeneratesToken() {
+    @When("User generates token")
+    public void UserGeneratesToken() {
         RestAssured.baseURI = BASE_URL;
         RequestSpecification request = RestAssured.given();
 
@@ -262,6 +262,9 @@ public class BookStoreStepdefs {
 
     @Then("The new book will be added and Response will be {int}")
     public void theNewBookWillBeAddedAndResponseWillBe(int arg0) {
+        int statusCode = response.getStatusCode();
+        System.out.println("Status response is: " + response.getStatusLine());
+        Assert.assertEquals( "HTTP/1.1 200 OK", response.getStatusLine());
     }
 
 
@@ -330,24 +333,30 @@ public class BookStoreStepdefs {
 
 // Scenario No. 10 - Replace a book - PUT/BookStore/Books
 
-    @When("User executes a PUT request to replace a particular book")
-    public void userExecutesAPUTRequestToReplaceAParticularBook() {
+    @When("User executes a PUT request to update a particular book")
+    public void userExecutesAPUTRequestToUpdateAParticularBook() {
         RestAssured.baseURI = BASE_URL;
         RequestSpecification request = RestAssured.given();
-
         request.header("Authorization", "Bearer " + token)
                 .header("Content-Type", "application/json");
 
         response = request.body("{ \"userId\": \"" + USER_ID + "\", " +
-                        "\"collectionOfIsbns\": [ { \"isbn\": \"" + bookId + "\" } ]}")
-                .post("/BookStore/v1/Books");
+                        "\"collectionOfIsbns\": [ { \"isbn\": \"" + ISBN + "\" } ]}")
+                .put("/BookStore/v1/Books");
+
+        Response response = request.get("/BookStore/v1/Books");
+        ResponseBody body = response.getBody();
+
+        System.out.println("Response Body is: " + body.asString());
+
+        int statusCode = response.getStatusCode();
+        System.out.println("Status response is: " + response.getStatusLine());
+        Assert.assertEquals( "HTTP/1.1 200 OK", response.getStatusLine());
     }
 
-    @Then("The book is successfully replaced")
-    public void theBookIsSuccessfullyReplaced() {
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(200, statusCode);
-        System.out.println("Status Code is: " + response.getStatusLine());
+    @Then("The book is successfully updated")
+    public void theBookIsSuccessfullyUpdated() {
+        System.out.println("Status response is: " + response.getStatusLine());
     }
 
 

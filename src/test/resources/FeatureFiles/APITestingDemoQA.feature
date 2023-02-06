@@ -10,7 +10,7 @@ Feature: API Tests on Demo QA - Bookstore
 
   Scenario: Scenario No. 2 - Generate Token - POST/Account/Generate Token  //correct tot scenariul//FINAL
     Given User is on demoQA website
-    When Authorized user generates token
+    When User generates token
     Then Token is generated successfully
 
 
@@ -66,11 +66,11 @@ Feature: API Tests on Demo QA - Bookstore
     Then The details are displayed
 
 
-  Scenario: Scenario No. 10 - Replace a book - PUT/BookStore/Books
+  Scenario: Scenario No. 10 - Update a book - PUT/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
-    When User executes a PUT request to replace a particular book
-    Then The book is successfully replaced
+    When User executes a PUT request to update a particular book
+    Then The book is successfully updated
 
 
 
