@@ -89,6 +89,13 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
     Then A response message is displayed
 
 
+  Scenario: Scenario No. 11 - Testing the Date Picker widget - Widgets/Date Picker
+    Given User selects the <Widgets> section
+    When User clicks on the <Date Picker> button from the <Widgets> section
+    And User clicks on the button <Select Date> and <Date And Time>
+    Then Selection is successful
+
+
 
 
 

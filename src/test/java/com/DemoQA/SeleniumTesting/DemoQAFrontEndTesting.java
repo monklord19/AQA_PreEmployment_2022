@@ -259,6 +259,26 @@ public class DemoQAFrontEndTesting {
     }
 
 
+//Scenario: Scenario No. 11 - Testing the Date Picker widget - Widgets/Date Picker
+
+    @When("User clicks on the <Date Picker> button from the <Widgets> section")
+    public void userClicksOnTheDatePickerButtonFromTheWidgetsSection() {
+        driver.findElement(By.xpath("//*[@id=\"item-7\"]/span"));
+    }
+
+    @And("User clicks on the button <Select Date> and <Date And Time>")
+    public void userClicksOnTheButtonSelectDateAndDateAndTime() {
+        WebElement browse = driver.findElement(By.xpath("//*[@id=\"uploadFile\"]"));
+        //click on ‘Choose file’ to upload the desired file
+        //browse.sendKeys("C:\\Users\\Chait\\Desktop\\Files\\Job Specification.txt"); //Uploading the file using sendKeys
+        //System.out.println("File is Uploaded Successfully");
+
+    }
+
+    @Then("Selection is successful")
+    public void selectionIsSuccessful() {
+
+    }
 }
 
 
