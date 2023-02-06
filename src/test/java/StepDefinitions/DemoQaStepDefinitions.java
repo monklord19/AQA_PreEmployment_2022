@@ -273,6 +273,11 @@ public class DemoQaStepDefinitions{
         Thread.sleep(3000);
         actions.clickAndHold(slider).moveByOffset(830, 250).release().perform();
 
+        /*WebElement slider = driver.findElement(By.cssSelector(".range-slider.range-slider--primary"));
+        Actions actions = new Actions(driver);
+
+        actions.clickAndHold(slider).build().perform();
+        actions.dragAndDropBy(slider, 2, 0).build().perform();*/
     }
 
     @Then("The value will increment or decrement")
