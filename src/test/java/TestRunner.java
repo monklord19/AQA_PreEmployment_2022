@@ -4,8 +4,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/FeatureFiles/SpotifyLogin.feature",
-        glue = "steps.definition"
+        features = "src/test/resources/FeatureFiles/SwaggerBookStoreQA.feature",
+        glue = "BookSoreApi"
         //tags = "@RegressionTestsBAP"
 )
 public class TestRunner {

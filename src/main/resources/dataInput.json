@@ -1,0 +1,15 @@
+[
+{
+    "fullName": "Iulian Pitiriciu",
+    "email": "test123@gmail.com ",
+    "currentAddress": "Str.Almasului nr.1 sc.2",
+    "permanentAddress": "Str.Simion Prodan Probu nr.23"
+  },
+  {
+    "fullName": "Donna Gomez",
+    "email": "test123@gmail.com ",
+    "currentAddress": "E Parkway 206 ",
+    "permanentAddress":"E Parkway 206 "
+  }
+
+]
