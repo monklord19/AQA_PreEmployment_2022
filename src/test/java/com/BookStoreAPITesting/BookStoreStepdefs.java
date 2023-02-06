@@ -21,12 +21,13 @@ public class BookStoreStepdefs {
     private static final String USERNAME = "Calina Maniu";
     private static final String PASSWORD = "CMcm123*";
     private static final String BASE_URL = "https://demoqa.com";
-    private static final String ISBN = "9781593277574";
 
     private static String token;
     private static Response response;
     private static String jsonString;
     private static String bookId;
+
+// Background for Scenarios no. 2 to no. 10 - User is an authorized user
 
     @Given("User is an authorized user")
     public void userIsAnAuthorizedUser() {
@@ -49,35 +50,26 @@ public class BookStoreStepdefs {
     }
 
 
-    @When("User creates a new user")
-    public void userCreatesANewUser() {
+    @When("User creates a new user using the POST method")
+    public void userCreatesANewUserUsingThePOSTMethod() {
+        RestAssured.baseURI = BASE_URL;
         RequestSpecification request = RestAssured.given();
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("userName", "Calina Maniu");
-        requestParams.put("password", "CMcm123*");
-        request.body(requestParams.toJSONString());
-        Response response = request.post("Account/v1/User");
+
+        request.header("Content-Type", "application/json");
+        response = request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD + "\"}")
+                .post("/Account/v1/User");
+        Response response = request.post("/Account/v1/User");
         ResponseBody body = response.getBody();
-    }
+        System.out.println("Response Body is: " + body.asString());
 
-
-    @Then("Registration is successful")
-    public void registrationIsSuccessful() {
-        RequestSpecification request = RestAssured.given();
-        Response response = request.post("Account/v1/User");
-        ResponseBody body = response.getBody();
-        String bodyAsString = body.asString();
-        System.out.println("Response body is: " + body.asString());
-    }
-
-
-    @And("Status Response is {int}")
-    public void statusResponseIs(int arg0) {
-        RequestSpecification request = RestAssured.given();
-        Response response = request.post("Account/v1/User");
         int statusCode = response.getStatusCode();
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
+    }
+
+    @And("Status Response is {int}")
+    public void statusResponseIs(int arg0) {
+        System.out.println("Status Code is: " + response.getStatusCode());
     }
 
 
@@ -95,6 +87,9 @@ public class BookStoreStepdefs {
         String jsonString = response.asString();
         token = JsonPath.from(jsonString).get("token");
 
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(200, statusCode);
+        System.out.println("Status Code is: " + response.getStatusLine());
     }
 
     @Then("Token is generated successfully")
@@ -103,15 +98,6 @@ public class BookStoreStepdefs {
 
     }
 
-    @And("Status Response equals {int}")
-    public void statusResponseEquals(int arg0) {
-        RequestSpecification request = RestAssured.given();
-        Response response = request.post("Account/v1/GenerateToken");
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(200, statusCode);
-        System.out.println("Status Code is: " + response.getStatusLine());
-
-    }
 
 // Scenario No. 3 - Account - Authorize
     @When("User makes a POST method for authorization")
@@ -361,5 +347,7 @@ public class BookStoreStepdefs {
         Assert.assertEquals(200, statusCode);
         System.out.println("Status Code is: " + response.getStatusLine());
     }
+
+
 }
 

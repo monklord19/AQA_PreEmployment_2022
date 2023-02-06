@@ -1,24 +1,20 @@
 
 Feature: API Tests on Demo QA - Bookstore
 
-  Background: User is an authorized user
 
-  Scenario: Create an new user - POST/Account/User
+  Scenario: Scenario No. 1 - Create an new user - POST/Account/User
     Given User is on demoQA website
-    When User creates a new user
-    Then Registration is successful
-    And Status Response is 200
+    When User creates a new user using the POST method
+    Then Status Response is 200
 
 
-  Scenario:  Generate Token - POST/Account/Generate Token
-    Given User is an authorized user
-    And User is on demoQA website
+  Scenario: Scenario No. 2 - Generate Token - POST/Account/Generate Token  //correct tot scenariul
+    Given User is on demoQA website
     When Authorized user generates token
     Then Token is generated successfully
-    And Status Response equals 200
 
 
-  Scenario: Authorize User - POST/Account/Authorized     //correct tot scenariul
+  Scenario: Scenario No. 3 - Authorize User - POST/Account/Authorized     //correct tot scenariul
     Given User is an authorized user
     And User is on demoQA website
     When User makes a POST method for authorization
@@ -26,7 +22,7 @@ Feature: API Tests on Demo QA - Bookstore
     And Response header will be displayed
 
 
-  Scenario: Delete User - DELETE/Account/User
+  Scenario: Scenario No. 4 - Delete User - DELETE/Account/User
     Given User is an authorized user
     And User is on demoQA website
     When User deletes a user
@@ -34,7 +30,7 @@ Feature: API Tests on Demo QA - Bookstore
     And Response header will appear
 
 
-  Scenario: Get User - GET/Account/User
+  Scenario: Scenario No. 5 - Get User - GET/Account/User
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request
@@ -49,7 +45,7 @@ Feature: API Tests on Demo QA - Bookstore
     And Status will be 200
 
 
-  Scenario: Add list of books - POST/BookStore/Books // imi da Time out
+  Scenario: Scenario No. 6 - Add list of books - POST/BookStore/Books // imi da Time out
     Given User is an authorized user
     And User is on demoQA website
     When User executes a POST request to add a new list
@@ -57,21 +53,21 @@ Feature: API Tests on Demo QA - Bookstore
     And Response will be 200
 
 
-  Scenario: Delete a book - DELETE/BookStore/Books
+  Scenario: Scenario No. 7 - Delete a book - DELETE/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a DELETE request to delete a book
     Then The book is successfully deleted
 
 
-  Scenario: Get details about a particular book - GET/BookStore/Books
+  Scenario: Scenario No. 8 - Get details about a particular book - GET/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request to get details about a particular book
     Then The details are displayed
 
 
-  Scenario: Replace a book - PUT/BookStore/Books
+  Scenario: Scenario No. 9 - Replace a book - PUT/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a PUT request to replace a particular book
