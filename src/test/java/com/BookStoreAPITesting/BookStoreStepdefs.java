@@ -27,7 +27,7 @@ public class BookStoreStepdefs {
     private static String jsonString;
     private static String bookId;
 
-// Background for Scenarios no. 2 to no. 10 - User is an authorized user
+// Background for Scenarios no. 2 to no. 10 - User is an Authorized user
 
     @Given("User is an authorized user")
     public void userIsAnAuthorizedUser() {
@@ -42,7 +42,7 @@ public class BookStoreStepdefs {
         token = JsonPath.from(jsonString).get("token");
     }
 
-// Scenario No. 1 - Account - POST new user
+// Scenario No. 1 - Create an new user - POST/Account/User
 
     @Given("User is on demoQA website")
     public void userIsOnDemoQAWebsite() {
@@ -73,7 +73,7 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 2 - Account - Generate Token
+// Scenario No. 2 - Generate Token - POST/Account/Generate Token
 
     @When("Authorized user generates token")
     public void authorizedUserGeneratesToken() {
@@ -99,7 +99,8 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 3 - Account - Authorize
+// Scenario No. 3 - Authorize User - POST/Account/Authorized
+
     @When("User makes a POST method for authorization")
     public void userMakesAPOSTMethodForAuthorization() {
         RestAssured.baseURI = BASE_URL;
@@ -111,7 +112,6 @@ public class BookStoreStepdefs {
 
         Response response = request.post("Account/v1/Authorized");
     }
-
 
     @And("Status Response will be {int}")
     public void statusResponseWillBe(int arg0) {
@@ -143,7 +143,7 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 4 - Account - Delete
+//Scenario No. 4 - Delete User - DELETE/Account/User
 
     @When("User deletes a user")
     public void userDeletesAUser() {
@@ -175,7 +175,7 @@ public class BookStoreStepdefs {
         }
 
 
-// Scenario No. 5 - Account - Get
+// Scenario No. 5 - Get User - GET/Account/User
 
     @When("User executes a GET request")
     public void userExecutesAGETRequest() {
@@ -188,8 +188,6 @@ public class BookStoreStepdefs {
 
         String jsonString = response.asString();
         token = JsonPath.from(jsonString).get("token");
-
-
 
         request.header("Content-Type", "application/json");
         response = request.body("{ \"userId\":\"" + USER_ID + "\"}")
@@ -215,7 +213,7 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 6 - BookStore - Get
+// Scenario No. 6 - Get the list of available books - GET/BookStore/Books
 
     @When("User executes a GET request to get the list of available books")
     public void userExecutesAGETRequestToGetTheListOfAvailableBooks() {
@@ -240,7 +238,7 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 7 - BookStore - Post
+// Scenario No. 7 - Add list of books - POST/BookStore/Books
 
     @When("User executes a POST request to add a new list")
     public void userExecutesAPOSTRequestToAddANewList() {
@@ -272,7 +270,7 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 8 - BookStore - Delete
+// Scenario No. 8 - Delete a book - DELETE/BookStore/Books
 
     @When("User executes a DELETE request to delete a book")
     public void userExecutesADELETERequestToDELETEABook() {
@@ -304,7 +302,7 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 9 - BookStore - GET
+// Scenario No. 9 - Get details about a particular book - GET/BookStore/Books
 
     @When("User executes a GET request to get details about a particular book")
     public void userExecutesAGETRequestToGetDetailsAboutAParticularBook() {
@@ -327,7 +325,8 @@ public class BookStoreStepdefs {
     }
 
 
-// Scenario No. 10 - BookStore - Put
+// Scenario No. 10 - Replace a book - PUT/BookStore/Books
+
     @When("User executes a PUT request to replace a particular book")
     public void userExecutesAPUTRequestToReplaceAParticularBook() {
         RestAssured.baseURI = BASE_URL;

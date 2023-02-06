@@ -37,7 +37,7 @@ Feature: API Tests on Demo QA - Bookstore
     Then Status response will be successful
 
 
-  Scenario: Get the list of available books - GET/BookStore/Books  //correct tot scenariul
+  Scenario: Scenario No. 6 - Get the list of available books - GET/BookStore/Books  //correct tot scenariul
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request to get the list of available books
@@ -45,7 +45,7 @@ Feature: API Tests on Demo QA - Bookstore
     And Status will be 200
 
 
-  Scenario: Scenario No. 6 - Add list of books - POST/BookStore/Books // imi da Time out
+  Scenario: Scenario No. 7 - Add list of books - POST/BookStore/Books // imi da Time out
     Given User is an authorized user
     And User is on demoQA website
     When User executes a POST request to add a new list
@@ -53,21 +53,21 @@ Feature: API Tests on Demo QA - Bookstore
     And Response will be 200
 
 
-  Scenario: Scenario No. 7 - Delete a book - DELETE/BookStore/Books
+  Scenario: Scenario No. 8 - Delete a book - DELETE/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a DELETE request to delete a book
     Then The book is successfully deleted
 
 
-  Scenario: Scenario No. 8 - Get details about a particular book - GET/BookStore/Books
+  Scenario: Scenario No. 9 - Get details about a particular book - GET/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a GET request to get details about a particular book
     Then The details are displayed
 
 
-  Scenario: Scenario No. 9 - Replace a book - PUT/BookStore/Books
+  Scenario: Scenario No. 10 - Replace a book - PUT/BookStore/Books
     Given User is an authorized user
     And User is on demoQA website
     When User executes a PUT request to replace a particular book
