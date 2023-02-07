@@ -10,8 +10,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.demoqaElementsPage;
 import pages.demoqaWidgetsPage;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,23 +26,19 @@ public class DemoqaWidgetsStepDefs {
     demoqaWidgetsPage demoqaWidgets = new demoqaWidgetsPage(driver);
     @Given("On the Widgets page")
     public void onTheWidgetsPage() {
-        driver.get("https://demoqa.com/widgets");
+        driver.get("https://demoqa.com/date-picker");
     }
 
-    @When("I select the Date Picker item")
-    public void iSelectTheDatePickerItem() {
-       demoqaWidgetsPage.clickDatePicker();
-    }
-
-    @And("I Select Date")
-    public void iSelectDate() {
-        WebElement datePicker = driver.findElement(By.id("datePickerMonthYearInput"));
-        datePicker.sendKeys("03/05/2022");
-        datePicker.sendKeys(Keys.RETURN);
+    @When("I select the first of February, same year, in the Select Date date picker")
+    public void iSelectTheFirstOfFebruarySameYearInTheSelectDateDatePicker() {
+        WebElement datePicker = driver.findElement(By.cssSelector("#datePickerMonthYear > div.react-datepicker-wrapper > div"));
+        datePicker.click();
+        demoqaWidgetsPage.clickDate1February();
     }
 
     @Then("The Select Date text box contains the selected value")
     public void theSelectDateTextBoxContainsTheSelectedValue() {
-        System.out.println("vezi daca merge");
+        System.out.println("Date is selected.");
     }
+
 }
