@@ -4,7 +4,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/"}
+        features = {"src/test/resources/FeatureFiles/"},
+        glue = "MySteyDef"
 
 )
 public class TestRunner {
