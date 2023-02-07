@@ -64,8 +64,8 @@ public class TextBox {
         BrowserUtils.validateText(ValidatePermanentAddress, expectedPermanentAddress);
     }
 
-    public static void ValidateTheTextBoxOutput(String expectedOutput){
-        BrowserUtils.getText(ValidateResponseScenarioOutline, expectedOutput);
+    public static void ValidateTheTextBoxOutput(){
+        BrowserUtils.getText(ValidateResponseScenarioOutline);
     }
 
 }

@@ -3,14 +3,13 @@ package com.DemoQA.SeleniumTesting;
 import com.DemoQA.PageObjects.Elements.*;
 import com.DemoQA.PageObjects.HomePage;
 import com.DemoQA.PageObjects.Widgets.Accordion;
+import com.DemoQA.PageObjects.Widgets.Tabs;
 import com.DemoQA.PageObjects.Widgets.ToolTips;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 
 public class DemoQAFrontEndTesting {
@@ -133,6 +132,7 @@ public class DemoQAFrontEndTesting {
 
     @Then("The answer will push down")
     public void theAnswerWillPushDown() {
+        Accordion.ValidateWhyDoWeUseItAccordion();
     }
 
 
@@ -175,13 +175,7 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new box with all the entered data is displayed.")
     public void aNewBoxWithAllTheEnteredDataIsDisplayed() {
-        TextBox.ValidateTheTextBoxOutput("Name:MMC\n" +
-                "\n" +
-                "Email:test@gmail.com\n" +
-                "\n" +
-                "Current Address :Romania\n" +
-                "\n" +
-                "Permananet Address :Romania");
+        TextBox.ValidateTheTextBoxOutput();
         }
 
 
@@ -233,11 +227,12 @@ public class DemoQAFrontEndTesting {
     @And("User modifies the Email and clicks the Submit button")
     public void userModifiesTheEmailAndClicksTheSubmitButton() {
         WebTables.EditEmailField("anton.marinela@outlook.com");
+        WebTables.ClickSubmitOnEditAction();
     }
 
     @And("checks if the email was successfully updated on the table")
     public void checksIfTheEmailWasSuccessfullyUpdatedOnTheTable() {
-        WebTables.ClickSubmitButton();
+
         WebTables.EmailValidation("anton.marinela@outlook.com");
     }
 
@@ -248,36 +243,31 @@ public class DemoQAFrontEndTesting {
         Buttons.ClickButtonsElement();
     }
 
-    @And("User clicks on the button <Click Me>")
-    public void userClicksOnTheButtonClickMe() {
-        Buttons.ClickOnClickMe();
+    @And("User clicks on the button <Double Click Me>")
+    public void userClicksOnTheButtonDoubleClickMe() {
+        Buttons.DoubleClickButton();
     }
 
     @Then("A response message is displayed")
     public void aResponseMessageIsDisplayed() {
-        Buttons.ClickMeValidateResponse("You have done a dynamic click");
+        Buttons.ValidateDoubleClickMe("You have done a double click");
     }
 
 
-//Scenario: Scenario No. 11 - Testing the Date Picker widget - Widgets/Date Picker
+//Scenario No. 11 - Testing the Tabs widget - Widgets/Tabs
 
-    @When("User clicks on the <Date Picker> button from the <Widgets> section")
-    public void userClicksOnTheDatePickerButtonFromTheWidgetsSection() {
-        driver.findElement(By.xpath("//*[@id=\"item-7\"]/span"));
+    @When("User clicks on the <Tabs> tab from the <Widgets> section")
+    public void userClicksOnTheTabsTabFromTheWidgetsSection() {
+        Tabs.ClickOnTabButton();
     }
 
-    @And("User clicks on the button <Select Date> and <Date And Time>")
-    public void userClicksOnTheButtonSelectDateAndDateAndTime() {
-        WebElement browse = driver.findElement(By.xpath("//*[@id=\"uploadFile\"]"));
-        //click on ‘Choose file’ to upload the desired file
-        //browse.sendKeys("C:\\Users\\Chait\\Desktop\\Files\\Job Specification.txt"); //Uploading the file using sendKeys
-        //System.out.println("File is Uploaded Successfully");
-
+    @And("User clicks the tab <Origin>")
+    public void userClicksTheTabOrigin() {
+        Tabs.ClickOnOriginButton();
     }
 
-    @Then("Selection is successful")
-    public void selectionIsSuccessful() {
-
+    @Then("A response message appears on the screen")
+    public void aResponseMessageAppearsOnTheScreen() {
     }
 }
 

@@ -4,8 +4,9 @@ import com.DemoQA.Utils.BrowserUtils;
 
 public class Accordion {
 
-    private static String ClickAccordionButton = "//*[@id=\"item-0\"]/span";
+    private static String ClickAccordionButton = "//*[text()='Accordian']";
     private static String WhyDoWeUseItAccordion = "//*[@id=\"section3Heading\"]";
+    private static String ResponseWhyDoWeUseItAccordion = "//*[@id=\"accordianContainer\"]/div/div[3]/div[2]";
 
 
 
@@ -15,5 +16,9 @@ public class Accordion {
 
     public static void ClickWhyDoWeUSeIt(){
         BrowserUtils.clickElement(WhyDoWeUseItAccordion);
+    }
+
+    public static void ValidateWhyDoWeUseItAccordion(){
+        BrowserUtils.getTextAccordian(ResponseWhyDoWeUseItAccordion);
     }
 }

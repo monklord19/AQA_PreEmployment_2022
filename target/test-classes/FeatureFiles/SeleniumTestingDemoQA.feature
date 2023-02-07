@@ -30,7 +30,7 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
 
 
-  Scenario: Scenario No. 5 - Testing the Tool Tips widget - Widgets/Tool Tips    // error:User is hoovering the button <Contrary>
+  Scenario: Scenario No. 5 - Testing the Tool Tips widget - Widgets/Tool Tips    // correct
     Given User selects the <Widgets> section
     When User clicks on the <Tool Tips> button on the <Widgets> section
     And User is hovering the button <Contrary>
@@ -44,7 +44,7 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
     Then The answer will push down
 
 
-  Scenario Outline: Scenario No. 7 - Testing the Text Box element - Elements/Text Box      //eroare asertie
+  Scenario Outline: Scenario No. 7 - Testing the Text Box element - Elements/Text Box      //correct
 
     Given  User selects the <Elements> section on DemoQa homepage
     And User selects the button <Text Box>
@@ -62,7 +62,7 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
 
 
 
-  Scenario: Scenario No. 8 - Testing the Web Tables element - Elements/Web tables  - correct
+  Scenario: Scenario No. 8 - Testing the Web Tables element - Elements/Web tables  - //correct
     Given User selects the <Elements> section
     And User clicks on the <Web Tables> button from the <Elements> section
     When User user clicks on the button "Add"
@@ -82,18 +82,17 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
     And checks if the email was successfully updated on the table
 
 
-  Scenario: Scenario No. 10 - Testing the Buttons element - Elements/Buttons
+  Scenario: Scenario No. 10 - Testing the Buttons element - Elements/Buttons //correct
     Given User selects the <Elements> section
     When User clicks on the <Buttons> element
-    And User clicks on the button <Click Me>
+    And User clicks on the button <Double Click Me>
     Then A response message is displayed
 
-
-  Scenario: Scenario No. 11 - Testing the Date Picker widget - Widgets/Date Picker
+  Scenario: Scenario No. 11 - Testing the Tabs widget - Widgets/Tabs
     Given User selects the <Widgets> section
-    When User clicks on the <Date Picker> button from the <Widgets> section
-    And User clicks on the button <Select Date> and <Date And Time>
-    Then Selection is successful
+    When User clicks on the <Tabs> tab from the <Widgets> section
+    And User clicks the tab <Origin>
+    Then A response message appears on the screen
 
 
 

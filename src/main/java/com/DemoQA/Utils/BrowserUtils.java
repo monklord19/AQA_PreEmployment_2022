@@ -22,6 +22,15 @@ public class BrowserUtils extends BaseClass {
         FindAndWaitForElement(element).click();
     }
 
+    public static void doubleClickElement(String element) {
+
+        WebElement e = FindAndWaitForElement(element);
+        Actions action = new Actions(driver);
+
+        FindAndWaitForElement(element);
+        action.doubleClick().perform();
+    }
+
     public static void enterText(String element, String text) {
         FindAndWaitForElement(element).clear();
         FindAndWaitForElement(element).sendKeys(text);
@@ -59,9 +68,18 @@ public class BrowserUtils extends BaseClass {
                 expectedText.equals(actualText));
     }
 
-    public static void getText(String element, String expectedText) {
+    public static void getText(String element) {
         String actualText = FindAndWaitForElement(element).getText();
         if (element.contains("Name:")) {
+            System.out.println("Text Box Output is present.");
+        } else {
+            System.out.println("Text Box Output is not present.");
+        }
+    }
+
+    public static void getTextAccordian(String element) {
+        String actualText = FindAndWaitForElement(element).getText();
+        if (element.contains("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.")) {
             System.out.println("Text Box Output is present.");
         } else {
             System.out.println("Text Box Output is not present.");

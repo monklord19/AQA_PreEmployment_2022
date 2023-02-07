@@ -16,11 +16,11 @@ public class WebTables {
     private static String ClickSubmit = "//*[@id=\"submit\"]";
     private static String ClickEditButton = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[7]";
     private static String EditEmail = "//*[@id=\"userEmail\"]";
-    private static String EditSubmitButton = "//*[@id=\"submit\"]";
+    private static String SubmitButtonOnEditFunction = "//*[@id=\"submit\"]";
 
 
 
-    //Validate the new added elements
+    //Validate the new added records
     private static String ValidateFirstName = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[1]";
     private static String ValidateLastName = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[2]";
     private static String ValidateAge = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[3]";
@@ -99,6 +99,6 @@ public class WebTables {
     }
 
     public static void ClickSubmitOnEditAction(){
-        BrowserUtils.clickElement(EditSubmitButton);
+        BrowserUtils.clickElement(SubmitButtonOnEditFunction);
     }
 }
