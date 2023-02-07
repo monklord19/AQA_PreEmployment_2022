@@ -17,7 +17,7 @@ public class TextBox {
     private static String ValidateEmail = "//*[@id=\"email\"]";
     private static String ValidateCurrentAddress = "//*[@id=\"currentAddress\"]";
     private static String ValidatePermanentAddress = "//*[@id=\"permanentAddress\"]";
-    private static String ValidateResponseScenarioOutline = ""; //!!!! nu e bun xpath-ul
+    private static String ValidateResponseScenarioOutline = "//*[@id=\"output\"]";
 
 
 
@@ -64,8 +64,10 @@ public class TextBox {
         BrowserUtils.validateText(ValidatePermanentAddress, expectedPermanentAddress);
     }
 
-    public static void ValidateResponseScenarioOutline(){
-        BrowserUtils.validateResponseScenarioOutline(ValidateResponseScenarioOutline);
+    public static void ValidateTheTextBoxOutput(String expectedOutput){
+        BrowserUtils.getText(ValidateResponseScenarioOutline, expectedOutput);
     }
 
 }
+
+

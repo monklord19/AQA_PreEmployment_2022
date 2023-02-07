@@ -175,16 +175,16 @@ public class DemoQAFrontEndTesting {
 
     @Then("A new box with all the entered data is displayed.")
     public void aNewBoxWithAllTheEnteredDataIsDisplayed() {
-        WebElement responseScenarioOutline = driver.findElement(By.xpath("//*[@id=\"output\"]"));
-        //Boolean t = TextBox.ValidateResponseScenarioOutline().isDisplayed;
-        Boolean t = driver.findElement(By.xpath("//*[@id=\"output\"]")).isDisplayed();
-        if (t) {
-            System.out.println("Element is dispalyed");
-        } else {
-            System.out.println("Element is not dispalyed");
+        TextBox.ValidateTheTextBoxOutput("Name:MMC\n" +
+                "\n" +
+                "Email:test@gmail.com\n" +
+                "\n" +
+                "Current Address :Romania\n" +
+                "\n" +
+                "Permananet Address :Romania");
         }
 
-    }
+
 
 // Scenario No. 8 - Testing the Web Tables element - Elements/Web tables
     @And("User clicks on the <Web Tables> button from the <Elements> section")

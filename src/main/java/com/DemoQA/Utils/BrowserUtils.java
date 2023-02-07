@@ -59,6 +59,15 @@ public class BrowserUtils extends BaseClass {
                 expectedText.equals(actualText));
     }
 
+    public static void getText(String element, String expectedText) {
+        String actualText = FindAndWaitForElement(element).getText();
+        if (element.contains("Name:")) {
+            System.out.println("Text Box Output is present.");
+        } else {
+            System.out.println("Text Box Output is not present.");
+        }
+    }
+
 
     public static void validateSubmitButton(String element, String expectedText) {
         String actualText = FindAndWaitForElement(element).getText();
