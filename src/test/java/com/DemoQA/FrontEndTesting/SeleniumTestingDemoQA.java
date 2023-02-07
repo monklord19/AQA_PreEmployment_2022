@@ -181,6 +181,7 @@ public class SeleniumTestingDemoQA {
 
 
 // Scenario No. 8 - Testing the Web Tables element - Elements/Web tables
+
     @And("User clicks on the <Web Tables> button from the <Elements> section")
     public void userClicksOnTheWebTablesButtonFromTheElementsSection() {
         WebTables.ClickOnWebTablesButton();
@@ -217,7 +218,7 @@ public class SeleniumTestingDemoQA {
     }
 
 
-//Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions
+//Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions/Delete
 
     @Given("User selects the <Elements> section on the homepage")
     public void userSelectsTheElementsSectionOnTheHomepage() {
@@ -244,6 +245,11 @@ public class SeleniumTestingDemoQA {
         WebTables.AddTextDepartment("IT");
     }
 
+    @And("User clicks the Submit button")
+    public void userClicksTheSubmitButton() {
+        WebTables.ClickSubmitButton();
+    }
+
     @And("User clicks the Delete button")
     public void userClicksTheDeleteButton() {
         WebTables.ClickOnDeleteButton();
@@ -255,13 +261,7 @@ public class SeleniumTestingDemoQA {
     }
 
 
-
-
-
-
 //Scenario No. 10 - Testing the Buttons element - Elements/Buttons
-
-
 
     @When("User clicks on the <Buttons> element")
     public void userClicksOnTheButtonsElement() {
@@ -293,6 +293,7 @@ public class SeleniumTestingDemoQA {
 
     @Then("A response message appears on the screen")
     public void aResponseMessageAppearsOnTheScreen() {
+        Tabs.ValidateTheClickOnOriginTab();
     }
 
 

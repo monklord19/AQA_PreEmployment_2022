@@ -7,7 +7,11 @@ public class Links {
     //Links - Web Elements
     private static String clickLinks = "//*[@id=\"item-5\"]";
     private static String MovedLink = "//*[@id=\"moved\"]";
+
+    //TLinks - Elements to be validated
     private static String ValidateTextMovedLink = "//*[@id=\"linkResponse\"]";
+
+
 
     public static void ClickLinks(){
         BrowserUtils.clickElement(clickLinks);

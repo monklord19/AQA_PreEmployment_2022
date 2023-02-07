@@ -4,10 +4,12 @@ import com.DemoQA.Utils.BrowserUtils;
 
 public class Buttons {
 
+    //Buttons - Web Elements
     private static String ClickButtons = "//*[@id=\"item-4\"]/span";
     private static String ClickMeButton = "//*[contains(@id,'NqfBH')]";
     private static String DoubleClick = "//*[@id=\"doubleClickBtn\"]";
 
+    //Buttons - Elements to be validated
     private static String ClickMeResponse = "//*[@id=\"dynamicClickMessage\"]";
     private static String DoubleClickMeResponse = "//*[@id=\"doubleClickMessage\"]";
 

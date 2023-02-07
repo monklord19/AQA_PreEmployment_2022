@@ -71,14 +71,14 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box
     Then A new row is added to the table
 
 
-  Scenario: Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions
+  Scenario: Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions/Delete
     Given User selects the <Elements> section on the homepage
     And User clicks on the <Web Tables> button
     When User clicks the button "Add"
     And User adds First Name,Last Name, Email, Age, Salary and Department
+    And User clicks the Submit button
     And User clicks the Delete button
     Then The record is deleted
-
 
 
   Scenario: Scenario No. 10 - Testing the Buttons element - Elements/Buttons

@@ -4,7 +4,7 @@ import com.DemoQA.Utils.BrowserUtils;
 
 public class WebTables {
 
-    //Add New Record on the table - elements
+    //Web Tables - Add New Record on the table - elements
     private static String ClickWebTablesButton = "//*[@id=\"item-3\"]/span";
     private static String ClickAddButton = "//*[@id=\"addNewRecordButton\"]";
     private static String AddFirstName = "//*[@id=\"firstName\"]";
@@ -18,11 +18,11 @@ public class WebTables {
     private static String ClickDeleteButton = "//*[@id=\"delete-record-4\"]";
     private static String EditEmail = "//*[@id=\"userEmail\"]";
     private static String SubmitButtonOnEditFunction = "//*[@id=\"submit\"]";
-    private static String EmptyRow = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]";
+    private static String EmptyRow = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div";
 
 
 
-    //Validate the new added records
+    //Web tables - Validate the new added records
     private static String ValidateFirstName = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[1]";
     private static String ValidateLastName = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[2]";
     private static String ValidateAge = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[3]";

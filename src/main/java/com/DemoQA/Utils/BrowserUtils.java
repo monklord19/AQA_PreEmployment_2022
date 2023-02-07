@@ -68,35 +68,6 @@ public class BrowserUtils extends BaseClass {
                 expectedText.equals(actualText));
     }
 
-    public static void getText(String element) {
-        String actualText = FindAndWaitForElement(element).getText();
-        if (element.contains("Name:")) {
-            System.out.println("Text Box Output is present.");
-        } else {
-            System.out.println("Text Box Output is not present.");
-        }
-    }
-
-    public static void getTextAccordian(String element) {
-        String actualText = FindAndWaitForElement(element).getText();
-        if (element.contains("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.")) {
-            System.out.println("Text Box Output is present.");
-        } else {
-            System.out.println("Text Box Output is not present.");
-        }
-    }
-
-    public static void getEmptyText(String element) {
-        String actualText = FindAndWaitForElement(element).getText();
-        if (element.isEmpty() || actualText.equals("")) {
-            System.out.println("Test case should be pass");
-        }
-        else {
-            System.out.println("Test case should be fail.");
-        }
-    }
-
-
     public static void validateSubmitButton(String element, String expectedText) {
         String actualText = FindAndWaitForElement(element).getText();
         Assert.assertTrue("Expected Text: " + expectedText + " is not matching with Actual Text:" + actualText,
@@ -145,8 +116,52 @@ public class BrowserUtils extends BaseClass {
         Assert.assertEquals("The Expected text is not matching with Actual text", actualTextMovedLink, "Link has responded with staus 301 and status text Moved Permanently");
     }
 
+    public static void getText(String element) {
+        String actualText = FindAndWaitForElement(element).getText();
+        if (actualText.contains("Name")) {
+            System.out.println("Full Name, Email, Current Address and Permanent Address was successfully submitted.");
+        } else {
+            System.out.println("Full Name, Email, Current Address and Permanent Address was unsuccessfully submitted.");
+        }
+    }
 
+    public static void getTextAccordian(String element) {
+        String accordianText = FindAndWaitForElement(element).getText();
+        if (accordianText.contains("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout")) {
+            System.out.println("The answer to the accordian <Why do we use it?> is visible on the page.");
+        } else {
+            System.out.println("The answer to the accordian <Why do we use it?> is not is visible on the page.");
+        }
+    }
 
+    public static void getEmptyText(String element) {
+        String emptyText = FindAndWaitForElement(element).getText();
+        if (element.isEmpty() || emptyText.equals("")) {
+            System.out.println("The record is deleted");
+        }
+        else {
+            System.out.println("The record is not deleted.");
+        }
+    }
 
+    public static void getTextOriginTab(String element) {
+        String originText = FindAndWaitForElement(element).getText();
+        if (originText.contains("Contrary to popular belief, Lorem Ipsum is not simply random text")) {
+            System.out.println("Origin Tab is clicked.");
+        } else {
+            System.out.println("Origin Tab is not clicked");
+        }
+    }
+
+    public static void getEmptyValue(String element) {
+        String emptyText = FindAndWaitForElement(element).getAttribute("value");
+        if (emptyText.isEmpty()) {
+            System.out.println("The record is deleted");
+        }
+        else {
+            System.out.println("The record is not deleted.");
+        }
+
+    }
 
 }
