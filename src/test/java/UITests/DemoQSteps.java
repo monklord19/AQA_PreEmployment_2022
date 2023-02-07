@@ -1,6 +1,7 @@
 package UITests;
 
 import PageFactory.DemoQPage;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -262,8 +263,8 @@ public class DemoQSteps extends BaseTest {
 
     }
 
-//    @After
-//    public void close(){
-//        driver.quit();
-//    }
+    //@After
+    public void close(){
+        driver.quit();
+    }
 }

@@ -1,40 +1,39 @@
 package UITests;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.ResponseBody;
+
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.response.ValidatableResponse;
+
 import io.restassured.path.json.JsonPath;
 import org.apache.commons.codec.binary.Base64;
+import org.hamcrest.Matchers;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.testng.Assert;
 
-import java.io.File;
-import java.util.ArrayList;
-
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.*;
 
 public class DemoQAPISteps {
     public static final String BASE_URL = "https://demoqa.com/";
-    public static RequestSpecification request;
-    public Response response;
-    public Response responseGetUser;
-    private String UserId;
-    private String tokenBearer;
-    public static ArrayList userBookList;
-    File fileBody=new File("src/test/java/Util/PayloadUser.json");
+
+    public static String username = "AndreeaCazan33";
+    public static String password = "Mimi@@234";
+    public static String book="9781491950296";
+    public static String replacementbook="9781593275846";
+    public static String UserId="aa758a3b-e857-4ce6-8f9a-2308457748a8";
+     static String tokenBearer="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFuZHJlZWFDYXphbjMzIiwicGFzc3dvcmQiOiJNaW1pQEAyMzQiLCJpYXQiOjE2NzU3NjIzNjF9.eDmQQtUR9qtI1rXZo27TN-Yyi9eNBLcYxyAbPIrZSBg";
+     static Response response;
     @Given("user is on DemoQ Swagger address")
     public void userIsOnDemoQSwaggerAddress() {
         RestAssured.baseURI = BASE_URL;
-        request = RestAssured.given();
     }
 
 
@@ -57,49 +56,61 @@ public class DemoQAPISteps {
     }
 
     @When("I send valid request with payload")
-    public void iSendValidRequestWithPayload() {
-        response =given()
-                .contentType(ContentType.JSON)
-                .body(fileBody)
+    public String iSendValidRequestWithPayload() {
+        JSONObject request = new JSONObject();
+        request.put("userName", username);
+        request.put("password", password);
+        RequestSpecification httpRequest = RestAssured.given();
+        response =httpRequest.contentType(JSON)
+                .body(request.toJSONString())
                 .when()
                 .post("Account/v1/User");
-         UserId= response.then().extract().path("userID").toString();
-        System.out.println(UserId);
+        return UserId;
     }
 
     @Then("User is created")
     public void userIsCreated() {
+        UserId = response.then().contentType(JSON).extract().path("userID");
         long time = response.getTime();
         System.out.println(time);
-        System.out.println(response.getStatusCode());
-        org.testng.Assert.assertTrue(time<2000);
-        
-
+        response.then().statusCode(201).
+                time(Matchers.lessThan(2000L)).
+                body("username", equalTo(username));
+        System.out.println(UserId);
     }
 
     @When("I send userId to delete")
     public void iSendUserIdToDelete() {
-        String userId="05ba2493-9d31-4b35-8b79-32899aabdd4c";
-        response = RestAssured.given()
-                .header("Authorization", "Basic QW5kcmVlYUNhemFuMzpNaW1pMjM0IQ==")
-                .contentType(ContentType.JSON)
+
+        RequestSpecification httpRequest = RestAssured.given();
+
+        response = httpRequest.
+                accept("accept: application/json")
+                .header("Authorization", "Bearer "+tokenBearer)
+                .header("Content-Type", "application/json")
+                .accept("accept: application/json")
                 .when()
-                .delete("/Account/v1/User"+"?UserId="+ UserId);
+                .delete("Account/v1/User/"+ UserId);
 
 
     }
 
     @Then("User is deleted")
     public void userIsDeleted() {
-        response.then().assertThat().statusCode(204);
+        response.then().
+                statusCode(204).
+                time(Matchers.lessThan(1000L));
         System.out.println(response.body().prettyPrint());
     }
 
     @When("Send post request with user body")
     public void sendPostRequestWithUserBody() {
+        JSONObject request = new JSONObject();
+        request.put("userName", username);
+        request.put("password", password);
         response= (Response) RestAssured.given()
-                .contentType(ContentType.JSON)
-                .body(fileBody)
+                .contentType(JSON)
+                .body(request.toJSONString())
                 .when()
                 .post("Account/v1/Authorized");
     }
@@ -108,109 +119,115 @@ public class DemoQAPISteps {
     public void statusResponseIsOK() {
         response.then().assertThat().statusCode(200);
         String bodycontains=response.then().extract().body().asString();
-        Assert.assertEquals(bodycontains,"false");
+        Assert.assertEquals(bodycontains,"true");
 
     }
 
     @When("I send valid request with user details")
     public void iSendValidRequestWithUserDetails() {
-        response =given()
-                .contentType(ContentType.JSON)
-                .body(fileBody)
+        RequestSpecification httpRequest = RestAssured.given();
+        JSONObject request = new JSONObject();
+        request.put("userName", username);
+        request.put("password", password);
+        response =httpRequest.given()
+                .contentType(JSON)
+                .body(request.toJSONString())
                 .when()
                 .post("Account/v1/GenerateToken");
-        tokenBearer= response.then().extract().path("token").toString();
-        System.out.println(tokenBearer);
+        String jsonString = response.asString();
+        tokenBearer = JsonPath.from(jsonString).get("token");
 
     }
 
     @Then("Token is generated")
     public void tokenIsGenerated() {
+        tokenBearer = response.then().extract().path("token");
         response.then().assertThat().statusCode(200);
         response.then().assertThat().body("status",equalTo("Success"));
+        System.out.println(tokenBearer);
+        System.out.println(UserId);
 
     }
 
     @When("I send get user by id request")
     public void iSendGetUserByIdRequest() {
-        String userId="05ba2493-9d31-4b35-8b79-32899aabdd4c";
-        response = (Response) RestAssured.given()
-                .header("Authorization", "Basic QW5kcmVlYUNhemFuMzpNaW1pMjM0IQ==")
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/Account/v1/User"+"?UserId="+ userId);
-
-
-
+        RequestSpecification httpRequest = RestAssured.given();
+        response = httpRequest.given().
+                header("Authorization", "Bearer " + tokenBearer).
+                header("Content-Type", "application/json").
+                accept("accept: application/json").
+                when().
+                get("Account/v1/User/"+ UserId);
+        System.out.println(UserId);
+        System.out.println(tokenBearer);
     }
 
     @Then("User is listed")
     public void userIsListed() {
-        response.then().assertThat().statusCode(200);
-        response.prettyPrint();
+        response.then().
+                assertThat().statusCode(200).
+                time(Matchers.lessThan(2000L)).
+                body("username", equalTo(username)).
+                log().all();
     }
 
     @When("I send post request with token and body")
     public void iSendPostRequestWithTokenAndBody() {
-        String credentials ="""
-                             {
-                             "userName": "AndreeaCazan3",
-                             "password": "Mimi234!"
-                             }
-                             """;
-        request.header("Content-Type","application/json");
+        RequestSpecification httpRequest = RestAssured.given();
+        JSONObject request = new JSONObject();
+        request.put("userId", UserId);
 
-        Response responseFromToken =request.body(credentials).post("Account/v1/GenerateToken");
-        responseFromToken.prettyPrint();
+        JSONObject list = new JSONObject();
+        list.put("isbn", book);
 
-        String jsonString = responseFromToken.getBody().asString();
-        String tokenGenerated = JsonPath.from(jsonString).get("token");
+        JSONArray array = new JSONArray();
+        array.add(list);
+        request.put("collectionOfIsbns", array);
 
-        request.header("Authorization","Bearer "+tokenGenerated)
-                .header("Content-Type","application/json");
-
-        String addBookDetails= """
-                {
-                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
-                  "collectionOfIsbns": [
-                    {
-                      "isbn": "9781449337711"
-                    }
-                  ]
-                }
-                """;
-
-        response= request.body(addBookDetails).post("BookStore/v1/Books");
+        response = httpRequest.
+                accept("accept: application/json").
+                header("Authorization", "Bearer " + tokenBearer).
+                header("Content-Type", "application/json").
+                body(request.toJSONString()).
+                when().
+                post( BASE_URL+"BookStore/v1/Books");
     }
 
     @Then("Book isbn is listed")
     public void bookIsbnIsListed() {
-        System.out.println("Status code is"+response.getStatusCode());
-        Assertions.assertEquals(201,response.getStatusCode());
+        System.out.println(tokenBearer);
+        response.then().
+                statusCode(201).
+                time(Matchers.lessThan(2000L));
         response.prettyPrint();
     }
 
     @When("I send post request with encodedCredentials and body")
     public void iSendPostRequestWithEncodedCredentialsAndBody() {
-        String credentials ="AndreeaCazan3:Mimi234!";
+        RequestSpecification httpRequest = RestAssured.given();
+        String credentials ="AndreeaCazan33:Mimi@@234";
 
         byte[] encodedCredentials = Base64.encodeBase64(credentials.getBytes());
         String encodedCredentialsasString = new String(encodedCredentials);
         System.out.println("Basic "+encodedCredentialsasString);
 
-        request.header("Authorization","Basic "+encodedCredentialsasString);
-        String load= """
-                {
-                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
-                  "collectionOfIsbns": [
-                    {
-                      "isbn": "9781593275846"
-                    }
-                  ]
-                }
-                """;
-        request.header("Content-Type","application/json");
-        response= request.body(load).post("BookStore/v1/Books");
+        JSONObject request = new JSONObject();
+        request.put("userId", UserId);
+
+        JSONObject list = new JSONObject();
+        list.put("isbn", book);
+
+        JSONArray array = new JSONArray();
+        array.add(list);
+        request.put("collectionOfIsbns", array);
+
+
+        response=response = httpRequest.
+                accept("accept: application/json").
+                header("Authorization", "Basic "+encodedCredentialsasString).
+                header("Content-Type", "application/json").
+                body(request.toJSONString()).
+                post("BookStore/v1/Books");
 
     }
 
@@ -219,24 +236,21 @@ public class DemoQAPISteps {
         System.out.println("Status code is"+response.getStatusCode());
         Assertions.assertEquals(201,response.getStatusCode());
         response.prettyPrint();
-        response.then().assertThat().body("books[0].isbn",equalTo("9781593275846"));
+        response.then().assertThat().body("books[0].isbn",equalTo(book));
     }
 
     @When("I request to delete book from user")
     public void iRequestToDeleteBookFromUser() {
+        RequestSpecification httpRequest = RestAssured.given();
+        JSONObject request = new JSONObject();
+        request.put("userId", UserId);
+        request.put("isbn", book);
 
-        request.header("Authorization","Basic QW5kcmVlYUNhemFuMzpNaW1pMjM0IQ==");
-        String removeBook= """
-                {
-                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
-                  "isbn": "9781593275846"
-                }
-                """;
+        httpRequest.header("Authorization","Bearer "+tokenBearer);
+        httpRequest.header("Content-Type","application/json");
 
-        request.header("Content-Type","application/json");
-
-         response= request.body(removeBook)
-                .delete("/BookStore/v1/Book");
+         response= httpRequest.body(request.toJSONString())
+                .delete("BookStore/v1/Book");
     }
 
     @Then("Book is deleted successfully")
@@ -247,17 +261,15 @@ public class DemoQAPISteps {
 
     @When("I send update request")
     public void iSendUpdateRequest() {
-        request.header("Authorization",
-                        "Basic QW5kcmVlYUNhemFuMzpNaW1pMjM0IQ==")
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Authorization",
+                        "Bearer "+tokenBearer)
                 .header("Content-Type","application/json");
-        String replacementBody= """
-                {
-                  "userId": "05ba2493-9d31-4b35-8b79-32899aabdd4c",
-                  "isbn": "9781593275846"
-                }
-                """;
-        response= request.body(replacementBody)
-                .put("/BookStore/v1/Books/9781491950296");
+        JSONObject request = new JSONObject();
+        request.put("userId", UserId);
+        request.put("isbn", replacementbook);
+        response= httpRequest.body(request.toJSONString())
+                .put("BookStore/v1/Books/"+book);
 
     }
 
@@ -270,22 +282,20 @@ public class DemoQAPISteps {
 
     @When("I sent a delete request with userId")
     public void iSentADeleteRequestWithUserId() {
-        String credentials ="AndreeaCazan3:Mimi234!";
-        String userId="05ba2493-9d31-4b35-8b79-32899aabdd4c";
+        RequestSpecification httpRequest = RestAssured.given();
 
-        byte[] encodedCredentials = Base64.encodeBase64(credentials.getBytes());
-        String encodedCredentialsasString = new String(encodedCredentials);
-        System.out.println("Basic "+encodedCredentialsasString);
-
-        request.header("Authorization","Basic "+encodedCredentialsasString);
-        request.header("Content-Type","application/json");
-        response= request.delete("BookStore/v1/Books"+"?"+userId);
-
+        httpRequest.
+                accept("accept: application/json").
+                header("Authorization", "Bearer " + tokenBearer).
+                when().
+                delete( "BookStore/v1/Books/"+UserId);
 
     }
 
-    @Then("Books are deleted for userId")
-    public void booksAreDeletedForUserId() {
-        response.then().assertThat().statusCode(204);
+    @Then("Books are deleted from userId")
+    public void booksAreDeletedFromUserId() {
+
+                response.then().assertThat().statusCode(204).
+                time(Matchers.lessThan(1000L));
     }
 }

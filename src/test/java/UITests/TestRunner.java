@@ -8,10 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/FeatureFilesAndreeaC/*.feature"},
         glue = {"src/test/java/UITests/*.java"},
-        //tags = "(@LoginwithGoogle or @LoginwithSpotify or @LoginwithApple or @LoginwithFacebook)",
         plugin = "pretty"
 
-        //tags = "@RegressionTestsBAP"
 )
 
 

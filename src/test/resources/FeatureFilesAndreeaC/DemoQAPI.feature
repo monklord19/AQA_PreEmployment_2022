@@ -28,9 +28,9 @@ Feature: Test DemoQ Swagger
     When I send update request
     Then Book is updated
   @DELETE
-    Scenario: Delete book with userid parameter
+    Scenario: Delete books from user
     When I sent a delete request with userId
-    Then Books are deleted for userId
+    Then Books are deleted from userId
 
   @POST
   Scenario: Create user
@@ -46,13 +46,13 @@ Feature: Test DemoQ Swagger
     Scenario: Generate Token
     When I send valid request with user details
     Then Token is generated
+  @GET
+  Scenario: Get user by id
+    When I send get user by id request
+    Then User is listed
 
   @DELETE
   Scenario: Delete user
     When I send userId to delete
     Then User is deleted
 
-  @GET
-  Scenario: Get user by id
-    When I send get user by id request
-    Then User is listed
