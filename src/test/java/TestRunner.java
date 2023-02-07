@@ -4,10 +4,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/FeatureFiles/Proiect.feature"},
-        tags = "@WebTablesEditCierra"
-        //tags = "@CheckRadioButton"
-
+        features = {"src/test/resources/FeatureFiles/"}
+        //tags = "@SwitchControlToNewWindow"
 
 
 )
