@@ -15,8 +15,10 @@ public class WebTables {
     private static String AddDepartment = "//*[@id=\"department\"]";
     private static String ClickSubmit = "//*[@id=\"submit\"]";
     private static String ClickEditButton = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[7]";
+    private static String ClickDeleteButton = "//*[@id=\"delete-record-4\"]";
     private static String EditEmail = "//*[@id=\"userEmail\"]";
     private static String SubmitButtonOnEditFunction = "//*[@id=\"submit\"]";
+    private static String EmptyRow = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]";
 
 
 
@@ -27,7 +29,7 @@ public class WebTables {
     private static String ValidateEmail = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[4]";
     private static String ValidateSalary = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[5]";
     private static String ValidateDepartment = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[6]";
-
+    private static String ValidateEmptyRow = "//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[3]/div[1]/div[2]/div[4]/div/div[6]";
 
 
     public static void ClickOnWebTablesButton(){
@@ -100,5 +102,13 @@ public class WebTables {
 
     public static void ClickSubmitOnEditAction(){
         BrowserUtils.clickElement(SubmitButtonOnEditFunction);
+    }
+
+    public static void ClickOnDeleteButton(){
+        BrowserUtils.clickElement(ClickDeleteButton);
+    }
+
+    public static void ValidateEmptyRow(){
+        BrowserUtils.getEmptyText(EmptyRow);
     }
 }

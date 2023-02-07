@@ -1,4 +1,4 @@
-package com.DemoQA.SeleniumTesting;
+package com.DemoQA.FrontEndTesting;
 
 import com.DemoQA.PageObjects.Elements.*;
 import com.DemoQA.PageObjects.HomePage;
@@ -12,7 +12,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 
-public class DemoQAFrontEndTesting {
+public class SeleniumTestingDemoQA {
 
     WebDriver driver;
 
@@ -219,24 +219,49 @@ public class DemoQAFrontEndTesting {
 
 //Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions
 
-    @Then("User clicks the Edit button")
-    public void userClicksTheEditButton() {
-        WebTables.ClickOnEditButton();
+    @Given("User selects the <Elements> section on the homepage")
+    public void userSelectsTheElementsSectionOnTheHomepage() {
+        HomePage.ClickElementsButton();
     }
 
-    @And("User modifies the Email and clicks the Submit button")
-    public void userModifiesTheEmailAndClicksTheSubmitButton() {
-        WebTables.EditEmailField("anton.marinela@outlook.com");
-        WebTables.ClickSubmitOnEditAction();
+    @And("User clicks on the <Web Tables> button")
+    public void userClicksOnTheWebTablesButton() {
+        WebTables.ClickOnWebTablesButton();
     }
 
-    @And("checks if the email was successfully updated on the table")
-    public void checksIfTheEmailWasSuccessfullyUpdatedOnTheTable() {
-
-        WebTables.EmailValidation("anton.marinela@outlook.com");
+    @When("User clicks the button {string}")
+    public void UserClicksTheButton(String arg0) {
+        WebTables.ClickOnAddButton();
     }
+
+    @And("User adds First Name,Last Name, Email, Age, Salary and Department")
+    public void userAddsFirstNameLastNameEmailAgeSalaryAndDepartment() {
+        WebTables.AddTextFirstName("Anton");
+        WebTables.AddTextLastName("Marinela");
+        WebTables.AddTextEmail("anton.marinela@gmail.com");
+        WebTables.AddTextAge("30");
+        WebTables.AddTextSalary("9000");
+        WebTables.AddTextDepartment("IT");
+    }
+
+    @And("User clicks the Delete button")
+    public void userClicksTheDeleteButton() {
+        WebTables.ClickOnDeleteButton();
+    }
+
+    @Then("The record is deleted")
+    public void theRecordIsDeleted() {
+        WebTables.ValidateEmptyRow();
+    }
+
+
+
+
+
 
 //Scenario No. 10 - Testing the Buttons element - Elements/Buttons
+
+
 
     @When("User clicks on the <Buttons> element")
     public void userClicksOnTheButtonsElement() {
@@ -269,6 +294,9 @@ public class DemoQAFrontEndTesting {
     @Then("A response message appears on the screen")
     public void aResponseMessageAppearsOnTheScreen() {
     }
+
+
+
 }
 
 

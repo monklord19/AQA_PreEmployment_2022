@@ -86,6 +86,16 @@ public class BrowserUtils extends BaseClass {
         }
     }
 
+    public static void getEmptyText(String element) {
+        String actualText = FindAndWaitForElement(element).getText();
+        if (element.isEmpty() || actualText.equals("")) {
+            System.out.println("Test case should be pass");
+        }
+        else {
+            System.out.println("Test case should be fail.");
+        }
+    }
+
 
     public static void validateSubmitButton(String element, String expectedText) {
         String actualText = FindAndWaitForElement(element).getText();

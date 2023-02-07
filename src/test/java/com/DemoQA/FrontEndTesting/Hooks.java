@@ -1,4 +1,4 @@
-package com.DemoQA.SeleniumTesting;
+package com.DemoQA.FrontEndTesting;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;

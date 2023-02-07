@@ -1,14 +1,14 @@
 
 Feature: Front End Testing - https://demoqa.com/
 
-  Scenario: Scenario No. 1 - Testing the Radio Button element - Elements/Radio Button    //correct
+  Scenario: Scenario No. 1 - Testing the Radio Button element - Elements/Radio Button
     Given User selects the <Elements> section
     And User clicks on the <Radio Button> element
     When User selects the option <Yes>
     Then The message "You have selected Yes" is displayed
 
 
-Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box      //correct
+Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box
     Given  User selects the <Elements> section
     And User selects the button <Text Box> on the <Elements> section
     When User completes the fields <Full Name>, <Email>, <Current Address>, <Permanent Address>
@@ -16,35 +16,35 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
     Then A new box is displayed with all information previously entered.
 
 
-  Scenario: Scenario No. 3 - Testing the Check Box element - Elements/Check Box       //correct
+  Scenario: Scenario No. 3 - Testing the Check Box element - Elements/Check Box
     Given User selects the <Elements> section
     And User selects the element <Check Box>
     When User clicks the check box button <Home>
     Then A response message appears on the page
 
 
-  Scenario: Scenario No. 4 - Testing the Links element - Elements/Links   //correct
+  Scenario: Scenario No. 4 - Testing the Links element - Elements/Links
     Given User selects the <Elements> section
     And User selects the <Links> section
     When User clicks on the <Moved> link that will send an api call
     Then The message "Link has responded with status 301 and status text Moved Permanently" appears
 
 
-  Scenario: Scenario No. 5 - Testing the Tool Tips widget - Widgets/Tool Tips    // correct
+  Scenario: Scenario No. 5 - Testing the Tool Tips widget - Widgets/Tool Tips
     Given User selects the <Widgets> section
     When User clicks on the <Tool Tips> button on the <Widgets> section
     And User is hovering the button <Contrary>
     Then A success message is displayed
 
 
-  Scenario: Scenario No. 6 - Testing the Accordion widget - Widgets/Accordion   //Scenario 6 - error:User clicks on the <Accordion> button
+  Scenario: Scenario No. 6 - Testing the Accordion widget - Widgets/Accordion
     Given User selects the <Widgets> section
     When User clicks on the <Accordion> button from the <Widgets> section
     And User selects the accordion <Why do we use it?>
     Then The answer will push down
 
 
-  Scenario Outline: Scenario No. 7 - Testing the Text Box element - Elements/Text Box      //correct
+  Scenario Outline: Scenario No. 7 - Testing the Text Box element - Elements/Text Box
 
     Given  User selects the <Elements> section on DemoQa homepage
     And User selects the button <Text Box>
@@ -62,7 +62,7 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
 
 
 
-  Scenario: Scenario No. 8 - Testing the Web Tables element - Elements/Web tables  - //correct
+  Scenario: Scenario No. 8 - Testing the Web Tables element - Elements/Web tables
     Given User selects the <Elements> section
     And User clicks on the <Web Tables> button from the <Elements> section
     When User user clicks on the button "Add"
@@ -72,17 +72,16 @@ Scenario: Scenario No. 2 - Testing the Text Box element - Elements/Text Box     
 
 
   Scenario: Scenario No. 9 - Testing the Web Tables element - Elements/Web tables/Actions
-    Given User selects the <Elements> section
-    And User clicks on the <Web Tables> button from the <Elements> section
-    When User user clicks on the button "Add"
-    And User adds valid First Name,Last Name, Email, Age, Salary and Department
-    And user clicks the button "Submit"
-    Then User clicks the Edit button
-    And User modifies the Email and clicks the Submit button
-    And checks if the email was successfully updated on the table
+    Given User selects the <Elements> section on the homepage
+    And User clicks on the <Web Tables> button
+    When User clicks the button "Add"
+    And User adds First Name,Last Name, Email, Age, Salary and Department
+    And User clicks the Delete button
+    Then The record is deleted
 
 
-  Scenario: Scenario No. 10 - Testing the Buttons element - Elements/Buttons //correct
+
+  Scenario: Scenario No. 10 - Testing the Buttons element - Elements/Buttons
     Given User selects the <Elements> section
     When User clicks on the <Buttons> element
     And User clicks on the button <Double Click Me>
