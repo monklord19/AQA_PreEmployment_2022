@@ -1,6 +1,7 @@
 package Backend.apiEngine.Endpoints;
 
 import Backend.apiEngine.Routes.Routes;
+import Configurations.BackendConfigs.BackendPropertiesReader;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
@@ -33,9 +34,8 @@ public class GetEndpoints {
 
     public static Response getAUser() {
         String userId = PostEndpoints.getUserId();
-        System.out.println(userId);
         Routes getAUserRoute = Routes.GetUser;
-        Response getAUserResponse = CommonMethods.iSetTheRequestSpecifications().pathParam("UserId", userId).get(getAUserRoute.getUrl());
+        Response getAUserResponse = CommonMethods.iSetTheRequestSpecifications().get(getAUserRoute.getUrl()+userId);
         return getAUserResponse;
     }
 }

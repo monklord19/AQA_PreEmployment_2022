@@ -157,7 +157,7 @@ public class ElementsPage extends TestBase {
     }
     public void assertFileIsUploaded(){
         WebElement uploadedFilePath=elementsLocators.getUploadedFilePath();
-        Assert.assertTrue(uploadedFilePath.getText().contains("cocomelo.jpg"));
+        Assert.assertTrue(uploadedFilePath.getText().contains("cocomelon.jpg"));
     }
     //LINKS METHODS
     public void clickOnLinksSection() throws InterruptedException {

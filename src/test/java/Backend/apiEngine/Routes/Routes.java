@@ -5,8 +5,8 @@ public enum Routes {
     Authorize("/Account/v1/Authorized"),
     GenerateToken("/Account/v1/GenerateToken"),
     CreateUser("/Account/v1/User"),
-    DeleteUser("/Account/v1/User/{UUID}"),
-    GetUser("/Account/v1/User/{UUID}"),
+    DeleteUser("/Account/v1/User/"),
+    GetUser("/Account/v1/User/"),
 
     //BOOKSTORE
     GetBooks("/BookStore/v1/Books"),
@@ -14,7 +14,7 @@ public enum Routes {
     DeleteBooks("/BookStore/v1/Books"),
     GetBook("/BookStore/v1/Book"),
     DeleteBook("/BookStore/v1/Book"),
-    UpdateBook("/BookStore/v1/Books/{ISBN}");
+    UpdateBook("/BookStore/v1/Books/");
     private final String url;
 
     Routes(String url) {

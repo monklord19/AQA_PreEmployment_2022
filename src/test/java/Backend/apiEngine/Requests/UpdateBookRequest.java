@@ -5,6 +5,7 @@ public class UpdateBookRequest {
     public String userId;
 
     public UpdateBookRequest(String userId, String isbn) {
+        super();
         this.userId = userId;
         this.isbn = isbn;
     }

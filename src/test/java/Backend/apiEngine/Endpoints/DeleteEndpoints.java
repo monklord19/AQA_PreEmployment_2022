@@ -4,11 +4,12 @@ import Backend.apiEngine.Requests.RemoveBookRequest;
 import Backend.apiEngine.Routes.Routes;
 import io.restassured.response.Response;
 
-public class DeleteEndpoints extends CommonMethods {
+public class DeleteEndpoints {
+
     public static Response deleteUser(){
         String userId= PostEndpoints.getUserId();
         Routes deleteUserRoute=Routes.DeleteUser;
-        Response deleteAUserResponse= CommonMethods.iSetTheRequestSpecifications().pathParam("UserId",userId).when().delete(deleteUserRoute.getUrl());
+        Response deleteAUserResponse= CommonMethods.iSetTheRequestSpecifications().when().delete(deleteUserRoute.getUrl()+userId);
         return deleteAUserResponse;
     }
     public static Response deleteABook(){
