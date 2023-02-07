@@ -1,0 +1,60 @@
+Feature: Api BookStore
+
+
+  Scenario: POST account for new user
+    Given User is on demoqa address
+    When User sends a post request for new user as username:"Anto" and password:"mures"
+    Then User receives status code 201
+
+  Scenario: POST generate token
+    Given User is on demoqa address
+    When User sends post request to generate token with valid credentials
+    Then User receives status code 200
+
+  Scenario: POST authorization
+    Given User is on demoqa address
+    When User sends post request authorized
+    Then User receives status code 200
+
+  Scenario: DELETE user
+    Given User is on demoqa address
+    When User send  delete account
+    Then User receives status code 204
+
+Scenario POST new user
+  Given User is on demoqa addres
+  When send POST request to generate token a for user with username: 'me123' and password: '1234'
+    Then User receives status cod 200
+
+
+  Scenario: GET Bookstore V1 status
+    Given User is on demoqa addres
+    When User sends a get request
+    Then User receives status cod 200
+
+  Scenario: GET list books
+    Given User is on demoqa addres
+    When User sends request list of books
+    Then User receives no books
+
+Scenario:  add book
+  Given User is on demoqa addres
+  When User wants to add book number 4
+  Then User receives status cod 201
+
+
+
+Scenario : add book with credentials
+  Given User is on demoqa addres
+  When User sends post request  to add book
+  Then User receives status cod 201
+
+  Scenario: update book
+    Given User is on demoqa addres
+    When User sends put request to add book no 5
+    Then User receives status cod 201
+
+
+
+
+
